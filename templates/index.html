@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container-fluid" id="hero-image">
+<!--- Hero image -->
+
+<div class="container-fluid hero-image">
     <div class="row">
         <div class="col-12 header-container">
-            <h1 class="logo-header text-center">Online Vegan <br> Cookbook</h1>
+            <h1 class="page-header text-center">Eating <br> Vegan</h1>
+            <h3 class="text-center page-sub-header">Who Said Vegan was boring?</h3>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 text-center">
                     <button class="btn-white">Login</button>
@@ -15,41 +18,49 @@
     </div>
 </div>
 
-<div class="container simple-linear">
-    <div class="row">
-
-    </div>
-</div>
-
 <!-- Promotional content -->
-<section class="promotional-section">
+<section class="promotional-section blue-background">
     <div class="container">
         <div class="row justify-content-around">
             <div class="col-12 col-md-4 text-center">
-                <h3>Promo</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque dolore dolor nulla quo quidem
-                    dolorem doloribus quae sequi, repellendus corrupti maiores. Voluptates, quis! Exercitationem
-                    obcaecati ea quo praesentium. Dolorem, quidem.
+                <i class="fas fa-leaf about-icon"></i>
+                <h3>Online Vegan Cookbook</h3>
+                <p class="p-1">
+                    Eating Vegan is an online cookbook for all your vegan needs.
                 </p>
             </div>
             <div class="col-12 col-md-4 text-center">
-                <h3>Promo</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora quas nostrum beatae non maxime
-                    voluptatem impedit corrupti, explicabo dignissimos, repudiandae consequuntur veniam deserunt quam
-                    repellendus soluta molestiae eligendi animi reiciendis.</p>
+                <i class="fas fa-file-medical about-icon"></i>
+                <h3>Share & Upload</h3>
+                <p class="p-1">Use your profile to upload and edit any recipes you want to share.</p>
             </div>
             <div class="col-12 col-md-4 text-center">
-                <h3>Promo</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium, pariatur. Doloribus commodi
-                    tempore, esse cupiditate facilis, totam neque quasi sequi, quis tenetur saepe. Quia perspiciatis
-                    debitis ipsam quaerat blanditiis. Ex.</p>
+                <i class="fas fa-user about-icon"></i>
+                <h3>Join The Community</h3>
+                <p class="p-1">Sign up and join our community of other passionate vegans who want to explore exciting
+                    new recipes. </p>
+                <button class="btn-register mb-3 ">Register</button>
             </div>
         </div>
+    </div>
+
+    <!--- Promo image background -->
+    <div class="container-fluid promo-image">
+    </div>
+
 </section>
 
-<section class="about-us-section">
 
+<section class="background-image info-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h3>100% Vegan Recipes</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse animi, earum officia aspernatur odit quod maxime eligendi laudantium molestias commodi amet quasi. Natus placeat maxime dolores expedita! Soluta, numquam odit.orem, ipsum dolor sit amet consectetur adipisicing elit. Esse animi, earum officia aspernatur odit quod maxime eligendi laudantium molestias commodi amet quasi. Natus placeat maxime dolores expedita! Soluta, numquam odit.</p>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock %}
