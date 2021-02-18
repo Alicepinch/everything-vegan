@@ -7,7 +7,7 @@ body {
 }
 
 
-h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 {
     font-family: "Bungee", sans-serif;
     color: #fff;
 }
@@ -24,18 +24,61 @@ a:hover {
 p {
     color: #fff;
     font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+button {
+    font-size: 20px;
 }
 
 /* Navigation styling */
 
+.navbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
 
+.navbar-brand {
+    font-family: 'Bungee Shade', cursive, sans-serif;
+    font-size: 2rem;
+    padding-left: 1rem;
+}
+
+.nav-item a { 
+    font-size: 20px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-family: "Bungee", sans-serif;
+}
+
+
+.nav-icon i {
+    font-size: 20px;
+    color: #fff;
+}
+
+.nav-icon i:focus {
+    outline: none;
+    border: #AFDBF5;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
 /* Hero Image */
 
-.logo-header {
+.page-header {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #fff;
-    font-size: 5rem;
+    font-size: 6rem;
     animation: 1s ease-out 0s 1 fadeInDown;
+}
+
+.page-sub-header {
+    animation: 1s ease-out 0s 1 fadeInUp;
 }
 
 .header-container { 
@@ -44,12 +87,55 @@ p {
     right: 0;
 }
 
-#hero-image {
+.hero-image {
+    position: relative;
+    height: 900px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #AFDBF5 100%), url(/static/images/hero-image-vegan.jpg);
+}
+
+.background-image {
     position: relative;
     height: 750px;
     width: 100%;
-    padding-top: 4.7rem;
-    background: linear-gradient(to bottom, rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #FFB1A4 100%), url(/static/images/hero-image-vegan.jpg)
+    background: linear-gradient(to top , rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #AFDBF5 100%), url(/static/images/background-blobs.jpg);
+}
+
+.promo-image {
+    position: relative;
+    background: url(/static/images/test.jpg) no-repeat top center;
+    height: 375px;
+}
+
+/* Promo section styling */
+
+.blue-background {
+ background-color:#AFDBF5;
+}
+
+.promotional-section {
+    padding-top: 100px;
+}
+
+.info-section {
+    padding-top: 15rem;
+}
+
+.about-icon {
+    color: #fff;
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.vegan-recipes {
+    background-color: #fff;
+    height: 200px;
+    border-radius: 30px;
+}
+
+.vegan-recipes h3 {
+    color: #AFDBF5;
+    padding-top: 1rem;
 }
 
 /* Button styling */
@@ -71,6 +157,89 @@ p {
     transition: all 300ms ease-in-out;
 }
 
+.btn-register {
+    background-color: #fff;
+    color: #AFDBF5;
+    padding: .5rem 1rem;
+    margin: .5rem;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+    border: 0;
+}
+
+.btn-register:hover {
+    color: #fff;
+    background-color: #FFB1A4;
+    transition: all 300ms ease-in-out;
+}
+
+
+/* Subscription */ 
+
+.subscription-field {
+    width: 50%;
+    border: 0;
+    border-radius: .25rem;
+    padding: .6rem;
+    margin-left: 3rem;
+    font-family: "Roboto", sans-serif;
+    color: #FFB1A4;
+}
+
+.subscription-field:focus {
+    outline: none;
+	border-color: #AFDBF5;
+	box-shadow: 0 0 10px #AFDBF5;
+}
+
+.btn-subscription {
+    background-color: #fff;
+    color: #FFB1A4;
+    margin: 0;
+    padding: 1rem;
+    border-radius: .20rem;
+    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+    border: 0;
+}
+
+.btn-subscription:hover {
+    background-color:#AFDBF5;
+    color: #fff;
+    transition: all 300ms ease-in-out;
+}
+
+/* Footer */ 
+
+footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.social-network ul {
+  list-style-type: none;
+}
+
+.social-network li {
+  display: inline;
+}
+
+.social-network i {
+  font-size: 1.5rem;
+  padding: 0 5px 0 5px;
+}
+
+@media screen and (max-width: 767px) {
+
+    .page-header {
+        font-size: 4rem;
+    }
+
+
+    .subscription-field {
+        margin-left: 2rem;
+    }
+
+}
 
 /* Animation taken from https://gist.github.com/nisanth074/46671279996bc9e5a863 */
 
