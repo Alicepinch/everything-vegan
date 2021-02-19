@@ -292,7 +292,7 @@ footer {
   padding: 0 5px 0 5px;
 }
 
-/* Login */
+/* Login & Register */
 
 .login-container {
     background: #fff;
@@ -308,6 +308,18 @@ footer {
     padding-top: 1rem;
 }
 
+.form-container {
+    padding-top: 1rem;
+}
+
+.form-container a {
+    color: #AFDBF5;
+}
+
+.form-container a:hover {
+    color: #a1d5b3;
+}
+
 .login-register-btn {
     color: #fff;
     background-color: #FFB1A4;
@@ -319,7 +331,23 @@ footer {
 
 .form-field { 
     margin: .5rem;
+    border-radius: 30px;
+    padding: .5rem 1rem;
+    border: 1px solid #AFDBF5;
+    width: 50%;
 }
+
+.form-field:focus {
+    outline: none;
+	border-color: #AFDBF5;
+	box-shadow: 0 0 10px #AFDBF5;
+}
+
+.login-register-logo {
+    color: #AFDBF5;
+    font-size: 1.2rem;
+}
+
 
 @media screen and (max-width: 767px) {
 

@@ -4,29 +4,33 @@
 <section class="blob-background">
     <div class="container-fluid">
         <div class="row">
-                <h1 class="small-header text-center">Login</h1>
-                <div class="container login-container text-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <form method="POST">
-                                <div class="col-12">
-                                    <label for="password">Username</label>
-                                    <input class="form-field" type="text">
-                                </div>
-                                <div class="col-12">
-                                    <label for="password">Password</label>
-                                    <input class="form-field" type="text">
-                                </div>
-                                <div class="col-12">
-                                    <button class="login-register-btn">Login</button>
-                                </div>
-                            </form>
-                            <p>Not got an account? Register Now.</p>
+            <h1 class="small-header text-center">Login</h1>
+            <div class="container login-container text-center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="container form-container">
+                            <div class="row">
+                                <form method="POST">
+                                    <div class="col-12">
+                                        <i class="login-register-logo fas fa-user"></i>
+                                        <input class="form-field" placeholder="Username" type="text">
+                                    </div>
+                                    <div class="col-12">
+                                        <i class="login-register-logo fas fa-user-lock"></i>
+                                        <input class="form-field" placeholder="Password" type="text">
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="login-register-btn">Login</button>
+                                    </div>
+                                </form>
+                                <p> Not got an account? <a href="{{  url_for('register')}}">Register Now.</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 
