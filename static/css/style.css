@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Roboto:wght@400;500;700;900&display=swap');
 
 body {
   margin: 0;
@@ -76,6 +76,15 @@ p {
     animation: 1s ease-out 0s 1 fadeInDown;
 }
 
+.small-header {
+    font-family: 'Bungee Shade', cursive, sans-serif;
+    color: #fff;
+    font-size: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 1rem;
+}
+
+
 .page-sub-header {
     animation: 1s ease-out 0s 1 fadeInUp;
 }
@@ -93,17 +102,17 @@ p {
     background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgba(175, 219, 245, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
-.sub-hero-image {
-    position: relative;
-    height: 600px;
-    width: 100%;
-    background: linear-gradient(to bottom, rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #AFDBF5 100%), url(/static/images/hero-image-vegan.jpg);
-}
-
 .background-image {
     position: relative;
     width: 100%;
     background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+}
+
+.blob-background {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
 .promo-image {
@@ -168,7 +177,7 @@ p {
 
 .btn-register {
     background-color: #fff;
-    color: #AFDBF5;
+    color: #FFB1A4;
     padding: .5rem 1rem;
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
@@ -183,6 +192,10 @@ p {
 
 
 /* Subscription */ 
+
+.subscription-box {
+    height: 200px;
+}
 
 
 .subscription-field {
@@ -221,29 +234,44 @@ p {
 
 .recipe-card {
     background-color: #fff;
-    border-radius: 15px;
-    height: 500px;
-    margin-bottom: 3rem;
+    border-radius: 20px;
+    text-align: center;
     margin-top: 3rem;
+    margin-bottom: 3rem;
+    max-width: 100%;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .recipe-card h3 {
-    color: #FFB1A4;
-    padding-left: 2rem;
+    color: #AFDBF5;
     padding-top: 2rem;
 }
 
 .recipe-card p {
-    color: #FFB1A4;
+    color: #AFDBF5;
     padding: 1rem 2rem 1rem 2rem;
 }
 
 .recipe-image {
     height: 300px;
-    width: 350px;
+    width: 80%;
     object-fit: cover;
-    margin: 2rem;
 }
+
+.recipe-link {
+    color: #FFB1A4;
+    padding: .5rem 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.recipe-link:hover{
+    color: #AFDBF5;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
 /* Footer */ 
 
 footer {
@@ -264,6 +292,34 @@ footer {
   padding: 0 5px 0 5px;
 }
 
+/* Login */
+
+.login-container {
+    background: #fff;
+    max-width: 50%;
+    height: 300px;
+    border-radius: 30px;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    padding-top: 2rem;
+}
+
+.login-container p {
+    color: #FFB1A4;
+    padding-top: 1rem;
+}
+
+.login-register-btn {
+    color: #fff;
+    background-color: #FFB1A4;
+    border: 0;
+    border-radius: 30px;
+    padding: .5rem 1rem;
+    margin-top: .5rem;
+}
+
+.form-field { 
+    margin: .5rem;
+}
 
 @media screen and (max-width: 767px) {
 
@@ -271,9 +327,18 @@ footer {
         font-size: 4rem;
     }
 
+    .small-header {
+        font-size: 3rem;
+    }
+
 
     .subscription-field {
         margin-left: 2rem;
+    }
+
+    .login-container {
+        max-width: 90%;
+        margin-top: 3rem;
     }
 
 }
