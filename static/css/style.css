@@ -15,21 +15,14 @@ h1,h2,h3,h4,h5,h6 {
 a {
     color: #fff;
     font-family: "Roboto", sans-serif;
-}
-
-a:hover {
-    color: #AFDBF5;
+    text-decoration: none;
 }
 
 p {
     color: #fff;
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
 }
 
-button {
-    font-size: 20px;
-}
 
 /* Navigation styling */
 
@@ -48,12 +41,17 @@ button {
 }
 
 .nav-item a { 
-    font-size: 20px;
     margin-left: 1rem;
     margin-right: 1rem;
     font-family: "Bungee", sans-serif;
+    color: #fff;
 }
 
+.nav-item:hover {
+    background-color: #a1d5b3;
+    border-radius: 30px;
+    transition: all 300ms ease-in-out;
+}
 
 .nav-icon i {
     font-size: 30px;
@@ -68,7 +66,8 @@ button {
 .navbar-nav {
     margin-left: auto;
 }
-/* Hero Image */
+
+/* Hero Image and page headers  */
 
 .page-header {
     font-family: 'Bungee Shade', cursive, sans-serif;
@@ -91,14 +90,20 @@ button {
     position: relative;
     height: 900px;
     width: 100%;
+    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgba(175, 219, 245, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+}
+
+.sub-hero-image {
+    position: relative;
+    height: 600px;
+    width: 100%;
     background: linear-gradient(to bottom, rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #AFDBF5 100%), url(/static/images/hero-image-vegan.jpg);
 }
 
 .background-image {
     position: relative;
-    height: 750px;
     width: 100%;
-    background: linear-gradient(to top , rgba(255, 177, 163, 0.096) 0%, rgba(255, 177, 163, 0.2) 75%, #AFDBF5 100%), url(/static/images/background-blobs.jpg);
+    background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
 .promo-image {
@@ -119,6 +124,7 @@ button {
 
 .info-section {
     padding-top: 15rem;
+    padding-bottom: 10rem;
 }
 
 .about-icon {
@@ -140,6 +146,10 @@ button {
 
 /* Button styling */
 
+.animation {
+    animation: 1s ease-out 0s 1 fadeInUp;
+}
+
 .btn-white {
     background-color: #fff;
     color: #FFB1A4;
@@ -147,7 +157,6 @@ button {
     margin: .5rem;
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
-    animation: 1s ease-out 0s 1 fadeInUp;
     border: 0;
 }
 
@@ -161,7 +170,6 @@ button {
     background-color: #fff;
     color: #AFDBF5;
     padding: .5rem 1rem;
-    margin: .5rem;
     border-radius: 30px;
     box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
     border: 0;
@@ -175,6 +183,7 @@ button {
 
 
 /* Subscription */ 
+
 
 .subscription-field {
     width: 50%;
@@ -208,6 +217,33 @@ button {
     transition: all 300ms ease-in-out;
 }
 
+/* Recipes */ 
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: 15px;
+    height: 500px;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.recipe-card h3 {
+    color: #FFB1A4;
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+
+.recipe-card p {
+    color: #FFB1A4;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.recipe-image {
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    margin: 2rem;
+}
 /* Footer */ 
 
 footer {
@@ -227,6 +263,7 @@ footer {
   font-size: 1.5rem;
   padding: 0 5px 0 5px;
 }
+
 
 @media screen and (max-width: 767px) {
 
