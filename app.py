@@ -37,9 +37,36 @@ def recipe():
     return render_template('recipe.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
-    return render_template('login.html')
+    
+    # Checks if the form method is POST.
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                return redirect(url_for(
+                    "index", username=session["user"]))
+            else:
+                flash("Incorret Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+@app.route('/logout')
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -53,7 +80,7 @@ def register():
 
         # If the user exists, alert the customer this username is in use.
         if existing_user:
-            flash("Sorry, this username already exists")
+            flash("Sorry, this username already exists. Please try another")
             return redirect(url_for("register"))
 
         # Inserts new user to data if username is new.

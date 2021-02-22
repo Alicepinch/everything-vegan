@@ -32,14 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{  url_for('index')  }}">Home</a>
                         </li>
+                        {% if session.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{  url_for('recipes')  }}">Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{  url_for('login')  }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{  url_for('register')  }}">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{  url_for('add_recipe')  }}">New Recipe</a>
@@ -47,6 +42,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{  url_for('edit_recipe')  }}">Edit Recipe</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('logout')  }}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('login')  }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{  url_for('register')  }}">Register</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -62,10 +68,10 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 flash-container">
-                        <h4 class="flash-message text-center">{{ message }}</h4>
+                        <h5 class="flash-message text-center">{{ message }}</h5>
                 </div>
             </div>
         </div>
