@@ -39,18 +39,24 @@ def recipe():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    
     # Checks if the form method is POST.
     if request.method == "POST":
+
+        # Finds the user in database.
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        # If the user is in database check the passwords match.
         if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
+
+                # If password matches log user in, redirect to homepage.
                 return redirect(url_for(
                     "index", username=session["user"]))
+
+            # If not then return flash message for incorrect Username/password
             else:
                 flash("Incorret Username and/or Password")
                 return redirect(url_for("login"))
@@ -96,6 +102,10 @@ def register():
             "index", username=session["user"]))
 
     return render_template("register.html")
+
+
+@app.route('/profile/<username>')
+def profile(username):
 
 
 @app.route('/add-recipe')
