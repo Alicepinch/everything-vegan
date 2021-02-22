@@ -1,4 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
 
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="small-header text-center">Add Recipe</h1>
+            <div class="container">
+                <div class="row">
+                    <form method="POST" class="text-center" action="{{  url_for('add_recipe')}}">
+                        <div>
+                            <label for="recipe_name">Recipe Name</label>
+                            <input type="text" name="recipe_name" class="form-field" placeholder="Recipe Name"
+                                id="recipe_name" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="meal_name">Recipe Name</label>
+                            <select type="text" name="meal_name" class="form-field" id="meal_name" required>
+                                <option selected disabled>Select Meal Type</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Desserts">Dessert</option><select>
+                        </div>
+                        <div class="col-12">
+                            <label for="ingredients">Ingredients</label>
+                            <textarea type="text" name="ingredients" placeholder="Recipe Ingredients" class="form-field"
+                                id="ingredients" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label for="description">Description</label>
+                            <input type="text" name="description" placeholder="Description" id="description"
+                                class="form-field" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="method">Method</label>
+                            <textarea type="text" name="method" placeholder="Method" class="form-field" id="method"
+                                required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label for="recommendations">Recommendations</label>
+                            <input type="text" name="recommendations" placeholder="Recommendation" class="form-field"
+                                id="recommendations">
+                        </div>
+                        <div class="col-12">
+                            <label for="img_url">Image URL</label>
+                            <input type="text" name="img_url" placeholder="Image URL" class="form-field" id="img_url">
+                        </div>
+                        <div class="col-12">
+                            <label for="created_by">Created By</label>
+                            <input type="text" name="created_by" placeholder="Created By" class="form-field"
+                                id="created_by">
+                        </div>
+                        <button type="submit" class="btn-white">Add Recipe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
 {% endblock %}
