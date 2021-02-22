@@ -1,9 +1,10 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     session, request, url_for, redirect)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -41,9 +42,33 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=["GET", "POST"])
 def register():
-    return render_template('register.html')
+    # Checks if the form method is POST.
+    if request.method == "POST":
+
+        # Finds the user in the mongo DB database.
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        # If the user exists, alert the customer this username is in use.
+        if existing_user:
+            flash("Sorry, this username already exists")
+            return redirect(url_for("register"))
+
+        # Inserts new user to data if username is new.
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Thank you for sigining up.")
+        return redirect(url_for(
+            "index", username=session["user"]))
+
+    return render_template("register.html")
 
 
 @app.route('/add-recipe')
@@ -58,5 +83,5 @@ def edit_recipe():
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug=True)
+            port=int(os.environ.get("PORT")),
+            debug=True)

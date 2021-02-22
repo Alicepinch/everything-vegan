@@ -4,20 +4,27 @@
 <section class="blob-background">
     <div class="container-fluid">
         <div class="row">
+
             <h1 class="small-header text-center">Register</h1>
+
+            <!---Form background container-->
             <div class="container login-container text-center">
                 <div class="row">
                     <div class="col-12">
+
+                        <!---Start of form fields-->
                         <div class="container form-container">
                             <div class="row">
-                                <form method="POST">
+                                <form method="POST" action="{{ url_for('register')  }}">
                                     <div class="col-12">
-                                         <i class="login-register-logo fas fa-user-cog"></i>
-                                        <input class="form-field" placeholder="Username" type="text">
+                                        <i class="login-register-logo fas fa-user-cog"></i>
+                                        <input id="username" name="username" type="text" class="form-field"
+                                            minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$">
                                     </div>
                                     <div class="col-12">
-                                         <i class="login-register-logo fas fa-user-lock"></i>
-                                        <input class="form-field" placeholder="Password" type="text">
+                                        <i class="login-register-logo fas fa-user-lock"></i>
+                                        <input id="password" name="password" type="password" class="form-field"
+                                            minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
                                     </div>
                                     <div class="col-12">
                                         <button class="login-register-btn">Register</button>
@@ -26,9 +33,11 @@
                                 <p>Already have got an account? <a href="{{  url_for('login')}}">Login.</a></p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

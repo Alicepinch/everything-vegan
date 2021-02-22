@@ -91,7 +91,7 @@ p {
 
 .header-container { 
     position: absolute;
-    top: 250px;
+    top: 200px;
     right: 0;
 }
 
@@ -119,6 +119,21 @@ p {
     position: relative;
     background: url(/static/images/test.jpg) no-repeat top center;
     height: 375px;
+}
+
+/* Flash messages */
+
+.flash-container {
+    background: #fff;
+    max-width: 50%;
+    border-radius: 30px;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.flash-message {
+    color: #FFB1A4;
 }
 
 /* Promo section styling */
