@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="recipe-background">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 recipe-header-container">
+                <h1 class="page-header text-center">{{ recipe.recipe_name }}</h1>
+                <h3 class="text-center page-sub-heading">{{ recipe.description }}</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section></section>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img class="recipe-page-image"
+                src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/vegan-sausage-rolls-f97592c.jpg?quality=90&webp=true&resize=440,400"
+                alt="">
+        </div>
+    </div>
+</div>
+
+<!---Recipe Info--->
+
+<div class="container recipe-info-container">
+    <div class="row text-center">
+        <div class="col-12 col-md-4">
+            <p>Uploaded by</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <p>Uploaded by</p>
+        </div>
+        <div class="col-12 col-md-4">
+            <p>Uploaded by</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 col-md-6">
+                <h3>Ingredients</h3>
+                <ul class="recipe-list">
+                    <li><i class="fas fa-leaf"></i>  Ingredirents list</li>
+                    <li><i class="fas fa-leaf"></i>  Ingredirents list</li>
+                    <li><i class="fas fa-leaf"></i>  Ingredirents list</li>
+                    <li><i class="fas fa-leaf"></i>  Ingredirents list</li>
+                    <li><i class="fas fa-leaf"></i>  Ingredirents list</li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6">
+                <h3>Method</h3>
+                <ul class="recipe-list">
+                    <li><i class="fas fa-leaf"></i>  Method</li>
+                    <li><i class="fas fa-leaf"></i>  Method</li>
+                    <li><i class="fas fa-leaf"></i>  Method</li>
+                    <li><i class="fas fa-leaf"></i>  Method</li>
+                    <li><i class="fas fa-leaf"></i>  Method</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+
+{% endblock %}

@@ -23,7 +23,6 @@ p {
     font-family: "Roboto", sans-serif;
 }
 
-
 /* Navigation styling */
 
 .navbar {
@@ -48,9 +47,12 @@ p {
 }
 
 .nav-item:hover {
-    background-color: #a1d5b3;
-    border-radius: 30px;
+    background-color: #AFDBF5;
     transition: all 300ms ease-in-out;
+}
+
+.active {
+     background-color: #AFDBF5;
 }
 
 .nav-icon i {
@@ -76,6 +78,18 @@ p {
     animation: 1s ease-out 0s 1 fadeInDown;
 }
 
+.header-container { 
+    position: absolute;
+    top: 200px;
+    right: 0;
+}
+
+.recipe-header-container {
+    position: absolute;
+    top: 150px;
+    right: 0;
+}
+
 .small-header {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #fff;
@@ -84,15 +98,9 @@ p {
     padding-bottom: 1rem;
 }
 
-
-.page-sub-header {
+.page-sub-heading {
     animation: 1s ease-out 0s 1 fadeInUp;
-}
-
-.header-container { 
-    position: absolute;
-    top: 200px;
-    right: 0;
+    margin-bottom: 1rem;
 }
 
 .hero-image {
@@ -106,6 +114,13 @@ p {
     position: relative;
     width: 100%;
     background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+}
+
+.recipe-background {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
 .blob-background {
@@ -129,11 +144,12 @@ p {
     border-radius: 30px;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     padding: 1rem;
-    margin: 1rem;
+    margin: 0 auto;
 }
 
 .flash-message {
-    color: #FFB1A4;
+    color: #a1d5b3;
+    margin: 0;
 }
 
 /* Promo section styling */
@@ -166,6 +182,14 @@ p {
 .vegan-recipes h3 {
     color: #AFDBF5;
     padding-top: 1rem;
+}
+
+.bg-color-white {
+    background-color: #fff;
+}
+
+.bg-color-white h3 + p {
+    color: #FFB1A4;
 }
 
 /* Button styling */
@@ -249,36 +273,53 @@ p {
 
 .recipe-card {
     background-color: #fff;
-    border-radius: 20px;
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    max-width: 100%;
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    height: 400px;
+    width: 90%;
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .recipe-card h3 {
-    color: #AFDBF5;
+    text-align: left;
+    padding-left: 2.5rem;
+    color: #FFB1A4;
     padding-top: 2rem;
 }
 
+.meal-name {
+    display: block;
+    padding-bottom: .5rem;
+    color: grey;
+    font-size: small;
+}
+
 .recipe-card p {
-    color: #AFDBF5;
-    padding: 1rem 2rem 1rem 2rem;
+    color: #a1d5b3;
+    padding: 0rem 2rem 0rem 2.5rem;
+    text-align: left;
 }
 
 .recipe-image {
-    height: 300px;
-    width: 80%;
+    height: 200px;
+    width: 100%;
     object-fit: cover;
 }
 
 .recipe-link {
+    display: block;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+}
+
+.recipe-link a {
     color: #FFB1A4;
-    padding: .5rem 1rem;
-    border-radius: 30px;
     font-weight: 500;
-    font-size: 1.2rem;
+}
+
+.recipe-link a:hover {
+    color: #a1d5b3;
+    font-weight: 500;
 }
 
 .recipe-link:hover{
@@ -287,38 +328,42 @@ p {
     cursor: pointer;
 }
 
-/* Footer */ 
+/* Recipe Page */
 
-footer {
+.recipe-page-image {
+    width: 70%;
+    height: 500px;
+    margin: auto;   
+    object-fit: cover; 
+    display: block;
+}
+
+.recipe-info-container {
     padding-top: 2rem;
-    padding-bottom: 2rem;
 }
 
-.social-network ul {
-  list-style-type: none;
+.recipe-list {
+    list-style-type: none;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
 }
 
-.social-network li {
-  display: inline;
+.recipe-list i {
+    padding: .5rem;
 }
 
-.social-network i {
-  font-size: 1.5rem;
-  padding: 0 5px 0 5px;
-}
 
-/* Login & Register */
+/* Login & Register & New recipe */
 
-.login-container {
+.login-register-container {
     background: #fff;
     max-width: 50%;
     height: 300px;
-    border-radius: 30px;
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     padding-top: 2rem;
 }
 
-.login-container p {
+.login-register-container p {
     color: #FFB1A4;
     padding-top: 1rem;
 }
@@ -346,7 +391,6 @@ footer {
 
 .form-field { 
     margin: .5rem;
-    border-radius: 30px;
     padding: .5rem 1rem;
     border: 1px solid #AFDBF5;
     width: 50%;
@@ -363,6 +407,39 @@ footer {
     font-size: 1.2rem;
 }
 
+label {
+    display: block;
+    color: #fff;
+    font-family: 'Roboto', 'sans-sherif';
+    font-size: 18px;
+}
+
+.login-register-btn:hover {
+    background: #e49e93;
+    transition: all 300ms ease-in-out;
+
+}
+
+/* Footer */ 
+
+footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.social-network ul {
+  list-style-type: none;
+}
+
+.social-network li {
+  display: inline;
+}
+
+.social-network i {
+  font-size: 1.5rem;
+  padding: 0 5px 0 5px;
+}
+
 
 @media screen and (max-width: 767px) {
 
@@ -375,15 +452,10 @@ footer {
     }
 
 
-    .subscription-field {
-        margin-left: 2rem;
-    }
-
-    .login-container {
+    .login-register-container {
         max-width: 90%;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
-
 }
 
 /* Animation taken from https://gist.github.com/nisanth074/46671279996bc9e5a863 */

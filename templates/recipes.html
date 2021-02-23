@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="blob-background">
+<section class="recipe-background">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 header-container">
+            <div class="col-12 recipe-header-container">
                 <h1 class="page-header text-center">Recipes</h1>
-                <h3 class="text-center page-sub-header">All your vegan recipes in one place</h3>
+                <h3 class="text-center page-sub-heading">Fresh and exciting plant-based foods!</h3>
             </div>
         </div>
     </div>
@@ -20,12 +20,13 @@
             {% for recipe in recipes %}
             <div class="col-12 col-md-4">
                 <div class="recipe-card">
-                    <h3>{{ recipe.recipe_name }}</h3>
                     <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}">
+                    <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description">
                         <p>
+                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-                            <a class="recipe-link" href="{{  (url_for('recipe'))  }}">  View Recipe <i class="fas fa-arrow-right"></i></a>
+                            <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">  View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
                         
                     </div>

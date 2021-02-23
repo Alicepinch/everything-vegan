@@ -32,9 +32,10 @@ def recipes():
     return render_template('recipes.html', recipes=recipes)
 
 
-@app.route('/recipe')
-def recipe():
-    return render_template('recipe.html')
+@app.route('/recipe/<recipe_id>')
+def recipe_page(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('recipe.html',recipe=recipe)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -54,7 +55,7 @@ def login():
 
                 # If password matches log user in, redirect to homepage.
                 return redirect(url_for(
-                    "index", username=session["user"]))
+                    "profile", username=session["user"]))
 
             # If not then return flash message for incorrect Username/password
             else:
@@ -99,7 +100,7 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Thank you for sigining up.")
         return redirect(url_for(
-            "index", username=session["user"]))
+            "profile", username=session["user"]))
 
     return render_template("register.html")
 
@@ -137,9 +138,23 @@ def add_recipe():
     return render_template('add-recipe.html')
 
 
-@app.route('/edit-recipe')
+@app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe():
-    return render_template('edit-recipe.html')
+    if request.method == "POST":
+        submit = {
+            "meal_name": request.form.get("meal_name"),
+            "recipe_name": request.form.get("recipe_name"),
+            "ingredients": request.form.get("ingredients"),
+            "description": request.form.get("description"),
+            "recommendation": request.form.get("recommendation"),
+            "img_url": request.form.get("img_url"),
+            "method": request.form.get("method"),
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.update({"_id": ObjectId(recipe_id)}, submit)
+        flash("Recipe Successfully Updated")
+
+    return render_template('edit-recipe.html', recipes=recipes)
 
 
 if __name__ == "__main__":
