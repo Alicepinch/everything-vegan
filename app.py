@@ -35,7 +35,7 @@ def recipes():
 @app.route('/recipe/<recipe_id>')
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template('recipe.html',recipe=recipe)
+    return render_template('recipe.html', recipe=recipe)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -139,22 +139,24 @@ def add_recipe():
 
 
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
-def edit_recipe():
+def edit_recipe(recipe_id):
     if request.method == "POST":
-        submit = {
-            "meal_name": request.form.get("meal_name"),
-            "recipe_name": request.form.get("recipe_name"),
-            "ingredients": request.form.get("ingredients"),
-            "description": request.form.get("description"),
-            "recommendation": request.form.get("recommendation"),
-            "img_url": request.form.get("img_url"),
-            "method": request.form.get("method"),
-            "created_by": session["user"]
-        }
-        mongo.db.tasks.update({"_id": ObjectId(recipe_id)}, submit)
-        flash("Recipe Successfully Updated")
-
-    return render_template('edit-recipe.html', recipes=recipes)
+        mongo.db.recipes.update_one({"_id": ObjectId(recipe_id)},
+                                             {'$set': {
+                                                 "meal_name": request.form.get("meal_name"),
+                                                 "recipe_name": request.form.get("recipe_name"),
+                                                 "ingredients": request.form.get("ingredients"),
+                                                 "description": request.form.get("description"),
+                                                 "recommendation": request.form.get("recommendation"),
+                                                 "img_url": request.form.get("img_url"),
+                                                 "method": request.form.get("method"),
+                                                 "created_by": session["user"]
+                                             }})
+        flash("Recipe Updated")
+        return redirect(url_for("recipes"))
+        
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('edit-recipe.html', recipe=recipe)
 
 
 if __name__ == "__main__":
