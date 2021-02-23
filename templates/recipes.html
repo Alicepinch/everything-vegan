@@ -14,11 +14,11 @@
 
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-            {% for message in messages %}
-                <h3 class="text-center p-2 animation">{{ message }}</h3>
-            {% endfor %}
-    {% endif %}
+{% if messages %}
+{% for message in messages %}
+<h3 class="text-center p-2 animation">{{ message }}</h3>
+{% endfor %}
+{% endif %}
 {% endwith %}
 
 
@@ -36,8 +36,14 @@
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
+                            
+                            {% if session.user %}
                             <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
+                            {% else %}
+                            <span class="recipe-link"><a href="{{  (url_for('login'))  }}">
+                                    View Recipe <i class="fas fa-arrow-right"></i></a></span>
+                            {% endif %}
                         </p>
 
                     </div>
