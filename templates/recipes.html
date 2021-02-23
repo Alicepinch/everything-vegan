@@ -12,6 +12,16 @@
     </div>
 </section>
 
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+            {% for message in messages %}
+                <h3 class="text-center p-2 animation">{{ message }}</h3>
+            {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
 <!----Recipes--->
 
 <section>
@@ -26,9 +36,10 @@
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-                            <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">  View Recipe <i class="fas fa-arrow-right"></i></a></span>
+                            <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
+                                    View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
-                        
+
                     </div>
                 </div>
             </div>
