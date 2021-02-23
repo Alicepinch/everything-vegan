@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #FFB1A4;
+
 }
 
 
@@ -21,6 +22,7 @@ a {
 p {
     color: #fff;
     font-family: "Roboto", sans-serif;
+    font-size: 18px;
 }
 
 /* Navigation styling */
@@ -136,21 +138,8 @@ p {
     height: 375px;
 }
 
-/* Flash messages */
 
-.flash-container {
-    background: #fff;
-    max-width: 50%;
-    border-radius: 30px;
-    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    padding: 1rem;
-    margin: 0 auto;
-}
 
-.flash-message {
-    color: #a1d5b3;
-    margin: 0;
-}
 
 /* Promo section styling */
 
@@ -331,21 +320,17 @@ p {
 /* Recipe Page */
 
 .recipe-page-image {
-    width: 70%;
+    width: 100%;
     height: 500px;
-    margin: auto;   
-    object-fit: cover; 
-    display: block;
 }
 
-.recipe-info-container {
-    padding-top: 2rem;
-}
 
 .recipe-list {
     list-style-type: none;
     color: #fff;
     font-family: 'Roboto', sans-serif;
+    padding: 0;
+    font-size: 18px;
 }
 
 .recipe-list i {
@@ -363,9 +348,15 @@ p {
     padding-top: 2rem;
 }
 
+
 .login-register-container p {
     color: #FFB1A4;
     padding-top: 1rem;
+}
+
+.login-flash-message {
+    color: red;
+    padding:0;
 }
 
 .form-container {
