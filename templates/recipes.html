@@ -34,16 +34,14 @@
                     <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description">
                         <p>
-                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
+                            <span class="meal-name">{{ recipe.meal_name }} - uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-                            
-                            {% if session.user %}
+
                             <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
-                            {% else %}
-                            <span class="recipe-link"><a href="{{  (url_for('login'))  }}">
-                                    View Recipe <i class="fas fa-arrow-right"></i></a></span>
-                            {% endif %}
+                            <span class="recipe-link"><a href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}">
+                                    Edit Recipe <i class="fas fa-arrow-right"></i></a></span>
+                        
                         </p>
 
                     </div>
