@@ -29,11 +29,11 @@
                                             placeholder="Password" required>
                                     </div>
                                     {% with messages = get_flashed_messages() %}
-                                    {% if messages %}
-                                    {% for message in messages %}
+                                        {% if messages %}
+                                            {% for message in messages %}
                                     <small class="login-flash-message">{{ message }}</small>
-                                    {% endfor %}
-                                    {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
                                     {% endwith %}
                                     <div class="col-12">
                                         <button class="login-register-btn">Login</button>
