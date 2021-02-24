@@ -110,6 +110,10 @@ def register():
 
 @app.route('/profile/<username>', methods=["GET", "POST"])
 def profile(username):
+    """
+    If the user has added recipes then 
+    they will display on profile page.
+    """
     if session['user']:
         recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
         return render_template("profile.html", recipes=recipes, username=username)
@@ -161,12 +165,22 @@ def edit_recipe(recipe_id):
                 "img_url": request.form.get("img_url"),
                 "method": request.form.get("method"),
                 "created_by": session["user"]
-                }})
+            }})
         flash("Recipe Updated")
         return redirect(url_for("recipes"))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('edit-recipe.html', recipe=recipe)
+
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    """
+    Delete function removes recipe
+    from database and recipes page.
+    """
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    return redirect(url_for("recipes"))
 
 
 if __name__ == "__main__":
