@@ -17,6 +17,7 @@ a {
     color: #fff;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
+    font-size: 18px;
 }
 
 p {
@@ -102,7 +103,7 @@ p {
 
 .page-sub-heading {
     animation: 1s ease-out 0s 1 fadeInUp;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-image {
@@ -128,7 +129,7 @@ p {
 .blob-background {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 650px;
     background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
@@ -137,7 +138,6 @@ p {
     background: url(/static/images/test.jpg) no-repeat top center;
     height: 375px;
 }
-
 
 
 
@@ -225,7 +225,6 @@ p {
     height: 200px;
 }
 
-
 .subscription-field {
     width: 50%;
     border: 0;
@@ -259,6 +258,16 @@ p {
 }
 
 /* Recipes */ 
+
+.meal-type {
+    font-family: "Bungee", sans-serif;
+    font-size: 20px;
+}
+
+.meal-type:hover {
+    color: #AFDBF5;
+    transition: all 300ms ease-in-out;
+}
 
 .recipe-card {
     background-color: #fff;
@@ -338,12 +347,12 @@ p {
 }
 
 
-/* Login & Register & New recipe */
+/* Login & Register & New recipe & Search */
 
 .login-register-container {
     background: #fff;
     max-width: 50%;
-    height: 300px;
+    height: 350px;
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     padding-top: 2rem;
 }
@@ -387,7 +396,21 @@ p {
     width: 50%;
 }
 
-.form-field:focus {
+.search-form-field { 
+    margin: .5rem;
+    padding: .5rem 1rem;
+    border: 1px solid #AFDBF5;
+}
+
+.btn-search {
+    color: #fff;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.form-field:focus, .search-form-field:focus {
     outline: none;
 	border-color: #AFDBF5;
 	box-shadow: 0 0 10px #AFDBF5;
@@ -446,6 +469,10 @@ footer {
     .login-register-container {
         max-width: 90%;
         margin-top: 2rem;
+    }
+
+    .form-field {
+        width: 90%;
     }
 }
 
