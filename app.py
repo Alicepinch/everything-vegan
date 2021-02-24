@@ -32,6 +32,13 @@ def recipes():
     return render_template('recipes.html', recipes=recipes)
 
 
+@app.route('/search', methods=["GET", "POST"])
+def search():
+    query = request.form.get("search-query")
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    return render_template("recipes.html", recipes=recipes)
+
+
 @app.route('/recipe/<recipe_id>')
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -71,7 +78,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    flash("You have been logged out")
+    flash("Goodbye! You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
@@ -97,7 +104,7 @@ def register():
             return redirect(url_for("register"))
 
         if existing_email:
-            flash("Sorry, this email is already Registered. Please try another")
+            flash("Sorry, this email is already registered. Please try another")
             return redirect(url_for("register"))
 
         # Inserts new user to data if username is new.
@@ -181,7 +188,7 @@ def edit_recipe(recipe_id):
     return render_template('edit-recipe.html', recipe=recipe)
 
 
-@app.route('/delete_recipe/<recipe_id>')
+@app.route('/delete-recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     """
     Delete function removes recipe
@@ -192,10 +199,10 @@ def delete_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-@app.route('/delete_account/<username>')
+@app.route('/delete-account/<username>')
 def delete_user(username):
     """
-    Delete user function removes user.
+    Delete user function removes user.(not used yet)
     """
     mongo.db.user.remove({"username": username.lower()})
     flash("Sorry to see you go! Your user has been deleted")
