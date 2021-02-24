@@ -3,31 +3,36 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #FFB1A4;
 
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: "Bungee", sans-serif;
-    color: #fff;
+    color: #000;
 }
 
 a {
-    color: #fff;
+    color: #000;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
     font-size: 18px;
 }
 
 p {
-    color: #fff;
+    color: #000000;
     font-family: "Roboto", sans-serif;
     font-size: 18px;
+}
+
+button {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Navigation styling */
 
 .navbar {
+    background: #000000;
     position: absolute;
     top: 0;
     right: 0;
@@ -39,6 +44,12 @@ p {
     font-family: 'Bungee Shade', cursive, sans-serif;
     font-size: 2rem;
     padding-left: 1rem;
+    color: #fff;
+}
+
+.navbar-brand:hover {
+    color: #a1d5b3;
+    transition: all 300ms ease-in-out;
 }
 
 .nav-item a { 
@@ -49,7 +60,7 @@ p {
 }
 
 .nav-item:hover {
-    background-color: #AFDBF5;
+    background-color: #a1d5b3;
     transition: all 300ms ease-in-out;
 }
 
@@ -75,19 +86,37 @@ p {
 
 .page-heading {
     font-family: 'Bungee Shade', cursive, sans-serif;
-    color: #fff;
+    color: #000000;
     font-size: 6rem;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.recipes-heading {
+    font-family: 'Bungee Shade', cursive, sans-serif;
+    color: #000000;
+    font-size: 6rem;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.profile-heading {
+    font-family: 'Bungee Shade', cursive, sans-serif;
+    color: #000000;
+    font-size: 4rem;
+    padding: 160px;
     text-align: center;
 }
 
 .small-heading {
     font-family: 'Bungee Shade', cursive, sans-serif;
-    color: #fff;
+    color: #000000;
     font-size: 4rem;
-    padding-top: 6rem;
+    padding-top: 8rem;
     padding-bottom: 1rem;
     text-align: center;
 }
+
 
 .page-sub-heading {
     text-align: center;
@@ -98,41 +127,28 @@ p {
 
 .hero-image {
     position: relative;
-    height: 900px;
+    height: 850px;
     width: 100%;
-    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgba(175, 219, 245, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
-.home-background-image {
-    position: relative;
+.recipes-background {
     width: 100%;
-    background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+    height: 500px;
+    background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
-.header-container { 
-    position: absolute;
-    top: 200px;
-    right: 0;
-}
-
-.recipe-header-container {
-    position: absolute;
-    top: 150px;
-    right: 0;
-}
-
-.recipe-background {
-    position: relative;
+.subpage-background {
     width: 100%;
     height: 400px;
-    background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+    background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 .login-register-background {
     position: relative;
     width: 100%;
     height: 650px;
-    background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+    background: url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 
@@ -140,18 +156,25 @@ p {
 
 .promo-image {
     position: relative;
-    background: url(/static/images/test.jpg) no-repeat top center;
-    height: 375px;
+    background: black;
+    height: 400px;
 }
 
 .promotional-section {
     padding-top: 100px;
-    background-color: #AFDBF5;
+    background-color: #000000;
+}
+
+.promotional-section p {
+    color: #fff;
+}
+
+.promotional-section h3 {
+    color: #fff;
 }
 
 .info-section {
-    padding-top: 15rem;
-    padding-bottom: 10rem;
+    padding: 125px 0;
 }
 
 .about-icon {
@@ -176,50 +199,52 @@ p {
 
 .btn-white {
     background-color: #fff;
-    color: #FFB1A4;
+    color: black;
     padding: .5rem 1rem;
     margin: .5rem;
     border-radius: 30px;
-    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
     border: 0;
 }
 
 .btn-subscription {
     background-color: #fff;
-    color: #FFB1A4;
+    color: #000000;
     margin: 0;
     padding: 1rem;
     border-radius: .20rem;
-    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
     border: 0;
 }
 
-.btn-white:hover, .btn-subscription:hover {
+.btn-white:hover,
+.btn-subscription:hover {
     color: #fff;
-    background-color: #a1d5b3;
+    background-color: #747474;
     transition: all 300ms ease-in-out;
 }
 
 .btn-search {
-    color: #fff;
+    color: #000;
     border: none;
     background: none;
     font-size: 1.5rem;
     padding: 0;
 }
 
-.login-register-btn {
-    background-color: #FFB1A4;
+.btn-black {
+    background-color: #000000;
     color: #fff;
     border: 0;
+    margin: .25rem;
     border-radius: 30px;
     padding: .5rem 1rem;
     margin-top: .5rem;
+    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
 }
 
-.login-register-btn:hover {
-    background:#a1d5b3;
+.btn-black:hover {
+    background:rgb(136, 135, 135);
     transition: all 300ms ease-in-out;
+    color: #fff;
 }
 
 /* Subscription form */ 
@@ -252,19 +277,24 @@ p {
     transition: all 300ms ease-in-out;
 }
 
+.recipes-container {
+    padding-top: 5rem;
+}
+
 .recipe-card {
     background-color: #fff;
     margin: 0 auto;
     margin-bottom: 2rem;
-    height: 400px;
+    height: 500px;
     width: 90%;
-    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
+
 
 .recipe-card h3 {
     text-align: left;
-    padding-left: 2.5rem;
-    color: #FFB1A4;
+    padding: 0rem 2rem 0rem 2.5rem;
+    color: #000000;
     padding-top: 2rem;
 }
 
@@ -276,13 +306,13 @@ p {
 }
 
 .recipe-card p {
-    color: #a1d5b3;
+    color: black;
     padding: 0rem 2rem 0rem 2.5rem;
     text-align: left;
 }
 
 .recipe-image {
-    height: 200px;
+    max-height: 300px;
     width: 100%;
     object-fit: cover;
 }
@@ -291,12 +321,12 @@ p {
     display: block;
     padding-top: .5rem;
     padding-bottom: 1rem;
-    color: #FFB1A4;
+    color: #a1d5b3;
     font-weight: 500;
 }
 
 .recipe-link a:hover {
-    color: #a1d5b3;
+    color: #687e70;
     font-weight: 500;
     transition: all 300ms ease-in-out;
 }
@@ -310,7 +340,7 @@ p {
 
 .recipe-list {
     list-style-type: none;
-    color: #fff;
+    color: #000000;
     font-family: 'Roboto', sans-serif;
     padding: 0;
     font-size: 18px;
@@ -331,7 +361,7 @@ p {
 }
 
 .login-register-container p {
-    color: #FFB1A4;
+    color: #000;
     padding-top: 1rem;
 }
 
@@ -341,46 +371,116 @@ p {
 }
 
 .login-register-logo {
-    color: #AFDBF5;
+    color: #000;
     font-size: 1.2rem;
 }
 
+/* Profile styling */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.delete-modal-title {
+    color:#FFB1A4;
+    padding-bottom: 1rem;
+}
+
+.delete-modal-content {
+  background-color:#fff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 40%;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: .75rem;
+    border-top: 1px solid #FFB1A4;
+}
+
+.delete-modal-content p {
+    color: #FFB1A4;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 2rem;
+}
+
+.close:hover {
+  color:#AFDBF5;
+  cursor: pointer;
+}
+
+.profile-information {
+    padding-top: 3rem;
+}
+
+.recipe-name, .recipe-description {
+    color: #fff;
+}
+
+.profile-recipe {
+    background: #000000;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+}
+
+
 /* Form styling */
+
+.add-edit-form-container {
+    margin-bottom: 2rem;
+}
 
 .form-container {
     padding-top: 1rem;
 }
 
 .form-container a {
-    color: #AFDBF5;
+    color: #a1d5b3;
 }
 
 .form-container a:hover {
-    color: #a1d5b3;
+    color: grey;
 }
 
 .form-field { 
     margin: .5rem;
     padding: .5rem 1rem;
-    border: 1px solid #AFDBF5;
+    border: 1px solid #000000;
     width: 50%;
 }
 
 .search-form-field { 
     margin: .5rem;
     padding: .5rem 1rem;
-    border: 1px solid #AFDBF5;
+    border: 1px solid #000;
 }
 
 .form-field:focus, .search-form-field:focus {
     outline: none;
-	border-color: #AFDBF5;
-	box-shadow: 0 0 10px #AFDBF5;
+	border-color: #000;
+	box-shadow: 0 0 10px #000000;
 }
 
 label {
     display: block;
-    color: #fff;
+    color: #000000;
     font-family: 'Roboto', 'sans-sherif';
     font-size: 18px;
 }
@@ -390,6 +490,11 @@ label {
 footer {
     padding-top: 2rem;
     padding-bottom: 2rem;
+    background-color: #000;
+}
+
+footer h6 {
+    color: #fff;
 }
 
 .social-network ul {
@@ -403,6 +508,7 @@ footer {
 .social-network i {
   font-size: 1.5rem;
   padding: 0 5px 0 5px;
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
@@ -412,7 +518,7 @@ footer {
     }
 
     .small-heading {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .login-register-container {

@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="recipe-background">
+<section class="recipes-background">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 recipe-header-container">
-                <h1 class="page-heading">Recipes</h1>
-                <h3 class="page-sub-heading animation-up">Fresh and exciting plant-based foods!</h3>
-                <form method="POST" action="{{  url_for('search')  }}"  class="animation-up search text-center">
+                <h1 class="recipes-heading">Recipes</h1>
+                <h3 class="page-sub-heading">Fresh and exciting plant-based foods!</h3>
+                <form method="POST" action="{{  url_for('search')  }}"  class=" search text-center">
                     <input type="text" id="search-query" name="search-query" class="search-form-field" placeholder="Search Recipes" required>
                     <button class="btn-search"><i class="fas fa-search"></i></button>
                 </form>
-            </div>
         </div>
     </div>
 </section>
@@ -20,14 +18,14 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-<h3 class="text-center p-2 animation">{{ message }}</h3>
+<h3 class="text-center p-2">{{ message }}</h3>
 {% endfor %}
 {% endif %}
 {% endwith %}
 
 <!----Sub heading for meal types---->
 
-<section class="pb-5 animation-up">
+<!-- <section class="pb-5">
     <div class="container">
         <div class="row">
             <div class="col-3 text-center">
@@ -44,12 +42,12 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!----Recipes--->
 
-<section>
+<section class="recipes-container">
     <div class="container">
-        <div class="row animation-up">
+        <div class="row">
 
             {% for recipe in recipes %}
             <div class="col-12 col-md-4">
