@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="blob-background">
+<section class="login-register-background">
     <div class="container-fluid">
         <div class="row">
 
-            <h1 class="small-header text-center">Login</h1>
+            <h1 class="small-heading text-center">Login</h1>
 
             <!---Form background container-->
             <div class="container login-register-container text-center">
@@ -14,7 +14,7 @@
 
                         <!---Start of form fields-->
                         <div class="container form-container">
-                            <div class="row">
+                            <div class="row pt-2">
                                 <form method="POST" action="{{ url_for('login')  }}">
                                     <div class="col-12">
                                         <i class="login-register-logo fas fa-user-cog"></i>

@@ -1,3 +1,1 @@
-$(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
+var arrayOfLines = $('textarea').val().split('\n');

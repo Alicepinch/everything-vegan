@@ -34,8 +34,14 @@ def recipes():
 
 @app.route('/search', methods=["GET", "POST"])
 def search():
+    """
+    Searches the recipe index.
+    Will return results for, Recipe name,
+    description and ingredients
+    """
     query = request.form.get("search-query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+
     return render_template("recipes.html", recipes=recipes)
 
 
@@ -64,11 +70,11 @@ def login():
                 return redirect(url_for(
                     "profile", username=session["user"]))
 
-            # If not then return flash message for incorrect Username/password
+            # If password is wrong return flash message
             else:
                 flash("Incorret Username and/or Password")
                 return redirect(url_for("login"))
-
+        # If not existing user return flash message
         else:
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
@@ -95,14 +101,16 @@ def register():
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        # Finds the email in the mongo DB database.
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
-        # If the user exists, alert the customer this username is in use.
+        # If user exists, alert the customer this username is in use.
         if existing_username:
             flash("Sorry, this username already exists. Please try another")
             return redirect(url_for("register"))
 
+        # If email has been used, alert the customer this email already in use.
         if existing_email:
             flash("Sorry, this email is already registered. Please try another")
             return redirect(url_for("register"))
@@ -209,6 +217,13 @@ def delete_user(username):
     return redirect(url_for("login"))
 
 
+# @app_route('/subscribe', methods=["GET", "POST"])
+# def subscribe_user():
+#     subscription = {"email": request.form.get("email").lower()}
+#     mongo.db.subscribers.insert_one(subscription)
+#     return redirect(request.referrer)
+
+    
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

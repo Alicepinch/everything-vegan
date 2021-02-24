@@ -1,8 +1,6 @@
-# Your Project's Name
+# Everything Vegan
 
-One or two paragraphs providing an overview of your project.
-
-Essentially, this part is your sales pitch.
+“Everything Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Everything Vegan" will have the option to create an account where they will be able to login to create,read, update and delete new Vegan recipes. 
  
 ## UX
  

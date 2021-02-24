@@ -5,9 +5,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 recipe-header-container">
-                <h1 class="page-header text-center">Recipes</h1>
-                <h3 class="text-center page-sub-heading">Fresh and exciting plant-based foods!</h3>
-                <form method="POST" action="{{  url_for('search')  }}"  class="animation search text-center">
+                <h1 class="page-heading">Recipes</h1>
+                <h3 class="page-sub-heading animation-up">Fresh and exciting plant-based foods!</h3>
+                <form method="POST" action="{{  url_for('search')  }}"  class="animation-up search text-center">
                     <input type="text" id="search-query" name="search-query" class="search-form-field" placeholder="Search Recipes" required>
                     <button class="btn-search"><i class="fas fa-search"></i></button>
                 </form>
@@ -27,20 +27,20 @@
 
 <!----Sub heading for meal types---->
 
-<section class="pb-5 animation">
+<section class="pb-5 animation-up">
     <div class="container">
         <div class="row">
             <div class="col-3 text-center">
-                <a class="meal-type" href=""> Breakfast</a>
+                <a class="meal-nav" href=""> Breakfast</a>
             </div>
             <div class="col-3 text-center">
-                <a class="meal-type" href=""> Lunch</a>
+                <a class="meal-nav" href=""> Lunch</a>
             </div>
             <div class="col-3 text-center">
-                <a class="meal-type" href=""> Dinner</a>
+                <a class="meal-nav" href=""> Dinner</a>
             </div>
             <div class="col-3 text-center">
-                <a class="meal-type" href=""> Desserts</a>
+                <a class="meal-nav" href=""> Desserts</a>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
 
 <section>
     <div class="container">
-        <div class="row animation">
+        <div class="row animation-up">
 
             {% for recipe in recipes %}
             <div class="col-12 col-md-4">

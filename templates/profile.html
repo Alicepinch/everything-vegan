@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 recipe-header-container">
-                <h1 class="page-header text-center">Hello, {{ username }}!</h1>
+                <h1 class="page-heading text-center">Hello, {{ username }}!</h1>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
@@ -41,7 +41,7 @@
             {% endfor %}
             {% else %}
             <div class="col-12">
-                <h3>Nothing Here Yet!, <a href="{{  url_for('add_recipe')  }}">Upload your first recipe now!</a></h3>
+                <h3 class="text-center">Nothing Here Yet!, <a href="{{  url_for('add_recipe')  }}">Upload your first recipe now!</a></h3>
             </div>
             {% endif %}
         </div>

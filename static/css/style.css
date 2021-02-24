@@ -7,7 +7,6 @@ body {
 
 }
 
-
 h1,h2,h3,h4,h5,h6 {
     font-family: "Bungee", sans-serif;
     color: #fff;
@@ -72,13 +71,42 @@ p {
     margin-left: auto;
 }
 
-/* Hero Image and page headers  */
+/* Page headings  */
 
-.page-header {
+.page-heading {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #fff;
     font-size: 6rem;
-    animation: 1s ease-out 0s 1 fadeInDown;
+    text-align: center;
+}
+
+.small-heading {
+    font-family: 'Bungee Shade', cursive, sans-serif;
+    color: #fff;
+    font-size: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.page-sub-heading {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Header Containers */
+
+.hero-image {
+    position: relative;
+    height: 900px;
+    width: 100%;
+    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgba(175, 219, 245, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
+}
+
+.home-background-image {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
 .header-container { 
@@ -93,32 +121,6 @@ p {
     right: 0;
 }
 
-.small-header {
-    font-family: 'Bungee Shade', cursive, sans-serif;
-    color: #fff;
-    font-size: 4rem;
-    padding-top: 6rem;
-    padding-bottom: 1rem;
-}
-
-.page-sub-heading {
-    animation: 1s ease-out 0s 1 fadeInUp;
-    margin-bottom: 1.5rem;
-}
-
-.hero-image {
-    position: relative;
-    height: 900px;
-    width: 100%;
-    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgba(175, 219, 245, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
-}
-
-.background-image {
-    position: relative;
-    width: 100%;
-    background: linear-gradient(rgba(175, 219, 245, 1),rgba(255, 178, 164, 0) 20%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
-}
-
 .recipe-background {
     position: relative;
     width: 100%;
@@ -126,12 +128,15 @@ p {
     background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
 
-.blob-background {
+.login-register-background {
     position: relative;
     width: 100%;
     height: 650px;
     background: linear-gradient(rgba(255, 178, 164, 0) 10%,rgba(255, 178, 164, 1)), url(/static/images/hero-image-vegan.jpg)no-repeat center;
 }
+
+
+/* Promo section styling */
 
 .promo-image {
     position: relative;
@@ -139,16 +144,9 @@ p {
     height: 375px;
 }
 
-
-
-/* Promo section styling */
-
-.blue-background {
- background-color:#AFDBF5;
-}
-
 .promotional-section {
     padding-top: 100px;
+    background-color: #AFDBF5;
 }
 
 .info-section {
@@ -173,19 +171,8 @@ p {
     padding-top: 1rem;
 }
 
-.bg-color-white {
-    background-color: #fff;
-}
-
-.bg-color-white h3 + p {
-    color: #FFB1A4;
-}
 
 /* Button styling */
-
-.animation {
-    animation: 1s ease-out 0s 1 fadeInUp;
-}
 
 .btn-white {
     background-color: #fff;
@@ -197,33 +184,45 @@ p {
     border: 0;
 }
 
-.btn-white:hover {
-    color: #fff;
-    background-color: #AFDBF5;
-    transition: all 300ms ease-in-out;
-}
-
-.btn-register {
+.btn-subscription {
     background-color: #fff;
     color: #FFB1A4;
-    padding: .5rem 1rem;
-    border-radius: 30px;
+    margin: 0;
+    padding: 1rem;
+    border-radius: .20rem;
     box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
     border: 0;
 }
 
-.btn-register:hover {
+.btn-white:hover, .btn-subscription:hover {
     color: #fff;
-    background-color: #FFB1A4;
+    background-color: #a1d5b3;
     transition: all 300ms ease-in-out;
 }
 
-
-/* Subscription */ 
-
-.subscription-box {
-    height: 200px;
+.btn-search {
+    color: #fff;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    padding: 0;
 }
+
+.login-register-btn {
+    background-color: #FFB1A4;
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    padding: .5rem 1rem;
+    margin-top: .5rem;
+}
+
+.login-register-btn:hover {
+    background:#a1d5b3;
+    transition: all 300ms ease-in-out;
+}
+
+/* Subscription form */ 
 
 .subscription-field {
     width: 50%;
@@ -241,30 +240,14 @@ p {
 	box-shadow: 0 0 10px #AFDBF5;
 }
 
-.btn-subscription {
-    background-color: #fff;
-    color: #FFB1A4;
-    margin: 0;
-    padding: 1rem;
-    border-radius: .20rem;
-    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
-    border: 0;
-}
-
-.btn-subscription:hover {
-    background-color:#AFDBF5;
-    color: #fff;
-    transition: all 300ms ease-in-out;
-}
-
 /* Recipes */ 
 
-.meal-type {
+.meal-nav {
     font-family: "Bungee", sans-serif;
     font-size: 20px;
 }
 
-.meal-type:hover {
+.meal-nav:hover {
     color: #AFDBF5;
     transition: all 300ms ease-in-out;
 }
@@ -304,13 +287,10 @@ p {
     object-fit: cover;
 }
 
-.recipe-link {
+.recipe-link a {
     display: block;
     padding-top: .5rem;
     padding-bottom: 1rem;
-}
-
-.recipe-link a {
     color: #FFB1A4;
     font-weight: 500;
 }
@@ -318,21 +298,15 @@ p {
 .recipe-link a:hover {
     color: #a1d5b3;
     font-weight: 500;
-}
-
-.recipe-link:hover{
-    color: #AFDBF5;
     transition: all 300ms ease-in-out;
-    cursor: pointer;
 }
 
-/* Recipe Page */
+/* Single Recipe Page */
 
 .recipe-page-image {
     width: 100%;
     height: 500px;
 }
-
 
 .recipe-list {
     list-style-type: none;
@@ -346,8 +320,7 @@ p {
     padding: .5rem;
 }
 
-
-/* Login & Register & New recipe & Search */
+/* Login & Register  */
 
 .login-register-container {
     background: #fff;
@@ -356,7 +329,6 @@ p {
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     padding-top: 2rem;
 }
-
 
 .login-register-container p {
     color: #FFB1A4;
@@ -368,6 +340,13 @@ p {
     padding:0;
 }
 
+.login-register-logo {
+    color: #AFDBF5;
+    font-size: 1.2rem;
+}
+
+/* Form styling */
+
 .form-container {
     padding-top: 1rem;
 }
@@ -378,15 +357,6 @@ p {
 
 .form-container a:hover {
     color: #a1d5b3;
-}
-
-.login-register-btn {
-    color: #fff;
-    background-color: #FFB1A4;
-    border: 0;
-    border-radius: 30px;
-    padding: .5rem 1rem;
-    margin-top: .5rem;
 }
 
 .form-field { 
@@ -402,23 +372,10 @@ p {
     border: 1px solid #AFDBF5;
 }
 
-.btn-search {
-    color: #fff;
-    border: none;
-    background: none;
-    font-size: 1.5rem;
-    padding: 0;
-}
-
 .form-field:focus, .search-form-field:focus {
     outline: none;
 	border-color: #AFDBF5;
 	box-shadow: 0 0 10px #AFDBF5;
-}
-
-.login-register-logo {
-    color: #AFDBF5;
-    font-size: 1.2rem;
 }
 
 label {
@@ -426,12 +383,6 @@ label {
     color: #fff;
     font-family: 'Roboto', 'sans-sherif';
     font-size: 18px;
-}
-
-.login-register-btn:hover {
-    background: #e49e93;
-    transition: all 300ms ease-in-out;
-
 }
 
 /* Footer */ 
@@ -454,17 +405,15 @@ footer {
   padding: 0 5px 0 5px;
 }
 
-
 @media screen and (max-width: 767px) {
 
-    .page-header {
+    .page-heading {
         font-size: 4rem;
     }
 
-    .small-header {
+    .small-heading {
         font-size: 3rem;
     }
-
 
     .login-register-container {
         max-width: 90%;
@@ -477,6 +426,14 @@ footer {
 }
 
 /* Animation taken from https://gist.github.com/nisanth074/46671279996bc9e5a863 */
+
+.animation-up {
+    animation: 1s ease-out 0s 1 fadeInUp;
+}
+
+.animation-down {
+    animation: 1s ease-out 0s 1 fadeInDown;
+}
 
 @keyframes fadeInDown {
     0% {
