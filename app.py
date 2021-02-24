@@ -78,6 +78,9 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
+    """
+    Register function creates a new user.
+    """
     # Checks if the form method is POST.
     if request.method == "POST":
 
@@ -107,18 +110,19 @@ def register():
 
 @app.route('/profile/<username>', methods=["GET", "POST"])
 def profile(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
-
-    if session["user"]:
-        return render_template("profile.html", username=username)
+    if session['user']:
+        recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
+        return render_template("profile.html", recipes=recipes, username=username)
 
     return redirect(url_for("login"))
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
 def add_recipe():
+    """
+    Add recipe function allows the
+    user to add their own recipes if logged in
+    """
     if request.method == "POST":
         recipe = {
             "meal_name": request.form.get("meal_name"),
@@ -140,6 +144,11 @@ def add_recipe():
 
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    """
+    Edit recipe function allows the
+    user to edit their own recipes from
+    their profile page.
+    """
     if request.method == "POST":
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},

@@ -1,4 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+<section class="recipe-background">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 recipe-header-container">
+                <h1 class="page-header text-center">Hello, {{ username }}!</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <h3 class="text-center p-2 animation">{{ message }}</h3>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row animation">
+            <h2 class="text-center pb-3">Your Recipes:</h2>
+            
+            {% if recipes|length > 0 %}
+            {% for recipe in recipes %}
+            <div class="col-12 col-md-4">
+                <div class="recipe-card">
+                    <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}">
+                    <h3>{{ recipe.recipe_name }}</h3>
+                    <div class="recipe-description">
+                        <p>
+                            <a class="btn-register" href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}"> Edit Recipe <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}"> Delete Recipe <i class="fas fa-arrow-right"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <h3>Nothing Here Yet!, <a href="{{  url_for('add_recipe')  }}">Upload your first recipe now!</a></h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}
