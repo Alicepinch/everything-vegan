@@ -24,6 +24,8 @@
     <div class="container">
         <div class="row animation">
 
+            <!--- Users Recipes --->
+
             {% if recipes|length > 0 %}
             <div class="col-12">
                 <h2 class="pb-3">Your Recipes:</h2>
@@ -38,7 +40,7 @@
 
                     <div class="modal" id="delete-modal">
 
-                        <!-- Modal content -->
+                        <!-- Modal to confirm deletion of recipe -->
                         <div class="delete-modal-content">
                             <span class="close">&times;</span>
                             <h3 class="delete-modal-title">Delete Recipe</h3>
@@ -56,13 +58,15 @@
                 </div>
                 {% endfor %}
             </div>
+
+            <!---- Content if user has no recipes ---->
+            
             {% else %}
             <div class="col-12 col-md-6">
                 <h3 class="text-center">Nothing Here Yet!, <a href="{{  url_for('add_recipe')  }}">Upload your first
                         recipe now!</a></h3>
             </div>
             {% endif %}
-
         </div>
     </div>
 </section>

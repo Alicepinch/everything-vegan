@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!---Recipes header container with search--->
+
 <section class="recipes-background">
     <div class="container-fluid">
         <div class="row">
-                <h1 class="recipes-heading">Recipes</h1>
-                <h3 class="page-sub-heading">Fresh and exciting plant-based foods!</h3>
-                <form method="POST" action="{{  url_for('search')  }}"  class=" search text-center">
-                    <input type="text" id="search-query" name="search-query" class="search-form-field" placeholder="Search Recipes" required>
-                    <button class="btn-search"><i class="fas fa-search"></i></button>
-                </form>
+            <h1 class="recipes-heading">Recipes</h1>
+            <h3 class="page-sub-heading">Fresh and exciting plant-based foods!</h3>
+            <form method="POST" action="{{  url_for('search')  }}" class=" search text-center">
+                <input type="text" id="search-query" name="search-query" class="search-form-field"
+                    placeholder="Search Recipes" required>
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+            </form>
         </div>
     </div>
 </section>
@@ -23,27 +26,7 @@
 {% endif %}
 {% endwith %}
 
-<!----Sub heading for meal types---->
-
-<!-- <section class="pb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-3 text-center">
-                <a class="meal-nav" href=""> Breakfast</a>
-            </div>
-            <div class="col-3 text-center">
-                <a class="meal-nav" href=""> Lunch</a>
-            </div>
-            <div class="col-3 text-center">
-                <a class="meal-nav" href=""> Dinner</a>
-            </div>
-            <div class="col-3 text-center">
-                <a class="meal-nav" href=""> Desserts</a>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!----Recipes--->
+<!---All recipes--->
 
 <section class="recipes-container">
     <div class="container">
@@ -58,11 +41,9 @@
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-
                             <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
-
                     </div>
                 </div>
             </div>
