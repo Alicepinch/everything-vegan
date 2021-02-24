@@ -85,17 +85,25 @@ def register():
     if request.method == "POST":
 
         # Finds the user in the mongo DB database.
-        existing_user = mongo.db.users.find_one(
+        existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
         # If the user exists, alert the customer this username is in use.
-        if existing_user:
+        if existing_username:
             flash("Sorry, this username already exists. Please try another")
+            return redirect(url_for("register"))
+
+        if existing_email:
+            flash("Sorry, this email is already Registered. Please try another")
             return redirect(url_for("register"))
 
         # Inserts new user to data if username is new.
         register = {
             "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
@@ -111,7 +119,7 @@ def register():
 @app.route('/profile/<username>', methods=["GET", "POST"])
 def profile(username):
     """
-    If the user has added recipes then 
+    If the user has added recipes then
     they will display on profile page.
     """
     if session['user']:
@@ -180,7 +188,18 @@ def delete_recipe(recipe_id):
     from database and recipes page.
     """
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe removed")
     return redirect(url_for("recipes"))
+
+
+@app.route('/delete_account/<username>')
+def delete_user(username):
+    """
+    Delete user function removes user.
+    """
+    mongo.db.user.remove({"username": username.lower()})
+    flash("Sorry to see you go! Your user has been deleted")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
