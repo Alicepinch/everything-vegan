@@ -7,12 +7,16 @@
             <div class="col-12 recipe-header-container">
                 <h1 class="page-header text-center">Recipes</h1>
                 <h3 class="text-center page-sub-heading">Fresh and exciting plant-based foods!</h3>
+                <form method="POST" action="{{  url_for('search')  }}"  class="animation search text-center">
+                    <input type="text" id="search-query" name="search-query" class="search-form-field" placeholder="Search Recipes" required>
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                </form>
             </div>
         </div>
     </div>
 </section>
 
-
+<!---Flash Messages--->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
@@ -21,12 +25,32 @@
 {% endif %}
 {% endwith %}
 
+<!----Sub heading for meal types---->
 
+<section class="pb-5 animation">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 text-center">
+                <a class="meal-type" href=""> Breakfast</a>
+            </div>
+            <div class="col-3 text-center">
+                <a class="meal-type" href=""> Lunch</a>
+            </div>
+            <div class="col-3 text-center">
+                <a class="meal-type" href=""> Dinner</a>
+            </div>
+            <div class="col-3 text-center">
+                <a class="meal-type" href=""> Desserts</a>
+            </div>
+        </div>
+    </div>
+</section>
 <!----Recipes--->
 
 <section>
     <div class="container">
         <div class="row animation">
+
             {% for recipe in recipes %}
             <div class="col-12 col-md-4">
                 <div class="recipe-card">
@@ -39,9 +63,6 @@
 
                             <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
-                            <span class="recipe-link"><a href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}">
-                                    Edit Recipe <i class="fas fa-arrow-right"></i></a></span>
-                        
                         </p>
 
                     </div>
