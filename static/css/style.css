@@ -104,7 +104,7 @@ button {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #000000;
     font-size: 4rem;
-    padding: 160px;
+    padding-top: 160px;
     text-align: center;
 }
 
@@ -127,9 +127,9 @@ button {
 
 .hero-image {
     position: relative;
-    height: 850px;
+    height: 800px;
     width: 100%;
-    background: linear-gradient(rgba(255, 178, 164, 0),rgba(255, 178, 164, 0) 80%,rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+    background: linear-gradient(rgba(255, 255, 255, 0) 80%,rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 .recipes-background {
@@ -147,7 +147,7 @@ button {
 .login-register-background {
     position: relative;
     width: 100%;
-    height: 650px;
+    height: 700px;
     background: url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
@@ -204,14 +204,13 @@ button {
     margin: .5rem;
     border-radius: 30px;
     border: 0;
+    box-shadow:  5px 5px 5px rgb(255 255 255 / 28%)
 }
 
 .btn-subscription {
     background-color: #fff;
     color: #000000;
-    margin: 0;
-    padding: 1rem;
-    border-radius: .20rem;
+    padding: .5rem;
     border: 0;
 }
 
@@ -238,31 +237,13 @@ button {
     border-radius: 30px;
     padding: .5rem 1rem;
     margin-top: .5rem;
-    box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+    box-shadow: 3px 3px 3px 3px rgb(0 0 0 / 20%);
 }
 
 .btn-black:hover {
     background:rgb(136, 135, 135);
     transition: all 300ms ease-in-out;
     color: #fff;
-}
-
-/* Subscription form */ 
-
-.subscription-field {
-    width: 50%;
-    border: 0;
-    border-radius: .25rem;
-    padding: .6rem;
-    margin-left: 3rem;
-    font-family: "Roboto", sans-serif;
-    color: #FFB1A4;
-}
-
-.subscription-field:focus {
-    outline: none;
-	border-color: #AFDBF5;
-	box-shadow: 0 0 10px #AFDBF5;
 }
 
 /* Recipes */ 
@@ -290,12 +271,10 @@ button {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
 
-
 .recipe-card h3 {
     text-align: left;
-    padding: 0rem 2rem 0rem 2.5rem;
+    padding: 1rem 1rem 0rem 1.5rem;
     color: #000000;
-    padding-top: 2rem;
 }
 
 .meal-name {
@@ -307,12 +286,12 @@ button {
 
 .recipe-card p {
     color: black;
-    padding: 0rem 2rem 0rem 2.5rem;
+    padding: 0rem 1rem 0rem 1.5rem;
     text-align: left;
 }
 
 .recipe-image {
-    max-height: 300px;
+    height: 300px;
     width: 100%;
     object-fit: cover;
 }
@@ -492,27 +471,67 @@ label {
 /* Footer */ 
 
 footer {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
     background-color: #000;
 }
 
-footer h6 {
+footer p {
+    color: #fff;
+    text-align: center;
+}
+
+footer a {
+    color: #a1d5b3;
+}
+
+footer a:hover {
     color: #fff;
 }
 
-.social-network ul {
-  list-style-type: none;
+.footer-header { 
+    color: #fff;
+    text-align: center;
 }
 
-.social-network li {
-  display: inline;
+.subscription-container {
+    padding: 100px 0;
+    text-align: center;
 }
 
-.social-network i {
-  font-size: 1.5rem;
-  padding: 0 5px 0 5px;
-  color: #fff;
+.subscription-header {
+    color: #fff;
+    text-align: center;
+}
+
+.subscription-field {
+    padding: .5rem;
+    border-radius: .25rem;
+    border: 0;
+}
+
+.subscription-field:focus {
+    outline: none;
+	border-color: #000;
+	box-shadow: 0 0 10px #000000;
+}
+
+.social-contact-container {
+    padding-bottom: 2rem;
+}
+
+.social-list {
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+}
+
+.social-list li{
+    display: inline;
+}
+
+.social-link i {
+    color: #fff;
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -525,13 +544,30 @@ footer h6 {
         font-size: 2.5rem;
     }
 
+    .recipes-heading {
+        font-size: 3.5rem
+    }
+
+    .profile-heading {
+        font-size: 2.5rem;
+    }
+
     .login-register-container {
         max-width: 90%;
         margin-top: 2rem;
+        height: 450px;
     }
 
     .form-field {
         width: 90%;
+    }
+
+    .recipe-image {
+        height: 200px;
+    }
+
+    .recipe-card {
+        height: 400px;
     }
 }
 
