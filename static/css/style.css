@@ -427,7 +427,8 @@ button {
 /* Form styling */
 
 .add-edit-form-container {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
 }
 
 .form-container {
@@ -442,8 +443,13 @@ button {
     color: grey;
 }
 
+.form-description {
+    display: block;
+    padding-top: 0;
+    color: #747474;
+}
+
 .form-field { 
-    margin: .5rem;
     padding: .5rem 1rem;
     border: 1px solid #000000;
     width: 50%;
@@ -466,6 +472,7 @@ label {
     color: #000000;
     font-family: 'Roboto', 'sans-sherif';
     font-size: 18px;
+    margin-top: .5rem;
 }
 
 /* Footer */ 
