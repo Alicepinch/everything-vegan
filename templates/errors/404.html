@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <!----Own Stylesheet---->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+     <!---- Bootstrap Stylesheet ---->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+
+    <h1>404 Not Found</h1>
+    <h2>The page that you were looking for does not exist</h2>
+    <a href="{{  url_for('index')  }}">Return to website</a>
+    
+</body>
+</html>

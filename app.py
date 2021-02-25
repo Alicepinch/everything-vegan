@@ -212,7 +212,7 @@ def delete_user(username):
     """
     Delete user function removes user.(not used yet)
     """
-    mongo.db.user.remove({"username": username.lower()})
+    mongo.db.users.remove({"username": username.lower()})
     flash("Sorry to see you go! Your user has been deleted")
     return redirect(url_for("login"))
 
@@ -223,7 +223,19 @@ def delete_user(username):
 #     mongo.db.subscribers.insert_one(subscription)
 #     return redirect(request.referrer)
 
-    
+
+# Error Pages #
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('/errors/404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('/errors/500.html'), 500
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
