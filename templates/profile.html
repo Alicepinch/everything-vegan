@@ -38,7 +38,11 @@
 
             {% if recipes|length > 0 %}
             <div class="col-12 col-md-8">
+                 {% if session.user == 'admin' %} 
+                <h2 class="pb-3">All Recipes:</h2>
+                {% else %}
                 <h2 class="pb-3">Your Recipes:</h2>
+                {% endif %}
                 {% for recipe in recipes %}
                 <div class="profile-recipe-card row">
                     <div class="col-12 col-md-7 profile-recipe-info">
