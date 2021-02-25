@@ -4,11 +4,13 @@ from flask import (
     session, request, url_for, redirect)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
 # Config #
+
 
 app = Flask(__name__)
 
@@ -18,12 +20,30 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 # Pages #
+
+
+def login_required(f):
+    @wraps(f)
+    def login_check(*args, **kwargs):
+        if 'user' not in session:
+            flash("Please login to your account first")
+            return redirect(url_for('login'))
+        else:
+            return f(*args, **kwargs)
+    return login_check
+
+
+# Homepage #
 
 
 @app.route('/')
 def index():
     return render_template("index.html")
+
+
+# Recipe functions #
 
 
 @app.route('/recipes')
@@ -37,7 +57,7 @@ def search():
     """
     Searches the recipe index.
     Will return results for, Recipe name,
-    description and ingredients
+    description and ingredients.
     """
     query = request.form.get("search-query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
@@ -49,6 +69,9 @@ def search():
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipe.html', recipe=recipe)
+
+
+# Login / register function #
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -66,7 +89,7 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
 
-                # If password matches log user in, redirect to homepage.
+                # If password matches log user in, direct to profile.
                 return redirect(url_for(
                     "profile", username=session["user"]))
 
@@ -91,9 +114,6 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    """
-    Register function creates a new user.
-    """
     # Checks if the form method is POST.
     if request.method == "POST":
 
@@ -112,10 +132,10 @@ def register():
 
         # If email has been used, alert the customer this email already in use.
         if existing_email:
-            flash("Sorry, this email is already registered. Please try another")
+            flash("Sorry, this email is in use. Please try another")
             return redirect(url_for("register"))
 
-        # Inserts new user to data if username is new.
+        # Inserts register dict to data if username is new.
         register = {
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
@@ -130,8 +150,11 @@ def register():
 
     return render_template("register.html")
 
+# User logged in functions #
+
 
 @app.route('/profile/<username>', methods=["GET", "POST"])
+@login_required
 def profile(username):
     """
     If the user has added recipes then
@@ -207,14 +230,14 @@ def delete_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-@app.route('/delete-account/<username>')
-def delete_user(username):
-    """
-    Delete user function removes user.(not used yet)
-    """
-    mongo.db.users.remove({"username": username.lower()})
-    flash("Sorry to see you go! Your user has been deleted")
-    return redirect(url_for("login"))
+# @app.route('/delete-account/<username>')
+# def delete_user(username):
+#     """
+#     Delete user function removes user.(not used yet)
+#     """
+#     mongo.db.users.remove({"username": username.lower()})
+#     flash("Sorry to see you go! Your user has been deleted")
+#     return redirect(url_for("login"))
 
 
 # @app_route('/subscribe', methods=["GET", "POST"])
@@ -225,6 +248,12 @@ def delete_user(username):
 
 
 # Error Pages #
+
+"""
+Return error pages if page not
+found/Internal server error.
+"""
+
 
 @app.errorhandler(404)
 def page_not_found(error):
