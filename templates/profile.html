@@ -22,15 +22,17 @@
 
 <section class="profile-information">
     <div class="container">
-        <div class="row animation">
+        <div class="row">
 
 
 
-            <div class="col-12 col-md-4">
-                <h2>Account Details:</h2>
-                <p class="pt-3">Username: {{ username }} <br>
-                    <a class="btn btn-black " href="{{  url_for('delete_user', username=username) }}">Delete Your Account</a>
-                </p>
+            <div class="col-12 col-md-4 text-center">
+                    <img src="/static/images/default-profile-picture.jpg" class="profile-photo" alt="">
+                    <p class="pt-3"><strong>Username:</strong> {{ username }} <br>
+                        <strong>Date Joined:</strong> <br>
+                        <a class="btn btn-black" href="{{  url_for('delete_user', username=username) }}">Delete Your Account</a> <br>
+                        <a class="btn btn-black" href="">Update Your Account Details</a>
+                    </p>
             </div>
 
 
@@ -38,7 +40,7 @@
 
             {% if recipes|length > 0 %}
             <div class="col-12 col-md-8">
-                 {% if session.user == 'admin' %} 
+                {% if session.user == 'admin' %}
                 <h2 class="pb-3">All Recipes:</h2>
                 {% else %}
                 <h2 class="pb-3">Your Recipes:</h2>

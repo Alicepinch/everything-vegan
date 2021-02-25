@@ -17,19 +17,16 @@
                             <div class="row">
                                 <form method="POST" action="{{ url_for('register')  }}">
                                     <div class="col-12">
-                                        <i class="login-register-logo fas fa-envelope"></i>
-                                        <input id="email" name="email" type="email" class="form-field"
+                                        <input id="email" name="email" type="email" class="login-form-field"
                                             placeholder="Email address" minlength="5" maxlength="30" required>
                                     </div>
                                     <div class="col-12">
-                                        <i class="login-register-logo fas fa-user-cog"></i>
-                                        <input id="username" name="username" type="text" class="form-field"
+                                        <input id="username" name="username" type="text" class="login-form-field"
                                             placeholder="Username" minlength="5" maxlength="15"
                                             pattern="^[a-zA-Z0-9]{5,15}$" required>
                                     </div>
                                     <div class="col-12">
-                                        <i class="login-register-logo fas fa-user-lock"></i>
-                                        <input id="password" name="password" type="password" class="form-field"
+                                        <input id="password" name="password" type="password" class="login-form-field"
                                             minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                                             placeholder="Password" required>
                                     </div>
