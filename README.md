@@ -1,4 +1,4 @@
-# Everything Vegan
+# Eating Vegan
 
 “Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
  
@@ -61,6 +61,9 @@ The UX goal of this website is to...
 <details><summary>Skeleton</summary>
 <p>
 
+[User Logged In Wireframes](/docs/eating.vegan-wireframe-logged-in.png)
+
+[User Logged Out Wireframes](/docs/eating.vegan-wireframe-logged-out.png)
 
 </p>
 </details>
