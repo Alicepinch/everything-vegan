@@ -61,9 +61,9 @@ The UX goal of this website is to...
 <details><summary>Skeleton</summary>
 <p>
 
-[User Logged In Wireframes](/docs/eating.vegan-wireframe-logged-in.png)
+[User Logged In Wireframes](docs/eating.vegan-wireframe-logged-in.png)
 
-[User Logged Out Wireframes](/docs/eating.vegan-wireframe-logged-out.png)
+[User Logged Out Wireframes](docs/eating.vegan-wireframe-logged-out.png)
 
 </p>
 </details>
