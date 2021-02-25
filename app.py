@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from flask import (
     Flask, flash, render_template,
     session, request, url_for, redirect)
@@ -60,9 +61,14 @@ def search():
     description and ingredients.
     """
     query = request.form.get("search-query")
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+    recipes_num = mongo.db.recipes.find({"$text": {"$search": query}}).count()
+    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
 
-    return render_template("recipes.html", recipes=recipes)
+    if recipes_num > 0:
+        return render_template("recipes.html", recipes=recipes)
+    else:
+        flash("No results found")
+        return render_template("recipes.html", recipes=recipes)
 
 
 @app.route('/recipe/<recipe_id>')
@@ -135,7 +141,7 @@ def register():
             flash("Sorry, this email is in use. Please try another")
             return redirect(url_for("register"))
 
-        # Inserts register dict to data if username is new.
+        # Inserts register dict to data if username & email is new.
         register = {
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
@@ -164,9 +170,8 @@ def profile(username):
         recipes = list(mongo.db.recipes.find())
     else:
         recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
-    return render_template("profile.html", recipes=recipes, username=username)
 
-    return redirect(url_for("login"))
+    return render_template("profile.html", recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -176,16 +181,18 @@ def add_recipe():
     user to add their own recipes if logged in
     """
     if request.method == "POST":
+        default_img = ("/static/images/default-recipe-image.jpg")
+        default_reco = "No Recommendations for this recipe"
         recipe = {
             "meal_name": request.form.get("meal_name"),
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.get("ingredients"),
             "description": request.form.get("description"),
-            "recommendation": request.form.get("recommendation"),
+            "recommendation": request.form.get("recos") or default_reco,
             "yield": request.form.get("yield"),
             "active_time": request.form.get("active_time"),
             "total_time": request.form.get("total_time"),
-            "img_url": request.form.get("img_url"),
+            "img_url": request.form.get("img_url") or default_img,
             "method": request.form.get("method"),
             "created_by": session["user"]
         }
@@ -205,6 +212,8 @@ def edit_recipe(recipe_id):
     their profile page.
     """
     if request.method == "POST":
+        default_img = ("/static/images/default-recipe-image.jpg")
+        default_reco = "No Recommendations for this recipe"
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
             {'$set': {
@@ -212,14 +221,15 @@ def edit_recipe(recipe_id):
                 "recipe_name": request.form.get("recipe_name"),
                 "ingredients": request.form.get("ingredients"),
                 "description": request.form.get("description"),
-                "recommendation": request.form.get("recommendation"),
+                "recommendation": request.form.get("recos") or default_reco,
                 "yield": request.form.get("yield"),
                 "active_time": request.form.get("active_time"),
                 "total_time": request.form.get("total_time"),
                 "img_url": request.form.get("img_url"),
-                "method": request.form.get("method"),
+                "method": request.form.get("method") or default_img,
                 "created_by": session["user"]
             }})
+
         flash("Recipe Updated")
         return redirect(url_for("recipes"))
 
@@ -251,6 +261,27 @@ def delete_user(username):
     return redirect(url_for("login"))
 
 
+# @app.route('/update-user/<username>', methods=["GET", "POST"])
+# def update_user(username):
+#     """
+#     Updates users username & password
+#     """
+#     if request.method == "POST":
+
+#         existing_username = mongo.db.users.find_one(
+#             {"username": request.form.get("username").lower()})
+
+#         if existing_username:
+#             flash('Sorry username already in use! Please try another.')
+#         else:
+#             submit = {{"username": request.form.get("username").lower()},
+#                 {"password": generate_password_hash(request.form.get("password"))}}
+#             mongo.db.users.update_one(submit)
+#             return redirect(url_for("profile", username=username))
+
+#     return render_template('update-user.html', username=username)
+
+
 # @app_route('/subscribe', methods=["GET", "POST"])
 # def subscribe_user():
 #     subscription = {"email": request.form.get("email").lower()}
@@ -259,19 +290,18 @@ def delete_user(username):
 
 
 # Error Pages #
-
 """
 Return error pages if page not
 found/Internal server error.
 """
 
 
-@app.errorhandler(404)
+@ app.errorhandler(404)
 def page_not_found(error):
     return render_template('/errors/404.html'), 404
 
 
-@app.errorhandler(500)
+@ app.errorhandler(500)
 def internal_server_error(error):
     return render_template('/errors/500.html'), 500
 
