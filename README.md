@@ -1,69 +1,153 @@
 # Everything Vegan
 
-“Everything Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Everything Vegan" will have the option to create an account where they will be able to login to create,read, update and delete new Vegan recipes. 
+“Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
  
 ## UX
  
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+## User Experience 
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+The UX goal of this website is to...
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+<details><summary>Strategy</summary>
+<p>
 
-## Features
+#### User stories:
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
+- As a user I would like to be able to login to my account.
+- As a user I would like to be able to log out of my account.
+- As a user I would like to be able to view my profile.
+- As a user I would like to be able to edit or remove recipes that I have created.
+- As a user I would like to be able to view all recipes in one place.
+- As a user I would like to be able to create new recipes.
+- As a user I would like to be able to sign up for the newsletter.
+- As a user I would like to be able to update my account details.
+- As a user I would like to be able to delete my account.
+- As a user I would like to flick through the different meal types.
+- As a user I would like to be able to search through all recipes.
+- As a user I dont want to have all naviagtion links when not applicable.
+
+#### Returning User:
+
+- As a new user I would like to be able to register an account.
+- As a new user I would like to be able to sign up for the newsletter.
+- As a new user I would like to be able to understand what the website is.
+- As a new user 
+
+#### Admin:
+
+- As an admin I would like to be able to edit any recipe.
+- As an admin I would like the option to delete any recipes incase they don't meet the guidelines.
+- As an admin I would like to be able to delete users if needed. 
+</p>
+
+</details>
+
+<details><summary>Scope</summary>
+<p>
+
+#### Planned features:
+
+</p>
+</details>
+
+<details><summary>Structure</summary>
+<p>
+
+
+
+</p>
+</details>
+
+<details><summary>Skeleton</summary>
+<p>
+
+
+</p>
+</details>
+<details><summary>Surface</summary>
+<p>
+
+#### Design:
+
+
+#### Typography:
+
+
+#### Colour Scheme
+
+
+</p>
+</details>
+
+
+## Features Implemented
  
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+- [x] Login
+- [x] Register
+- [x] Profile Page
+- [x] Recipe Page
+- [x] Edit Recipe
+- [x] Add new recipe
+- [x] Update user information
+- [x] Newsletter Subscription
+- [x] Flash messages
+- [x] Search recipes
+- [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page.
+- [x] Single recipe page.
+- [x] 404 page.
+- [x] 505 page.
+- [x] Update user information.
+- [x] Delete account.
 
 ### Features Left to Implement
-- Another feature idea
+
+- [] Page Pagination.
+- [] User profiles with option to upload images.
+- [] Automated email when user signs up.
+- [] User could upload an image.
+- [] Option to view other users and what they have uploaded.
+- [] More specific filters for recipes.
+- [] 
+
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
+- Python 3.8.2
+    * Flask
+    * Jinja 
+    * Werkzeug security
+- Flask
+- MongoDB
+- HTML
+- CSS
+- Heroku
+- Bootstrap
+- Git & GitHub.com
 
+### Other Tools Used
+
+- [Font Awesome](https://fontawesome.com/) 
+- [Google fonts](https://fonts.google.com/) 
+- [Balsamiq](https://balsamiq.com/) 
+- [Gimp](https://www.gimp.org/) 
+- [W3Schools](https://www.w3schools.com/) 
+- [StackOverflow](https://stackoverflow.com/) 
+- [Coloors](https://coolors.co/) 
+- [Favicon generator](https://www.favicon-generator.org/) 
+- [JShint](https://jshint.com/) 
+- [W3cValidator](https://validator.w3.org/)
+- Google chrome developer tools.
+- ....
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+All the testing carried out for Stay In St Tropez can be found [here](TESTING.md)
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
-
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
-
-In addition, if it is not obvious, you should also describe how to run your code locally.
+This project has been deployed using Heroku.
 
 
 ## Credits
