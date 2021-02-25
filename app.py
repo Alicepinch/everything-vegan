@@ -163,7 +163,6 @@ def profile(username):
     if session['user']:
         recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
         return render_template("profile.html", recipes=recipes, username=username)
-
     return redirect(url_for("login"))
 
 
@@ -180,6 +179,9 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "description": request.form.get("description"),
             "recommendation": request.form.get("recommendation"),
+            "yield": request.form.get("yield"),
+            "active_time": request.form.get("active_time"),
+            "total_time": request.form.get("total_time"),
             "img_url": request.form.get("img_url"),
             "method": request.form.get("method"),
             "created_by": session["user"]
@@ -208,6 +210,9 @@ def edit_recipe(recipe_id):
                 "ingredients": request.form.get("ingredients"),
                 "description": request.form.get("description"),
                 "recommendation": request.form.get("recommendation"),
+                "yield": request.form.get("yield"),
+                "active_time": request.form.get("active_time"),
+                "total_time": request.form.get("total_time"),
                 "img_url": request.form.get("img_url"),
                 "method": request.form.get("method"),
                 "created_by": session["user"]

@@ -14,9 +14,10 @@
 <!----Edit Recipe Form---->
 
 <section>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="add-edit-form-container">
+
                 <form method="POST" class="text-center" action="{{  url_for('edit_recipe', recipe_id=recipe._id)  }}">
                     <div>
                         <label for="recipe_name">Recipe Name</label>
@@ -24,7 +25,7 @@
                             id="recipe_name" required>
                     </div>
                     <div class="col-12">
-                        <label for="meal_name">Recipe Name</label>
+                        <label for="meal_name">Meal Name</label>
                         <select type="text" name="meal_name" class="form-field" id="meal_name" required>
                             <option selected disabled>Select Meal Type</option>
                             <option value="Breakfast">Breakfast</option>
@@ -34,31 +35,58 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <label for="ingredients">Ingredients</label>
-                        <textarea type="text" name="ingredients" placeholder="Recipe Ingredients" class="form-field"
-                            id="ingredients" required>{{ recipe.ingredients }}</textarea>
+                        <label for="description">Description</label>
+                        <textarea type="text" name="description" id="description" class="form-field" rows="4"
+                            required>{{ recipe.description }}</textarea>
+                        <small class="form-description">Short description about your the dish. Max 100
+                            characters.</small>
                     </div>
                     <div class="col-12">
-                        <label for="description">Description</label>
-                        <textarea type="text" name="description" placeholder="Description" id="description"
-                            class="form-field" required>{{ recipe.description }}</textarea>
+                        <label for="ingredients">Ingredients</label>
+                        <textarea type="text" name="ingredients" class="form-field" id="ingredients" rows="4"
+                            required>{{ recipe.ingredients }}</textarea>
+                        <small class="form-description">Each ingredient on a seperate line.</small>
                     </div>
                     <div class="col-12">
                         <label for="method">Method</label>
-                        <textarea type="text" name="method" placeholder="Method" class="form-field" id="method"
+                        <textarea type="text" name="method" class="form-field" id="method"
                             required>{{ recipe.method }}</textarea>
+                        <small class="form-description">Each step on a seperate line.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="yield">Yield</label>
+                        <input type="number" name="yield" value="{{ recipe.yield}}" class="form-field" id="yield"
+                            required>
+                        <small class="form-description">How many people will this serve(rougly).</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="active_time">Active Time</label>
+                        <input type="text" name="active_time" value="{{ recipe.active_time }}" class="form-field"
+                            id="active_time" required>
+                        <small class="form-description">How long does it take to cook this meal.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="total_time">Total Time</label>
+                        <input type="text" name="total_time" value="{{ recipe.total_time }}" class="form-field"
+                            id="total_time" required>
+                        <small class="form-description">How long does it take to prepare and cook this meal.</small>
                     </div>
                     <div class="col-12">
                         <label for="recommendations">Recommendations</label>
-                        <textarea type="text" name="recommendations" placeholder="Recommendation" class="form-field"
+                        <textarea type="text" name="recommendations" class="form-field"
                             id="recommendations">{{ recipe.recommendation }}</textarea>
+                        <small class="form-description">Each recommendation on a seperate line.</small>
                     </div>
                     <div class="col-12">
                         <label for="img_url">Image URL</label>
-                        <input type="text" name="img_url" value="{{ recipe.img_url}}" class="form-field" id="img_url">
+                        <input type="text" name="img_url" value="{{ recipe.img_url}}" class="form-field" id="img_url"
+                            required>
+                        <small class="form-description">Image URL address.</small>
                     </div>
-                    <a href="{{  url_for('recipes')  }}"><i class="fas fa-times"></i> Cancel</a>
-                    <button type="submit" class="btn-black">Update Recipe</button>
+                    <div class="col-12 pt-3">
+                        <a href="{{  url_for('recipes')  }}" class="btn btn-black"> Cancel</a>
+                        <button type="submit" class="btn btn-black">Update Recipe</button>
+                    </div>
                 </form>
             </div>
         </div>
