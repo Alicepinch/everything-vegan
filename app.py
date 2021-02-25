@@ -25,15 +25,18 @@ mongo = PyMongo(app)
 # Pages #
 
 
-def login_required(f):
-    @wraps(f)
-    def login_check(*args, **kwargs):
-        if 'user' not in session:
-            flash("Please login to your account first")
-            return redirect(url_for('login'))
-        else:
-            return f(*args, **kwargs)
-    return login_check
+'''
+Function not working
+'''
+# def login_required(f):
+#     @wraps(f)
+#     def login_check(*args, **kwargs):
+#         if 'user' not in session:
+#             flash("Please login to your account first")
+#             return redirect(url_for('login'))
+#         else:
+#             return f(*args, **kwargs)
+#     return login_check
 
 
 # Homepage #
@@ -59,6 +62,8 @@ def search():
     Searches the recipe index.
     Will return results for, Recipe name,
     description and ingredients.
+    If not results match - flash message
+    will show.
     """
     query = request.form.get("search-query")
     recipes_num = mongo.db.recipes.find({"$text": {"$search": query}}).count()
@@ -67,7 +72,7 @@ def search():
     if recipes_num > 0:
         return render_template("recipes.html", recipes=recipes)
     else:
-        flash("No results found")
+        flash("Sorry! No results found 😔")
         return render_template("recipes.html", recipes=recipes)
 
 
@@ -160,7 +165,6 @@ def register():
 
 
 @app.route('/profile/<username>', methods=["GET", "POST"])
-@login_required
 def profile(username):
     """
     If the user has added recipes then
@@ -240,18 +244,19 @@ def edit_recipe(recipe_id):
 @app.route('/delete-recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     """
-    Delete function removes recipe
-    from database and recipes page.
+    Removes recipe from database and recipes page.
     """
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    flash("Recipe removed")
+    flash("Recipe Succesfully Removed!")
     return redirect(url_for("recipes"))
 
 
 @app.route('/delete-account/<username>')
 def delete_user(username):
     """
-    Delete user function removes user.
+    Ends user session.
+    Removes user & all
+    recipes created by used.
     """
     mongo.db.users.remove({"username": username.lower()})
     session.pop("user")
@@ -260,6 +265,10 @@ def delete_user(username):
     flash("Sorry to see you go! Your user has been deleted.")
     return redirect(url_for("login"))
 
+
+'''
+Working on function's
+'''
 
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
 # def update_user(username):
@@ -290,10 +299,6 @@ def delete_user(username):
 
 
 # Error Pages #
-"""
-Return error pages if page not
-found/Internal server error.
-"""
 
 
 @ app.errorhandler(404)
