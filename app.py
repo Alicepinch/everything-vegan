@@ -238,14 +238,17 @@ def delete_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-# @app.route('/delete-account/<username>')
-# def delete_user(username):
-#     """
-#     Delete user function removes user.(not used yet)
-#     """
-#     mongo.db.users.remove({"username": username.lower()})
-#     flash("Sorry to see you go! Your user has been deleted")
-#     return redirect(url_for("login"))
+@app.route('/delete-account/<username>')
+def delete_user(username):
+    """
+    Delete user function removes user.
+    """
+    mongo.db.users.remove({"username": username.lower()})
+    session.pop("user")
+    mongo.db.recipes.remove({"created_by": username.lower()})
+
+    flash("Sorry to see you go! Your user has been deleted.")
+    return redirect(url_for("login"))
 
 
 # @app_route('/subscribe', methods=["GET", "POST"])
