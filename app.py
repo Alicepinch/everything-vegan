@@ -160,9 +160,12 @@ def profile(username):
     If the user has added recipes then
     they will display on profile page.
     """
-    if session['user']:
+    if session["user"] == "admin":
+        recipes = list(mongo.db.recipes.find())
+    else:
         recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
-        return render_template("profile.html", recipes=recipes, username=username)
+    return render_template("profile.html", recipes=recipes, username=username)
+
     return redirect(url_for("login"))
 
 
