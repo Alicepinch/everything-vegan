@@ -6,10 +6,8 @@
 <section class="recipes-background">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                 <h1 class="recipes-heading">{{ recipe.recipe_name }}</h1>
-                <h3 class="page-sub-heading">{{ recipe.description }}</h3>
-            </div>
+            <h1 class="recipes-heading">{{ recipe.recipe_name }}</h1>
+            <h3 class="page-sub-heading">{{ recipe.description }}</h3>
         </div>
     </div>
 </section>
@@ -18,20 +16,43 @@
 <!---Recipe Image--->
 
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <p>Created by: {{ recipe.created_by }}</p>
+    <div class="container text-center recipe">
+        <!---Recipe Image--->
+
+        <div class="col-12">
+            <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="">
+            <p class="text-muted recipe-created-by">Recipe created by {{ recipe.created_by }} on {{ recipe.date_created }} </p>
+        </div>
+
+        <!---Basic recipe info--->
+
+        <div class="recipe-page-info">
+            <div class="row">
+                <div class="col-3">
+                    <p><i class="far fa-clock"></i> <strong>Active Time:</strong>
+                        <br>
+                        {{ recipe.active_time }}</p>
+                </div>
+                <div class="col-3">
+                    <p><i class="fas fa-user-friends"></i><strong> Yields:</strong>
+                        <br>
+                        {{ recipe.yield }}</p>
+                </div>
+                <div class="col-3">
+                    <p> <i class="fas fa-utensils"></i><strong> Total Time:</strong>
+                        <br>
+                        {{ recipe.total_time }}</p>
+                </div>
+                <div class="col-3">
+                    <p> <strong>Meal:</strong>
+                        <br>
+                        {{ recipe.meal_name }}</p>
+                </div>
             </div>
-            <div class="col-12 col-md-6">
-                <p>Meal Type: {{ recipe.meal_name }}</p>
-            </div>
-            <div class="col-12 col-md-6">
-                <img class="recipe-page-image"
-                    src="{{ recipe.img_url }}"
-                    alt="">
-            </div>
-             <div class="col-12 col-md-6">
+        </div>
+
+        <!---Recipe Ingredients and Method--->
+            <div class="col-12">
                 <h3>Ingredients</h3>
                 <ul class="recipe-list">
                     {% for ingredient in recipe.ingredients %}
@@ -39,7 +60,7 @@
                     {% endfor %}
                 </ul>
             </div>
-              <div class="col-12 col-md-6">
+            <div class="col-12 pt-3">
                 <h3>Method</h3>
                 <ul class="recipe-list">
                     {% for method in recipe.method %}
@@ -47,14 +68,12 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 pt-3">
                 <h4>recommendation</h4>
                 <p>{{ recipe.recommendation }}</p>
             </div>
         </div>
-    </div>
 
-    <!---Recipe Info--->
 </section>
 
 {% endblock %}

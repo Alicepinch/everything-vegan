@@ -24,15 +24,20 @@ mongo = PyMongo(app)
 
 # Pages #
 
+default_img = ("/static/images/default-recipe-image.jpg")
+default_reco = "No Recommendations for this recipe"
+default_profile = ("/static/images/default-profile-picture")
+date = date.today()
+
 
 def login_required(f):
     @wraps(f)
     def login_check(*args, **kwargs):
-        if 'user' in session:
-            return f(*args, **kwargs)
-        else:
-            flash("Please login to your account first")
+        if 'user' not in session:
             return redirect(url_for('login'))
+            flash("Please login to your account first.")
+        else:
+            return f(*args, **kwargs)
     return login_check
 
 
@@ -147,7 +152,8 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "date_joined": date.strftime("%d/%m/%Y")
         }
         mongo.db.users.insert_one(register)
 
@@ -168,11 +174,12 @@ def profile(username):
     If the user has added recipes then
     they will display on profile page.
     """
-    if session['user'] == "admin":
-        recipes = list(mongo.db.recipes.find())
-    else:
-        recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
-
+    if session['user']:
+        if session['user'] == "admin":
+            recipes = list(mongo.db.recipes.find())
+        else:
+            recipes = list(mongo.db.recipes.find(
+                {"created_by": username.lower()}))
     return render_template("profile.html", recipes=recipes, username=username)
 
 
@@ -184,8 +191,7 @@ def add_recipe():
     user to add their own recipes if logged in
     """
     if request.method == "POST":
-        default_img = ("/static/images/default-recipe-image.jpg")
-        default_reco = "No Recommendations for this recipe"
+
         recipe = {
             "meal_name": request.form.get("meal_name"),
             "recipe_name": request.form.get("recipe_name"),
@@ -198,7 +204,7 @@ def add_recipe():
             "img_url": request.form.get("img_url") or default_img,
             "method": request.form.get("method"),
             "created_by": session["user"],
-            "date_created": date.strftime("%d%m%Y")
+            "date_created": date.strftime("%d/%m/%Y")
         }
 
         mongo.db.recipes.insert_one(recipe)
@@ -217,8 +223,6 @@ def edit_recipe(recipe_id):
     their profile page.
     """
     if request.method == "POST":
-        default_img = ("/static/images/default-recipe-image.jpg")
-        default_reco = "No Recommendations for this recipe"
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
             {'$set': {
@@ -232,8 +236,7 @@ def edit_recipe(recipe_id):
                 "total_time": request.form.get("total_time"),
                 "img_url": request.form.get("img_url"),
                 "method": request.form.get("method") or default_img,
-                "created_by": session["user"],
-                "date_created": date.strftime("%d%m%Y")
+                "created_by": session["user"]
             }})
 
         flash("Recipe Updated 😊")
@@ -274,25 +277,24 @@ def delete_user(username):
 Working on function's
 '''
 
+
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
 # def update_user(username):
 #     """
 #     Updates users username & password
 #     """
+#     user = mongo.db.users.find_one({"username": username.lower()})
+
 #     if request.method == "POST":
+#         mongo.db.users.update = {
+#             "username": request.form.get("username").lower(),
+#             "password": generate_password_hash(request.form.get("password")),
+#             "profile_photo": request.form.get("profile-photo") or default_profile
+#         }
+#         flash("User information updated!")
+#         return redirect(url_for("profile", username=username))
 
-#         existing_username = mongo.db.users.find_one(
-#             {"username": request.form.get("username").lower()})
-
-#         if existing_username:
-#             flash('Sorry username already in use! Please try another.')
-#         else:
-#             submit = {{"username": request.form.get("username").lower()},
-#                 {"password": generate_password_hash(request.form.get("password"))}}
-#             mongo.db.users.update_one(submit)
-#             return redirect(url_for("profile", username=username))
-
-#     return render_template('update-user.html', username=username)
+#     return render_template('update-user.html', user=user)
 
 
 # @app_route('/subscribe', methods=["GET", "POST"])
