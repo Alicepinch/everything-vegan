@@ -1,11 +1,11 @@
 import os
-from datetime import date
 from flask import (
     Flask, flash, render_template,
     session, request, url_for, redirect)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from functools import wraps
+from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -25,18 +25,15 @@ mongo = PyMongo(app)
 # Pages #
 
 
-'''
-Function not working
-'''
-# def login_required(f):
-#     @wraps(f)
-#     def login_check(*args, **kwargs):
-#         if 'user' not in session:
-#             flash("Please login to your account first")
-#             return redirect(url_for('login'))
-#         else:
-#             return f(*args, **kwargs)
-#     return login_check
+def login_required(f):
+    @wraps(f)
+    def login_check(*args, **kwargs):
+        if 'user' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("Please login to your account first")
+            return redirect(url_for('login'))
+    return login_check
 
 
 # Homepage #
@@ -165,12 +162,13 @@ def register():
 
 
 @app.route('/profile/<username>', methods=["GET", "POST"])
+@login_required
 def profile(username):
     """
     If the user has added recipes then
     they will display on profile page.
     """
-    if session["user"] == "admin":
+    if session['user'] == "admin":
         recipes = list(mongo.db.recipes.find())
     else:
         recipes = list(mongo.db.recipes.find({"created_by": username.lower()}))
@@ -179,6 +177,7 @@ def profile(username):
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
+@login_required
 def add_recipe():
     """
     Add recipe function allows the
@@ -198,7 +197,8 @@ def add_recipe():
             "total_time": request.form.get("total_time"),
             "img_url": request.form.get("img_url") or default_img,
             "method": request.form.get("method"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "date_created": date.strftime("%d%m%Y")
         }
 
         mongo.db.recipes.insert_one(recipe)
@@ -209,6 +209,7 @@ def add_recipe():
 
 
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
+@login_required
 def edit_recipe(recipe_id):
     """
     Edit recipe function allows the
@@ -231,10 +232,11 @@ def edit_recipe(recipe_id):
                 "total_time": request.form.get("total_time"),
                 "img_url": request.form.get("img_url"),
                 "method": request.form.get("method") or default_img,
-                "created_by": session["user"]
+                "created_by": session["user"],
+                "date_created": date.strftime("%d%m%Y")
             }})
 
-        flash("Recipe Updated")
+        flash("Recipe Updated 😊")
         return redirect(url_for("recipes"))
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -242,6 +244,7 @@ def edit_recipe(recipe_id):
 
 
 @app.route('/delete-recipe/<recipe_id>')
+@login_required
 def delete_recipe(recipe_id):
     """
     Removes recipe from database and recipes page.
@@ -252,6 +255,7 @@ def delete_recipe(recipe_id):
 
 
 @app.route('/delete-account/<username>')
+@login_required
 def delete_user(username):
     """
     Ends user session.
