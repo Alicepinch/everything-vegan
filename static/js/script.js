@@ -1,20 +1,28 @@
 //Setting global variables
-let modal = document.getElementById("delete-modal");
-let btn = document.getElementsByClassName("modal-btn");
+let recipeModal = document.getElementById("delete-recipe-modal");
+let accountModal = document.getElementById("delete-account-modal")
+let accountBtn = document.getElementsByClassName("account-btn");
+let recipeBtn = document.getElementsByClassName("recipe-btn");
 let close = document.getElementsByClassName("close");
-let cancel = document.getElementById("cancel")
+let cancel = document.getElementsByClassName("cancel")
 
 //Onclick functions to display and hide modal.
-$(btn).click(function(){
-    modal.style.display = "block";
+$(recipeBtn).click(function(){
+    recipeModal.style.display = "block";
+})
+
+$(accountBtn).click(function(){
+    accountModal.style.display = "block";
 })
 
 $(close).click(function(){
-    modal.style.display = "none";
+    recipeModal.style.display = "none";
+    accountModal.style.display = "none";
 })
 
 $(cancel).click(function(){
-    modal.style.display = "none";
+    recipeModal.style.display = "none";
+    accountModal.style.display = "none";
 })
 
 
