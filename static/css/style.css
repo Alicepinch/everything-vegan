@@ -25,7 +25,6 @@ p {
 }
 
 button {
-    font-size: 18px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -95,7 +94,7 @@ button {
 .recipes-heading {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #000000;
-    font-size: 6rem;
+    font-size: 4rem;
     text-align: center;
     padding-top: 150px;
 }
@@ -117,7 +116,6 @@ button {
     text-align: center;
 }
 
-
 .page-sub-heading {
     text-align: center;
 }
@@ -133,13 +131,13 @@ button {
 
 .recipes-background {
     width: 100%;
-    height: 500px;
+    height: 400px;
     background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 .subpage-background {
     width: 100%;
-    height: 400px;
+    height: 300px;
     background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
@@ -155,7 +153,7 @@ button {
 
 .promo-image {
     position: relative;
-    background: black;
+    background: url(/static/images/eating-vegan-promo-image.jpg)no-repeat;
     height: 400px;
 }
 
@@ -305,9 +303,33 @@ button {
 
 /* Single Recipe Page */
 
+.recipe {
+    padding: 2rem 0;
+}
+
+.recipe-page-info {
+    width: 70%;
+    margin: 2rem auto;
+    background: rgb(0, 0, 0);
+    text-align: center;
+    padding: 2rem;
+}
+
+.recipe-page-info p {
+    color: #fff;
+}
+
+.recipe-created-by {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
 .recipe-page-image {
-    width: 100%;
+    width: 60%;
     height: 500px;
+    object-fit: cover;
+    margin: 0 auto;
 }
 
 .recipe-list {
@@ -414,7 +436,9 @@ button {
 }
 
 .profile-information {
-    padding: 3rem 0;
+    padding-top: 150px;
+    padding-bottom: 100px;
+
 }
 
 .recipe-name, .recipe-description {
@@ -615,6 +639,15 @@ footer a:hover {
 
     .profile-recipe-image {
         margin: 0;
+    }
+
+    .recipe-page-image {
+        width: 90%;
+        height: 400px;
+    }
+
+    .recipe-page-info {
+        width: 90%;
     }
 }
 
