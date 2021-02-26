@@ -120,7 +120,6 @@ button {
 
 .page-sub-heading {
     text-align: center;
-    margin-bottom: 1rem;
 }
 
 /* Header Containers */
@@ -208,10 +207,8 @@ button {
 }
 
 .btn-subscription {
-    background-color: #fff;
-    color: #000000;
-    padding: .5rem;
-    border: 0;
+    color: #000;
+    background-color: #f8f9fa;
 }
 
 .btn-white:hover,
@@ -235,7 +232,7 @@ button {
     border: 0;
     border-radius: 30px;
     padding: .5rem 1rem;
-    margin-top: .5rem;
+    margin: .5rem;
     box-shadow: 3px 3px 3px 3px rgb(0 0 0 / 20%);
 }
 
@@ -297,16 +294,13 @@ button {
 
 .recipe-link a {
     display: block;
-    padding-top: .5rem;
-    padding-bottom: 1rem;
-    color: #a1d5b3;
-    font-weight: 500;
+    padding: 1rem 0;
+    color: #a1d5b3; 
+    font-weight: 500; 
 }
 
 .recipe-link a:hover {
-    color: #687e70;
-    font-weight: 500;
-    transition: all 300ms ease-in-out;
+    text-decoration: underline;
 }
 
 /* Single Recipe Page */
@@ -452,6 +446,7 @@ button {
     border-radius: 50%;
 }
 
+
 /* Form styling */
 
 .add-edit-form-container {
@@ -532,25 +527,22 @@ footer a:hover {
     text-align: center;
 }
 
+.subscription-form {
+    width: 30%;
+    margin: 0 auto;
+}
+
 .subscription-header {
     color: #fff;
     text-align: center;
 }
 
-.subscription-field {
-    padding: .5rem;
-    border-radius: .25rem;
-    border: 0;
-}
+
 
 .subscription-field:focus {
     outline: none;
-	border-color: #000;
-	box-shadow: 0 0 10px #000000;
-}
-
-.social-contact-container {
-    padding-bottom: 2rem;
+	border-color:#fff;
+	box-shadow: 0 0 10px #fff;
 }
 
 .social-list {
@@ -567,6 +559,10 @@ footer a:hover {
     color: #fff;
     font-size: 1.5rem;
     padding: .5rem 1rem;
+}
+
+.social-link i:hover {
+    color: #a1d5b3;
 }
 
 @media screen and (max-width: 767px) {
