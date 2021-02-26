@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="text-center animation-up">
                     {% if session.user %}
-                    <a href="{{  url_for('add_recipe')  }}" class="btn-black">Add Recipe</a>
-                    <a href="{{  url_for('recipes')  }}" class="btn-black">Recipes</a>
+                    <a href="{{  url_for('add_recipe')  }}" class="btn btn-black">Add Recipe</a>
+                    <a href="{{  url_for('recipes')  }}" class="btn btn-black">View Recipes</a>
                     {% else %}
-                    <a href="{{  url_for('login')  }}" class="btn-black">Login</a>
-                    <a href="{{  url_for('recipes')  }}" class="btn-black">View Recipes</a>
+                    <a href="{{  url_for('login')  }}" class="btn btn-black">Login</a>
+                    <a href="{{  url_for('recipes')  }}" class="btn btn-black">View Recipes</a>
                     {% endif %}
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <h3>Join The Community</h3>
                 <p class="p-1">Sign up and join our community and explore exciting
                     new recipes. </p>
-                <a href="{{  url_for('register')  }}" class="btn-white">Register</a>
+                <a href="{{  url_for('register')  }}" class="btn btn-white">Register</a>
             </div>
         </div>
     </div>
