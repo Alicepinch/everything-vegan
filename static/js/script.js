@@ -6,7 +6,7 @@ let recipeBtn = document.getElementsByClassName("recipe-btn");
 let close = document.getElementsByClassName("close");
 let cancel = document.getElementsByClassName("cancel")
 
-//Onclick functions to display and hide modal.
+//Onclick functions to display and hide modals.
 $(recipeBtn).click(function(){
     recipeModal.style.display = "block";
 })

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--- Profile Heading --->
+<!---Profile Information--->
 
-<section class="subpage-background">
-    <div class="container-fluid">
+<section class="profile-information">
+    <div class="container">
         <div class="row">
-            <h1 class="profile-heading">{{ username }}'s <br> Profile</h1>
+
+            <!--- Flash messages --->
+
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             {% for message in messages %}
@@ -14,25 +16,33 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-        </div>
-    </div>
-</section>
-
-<!---Profile Information--->
-
-<section class="profile-information">
-    <div class="container">
-        <div class="row">
-
 
 
             <div class="col-12 col-md-4 text-center">
-                    <img src="/static/images/default-profile-picture.jpg" class="profile-photo" alt="">
-                    <p class="pt-3"><strong>Username:</strong> {{ username }} <br>
-                        <strong>Date Joined:</strong> <br>
-                        <a class="btn btn-black" href="{{  url_for('delete_user', username=username) }}">Delete Your Account</a> <br>
-                        <a class="btn btn-black" href="">Update Your Account Details</a>
+                <img src="/static/images/default-profile-picture.jpg" class="profile-photo" alt="">
+                <p class="pt-3"><strong>Username:</strong> {{ username }} <br>
+                    <strong>Date Joined:</strong> {{ date_joined }} <br>
+                    <button class="btn btn-black account-btn">Delete Account</button>
+                    <br>
+                    <a class="btn btn-black" href="">Update Your Account</a>
+                </p>
+            </div>
+
+            <!-- Modal to confirm deletion of recipe -->
+            <div class="modal" id="delete-account-modal">
+                <div class="delete-modal-content">
+                    <span class="close">&times;</span>
+                    <h3 class="delete-modal-title">Delete Account</h3>
+                    <p>Are you sure you want to delete your account? All Recipes will be lost.
                     </p>
+                    <div class="modal-buttons">
+                        <a class="btn btn-black m-1" href="{{  url_for('delete_user', username=username) }}">
+                            Delete
+                            Account </a>
+                        <a class="btn btn-black cancel">
+                            Cancel </a>
+                    </div>
+                </div>
             </div>
 
 
@@ -50,21 +60,22 @@
                     <div class="col-12 col-md-7 profile-recipe-info">
                         <h4 class="recipe-name">{{ recipe.recipe_name }}</h4>
                         <p class="recipe-description">
-                            {{ recipe.description }} <br>
-                            <i class="fas fa-user-friends"></i> {{ recipe.yield }} <br>
-                            <i class="far fa-clock"></i> {{ recipe.active_time }} <br>
-                            <i class="fas fa-utensils"></i> {{ recipe.total_time }} <br>
+                            <strong>Recipe created:</strong> {{ recipe.date_created }} <br>
+                            <strong>Description:</strong> {{ recipe.description }} <br>
+                            <i class="fas fa-user-friends"></i> - {{ recipe.yield }} <br>
+                            <i class="far fa-clock"></i> - {{ recipe.active_time }} <br>
+                            <i class="fas fa-utensils"></i> - {{ recipe.total_time }} <br>
                         </p>
                         <a class="btn btn-white m-1" href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}"> Edit
                             Recipe </a>
-                        <button class="btn btn-white modal-btn">Delete Recipe</button>
+                        <button class="btn btn-white recipe-btn">Delete Recipe</button>
                     </div>
                     <div class="col-12 col-md-5 text-center">
                         <img class="profile-recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name }}">
                     </div>
 
                     <!-- Modal to confirm deletion of recipe -->
-                    <div class="modal" id="delete-modal">
+                    <div class="modal" id="delete-recipe-modal">
                         <div class="delete-modal-content">
                             <span class="close">&times;</span>
                             <h3 class="delete-modal-title">Delete Recipe</h3>
@@ -74,7 +85,7 @@
                                     href="{{  (url_for('delete_recipe', recipe_id=recipe._id))  }}">
                                     Delete
                                     Recipe </a>
-                                <a class="btn btn-black" id="cancel">
+                                <a class="btn btn-black cancel">
                                     Cancel </a>
                             </div>
                         </div>
