@@ -7,15 +7,19 @@
     <title>500</title>
     <!----Own Stylesheet---->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-     <!---- Bootstrap Stylesheet ---->
+    <!---- Bootstrap Stylesheet ---->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
+
 <body>
 
-    <h1>500 Internal Server Error</h1>
-    <h2>Sorry Something Went Wrong.</h2>
-    <a href="{{  url_for('index')  }}">Return to website</a>
+    <div class="container text-center">
+        <h1 class="page-heading">500 Internal Server Error</h1>
+        <h2 class="page-subheading pb-3">Sorry Something Went Wrong.</h2>
+         <a class="btn-black" href="{{  url_for('index')  }}">Return to website</a>
+    </div>
     
 </body>
+
 </html>
