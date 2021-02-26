@@ -15,13 +15,11 @@ a {
     color: #000;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
-    font-size: 18px;
 }
 
 p {
     color: #000000;
     font-family: "Roboto", sans-serif;
-    font-size: 18px;
 }
 
 button {
@@ -32,11 +30,8 @@ button {
 
 .navbar {
     background: #000000;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 .navbar-brand {
@@ -44,6 +39,7 @@ button {
     font-size: 2rem;
     padding-left: 1rem;
     color: #fff;
+    padding-bottom: .25rem;
 }
 
 .navbar-brand:hover {
@@ -88,7 +84,7 @@ button {
     color: #000000;
     font-size: 6rem;
     text-align: center;
-    padding-top: 200px;
+    padding-top: 100px;
 }
 
 .recipes-heading {
@@ -96,22 +92,15 @@ button {
     color: #000000;
     font-size: 4rem;
     text-align: center;
-    padding-top: 150px;
+    padding-top: 50px;
 }
 
-.profile-heading {
-    font-family: 'Bungee Shade', cursive, sans-serif;
-    color: #000000;
-    font-size: 4rem;
-    padding-top: 160px;
-    text-align: center;
-}
 
 .small-heading {
     font-family: 'Bungee Shade', cursive, sans-serif;
     color: #000000;
     font-size: 4rem;
-    padding-top: 8rem;
+    padding-top: 50px;
     padding-bottom: 1rem;
     text-align: center;
 }
@@ -124,20 +113,20 @@ button {
 
 .hero-image {
     position: relative;
-    height: 800px;
+    height: 700px;
     width: 100%;
     background: linear-gradient(rgba(255, 255, 255, 0) 80%,rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 .recipes-background {
     width: 100%;
-    height: 400px;
+    height: 300px;
     background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 .subpage-background {
     width: 100%;
-    height: 300px;
+    height: 200px;
     background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
@@ -145,7 +134,7 @@ button {
     position: relative;
     width: 100%;
     height: 700px;
-    background: url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+    background: linear-gradient(rgba(255, 255, 255, 0) 90%,rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
 }
 
 
@@ -232,6 +221,7 @@ button {
     padding: .5rem 1rem;
     margin: .5rem;
     box-shadow: 3px 3px 3px 3px rgb(0 0 0 / 20%);
+    text-decoration: none;
 }
 
 .btn-black:hover {
@@ -253,7 +243,7 @@ button {
 }
 
 .recipes-container {
-    padding-top: 5rem;
+    margin: 5rem 0;
 }
 
 .recipe-card {
@@ -436,8 +426,7 @@ button {
 }
 
 .profile-information {
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding: 100px 0;
 
 }
 
