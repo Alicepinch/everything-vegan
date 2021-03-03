@@ -89,18 +89,54 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 ### Data types
 
-- The datatypes that have been used in this project are:
+The datatypes that have been used in this project are:
     - ObjectId
     - String
     
 ### Collections in database:
 
-For this project I created a database in MongoDB called vegan_cookbook. Inside of this database I created 4 different collections to be used for this website.
+For this project I created a database in MongoDB called vegan_cookbook. Inside of this database I created 4 different collections to be used.
 
-- Users
-- Recipes
-- Subscribers 
-- Meals
+#### Users
+
+| Title | Key in db | form validation type | Data type |
+--- | --- | --- | --- 
+ID | _id | None | ObjectId 
+Name | username | text, `maxlength="15"` | string
+Email Address | email | email, `maxlength="30"` | string
+Password | password | text, `maxlength="15"` | string
+
+#### Recipes
+
+| Title | Key in db | form validation type | Data type |
+--- | --- | --- | --- 
+ID | _id | None | ObjectId 
+Recipe Name | recipe_name | text | string
+Meal Type | meal_type | text | string
+Recipe Image | img_url | url | string
+Yield | yield | number | string
+Active Time | active_time | text | string
+Total Time | total_time | textarea | string
+Description | description | textare | string
+Ingredients | ingredients | textarea | string
+Method | method | textarea | string
+Recommendations | recomendations | text | string
+Created By | created_by | text | string
+Date Created | date_created | (Not a field) | string
+
+#### Meals 
+
+| Title | Key in db | form validation type | Data type |
+--- | --- | --- | --- 
+ID | _id | None | ObjectId 
+Meal | meal_type | text | string
+
+#### Subscribers
+
+| Title | Key in db | form validation type | Data type |
+--- | --- | --- | --- 
+ID | _id | None | ObjectId 
+Subscribers | subscribers_email | email `maxlength="30"`| string
 
 ## Features Implemented
  
