@@ -106,12 +106,12 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 ### Features Left to Implement
 
-- [] Page Pagination.
-- [] User profiles with option to upload images.
-- [] Automated email when user signs up.
-- [] User could upload an image.
-- [] Option to view other users and what they have uploaded.
-- [] More specific filters for recipes.
+- [ ] Page Pagination.
+- [ ] User profiles with option to upload images.
+- [ ] Automated email when user signs up.
+- [ ] User could upload an image.
+- [ ] Option to view other users and what they have uploaded.
+- [ ] More specific filters for recipes.
  
 ## Technologies Used
 
