@@ -36,6 +36,7 @@ def login_required(f):
     def login_check(*args, **kwargs):
         if 'user' not in session:
             return redirect(url_for('login'))
+            flash("You need to login first")
         else:
             return f(*args, **kwargs)
     return login_check
@@ -68,10 +69,10 @@ def search():
     will show.
     """
     query = request.form.get("search-query")
-    recipes_num = mongo.db.recipes.find({"$text": {"$search": query}}).count()
+    all_recipes = mongo.db.recipes.find().count()
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
 
-    if recipes_num > 0:
+    if all_recipes > 0:
         return render_template("recipes.html", recipes=recipes)
     else:
         flash("Sorry! No results found 😔")
@@ -200,7 +201,7 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "description": request.form.get("description"),
             "recommendation": request.form.get("recos") or default_reco,
-            "yield": request.form.get("yield"),
+            "yield": request.form.get("yield").int(),
             "active_time": request.form.get("active_time"),
             "total_time": request.form.get("total_time"),
             "img_url": request.form.get("img_url") or default_img,
@@ -291,7 +292,7 @@ Working on function's
 #             "date_joined": date.strftime("%d/%m/%Y"),
 #             "img_url": request.form.get("img_url") or default_profile
 #             })
-#         mongo.db.users.update({'username': username.lower()}, submit)
+#         mongo.db.users.update_one({'username': username.lower()}, submit)
 #         flash("User Updated 😊")
 #         return redirect(url_for("profile", username=username))
 

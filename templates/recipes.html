@@ -9,9 +9,12 @@
             <h1 class="recipes-heading">Recipes</h1>
             <h3 class="page-sub-heading">Fresh and exciting plant-based foods!</h3>
             <form method="POST" action="{{  url_for('search')  }}" class=" search text-center">
+                <a class="btn-reset" href="{{  url_for('recipes')  }}">Reset</a>
                 <input type="text" id="search-query" name="search-query" class="search-form-field"
                     placeholder="Search Recipes" required>
-                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <button class="btn-search"><i class="fas fa-search"></i>
+                </button>
+                
             </form>
         </div>
     </div>

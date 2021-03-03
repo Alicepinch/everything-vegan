@@ -237,6 +237,11 @@ button {
     color: #fff;
 }
 
+.btn-reset:hover {
+    color: #000;
+    transition: all 300ms ease-in-out;
+}
+
 /* Recipes */ 
 
 .meal-nav {
