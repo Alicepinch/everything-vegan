@@ -83,7 +83,29 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 ## Data schema:
 
+### MongoDB
 
+- The database used for this project is an NoSQL database. The database was created using the MongoDB cross-platform document-oriented program.
+
+### Data types
+
+- The datatypes that have been used in this project are:
+    - ObjectId
+    - String
+    
+### Collections in database:
+
+For this project I created a database in MongoDB called vegan_cookbook. Inside of this database I created 4 different collections to be used for this website.
+
+- Users
+- Recipes
+- Subscribers 
+- Meals
+
+#### Views
+
+- A view will begin at 1 when the recipe has been created & will then increment by 1 every time that a
+recipe is used on the website with the corresponding ID.
 
 ## Features Implemented
  
@@ -153,8 +175,83 @@ All the testing carried out for Eating Vegan can be found [here](TESTING.md)
 
 ## Deployment
 
-This project has been deployed using Heroku.
+In order to run this on your local IDE you need to insure you have the following installed on your machine:
 
+- PIP
+- Python
+- Git
+- You will also need an account on MongoDB 
+
+### Creating a local repository 
+
+In order to deploy your own version of this website you will need to clone a local copy of the repository. To do this you need to follow the following steps.
+
+- Click on the 'Code' button next to 'Add a file' when you have opened a repository
+- To clone your repository by https:// click on the clipboard icon next to the URL.
+- Once you have done this, open the terminal of your own repository
+  - The current directory will need to be changed to where you want your cloned directory.
+- Type 'git clone' into your terminal and then paste in your URL from the earlier steps ```$ git clone https://github.com/Alicepinch/everything-vegan.git```
+- Press enter
+
+There are other ways that you can clone a repository and these can be found on the [GitHub docs.](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories)
+
+Once the repository is cloned you will need to ensure that all the packages needed to run this app are installed. To install all packages from requirements.txt file using the following command in terminal.
+``` pip3 -r requirements.txt ```
+
+In your local IDE create a file called env.py.
+Inside the env.py file create the following environment variables: 
+
+``` 
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", `<your_secret_key>`)
+os.environ.setdefault("MONGO_URI", "mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DBNAME", `<your_database_name>`)
+```
+
+**As some of this information is sensitive, be sure to create a ".gitignore" file and add "env.py"**
+
+### MongoDB: 
+
+
+### Heroku deployment:
+
+This repository can now be deployed to Heroku:
+
+To deploy this project to Heroku you will need a Heroku acccount.
+Once you have an account please follow the below steps. 
+
+1. In Heroku create a new app and set the region to EU. 
+
+2. In your github project create a requirements.txt file using the terminal command ```pip3 freeze —-local > requirements.txt ``` (This is so Heroku can read all of the web apps that have been used in the project)
+
+4. Create a Procfile by typing ```echo web: python app.py > Procfile``` into the terminal.
+
+5. Add all files to github by typing 'git add .' into the terminal to stage all of your files. Then ```git commit -m "<message here>``` to commit the changes ready to be pushed to GitHub.
+
+6. When all your files are ready to be pushed to github, type ```git push``` in the terminal.
+
+5. Back on your Heroku dashboard for your application, go to 'Deploy'.
+
+6. Within this section, scroll down to 'Deployment method' and select 'Connect to GitHub'
+
+7. In the 'Connect to GitHub' section below - search for the github repository name. When you see the repository name click on the 'Connect' button.
+
+8. Confirm the linking of the heroku app to the correct GitHub repository.
+
+9. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+
+10. In the fields fill out the following:
+
+| Key | Value |
+ --- | ---
+DEBUG | FALSE
+IP | 0.0.0.0
+MONGO_URI | `mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority`
+PORT | 5000
+SECRET_KEY | `<your_secret_key>`
 
 ## Credits
 
