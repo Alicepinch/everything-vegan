@@ -105,6 +105,7 @@ ID | _id | None | ObjectId
 Name | username | text, `maxlength="15"` | string
 Email Address | email | email, `maxlength="30"` | string
 Password | password | text, `maxlength="15"` | string
+Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
 
@@ -121,8 +122,8 @@ Description | description | textare | string
 Ingredients | ingredients | textarea | string
 Method | method | textarea | string
 Recommendations | recomendations | text | string
-Created By | created_by | text | string
-Date Created | date_created | (Not a field) | string
+Created By | created_by | Populated from session['user'] | string
+Date Created | date_created | Populated from when form is submitted | string
 
 #### Meals 
 
