@@ -3,10 +3,8 @@
 “Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
  
 ## UX
- 
-## User Experience 
 
-The UX goal of this website is to...
+The UX goal of this website is...
 
 <details><summary>Strategy</summary>
 <p>
@@ -61,9 +59,9 @@ The UX goal of this website is to...
 <details><summary>Skeleton</summary>
 <p>
 
-[User Logged In Wireframes](docs/eating-vegan-wireframe-logged-in.png)
+[User Logged In Wireframes](/docs/eating-vegan-wireframe-logged-in.png)
 
-[User Logged Out Wireframes](docs/eating-vegan-wireframe-logged-out.png)
+[User Logged Out Wireframes](/docs/eating-vegan-wireframe-logged-out.png)
 
 </p>
 </details>
@@ -75,12 +73,16 @@ The UX goal of this website is to...
 
 #### Typography:
 
+Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'. The reason I have chosen these fonts is because I wanted the design of 'Eating Vegan' to be eye catching and I found the Bungee font's stood out from any others. Bungee Shade will be used for all page headings. Bungee for all subheadings throughout and Roboto will be used for all links, p elements and buttons.
 
 #### Colour Scheme
 
 
 </p>
 </details>
+
+## Data schema:
+
 
 
 ## Features Implemented
@@ -110,9 +112,7 @@ The UX goal of this website is to...
 - [] User could upload an image.
 - [] Option to view other users and what they have uploaded.
 - [] More specific filters for recipes.
-- [] 
-
-
+ 
 ## Technologies Used
 
 - [JQuery](https://jquery.com)
@@ -142,11 +142,14 @@ The UX goal of this website is to...
 - [JShint](https://jshint.com/) 
 - [W3cValidator](https://validator.w3.org/)
 - Google chrome developer tools.
-- ....
+- [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
+  - [Flask error pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages)
+  - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
+  - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
 
 ## Testing
 
-All the testing carried out for Stay In St Tropez can be found [here](TESTING.md)
+All the testing carried out for Eating Vegan can be found [here](TESTING.md)
 
 ## Deployment
 
@@ -159,7 +162,8 @@ This project has been deployed using Heroku.
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 
 ### Media
-- The photos used in this site were obtained from ...
+- The photos used in this site were obtained from 
+https://www.pexels.com/
 
 ### Acknowledgements
 
