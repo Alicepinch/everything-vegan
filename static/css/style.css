@@ -188,17 +188,6 @@ button {
     padding-bottom: 1rem;
 }
 
-.vegan-recipes {
-    background-color: #fff;
-    height: 200px;
-    border-radius: 30px;
-}
-
-.vegan-recipes h3 {
-    color: #AFDBF5;
-    padding-top: 1rem;
-}
-
 
 /* Button styling */
 
@@ -274,7 +263,7 @@ button {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
 
-.recipe-card h3 {
+.recipe-card h4 {
     text-align: left;
     padding: 1rem 1rem 0rem 1.5rem;
     color: #000000;
@@ -335,7 +324,7 @@ button {
 }
 
 .recipe-page-image {
-    width: 60%;
+    width: 70%;
     height: 500px;
     object-fit: cover;
     margin: 0 auto;
