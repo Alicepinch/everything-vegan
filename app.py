@@ -157,7 +157,7 @@ def register():
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
-        flash("Thank you for sigining up.")
+        flash("Welcome! {username} Thank you for sigining up!😊")
         return redirect(url_for(
             "profile", username=session["user"]))
 
@@ -279,17 +279,21 @@ Working on function's
 '''
 
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
+# @login_required
 # def update_user(username):
+#     user = mongo.db.users.find_one({"username": username.lower()})
 #     if request.method == "POST":
 #         submit = ({
 #             "username": request.form.get("username").lower(),
 #             "password": generate_password_hash(request.form.get("password")),
-#         })
+#             "date_joined": date.strftime("%d/%m/%Y"),
+#             "img_url": request.form.get("img_url") or default_profile
+#             })
 #         mongo.db.users.update({'username': username.lower()}, submit)
 #         flash("User Updated 😊")
 #         return redirect(url_for("profile", username=username))
 
-#     return render_template('update-user.html', username=username)
+#     return render_template('update-user.html', username=username, user=user)
 
 
 @app.route('/subscribe', methods=["POST"])
