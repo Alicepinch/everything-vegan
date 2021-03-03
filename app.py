@@ -5,7 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from functools import wraps
-from datetime import date
+from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -18,6 +18,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=120)
 
 mongo = PyMongo(app)
 
@@ -88,6 +89,7 @@ def recipe_page(recipe_id):
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    session.permanent = True
     # Checks if the form method is POST.
     if request.method == "POST":
 
