@@ -25,4 +25,12 @@ $(cancel).click(function(){
     accountModal.style.display = "none";
 })
 
+// Drop down menu
 
+$(function (){
+    $('#recipes_meal_dropdown').hide();
+})
+
+$('#recipeDropDown').click(function () {
+    $('#recipes_meal_dropdown').slideToggle();
+});

@@ -244,18 +244,32 @@ button {
 
 /* Recipes */ 
 
-.meal-nav {
-    font-family: "Bungee", sans-serif;
-    font-size: 20px;
+.filter-container {
+    margin-left: 1.25rem;
+    margin-bottom: 2rem;
 }
 
-.meal-nav:hover {
-    color: #AFDBF5;
-    transition: all 300ms ease-in-out;
+.filter {
+    font-family: "Bungee", sans-serif;
+    font-size: 1.2rem;
+}
+
+.filter:hover {
+    color: #a1d5b3;
+    cursor: pointer;
+}
+  
+.dropdown-link {
+    display: block;
+    padding: .5rem 0;
+}
+
+.dropdown-link:hover {
+    color: #a1d5b3;
 }
 
 .recipes-container {
-    margin: 5rem 0 3rem 0;
+    margin: 3rem 0 3rem 0;
 }
 
 .recipe-card {

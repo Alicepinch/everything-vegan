@@ -14,7 +14,7 @@
                     placeholder="Search Recipes" required>
                 <button class="btn-search"><i class="fas fa-search"></i>
                 </button>
-                
+
             </form>
         </div>
     </div>
@@ -34,6 +34,18 @@
 <section class="recipes-container">
     <div class="container">
         <div class="row">
+
+            <div class="filter-container">
+                <a class="filter" id="recipeDropDown">
+                    Filter <i class="fas fa-arrow-down"></i>
+                </a>
+                <div id="recipes_meal_dropdown">
+                    <a class="dropdown-link" href="#">Breakfast</a>
+                    <a class="dropdown-link" href="#">Lunch</a>
+                    <a class="dropdown-link" href="#">Dinner</a>
+                    <a class="dropdown-link" href="#">Desserts</a>
+                </div>
+            </div>
 
             {% for recipe in recipes %}
             <div class="col-12 col-lg-4">
