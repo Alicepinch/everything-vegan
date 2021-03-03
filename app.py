@@ -35,7 +35,6 @@ def login_required(f):
     def login_check(*args, **kwargs):
         if 'user' not in session:
             return redirect(url_for('login'))
-            flash("Please login to your account first.")
         else:
             return f(*args, **kwargs)
     return login_check
@@ -174,13 +173,14 @@ def profile(username):
     If the user has added recipes then
     they will display on profile page.
     """
+    user = mongo.db.users.find_one({"username": username.lower()})
     if session['user']:
         if session['user'] == "admin":
             recipes = list(mongo.db.recipes.find())
         else:
             recipes = list(mongo.db.recipes.find(
                 {"created_by": username.lower()}))
-    return render_template("profile.html", recipes=recipes, username=username)
+    return render_template("profile.html", user=user, recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -222,6 +222,7 @@ def edit_recipe(recipe_id):
     user to edit their own recipes from
     their profile page.
     """
+
     if request.method == "POST":
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
@@ -277,31 +278,31 @@ def delete_user(username):
 Working on function's
 '''
 
-
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
 # def update_user(username):
-#     """
-#     Updates users username & password
-#     """
-#     user = mongo.db.users.find_one({"username": username.lower()})
-
 #     if request.method == "POST":
-#         mongo.db.users.update = {
+#         submit = ({
 #             "username": request.form.get("username").lower(),
 #             "password": generate_password_hash(request.form.get("password")),
-#             "profile_photo": request.form.get("profile-photo") or default_profile
-#         }
-#         flash("User information updated!")
+#         })
+#         mongo.db.users.update({'username': username.lower()}, submit)
+#         flash("User Updated 😊")
 #         return redirect(url_for("profile", username=username))
 
-#     return render_template('update-user.html', user=user)
+#     return render_template('update-user.html', username=username)
 
 
-# @app_route('/subscribe', methods=["GET", "POST"])
-# def subscribe_user():
-#     subscription = {"email": request.form.get("email").lower()}
-#     mongo.db.subscribers.insert_one(subscription)
-#     return redirect(request.referrer)
+@app.route('/subscribe', methods=["POST"])
+def subscribe_user():
+    existing_sub = mongo.db.subscribers.find_one(
+            {"subscriber_email": request.form.get("email").lower()})
+    if existing_sub:
+        flash("Already Subscribed!")
+        return redirect(request.referrer)
+
+    sub = {"subscriber_email": request.form.get("email").lower()}
+    mongo.db.subscribers.insert_one(sub)
+    return redirect(request.referrer)
 
 
 # Error Pages #
