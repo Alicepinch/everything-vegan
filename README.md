@@ -175,6 +175,8 @@ All the testing carried out for Eating Vegan can be found [here](TESTING.md)
 
 ## Deployment
 
+### Creating a local repository:
+
 In order to run this on your local IDE you need to insure you have the following installed on your machine:
 
 - PIP
@@ -182,18 +184,15 @@ In order to run this on your local IDE you need to insure you have the following
 - Git
 - You will also need an account on MongoDB 
 
-### Creating a local repository 
-
 In order to deploy your own version of this website you will need to clone a local copy of the repository. To do this you need to follow the following steps.
 
 - Click on the 'Code' button next to 'Add a file' when you have opened a repository
 - To clone your repository by https:// click on the clipboard icon next to the URL.
-- Once you have done this, open the terminal of your own repository
+- Once you have done this, open the terminal of your own IDE
   - The current directory will need to be changed to where you want your cloned directory.
-- Type 'git clone' into your terminal and then paste in your URL from the earlier steps ```$ git clone https://github.com/Alicepinch/everything-vegan.git```
-- Press enter
+- Type ```git clone https://github.com/Alicepinch/everything-vegan.git``` into your terminal.
 
-There are other ways that you can clone a repository and these can be found on the [GitHub docs.](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories)
+(There are other ways that you can clone a repository and these can be found on the [GitHub docs.](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories))
 
 Once the repository is cloned you will need to ensure that all the packages needed to run this app are installed. To install all packages from requirements.txt file using the following command in terminal.
 ``` pip3 -r requirements.txt ```
@@ -213,8 +212,15 @@ os.environ.setdefault("MONGO_DBNAME", `<your_database_name>`)
 
 **As some of this information is sensitive, be sure to create a ".gitignore" file and add "env.py"**
 
-### MongoDB: 
+### Create a database in MongoDB: 
 
+- Signup or login to your MongoDB account.
+- Go to 'Database User' and create a new database user. 
+ - This is the username and password that you will include in your 'MONGO_URI' url in the env.py file.
+- Create a cluster 
+- Once created, click on 'collections' and create a new database.
+ - This is the database name that you will need to include in your 'MONGO_DBNAME' in the env.py file.
+- Create four collections within your database: meal, recipes, subscribers, users.
 
 ### Heroku deployment:
 
