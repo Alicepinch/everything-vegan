@@ -102,11 +102,6 @@ For this project I created a database in MongoDB called vegan_cookbook. Inside o
 - Subscribers 
 - Meals
 
-#### Views
-
-- A view will begin at 1 when the recipe has been created & will then increment by 1 every time that a
-recipe is used on the website with the corresponding ID.
-
 ## Features Implemented
  
 - [x] Login
