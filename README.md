@@ -52,7 +52,6 @@ The UX goal of this website is...
 <p>
 
 
-
 </p>
 </details>
 
@@ -73,15 +72,16 @@ The UX goal of this website is...
 
 #### Typography:
 
-Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'. The reason I have chosen these fonts is because I wanted the design of 'Eating Vegan' to be eye catching and I found the Bungee font's stood out from any others. Bungee Shade will be used for all page headings. Bungee for all subheadings throughout and Roboto will be used for all links, p elements and buttons.
+Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'. The reason I have chosen these fonts is because I wanted the design of 'Eating Vegan' to be eye catching and I found the Bungee font's stood out from any others. Bungee Shade will be used for all page headings. Bungee for all subheadings and Roboto will be used for all links, p elements and buttons.
 
 #### Colour Scheme
+
 
 
 </p>
 </details>
 
-## Data schema:
+## Data Schema:
 
 ### MongoDB
 
@@ -90,8 +90,8 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 ### Data types
 
 The datatypes that have been used in this project are:
-    - ObjectId
-    - String
+- ObjectId
+- String
     
 ### Collections in database:
 
@@ -137,7 +137,7 @@ Meal | meal_type | text | string
 | Title | Key in db | form validation type | Data type |
 --- | --- | --- | --- 
 ID | _id | None | ObjectId 
-Subscribers | subscribers_email | email `maxlength="30"`| string
+Subscribers | subscriber_email | email `maxlength="30"`| string
 
 ## Features Implemented
  
@@ -147,8 +147,7 @@ Subscribers | subscribers_email | email `maxlength="30"`| string
 - [x] Recipe Page
 - [x] Edit Recipe
 - [x] Add new recipe
-- [x] Update user information
-- [x] Newsletter Subscription
+- [ ] Newsletter Subscription
 - [x] Flash messages
 - [x] Search recipes
 - [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page.
@@ -157,6 +156,8 @@ Subscribers | subscribers_email | email `maxlength="30"`| string
 - [x] 505 page.
 - [x] Update user information.
 - [x] Delete account.
+- [ ] Update user accound.
+- [ ] Filter by meal type.
 
 ### Features Left to Implement
 
@@ -169,13 +170,12 @@ Subscribers | subscribers_email | email `maxlength="30"`| string
  
 ## Technologies Used
 
-- [JQuery](https://jquery.com)
+- JQuery
     - The project uses **JQuery** to simplify DOM manipulation.
 - Python 3.8.2
-    * Flask
+- Flask
     * Jinja 
     * Werkzeug security
-- Flask
 - MongoDB
 - HTML
 - CSS
@@ -294,12 +294,9 @@ SECRET_KEY | `<your_secret_key>`
 ## Credits
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+
 
 ### Media
 - The photos used in this site were obtained from 
 https://www.pexels.com/
-
-### Acknowledgements
-
-- I received inspiration for this project from X
+https://unsplash.com/ 
