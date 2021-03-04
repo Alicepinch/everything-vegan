@@ -1,6 +1,6 @@
 # Eating Vegan
 
-[Eating Vegan Live site](https://eating-vegan.herokuapp.com/)
+[Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
 
 “Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
  
@@ -9,10 +9,10 @@
 The UX goal of this website is for users to 
 
 
-<details><summary>Strategy</summary>
+<details><summary>User Stories</summary>
 <p>
 
-#### User stories:
+#### New User:
 
 - As a user I would like to be able to login to my account.
 - As a user I would like to be able to log out of my account.
@@ -43,22 +43,7 @@ The UX goal of this website is for users to
 
 </details>
 
-<details><summary>Scope</summary>
-<p>
-
-#### Planned features:
-
-</p>
-</details>
-
-<details><summary>Structure</summary>
-<p>
-
-
-</p>
-</details>
-
-<details><summary>Skeleton</summary>
+<details><summary>Wireframes</summary>
 <p>
 
 [User Logged In Wireframes](/docs/eating-vegan-wireframe-logged-in.png)
@@ -67,10 +52,8 @@ The UX goal of this website is for users to
 
 </p>
 </details>
-<details><summary>Surface</summary>
+<details><summary>Design</summary>
 <p>
-
-#### Design:
 
 
 #### Typography:
