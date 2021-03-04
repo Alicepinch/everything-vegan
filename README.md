@@ -3,6 +3,22 @@
 [Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
 
 “Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
+
+## Table of Index: 
+- [UX](#ux)
+   - [User Stories](#user-stories)
+   - [Wireframes](#wireframes)
+   - [Design](#design)
+- [Features](#features)
+- [Future Features](#future-features)
+- [Technologies Used](#technologies-used)
+- [Data Schema](#data-schema)
+- [Testing](TESTING.md)
+- [Deployment](#deployment)
+ - Github cloning
+ - Heroku deployment
+- [Credits](#credits)
+ 
  
 ## UX
 
@@ -125,7 +141,7 @@ Meal | meal_type | text | string
 ID | _id | None | ObjectId 
 Subscribers | subscriber_email | email `maxlength="30"`| string
 
-## Features Implemented
+## Features
 
 Please note that admin features are only available if the admin is logged in. 
  
@@ -149,7 +165,7 @@ Please note that admin features are only available if the admin is logged in.
 - [x] Admin can manage all recipes 
 - [x] Delete modals to prompt users to confirm deletion of account and recipes.
 
-### Features Left to Implement
+## Future Features
 
 - [ ] Show more button for recipes
 - [ ] User profiles with option to upload images.
