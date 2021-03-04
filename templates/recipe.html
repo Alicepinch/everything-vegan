@@ -6,7 +6,7 @@
 <section class="recipes-background">
     <div class="container-fluid">
         <div class="row">
-            <h1 class="recipes-heading mt-4">{{ recipe.recipe_name }}</h1>
+            <h1 class="recipes-heading ">{{ recipe.recipe_name }}</h1>
             <h3 class="page-sub-heading">{{ recipe.description }}</h3>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div class="col-12">
                 <h3>Ingredients</h3>
                 <ul class="recipe-list">
-                    {% for ingredient in recipe.ingredients %}
+                    {% for ingredient in recipe.ingredients.split("\n") %}
                     <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
                     {% endfor %}
                 </ul>
@@ -63,7 +63,7 @@
             <div class="col-12 pt-3">
                 <h3>Method</h3>
                 <ul class="recipe-list">
-                    {% for method in recipe.method %}
+                    {% for method in recipe.method.split("\n") %}
                     <li><i class="fas fa-leaf"></i> {{ method }}</li>
                     {% endfor %}
                 </ul>
