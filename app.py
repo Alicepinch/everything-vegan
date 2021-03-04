@@ -36,7 +36,6 @@ def login_required(f):
     def login_check(*args, **kwargs):
         if 'user' not in session:
             return redirect(url_for('login'))
-            flash("You need to login first")
         else:
             return f(*args, **kwargs)
     return login_check
@@ -291,7 +290,6 @@ def delete_user(username):
 Working on function's
 '''
 
-
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
 # @login_required
 # def update_user(username):
@@ -325,7 +323,7 @@ def subscribe_user():
         "subscriber_email": request.form.get("sub_email"),
         }
     mongo.db.subscribers.insert_one(subscribe)
-    flash("Thank you for subscribing")
+    flash("Thank you for subscribing!")
     return redirect(request.referrer)
 
 
