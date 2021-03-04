@@ -27,7 +27,7 @@ mongo = PyMongo(app)
 
 default_img = ("/static/images/default-recipe-image.jpg")
 default_reco = "No Recommendations for this recipe"
-default_profile = ("/static/images/default-profile-picture")
+default_pic = ("/static/images/default-profile-picture")
 date = date.today()
 
 
@@ -77,6 +77,18 @@ def search():
     else:
         flash("Sorry! No results found 😔")
         return render_template("recipes.html", recipes=recipes)
+
+
+# @app.route('/recipe/meal')
+# def recipe_page(meal):
+#     meal = mongo.db.meal.find()
+#     meal_type = mongo.db.recipes.find_one({
+#                         "_id": ObjectId(recipe_id),
+#                         "meal_type": meal_type})
+
+#     if meal_type == "Breakfast":
+
+#     return render_template('recipe.html', recipe=recipe, meal=meal)
 
 
 @app.route('/recipe/<recipe_id>')
@@ -129,23 +141,20 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
+
     # Checks if the form method is POST.
     if request.method == "POST":
 
         # Finds the user in the mongo DB database.
         existing_username = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
-        # Finds the email in the mongo DB database.
-        existing_email = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
-
-        # If user exists, alert the customer this username is in use.
         if existing_username:
             flash("Sorry, this username already exists. Please try another")
             return redirect(url_for("register"))
 
-        # If email has been used, alert the customer this email already in use.
+        # Finds the email in the mongo DB database.
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
         if existing_email:
             flash("Sorry, this email is in use. Please try another")
             return redirect(url_for("register"))
@@ -155,12 +164,13 @@ def register():
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "date_joined": date.strftime("%d/%m/%Y")
+            "date_joined": date.strftime("%d/%m/%Y"),
+            "profile_image": default_pic
         }
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
-        flash("Welcome! {username} Thank you for sigining up!😊")
+        flash("Welcome! Thank you for sigining up!😊")
         return redirect(url_for(
             "profile", username=session["user"]))
 
@@ -183,7 +193,8 @@ def profile(username):
         else:
             recipes = list(mongo.db.recipes.find(
                 {"created_by": username.lower()}))
-    return render_template("profile.html", user=user, recipes=recipes, username=username)
+    return render_template(
+        "profile.html", user=user, recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -201,7 +212,7 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "description": request.form.get("description"),
             "recommendation": request.form.get("recos") or default_reco,
-            "yield": request.form.get("yield").int(),
+            "yield": request.form.get("yield"),
             "active_time": request.form.get("active_time"),
             "total_time": request.form.get("total_time"),
             "img_url": request.form.get("img_url") or default_img,
@@ -225,7 +236,6 @@ def edit_recipe(recipe_id):
     user to edit their own recipes from
     their profile page.
     """
-
     if request.method == "POST":
         mongo.db.recipes.update_one(
             {"_id": ObjectId(recipe_id)},
@@ -267,7 +277,7 @@ def delete_user(username):
     """
     Ends user session.
     Removes user & all
-    recipes created by used.
+    recipes created by user.
     """
     mongo.db.users.remove({"username": username.lower()})
     session.pop("user")
@@ -281,34 +291,41 @@ def delete_user(username):
 Working on function's
 '''
 
+
 # @app.route('/update-user/<username>', methods=["GET", "POST"])
 # @login_required
 # def update_user(username):
 #     user = mongo.db.users.find_one({"username": username.lower()})
 #     if request.method == "POST":
-#         submit = ({
-#             "username": request.form.get("username").lower(),
-#             "password": generate_password_hash(request.form.get("password")),
-#             "date_joined": date.strftime("%d/%m/%Y"),
-#             "img_url": request.form.get("img_url") or default_profile
-#             })
-#         mongo.db.users.update_one({'username': username.lower()}, submit)
+#         mongo.db.users.update_one({"username": session['user']},
+#             {'$set': {
+#                 "username": request.form.get("username").lower(),
+#                 "password": generate_password_hash(
+#                 request.form.get("password")),
+#                 "profile_image": request.form.get(
+#                                  "profile_img") or default_pic
+#             }})
+
 #         flash("User Updated 😊")
 #         return redirect(url_for("profile", username=username))
 
 #     return render_template('update-user.html', username=username, user=user)
 
 
-@app.route('/subscribe', methods=["POST"])
+@ app.route('/subscribe', methods=["GET", "POST"])
 def subscribe_user():
-    existing_sub = mongo.db.subscribers.find_one(
-            {"subscriber_email": request.form.get("email").lower()})
-    if existing_sub:
-        flash("Already Subscribed!")
-        return redirect(request.referrer)
+    if request.method == "POST":
+        existing_sub = mongo.db.subscribers.find_one(
+            {"subscriber_email": request.form.get("sub_email")})
+        if existing_sub:
+            flash("Already Subscribed!")
+            return redirect(request.referrer)
 
-    sub = {"subscriber_email": request.form.get("email").lower()}
-    mongo.db.subscribers.insert_one(sub)
+    subscribe = {
+        "subscriber_email": request.form.get("sub_email"),
+        }
+    mongo.db.subscribers.insert_one(subscribe)
+    flash("Thank you for subscribing")
     return redirect(request.referrer)
 
 
