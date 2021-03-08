@@ -23,12 +23,16 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=120)
 mongo = PyMongo(app)
 
 
-# Pages #
+# Global variables used throughout functions #
 
 default_img = ("/static/images/default-recipe-image.jpg")
 default_reco = "No Recommendations for this recipe"
 default_pic = ("/static/images/default-profile-picture.jpg")
 date = date.today()
+recipes_data = mongo.db.recipes
+users_data = mongo.db.users
+subscribers_data = mongo.db.subscribers
+meals_data = mongo.db.meals
 
 
 def login_required(f):
@@ -54,22 +58,25 @@ def index():
 
 @app.route('/recipes/<meal_name>')
 def meals(meal_name):
-    meal_name = mongo.db.recipes.find({"meal_name": meal_name})
+    """
+    Filters different meal types from data.
+    """
+    meal_name = recipes_data.find({"meal_name": meal_name})
     if meal_name == "Breakfast":
-        mongo.db.recipes.find({meal_name['Breakfast']})
+        recipes_data.find({"meal_name": meal_name}['Breakfast'])
     elif meal_name == "Lunch":
-        mongo.db.recipes.find({meal_name['Lunch']})
+        recipes_data.find({"meal_name": meal_name}['Lunch'])
     elif meal_name == "Dinner":
-        mongo.db.recipes.find({meal_name['Dinner']})
+        recipes_data.find({"meal_name": meal_name}['Dinner'])
     elif meal_name == "Dessert":
-        mongo.db.recipes.find({meal_name['Dessert']})
+        recipes_data.find({"meal_name": meal_name}['Dessert'])
 
     return render_template('recipes.html', meal_name=meal_name)
 
 
 @app.route('/recipes')
 def recipes():
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(recipes_data.find())
     return render_template('recipes.html', recipes=recipes)
 
 
@@ -83,8 +90,8 @@ def search():
     will show.
     """
     query = request.form.get("search-query")
-    all_recipes = mongo.db.recipes.find().count()
-    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    all_recipes = recipes_data.find().count()
+    recipes = recipes_data.find({"$text": {"$search": query}})
 
     if all_recipes > 0:
         return render_template("recipes.html", recipes=recipes)
@@ -95,7 +102,7 @@ def search():
 
 @app.route('/recipe/<recipe_id>')
 def recipe_page(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipe.html', recipe=recipe)
 
 
@@ -105,17 +112,18 @@ def recipe_page(recipe_id):
 @app.route('/login', methods=["GET", "POST"])
 def login():
     session.permanent = True
+    password = request.form.get("password")
     # Checks if the form method is POST.
     if request.method == "POST":
 
         # Finds the user in database.
-        existing_user = mongo.db.users.find_one(
+        existing_user = users_data.find_one(
             {"username": request.form.get("username").lower()})
 
         # If the user is in database check the passwords match.
         if existing_user:
             if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
+                    existing_user["password"], password):
                 session["user"] = request.form.get("username").lower()
 
                 # If password matches log user in, direct to profile.
@@ -134,13 +142,6 @@ def login():
     return render_template("login.html")
 
 
-@app.route('/logout')
-def logout():
-    flash("Goodbye! You have been logged out")
-    session.pop("user")
-    return redirect(url_for("login"))
-
-
 @app.route('/register', methods=["GET", "POST"])
 def register():
 
@@ -148,14 +149,14 @@ def register():
     if request.method == "POST":
 
         # Finds the user in the mongo DB database.
-        existing_username = mongo.db.users.find_one(
+        existing_username = users_data.find_one(
             {"username": request.form.get("username").lower()})
         if existing_username:
             flash("Sorry, this username already exists. Please try another")
             return redirect(url_for("register"))
 
         # Finds the email in the mongo DB database.
-        existing_email = mongo.db.users.find_one(
+        existing_email = users_data.find_one(
             {"email": request.form.get("email").lower()})
         if existing_email:
             flash("Sorry, this email is in use. Please try another")
@@ -170,7 +171,7 @@ def register():
             "profile_image": request.form.get(
                                  "profile_img") or default_pic
         }
-        mongo.db.users.insert_one(register)
+        users_data.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
         flash("Welcome! Thank you for sigining up!😊")
@@ -178,6 +179,18 @@ def register():
             "profile", username=session["user"]))
 
     return render_template("register.html")
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    """
+    Logs user out from session.
+    """
+    flash("Goodbye! You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
+
 
 # User logged in functions #
 
@@ -189,12 +202,12 @@ def profile(username):
     If the user has added recipes then
     they will display on profile page.
     """
-    user = mongo.db.users.find_one({"username": session['user']})
+    user = users_data.find_one({"username": session['user']})
 
     if session['user'] == "admin":
-        recipes = list(mongo.db.recipes.find())
+        recipes = list(recipes_data.find())
     else:
-        recipes = list(mongo.db.recipes.find(
+        recipes = list(recipes_data.find(
                 {"created_by": session['user']}))
     return render_template(
         "profile.html", user=user, recipes=recipes, username=username)
@@ -223,7 +236,7 @@ def add_recipe():
             "date_created": date.strftime("%d/%m/%Y")
         }
 
-        mongo.db.recipes.insert_one(recipe)
+        recipes_data.insert_one(recipe)
         flash("Recipe Succesfully Added")
         return redirect(url_for("recipes"))
 
@@ -239,7 +252,7 @@ def edit_recipe(recipe_id):
     their profile page.
     """
     if request.method == "POST":
-        mongo.db.recipes.update_one(
+        recipes_data.update_one(
             {"_id": ObjectId(recipe_id)},
             {'$set': {
                 "meal_name": request.form.get("meal_name"),
@@ -258,7 +271,7 @@ def edit_recipe(recipe_id):
         flash("Recipe Updated 😊")
         return redirect(url_for("recipes"))
 
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     return render_template('edit-recipe.html', recipe=recipe)
 
 
@@ -268,7 +281,7 @@ def delete_recipe(recipe_id):
     """
     Removes recipe from database and recipes page.
     """
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    recipes_data.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Succesfully Removed!")
     return redirect(url_for("recipes"))
 
@@ -284,9 +297,9 @@ def delete_user(username):
     Removes user & all
     recipes created by user.
     """
-    mongo.db.users.remove({"username": session['user']})
+    users_data.remove({"username": session['user']})
     session.pop("user")
-    mongo.db.recipes.remove({"created_by": session['user']})
+    recipes_data.remove({"created_by": session['user']})
 
     flash("Sorry to see you go! Your user has been deleted.")
     return redirect(url_for("login"))
@@ -295,12 +308,16 @@ def delete_user(username):
 @app.route('/update-user/<username>', methods=["GET", "POST"])
 @login_required
 def update_user(username):
-
+    """
+    Checks current password is the users password.
+    Updates password if the two new passwords match.
+    If passwords dont match - flash message appears.
+    """
     current_password = request.form.get("password")
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
-    users = mongo.db.users
-    user = mongo.db.users.find_one({'username': session['user']})
+    users = users_data
+    user = users_data.find_one({'username': session['user']})
 
     if request.method == "POST":
 
@@ -313,14 +330,14 @@ def update_user(username):
                         'password': generate_password_hash
                         (new_password)
                     }})
-                flash("Password has been updated!")
+                flash("Password updated! 😊")
                 return redirect(url_for('profile', username=username))
 
             else:
-                flash("New passwords do not match! Please try again")
+                flash("Passwords do not match! Please try again😔")
                 return redirect(url_for("update_user", username=username))
         else:
-            flash('Incorrect original password. Please try again')
+            flash('Incorrect password. Please try again😔')
             return redirect(url_for('update_user', username=username))
 
     return render_template('update-user.html', username=username)
@@ -332,7 +349,7 @@ def update_profile_pic(username):
     """
     Updates users profile photo.
     """
-    mongo.db.users.update_one(
+    users_data.update_one(
         {"username": session['user']},
         {'$set': {
             "profile_image": request.form.get(
@@ -350,7 +367,7 @@ def subscribe_user():
     First checks if email is subscribed already.
     If email is not subscribed, email is added to database.
     """
-    existing_sub = mongo.db.subscribers.find_one(
+    existing_sub = subscribers_data.find_one(
             {"subscriber_email": request.form.get("sub_email")})
 
     if existing_sub:
@@ -360,7 +377,7 @@ def subscribe_user():
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
         }
-    mongo.db.subscribers.insert_one(subscribe)
+    subscribers_data.insert_one(subscribe)
     flash("Thank you for subscribing!")
     return redirect(request.referrer + "#subscribe")
 
