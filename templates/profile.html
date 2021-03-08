@@ -20,19 +20,23 @@
 
 
             <div class="col-12 col-md-4 text-center">
-                <img src="/static/images/default-profile-picture.jpg" class="profile-photo" alt="">
+                <img src="{{ user.profile_image}}" class="profile-photo" alt="">
                 <p class="pt-3"><strong>Username:</strong> {{ username }} <br>
                     <strong>Date Joined:</strong> {{ user.date_joined }} <br>
                     {% if session.user != 'admin' %}
                     <button class="btn btn-black account-btn">Delete Account</button>
                     <br>
-                    <a class="btn btn-black mb-4" href="{{  url_for('update_user', username=username) }}">Update Your Account</a>
+                    <a class="btn btn-black" href="{{  url_for('update_user', username=username) }}">Update Your
+                        Password</a>
+                    <br>
+                    <a class="btn btn-black profile-pic-btn mb-4">Update Profile
+                        Photo</a>
                     {% else %}
                     {% endif %}
                 </p>
             </div>
 
-            <!-- Modal to confirm deletion of recipe -->
+            <!-- Modal to confirm deletion of account -->
             <div class="modal" id="delete-account-modal">
                 <div class="delete-modal-content">
                     <span class="close">&times;</span>
@@ -46,6 +50,26 @@
                         <a class="btn btn-black cancel">
                             Cancel </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Modal to update profile image -->
+            <div class="modal" id="update-picture-modal">
+                <div class="delete-modal-content">
+                    <span class="close">&times;</span>
+                    <h3 class="delete-modal-title">Update Profile Photo</h3>
+                    <form method="POST" action="{{ url_for('update_profile_pic', username=username)}}">
+                        <div class="col-12">
+                            <i class="login-register-logo fas fa-images"></i>
+                            <input id="profile_img" name="profile_img" type="text" class="login-form-field"
+                                placeholder="Profile Picture URL">
+                        </div>
+                        <div class="col-12 modal-buttons">
+                            <button class="btn-black">Update</button>
+                            <a class="btn btn-black cancel">
+                                Cancel </a>
+                        </div>
+                    </form>
                 </div>
             </div>
 

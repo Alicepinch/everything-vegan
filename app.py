@@ -27,7 +27,7 @@ mongo = PyMongo(app)
 
 default_img = ("/static/images/default-recipe-image.jpg")
 default_reco = "No Recommendations for this recipe"
-default_pic = ("/static/images/default-profile-picture")
+default_pic = ("/static/images/default-profile-picture.jpg")
 date = date.today()
 
 
@@ -169,7 +169,8 @@ def register():
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "date_joined": date.strftime("%d/%m/%Y"),
-            "profile_image": default_pic
+            "profile_image": request.form.get(
+                                 "profile_img") or default_pic
         }
         mongo.db.users.insert_one(register)
 
@@ -298,9 +299,9 @@ Working on function's
 @app.route('/update-user/<username>', methods=["GET", "POST"])
 @login_required
 def update_user(username):
-    user = mongo.db.users.find_one({"username": username.lower()})
+    user = mongo.db.users.find_one({"username": session['user']})
     if request.method == "POST":
-        mongo.db.users.update_one({"username": username.lower()},
+        mongo.db.users.update_one({"username": session['user']},
             {'$set': {
                 "password": generate_password_hash(
                  request.form.get("password")),
@@ -312,6 +313,19 @@ def update_user(username):
         return redirect(url_for("profile", username=username))
 
     return render_template('update-user.html', username=username, user=user)
+
+
+@app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
+@login_required
+def update_profile_pic(username):
+    mongo.db.users.update_one({"username": session['user']},
+        {'$set': {
+            "profile_image": request.form.get(
+                                 "profile_img") or default_pic
+            }})
+
+    flash("Profile Picture Updated 😊")
+    return redirect(url_for("profile", username=username))
 
 
 @ app.route('/subscribe', methods=["GET", "POST"])
