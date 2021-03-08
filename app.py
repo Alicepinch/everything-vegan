@@ -275,6 +275,9 @@ def delete_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
+# Update/ delete users #
+
+
 @app.route('/delete-account/<username>')
 @login_required
 def delete_user(username):
@@ -291,11 +294,6 @@ def delete_user(username):
     return redirect(url_for("login"))
 
 
-'''
-Working on function's
-'''
-
-
 @app.route('/update-user/<username>', methods=["GET", "POST"])
 @login_required
 def update_user(username):
@@ -303,10 +301,11 @@ def update_user(username):
     if request.method == "POST":
         mongo.db.users.update_one({"username": session['user']},
             {'$set': {
-                "password": generate_password_hash(
-                 request.form.get("password")),
-                "profile_image": request.form.get(
-                                 "profile_img") or default_pic
+                "password": check_password_hash(
+                    user["password"],
+                    request.form.get("password")),
+                "new-password": generate_password_hash(
+                 request.form.get("new-password")),
             }})
 
         flash("User Updated 😊")
@@ -318,24 +317,30 @@ def update_user(username):
 @app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
 @login_required
 def update_profile_pic(username):
+    """
+    Updates users profile photo.
+    """
     mongo.db.users.update_one({"username": session['user']},
-        {'$set': {
+        {'$set':{
             "profile_image": request.form.get(
                                  "profile_img") or default_pic
             }})
 
-    flash("Profile Picture Updated 😊")
-    return redirect(url_for("profile", username=username))
+
+# Newsletter Subscribe #
 
 
 @ app.route('/subscribe', methods=["GET", "POST"])
 def subscribe_user():
-    if request.method == "POST":
-        existing_sub = mongo.db.subscribers.find_one(
+    """
+    First checks if email is subscribed already.
+    If email is no subscribed, email is added to database.
+    """
+    existing_sub = mongo.db.subscribers.find_one(
             {"subscriber_email": request.form.get("sub_email")})
-        if existing_sub:
-            flash("Already Subscribed!")
-            return redirect(request.referrer + "#subscription-container")
+    if existing_sub:
+        flash("Already Subscribed!")
+        return redirect(request.referrer + "#subscription-container")
 
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
@@ -346,7 +351,6 @@ def subscribe_user():
 
 
 # Error Pages #
-
 
 @ app.errorhandler(404)
 def page_not_found(error):
