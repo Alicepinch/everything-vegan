@@ -19,7 +19,6 @@ Eating Vegan is an online community where users can create and explore new exclu
    - [Heroku deployment](#heroku-deployment)
 - [Credits](#credits)
  
- 
 ## UX
 
 The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users should be able to view the recipes that have been shared on the website, however if a user creates an account then they will be have added features where they can share and edit their own recipes to the website. Therefore, another goal for this website was to insure the interface was easy to use for users who create an account to create, update,read and delete recipes and their account. 
@@ -77,7 +76,7 @@ As the interface will look different for customers who have registered an accoun
 
 ## Design 
 
-Veganism is sometimes considered to be boring so for the overall design of this project I wanted it to be modern with a fun feel throughout for the user.
+Veganism can sometimes be associated with being boring. Therefore, for the overall design of this project I wanted it to be modern but with a fun feel throughout for the user.
 
 <details><summary>Typography</summary>
 <p>
@@ -127,7 +126,7 @@ ID | _id | None | ObjectId
 Name | username | text, `maxlength="15"` | string
 Email Address | email | email, `maxlength="30"` | string
 Password | password | text, `maxlength="15"` | string
-Profile Picture | profile_img | text | string
+Profile Picture | profile_img | url | string
 Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
@@ -323,8 +322,16 @@ SECRET_KEY | `<your_secret_key>`
 
 ### Content
 
+- Some recipes created by user "alicepinch" and Images have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
+- Some recipes will have been added by other users. 
 
 ### Media
-- The photos used in this site were obtained from 
+
+The photos used in this site were from:
+
+- [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
+- [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)
+- [Default profile Picture](https://www.pexels.com/photo/scrabble-tiles-in-blue-ceramic-plate-2377164/)
+- Some recipe images were taken from:
 https://www.pexels.com/
 https://unsplash.com/ 
