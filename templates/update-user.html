@@ -15,17 +15,24 @@
                         <!---Start of form fields-->
                         <div class="container form-container">
                             <div class="row pt-2">
-                                <form method="POST" action="{{ url_for('update_user', username=username)  }}">
+                                <form method="POST" action="{{ url_for('update_user', username=username)  }}"> 
                                     <div class="col-12">
                                         <i class="login-register-logo fas fa-user-lock"></i>
-                                        <input id="confirm-password" name="password" type="password" class="login-form-field"
+                                        <input id="password" name="password" type="password" class="login-form-field"
+                                            minlength="5" placeholder="Current Password" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+                                            required>
+                                    </div>
+                                     <div class="col-12">
+                                        <i class="login-register-logo fas fa-user-lock"></i>
+                                        <input id="new-password" name="new-password" type="password" class="login-form-field"
                                             minlength="5" placeholder="New Password" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                                             required>
                                     </div>
-                                    <div class="col-12">
-                                        <i class="login-register-logo fas fa-images"></i>
-                                        <input id="profile_img" name="profile_img" type="text" class="login-form-field"
-                                            placeholder="Profile Picture URL">
+                                     <div class="col-12">
+                                        <i class="login-register-logo fas fa-user-lock"></i>
+                                        <input id="confirm-password" name="confirm-password" type="password" class="login-form-field"
+                                            minlength="5" placeholder="Confirm Password" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+                                            required>
                                     </div>
 
                                     <!---Flash messages--->

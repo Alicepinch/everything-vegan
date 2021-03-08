@@ -93,8 +93,6 @@ def search():
         return render_template("recipes.html", recipes=recipes)
 
 
-
-
 @app.route('/recipe/<recipe_id>')
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -297,22 +295,35 @@ def delete_user(username):
 @app.route('/update-user/<username>', methods=["GET", "POST"])
 @login_required
 def update_user(username):
-    user = mongo.db.users.find_one({"username": session['user']})
+
+    current_password = request.form.get("password")
+    new_password = request.form.get('new-password')
+    confirm_password = request.form.get("confirm-password")
+    users = mongo.db.users
+    user = mongo.db.users.find_one({'username': session['user']})
+
     if request.method == "POST":
-        mongo.db.users.update_one(
-            {"username": session['user']},
-            {'$set': {
-                "password": check_password_hash(
-                    user["password"],
-                    request.form.get("password")),
-                "new-password": generate_password_hash(
-                 request.form.get("new-password")),
-            }})
 
-        flash("User Updated 😊")
-        return redirect(url_for("profile", username=username))
+        if check_password_hash(user["password"], current_password):
 
-    return render_template('update-user.html', username=username, user=user)
+            if new_password == confirm_password:
+                users.update_one(
+                    {'username': session['user']},
+                    {'$set': {
+                        'password': generate_password_hash
+                        (new_password)
+                    }})
+                flash("Password has been updated!")
+                return redirect(url_for('profile', username=username))
+
+            else:
+                flash("New passwords do not match! Please try again")
+                return redirect(url_for("update_user", username=username))
+        else:
+            flash('Incorrect original password. Please try again')
+            return redirect(url_for('update_user', username=username))
+
+    return render_template('update-user.html', username=username)
 
 
 @app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
