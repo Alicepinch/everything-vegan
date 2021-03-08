@@ -336,7 +336,7 @@ def update_profile_pic(username):
         {"username": session['user']},
         {'$set': {
             "profile_image": request.form.get(
-                                 "profile_img") or default_pic
+                                 "profile_img")
             }})
     return redirect(url_for("profile", username=username))
 
@@ -355,14 +355,14 @@ def subscribe_user():
 
     if existing_sub:
         flash("Already Subscribed!")
-        return redirect(request.referrer + "#subscription-container")
+        return redirect(request.referrer + "#subscribe")
 
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
         }
     mongo.db.subscribers.insert_one(subscribe)
     flash("Thank you for subscribing!")
-    return redirect(request.referrer + "#subscription-container")
+    return redirect(request.referrer + "#subscribe")
 
 
 # Error Pages #
