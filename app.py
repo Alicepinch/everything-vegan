@@ -344,7 +344,7 @@ def update_profile_pic(username):
 # Newsletter Subscribe #
 
 
-@ app.route('/subscribe', methods=["GET", "POST"])
+@app.route('/subscribe', methods=["GET", "POST"])
 def subscribe_user():
     """
     First checks if email is subscribed already.
@@ -362,17 +362,17 @@ def subscribe_user():
         }
     mongo.db.subscribers.insert_one(subscribe)
     flash("Thank you for subscribing!")
-    return redirect(request.referrer + #subscription-container)
+    return redirect(request.referrer + "#subscription-container")
 
 
 # Error Pages #
 
-@ app.errorhandler(404)
+@app.errorhandler(404)
 def page_not_found(error):
     return render_template('/errors/404.html'), 404
 
 
-@ app.errorhandler(500)
+@app.errorhandler(500)
 def internal_server_error(error):
     return render_template('/errors/500.html'), 500
 
