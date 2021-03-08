@@ -292,23 +292,23 @@ Once you have an account please follow the below steps.
 
 2. In your github project create a requirements.txt file using the terminal command ```pip3 freeze —-local > requirements.txt ``` (This is so Heroku can read all of the web apps that have been used in the project)
 
-4. Create a Procfile by typing ```echo web: python app.py > Procfile``` into the terminal.
+3. Create a Procfile by typing ```echo web: python app.py > Procfile``` into the terminal.
 
-5. Add all files to github by typing 'git add .' into the terminal to stage all of your files. Then ```git commit -m "<message here>``` to commit the changes ready to be pushed to GitHub.
+4. Add all files to github by typing 'git add .' into the terminal to stage all of your files. Then ```git commit -m "<message here>``` to commit the changes ready to be pushed to GitHub.
 
-6. When all your files are ready to be pushed to github, type ```git push``` in the terminal.
+5. When all your files are ready to be pushed to github, type ```git push``` in the terminal.
 
-5. Back on your Heroku dashboard for your application, go to 'Deploy'.
+6. Back on your Heroku dashboard for your application, go to 'Deploy'.
 
-6. Within this section, scroll down to 'Deployment method' and select 'Connect to GitHub'
+7. Within this section, scroll down to 'Deployment method' and select 'Connect to GitHub'
 
-7. In the 'Connect to GitHub' section below - search for the github repository name. When you see the repository name click on the 'Connect' button.
+8. In the 'Connect to GitHub' section below - search for the github repository name. When you see the repository name click on the 'Connect' button.
 
-8. Confirm the linking of the heroku app to the correct GitHub repository.
+9. Confirm the linking of the heroku app to the correct GitHub repository.
 
-9. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+10. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
 
-10. In the fields fill out the following:
+11. In the fields fill out the following:
 
 | Key | Value |
  --- | ---
