@@ -362,7 +362,7 @@ def subscribe_user():
         }
     mongo.db.subscribers.insert_one(subscribe)
     flash("Thank you for subscribing!")
-    return redirect(request.referrer + "#subscription-container")
+    return redirect(request.referrer + #subscription-container)
 
 
 # Error Pages #
