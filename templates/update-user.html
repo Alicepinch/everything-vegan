@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="login-register-background">
+    <div class="container-fluid">
+        <div class="row">
+
+            <h1 class="small-heading text-center">Update Details</h1>
+
+            <!---Form background container-->
+            <div class="container login-register-container text-center">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!---Start of form fields-->
+                        <div class="container form-container">
+                            <div class="row pt-2">
+                                <form method="POST" action="{{ url_for('update_user', username=username)  }}">
+                                    <div class="col-12">
+                                        <i class="login-register-logo fas fa-user-lock"></i>
+                                        <input id="confirm-password" name="password" type="password" class="login-form-field"
+                                            minlength="5" placeholder="New Password" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
+                                            required>
+                                    </div>
+                                    <div class="col-12">
+                                        <i class="login-register-logo fas fa-images"></i>
+                                        <input id="profile_img" name="profile_img" type="text" class="login-form-field"
+                                            placeholder="Profile Picture URL">
+                                    </div>
+
+                                    <!---Flash messages--->
+                                    {% with messages = get_flashed_messages() %}
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <small class="login-flash-message">{{ message }}</small>
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endwith %}
+
+                                    <div class="col-12">
+                                        <button class="btn-black">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

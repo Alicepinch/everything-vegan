@@ -36,6 +36,7 @@ def login_required(f):
     def login_check(*args, **kwargs):
         if 'user' not in session:
             return redirect(url_for('login'))
+            flash("You need to login first")
         else:
             return f(*args, **kwargs)
     return login_check
@@ -50,6 +51,20 @@ def index():
 
 
 # Recipe functions #
+
+@app.route('/recipes/<meal_name>')
+def meals(meal_name):
+    meal_name = mongo.db.recipes.find({"meal_name": meal_name})
+    if meal_name == "Breakfast":
+        mongo.db.recipes.find({meal_name['Breakfast']})
+    elif meal_name == "Lunch":
+        mongo.db.recipes.find({meal_name['Lunch']})
+    elif meal_name == "Dinner":
+        mongo.db.recipes.find({meal_name['Dinner']})
+    elif meal_name == "Dessert":
+        mongo.db.recipes.find({meal_name['Dessert']})
+
+    return render_template('recipes.html', meal_name=meal_name)
 
 
 @app.route('/recipes')
@@ -78,16 +93,6 @@ def search():
         return render_template("recipes.html", recipes=recipes)
 
 
-# @app.route('/recipe/meal')
-# def recipe_page(meal):
-#     meal = mongo.db.meal.find()
-#     meal_type = mongo.db.recipes.find_one({
-#                         "_id": ObjectId(recipe_id),
-#                         "meal_type": meal_type})
-
-#     if meal_type == "Breakfast":
-
-#     return render_template('recipe.html', recipe=recipe, meal=meal)
 
 
 @app.route('/recipe/<recipe_id>')
@@ -186,11 +191,10 @@ def profile(username):
     they will display on profile page.
     """
     user = mongo.db.users.find_one({"username": username.lower()})
-    if session['user']:
-        if session['user'] == "admin":
-            recipes = list(mongo.db.recipes.find())
-        else:
-            recipes = list(mongo.db.recipes.find(
+    if session['user'] == "admin":
+        recipes = list(mongo.db.recipes.find())
+    else:
+        recipes = list(mongo.db.recipes.find(
                 {"created_by": username.lower()}))
     return render_template(
         "profile.html", user=user, recipes=recipes, username=username)
@@ -290,24 +294,24 @@ def delete_user(username):
 Working on function's
 '''
 
-# @app.route('/update-user/<username>', methods=["GET", "POST"])
-# @login_required
-# def update_user(username):
-#     user = mongo.db.users.find_one({"username": username.lower()})
-#     if request.method == "POST":
-#         mongo.db.users.update_one({"username": session['user']},
-#             {'$set': {
-#                 "username": request.form.get("username").lower(),
-#                 "password": generate_password_hash(
-#                 request.form.get("password")),
-#                 "profile_image": request.form.get(
-#                                  "profile_img") or default_pic
-#             }})
 
-#         flash("User Updated 😊")
-#         return redirect(url_for("profile", username=username))
+@app.route('/update-user/<username>', methods=["GET", "POST"])
+@login_required
+def update_user(username):
+    user = mongo.db.users.find_one({"username": username.lower()})
+    if request.method == "POST":
+        mongo.db.users.update_one({"username": username.lower()},
+            {'$set': {
+                "password": generate_password_hash(
+                 request.form.get("password")),
+                "profile_image": request.form.get(
+                                 "profile_img") or default_pic
+            }})
 
-#     return render_template('update-user.html', username=username, user=user)
+        flash("User Updated 😊")
+        return redirect(url_for("profile", username=username))
+
+    return render_template('update-user.html', username=username, user=user)
 
 
 @ app.route('/subscribe', methods=["GET", "POST"])
@@ -317,14 +321,14 @@ def subscribe_user():
             {"subscriber_email": request.form.get("sub_email")})
         if existing_sub:
             flash("Already Subscribed!")
-            return redirect(request.referrer)
+            return redirect(request.referrer + "#subscription-container")
 
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
         }
     mongo.db.subscribers.insert_one(subscribe)
     flash("Thank you for subscribing!")
-    return redirect(request.referrer)
+    return redirect(request.referrer + "#subscription-container")
 
 
 # Error Pages #
