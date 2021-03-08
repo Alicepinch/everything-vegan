@@ -79,7 +79,7 @@
                     </div>
                     <div class="col-12">
                         <label for="img_url">Image URL</label>
-                        <input type="text" name="img_url" value="{{ recipe.img_url}}" class="form-field" id="img_url"
+                        <input type="url" name="img_url" pattern="https://.*" value="{{ recipe.img_url}}" class="form-field" id="img_url"
                             required>
                         <small class="form-description">Image URL address.</small>
                     </div>

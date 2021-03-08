@@ -56,9 +56,9 @@
                     </div>
                     <div class="col-12">
                         <label for="yield">Yield</label>
-                        <input type="number" name="yield" placeholder="Example: 5" class="form-field" id="yield"
+                        <input type="number" name="yield" placeholder="Example: 5" class="form-field" id="yield" min="1" max="12"
                             required>
-                        <small class="form-description">How many people will this serve(rougly).</small>
+                        <small class="form-description">How many people will this serve (rougly).</small>
                     </div>
                     <div class="col-12">
                         <label for="active_time">Active Time</label>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-12">
                         <label for="img_url">Image URL</label>
-                        <input type="text" name="img_url" placeholder="Image URL" class="form-field" id="img_url">
+                        <input type="url" name="img_url" pattern="https://.*" placeholder="Image URL" class="form-field" id="img_url">
                         <small class="form-description">Image URL address.</small>
                     </div>
                     <div class="col-12 pt-3">

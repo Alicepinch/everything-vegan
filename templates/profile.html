@@ -20,7 +20,7 @@
 
 
             <div class="col-12 col-md-4 text-center">
-                <img src="{{ user.profile_image}}" class="profile-photo" alt="">
+                <img src="{{ user.profile_image }}" class="profile-photo" alt="">
                 <p class="pt-3"><strong>Username:</strong> {{ session['user'] }} <br>
                     <strong>Date Joined:</strong> {{ user.date_joined }} <br>
                     {% if session.user != 'admin' %}
@@ -61,7 +61,7 @@
                     <form method="POST" action="{{ url_for('update_profile_pic', username=username)}}">
                         <div class="col-12">
                             <i class="login-register-logo fas fa-images"></i>
-                            <input id="profile_img" name="profile_img" type="text" class="login-form-field"
+                            <input id="profile_img" name="profile_img" type="url" pattern="https://.*" class="login-form-field"
                                 placeholder="Profile Picture URL">
                         </div>
                         <div class="col-12 modal-buttons">
