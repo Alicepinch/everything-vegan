@@ -2,7 +2,7 @@
 
 [Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
 
-“Eating Vegan” is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
+Eating Vegan is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
 
 ## Table of Index: 
 - [UX](#ux)
@@ -22,8 +22,7 @@
  
 ## UX
 
-The UX goal of this website is for users to 
-
+The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users should be able to view the recipes that have been shared on the website, however if a user creates an account then they will be have added features where they can share and edit their own recipes to the website. Therefore, another goal for this website was to insure the interface was easy to use for users who create an account to create, update,read and delete recipes and their account. 
 
 <details><summary>User Stories</summary>
 <p>
@@ -62,9 +61,9 @@ The UX goal of this website is for users to
 <details><summary>Wireframes</summary>
 <p>
 
-[User Logged In Wireframes](/docs/eating-vegan-wireframe-logged-in.png)
+[User Logged In Wireframes](docs/eating-vegan-wireframe-logged-in.png)
 
-[User Logged Out Wireframes](/docs/eating-vegan-wireframe-logged-out.png)
+[User Logged Out Wireframes](docs/eating-vegan-wireframe-logged-out.png)
 
 </p>
 </details>
@@ -154,7 +153,7 @@ Please note that admin features are only available if the admin is logged in.
 - [x] Recipe Page
 - [x] Edit Recipe
 - [x] Add new recipe
-- [ ] Newsletter Subscription
+- [x] Newsletter Subscription
 - [x] Flash messages
 - [x] Search recipes
 - [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page.
@@ -163,19 +162,20 @@ Please note that admin features are only available if the admin is logged in.
 - [x] 505 page.
 - [x] Update user information.
 - [x] Delete account.
-- [ ] Update user accound.
+- [x] Update password accound.
 - [ ] Filter drop down to flick through meal types.
 - [x] Admin can manage all recipes 
 - [x] Delete modals to prompt users to confirm deletion of account and recipes.
 
 ## Future Features
 
-- [ ] Show more button for recipes
+- [ ] Show more button for recipes(pagination)
 - [ ] User profiles with option to upload images.
 - [ ] Automated email when user signs up.
 - [ ] User could upload an image directly to the website.
 - [ ] Option to view other users and what they have uploaded.
 - [ ] More specific filters for recipes.
+- [ ] User can update their username
  
 ## Technologies Used
 
