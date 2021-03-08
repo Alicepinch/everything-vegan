@@ -15,8 +15,8 @@
 - [Data Schema](#data-schema)
 - [Testing](TESTING.md)
 - [Deployment](#deployment)
- - Github cloning
- - Heroku deployment
+   - [Github cloning](#creating-a-local-repository)
+   - [Heroku deployment](#heroku-deployment)
 - [Credits](#credits)
  
  
@@ -71,6 +71,7 @@ The UX goal of this website is for users to
 <details><summary>Design</summary>
 <p>
 
+Sometimes veganism can be considered boring so for the overall design of this project I wanted it to be modern with a fun feel throughout for the user.
 
 #### Typography:
 
@@ -78,7 +79,9 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 #### Colour Scheme
 
+The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to insure there wouldn't be any major contrasts in colours therefore opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
 
+![Colour Palette](/docs/eating-vegan-colour-palette.jpg)
 
 </p>
 </details>
