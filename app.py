@@ -191,12 +191,13 @@ def profile(username):
     If the user has added recipes then
     they will display on profile page.
     """
-    user = mongo.db.users.find_one({"username": username.lower()})
+    user = mongo.db.users.find_one({"username": session['user']})
+
     if session['user'] == "admin":
         recipes = list(mongo.db.recipes.find())
     else:
         recipes = list(mongo.db.recipes.find(
-                {"created_by": username.lower()}))
+                {"created_by": session['user']}))
     return render_template(
         "profile.html", user=user, recipes=recipes, username=username)
 
@@ -209,7 +210,6 @@ def add_recipe():
     user to add their own recipes if logged in
     """
     if request.method == "POST":
-
         recipe = {
             "meal_name": request.form.get("meal_name"),
             "recipe_name": request.form.get("recipe_name"),
@@ -286,9 +286,9 @@ def delete_user(username):
     Removes user & all
     recipes created by user.
     """
-    mongo.db.users.remove({"username": username.lower()})
+    mongo.db.users.remove({"username": session['user']})
     session.pop("user")
-    mongo.db.recipes.remove({"created_by": username.lower()})
+    mongo.db.recipes.remove({"created_by": session['user']})
 
     flash("Sorry to see you go! Your user has been deleted.")
     return redirect(url_for("login"))
@@ -299,7 +299,8 @@ def delete_user(username):
 def update_user(username):
     user = mongo.db.users.find_one({"username": session['user']})
     if request.method == "POST":
-        mongo.db.users.update_one({"username": session['user']},
+        mongo.db.users.update_one(
+            {"username": session['user']},
             {'$set': {
                 "password": check_password_hash(
                     user["password"],
@@ -320,11 +321,13 @@ def update_profile_pic(username):
     """
     Updates users profile photo.
     """
-    mongo.db.users.update_one({"username": session['user']},
-        {'$set':{
+    mongo.db.users.update_one(
+        {"username": session['user']},
+        {'$set': {
             "profile_image": request.form.get(
                                  "profile_img") or default_pic
             }})
+    return redirect(url_for("profile", username=username))
 
 
 # Newsletter Subscribe #
@@ -334,10 +337,11 @@ def update_profile_pic(username):
 def subscribe_user():
     """
     First checks if email is subscribed already.
-    If email is no subscribed, email is added to database.
+    If email is not subscribed, email is added to database.
     """
     existing_sub = mongo.db.subscribers.find_one(
             {"subscriber_email": request.form.get("sub_email")})
+
     if existing_sub:
         flash("Already Subscribed!")
         return redirect(request.referrer + "#subscription-container")
