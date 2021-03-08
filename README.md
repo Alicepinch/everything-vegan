@@ -70,7 +70,9 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 <details><summary>Design</summary>
 <p>
 
-Sometimes veganism can be considered boring so for the overall design of this project I wanted it to be modern with a fun feel throughout for the user.
+#### Design
+
+Veganism is sometimes considered to be boring so for the overall design of this project I wanted it to be modern with a fun feel throughout for the user.
 
 #### Typography:
 
@@ -109,6 +111,7 @@ ID | _id | None | ObjectId
 Name | username | text, `maxlength="15"` | string
 Email Address | email | email, `maxlength="30"` | string
 Password | password | text, `maxlength="15"` | string
+Profile Picture | profile_img | text | string
 Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
