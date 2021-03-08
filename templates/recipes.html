@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row">
             <h1 class="recipes-heading">Recipes</h1>
-            <h3 class="page-sub-heading">Fresh and exciting plant-based foods!</h3>
+            <h2 class="page-sub-heading">Fresh and exciting plant-based foods!</h2>
             <form method="POST" action="{{  url_for('search')  }}" class=" search text-center">
                 <a class="btn-reset" href="{{  url_for('recipes')  }}">Reset</a>
                 <input type="text" id="search-query" name="search-query" class="search-form-field"
@@ -40,10 +40,11 @@
                     Filter <i class="fas fa-arrow-down"></i>
                 </a>
                 <div id="recipes_meal_dropdown">
-                    <a class="dropdown-link" href="#">Breakfast</a>
-                    <a class="dropdown-link" href="#">Lunch</a>
-                    <a class="dropdown-link" href="#">Dinner</a>
-                    <a class="dropdown-link" href="#">Desserts</a>
+                    <a class="dropdown-link" href="{{  url_for('recipes')  }}">All</a>
+                    <a class="dropdown-link" href="{{  url_for('meals', meal_name='breakfast')  }}">Breakfast</a>
+                    <a class="dropdown-link" href="{{  url_for('meals', meal_name='lunch')  }}">Lunch</a>
+                    <a class="dropdown-link" href="{{  url_for('meals', meal_name='dinner')  }}">Dinner</a>
+                    <a class="dropdown-link" href="{{  url_for('meals', meal_name='desserts')  }}">Desserts</a>
                 </div>
             </div>
 
