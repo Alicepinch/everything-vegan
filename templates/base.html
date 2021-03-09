@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eating Vegan Website" />
+    <meta
+      name="keywords"
+      content="Vegan, Recipes, Share, Food, Breakfast, Lunch, Dinner, Desserts"
+    />
     <!---- Font awsome ---->
     <script src="https://kit.fontawesome.com/5342af2812.js" crossorigin="anonymous"></script>
     <!---- Bootstrap Stylesheet ---->
@@ -80,14 +85,6 @@
                             <button class="btn btn-subscription" type="submit">Subscribe</button>
                         </div>
                     </form>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    {% for message in messages %}
-                    <p>{{ message }}</p>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-
                 </div>
             </div>
         </div>
@@ -98,13 +95,16 @@
                     <h5 class="footer-header">Follow Us:</h5>
                     <ul class="social-list">
                         <li class="social-link">
-                            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/" aria-label="Facebook" rel="noopener" target="_blank"><i
+                                    class="fab fa-facebook-f"></i></a>
                         </li>
                         <li class="social-link">
-                            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/" aria-label="Instagram" rel="noopener"
+                                target="_blank"><i class="fab fa-instagram"></i></a>
                         </li>
                         <li class="social-link">
-                            <a href="https://www.pinterest.com/" target="_blank"><i class="fab fa-pinterest"></i></a>
+                            <a href="https://www.pinterest.com/" aria-label="Pinterest" rel="noopener"
+                                target="_blank"><i class="fab fa-pinterest"></i></a>
                         </li>
                     </ul>
                 </div>
