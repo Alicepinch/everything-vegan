@@ -76,12 +76,7 @@ On the forms when a user is logged in, the select box is not styled the same as 
 <p>
 
 As a user I would like to be able to login to my account.
-
-<video width="300" height="200" controls>
-  <source src="/docs/testing/login-screen-recording.mov" type="video/mp">
-Your browser does not support the video tag.
-</video>
-
+![Uploading login-testing.gif…]()
 - As a user I would like to be able to log out of my account.
 - As a user I would like to be able to view my profile.
 - As a user I would like to be able to edit or remove recipes that I have created.
