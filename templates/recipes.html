@@ -10,9 +10,10 @@
             <h2 class="page-sub-heading">Fresh and exciting plant-based foods!</h2>
             <form method="POST" action="{{  url_for('search')  }}" class=" search text-center">
                 <a class="btn-reset" href="{{  url_for('recipes')  }}">Reset</a>
+                <label for="search-query" id="search-label" name="search-query"> Search </label>
                 <input type="text" id="search-query" name="search-query" class="search-form-field"
                     placeholder="Search Recipes" required>
-                <button class="btn-search"><i class="fas fa-search"></i>
+                <button class="btn-search" aria-label="Search Recipe"><i class="fas fa-search"></i>
                 </button>
 
             </form>
@@ -52,7 +53,7 @@
             <div class="col-12 col-lg-4">
                 <div class="recipe-card">
                     <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}">
-                    <h4>{{ recipe.recipe_name }}</h4>
+                    <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description">
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
