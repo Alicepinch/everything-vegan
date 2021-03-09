@@ -2,7 +2,7 @@
 
 [Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
 
-![Eating Vegan Ami Responsive](docs/readme/eating-vegan-ami-respinsive.jpg)
+![Eating Vegan Ami Responsive](docs/readme/eating-vegan-ami-responsive.jpg)
 
 Eating Vegan is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
 
@@ -72,9 +72,9 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 Wireframes for Eating Vegan were created using balsamiq and can be found below.
 As the interface will look different for customers who have registered an account and users who are just visiting there are two wireframes of how this will look.
 
-[User Logged In Wireframes](docs/eating-vegan-wireframe-logged-in.png)
+[User Logged In Wireframes](docs/readme/eating-vegan-wireframe-logged-in.png)
 
-[User Logged Out Wireframes](docs/eating-vegan-wireframe-logged-out.png)
+[User Logged Out Wireframes](docs/readme/eating-vegan-wireframe-logged-out.png)
 
 ## Design 
 
