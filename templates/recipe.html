@@ -28,8 +28,6 @@
 
         <div class="recipe-page-info">
             <div class="col-12 pb-1">
-                <p><strong>Description:</strong><br>
-                    {{ recipe.description}}</p>
             </div>
             <div class="row">
                 <div class="col-3">
@@ -57,9 +55,9 @@
 
         <!---Recipe Ingredients and Method--->
         <div class="container recipe-ingredients">
-            <div class="row m-5">
+            <div class="row">
                 <div class="col-12 col-lg-6 col-md-12">
-                    <h3>Ingredients</h3>
+                    <h2>Ingredients</h2>
                     <ul class="recipe-list">
                         {% for ingredient in recipe.ingredients.split("\n") %}
                         <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
@@ -67,7 +65,7 @@
                     </ul>
                 </div>
                 <div class="col-12 col-lg-6 col-md-12">
-                    <h3>Method</h3>
+                    <h2>Method</h2>
                     <ul class="recipe-list">
                         {% for method in recipe.method.split("\n") %}
                         <li><i class="fas fa-leaf"></i> {{ method }}</li>
@@ -75,7 +73,7 @@
                     </ul>
                 </div>
                 <div class="col-12 pt-3">
-                    <h4>recommendation</h4>
+                    <h2>recommendation</h2>
                     <p>{{ recipe.recommendation }}</p>
                 </div>
             </div>

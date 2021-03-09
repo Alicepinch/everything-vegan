@@ -13,7 +13,6 @@
 
 <!----Add Recipe Form---->
 
-<section>
     <div class="container">
         <div class="row">
             <div class="add-edit-form-container">
@@ -26,7 +25,7 @@
                     </div>
                     <div class="col-12">
                         <label for="meal_name">Meal Type</label>
-                        <select type="text" name="meal_name" class="form-field" id="meal_name" required>
+                        <select name="meal_name" value="" class="form-field" id="meal_name" required>
                             <option selected disabled>Select Meal Type</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
@@ -43,14 +42,14 @@
                     </div>
                     <div class="col-12">
                         <label for="ingredients">Ingredients</label>
-                        <textarea type="text" name="ingredients" placeholder="Recipe Ingredients" class="form-field"
+                        <textarea name="ingredients" placeholder="Recipe Ingredients" class="form-field"
                             id="ingredients" rows="6" required></textarea>
                         <small class="form-description">Each ingredient on a seperate line.</small>
                     </div>
 
                     <div class="col-12">
                         <label for="method">Method</label>
-                        <textarea type="text" name="method" placeholder="Method" class="form-field" id="method" required
+                        <textarea name="method" placeholder="Method" class="form-field" id="method" required
                             rows="6"></textarea>
                         <small class="form-description">Each step on a seperate line.</small>
                     </div>
@@ -91,6 +90,5 @@
         </div>
     </div>
 
-</section>
 
 {% endblock %}
