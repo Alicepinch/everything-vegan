@@ -15,9 +15,14 @@ h6 {
 }
 
 a {
-	color: #000;
+	color: #3c965b;
 	font-family: "Roboto", sans-serif;
 	text-decoration: none;
+}
+
+a:hover {
+    color: #aaa;
+    transition: all 300ms ease-in-out;
 }
 
 p {
@@ -31,7 +36,7 @@ button {
 
 .btn:focus {
 	outline: none;
-	box-shadow: 0 0 10px #a1d5b3;
+	box-shadow: 0 0 10px #3c965b;
 }
 
 
@@ -51,7 +56,7 @@ button {
 }
 
 .navbar-brand:hover {
-	color: #a1d5b3;
+	color: #3c965b;
 	transition: all 300ms ease-in-out;
 }
 
@@ -63,7 +68,7 @@ button {
 }
 
 .nav-item:hover {
-	background-color: #a1d5b3;
+	background-color: #3c965b;
 	transition: all 300ms ease-in-out;
 }
 
@@ -115,26 +120,26 @@ button {
 	position: relative;
 	height: 700px;
 	width: 100%;
-	background: linear-gradient(rgba(255, 255, 255, 0) 80%, rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+	background: linear-gradient(rgba(255, 255, 255, 0) 80%, rgb(0, 0, 0)), url(/static/images/eating-vegan-background-image.jpg)no-repeat center;
 }
 
 .recipes-background {
 	width: 100%;
 	height: 300px;
-	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255)), url(/static/images/eating-vegan-background-image.jpg)no-repeat center;
 }
 
 .subpage-background {
 	width: 100%;
 	height: 200px;
-	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255)), url(/static/images/eating-vegan-background-image.jpg)no-repeat center;
 }
 
 .login-register-background {
 	position: relative;
 	width: 100%;
 	height: 700px;
-	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(0, 0, 0)), url(/static/images/eating-vega-background-image.jpg)no-repeat center;
+	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(0, 0, 0)), url(/static/images/eating-vegan-background-image.jpg)no-repeat center;
 }
 
 
@@ -205,7 +210,7 @@ button {
 .btn-white:hover,
 .btn-subscription:hover {
 	color: #fff;
-	background-color: #747474;
+	background-color: #aaa;
 	transition: all 300ms ease-in-out;
 }
 
@@ -234,6 +239,10 @@ button {
 	color: #fff;
 }
 
+.btn-reset {
+	color: #000;
+}
+
 .btn-reset:hover {
 	color: #000;
 	transition: all 300ms ease-in-out;
@@ -248,6 +257,7 @@ button {
 }
 
 .filter {
+    color: #000;
 	font-family: "Bungee", sans-serif;
 	font-size: 1.2rem;
 }
@@ -257,13 +267,14 @@ button {
 }
 
 .filter:hover {
-	color: #a1d5b3;
+	color: #000;
 	cursor: pointer;
 }
 
 .dropdown-link {
 	display: block;
-	padding: .5rem 0;
+    padding: .5rem 0;
+    color: #000;
 }
 
 .dropdown-link:hover {
@@ -284,7 +295,7 @@ button {
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
 
-.recipe-card h4 {
+.recipe-card h3 {
 	text-align: left;
 	padding: 1rem 1rem 0rem 1.5rem;
 	color: #000;
@@ -293,7 +304,7 @@ button {
 .meal-name {
 	display: block;
 	padding-bottom: .5rem;
-	color: #747474;
+	color: #aaa;
 	font-size: small;
 }
 
@@ -311,8 +322,8 @@ button {
 
 .recipe-link {
 	display: block;
-	color: #a1d5b3;
-	padding: 1rem 0;
+	color: #3c965b;
+	padding: 2rem 0;
 	font-weight: 500;
 	font-family: 'Bungee', sans-serif;
 	font-size: 1.1rem;
@@ -320,7 +331,7 @@ button {
 
 .recipe-link:hover {
 	text-decoration: underline;
-	color: #a1d5b3;
+	color: #3c965b;
 }
 
 
@@ -331,7 +342,7 @@ button {
 }
 
 .recipe-page-info {
-	width: 70%;
+	width: 80%;
 	margin: 2rem auto;
 	background: rgb(0, 0, 0);
 	text-align: center;
@@ -353,8 +364,8 @@ button {
 }
 
 .recipe-page-image {
-	width: 70%;
-	height: 500px;
+	width: 60%;
+	height: 400px;
 	object-fit: cover;
 	margin: 0 auto;
 }
@@ -364,7 +375,7 @@ button {
 	color: #000;
 	font-family: 'Roboto', sans-serif;
 	padding: 0;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .recipe-list i {
@@ -425,7 +436,7 @@ button {
 }
 
 .delete-modal-title {
-	columns: #000;
+	color: #000;
 	padding-bottom: 1rem;
 }
 
@@ -510,18 +521,11 @@ button {
 	padding-top: 1rem;
 }
 
-.form-container a {
-	color: #a1d5b3;
-}
-
-.form-container a:hover {
-	color: #747474;
-}
 
 .form-description {
 	display: block;
 	padding-top: 0;
-	color: #747474;
+	color: #aaa;
 }
 
 .form-field {
@@ -534,6 +538,13 @@ button {
 	margin: .5rem;
 	padding: .5rem 1rem;
 	border: 1px solid #000;
+}
+
+#search-label {
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 .form-field:focus,
@@ -563,13 +574,6 @@ footer p {
 	text-align: center;
 }
 
-footer a {
-	color: #a1d5b3;
-}
-
-footer a:hover {
-	color: #fff;
-}
 
 .footer-header {
 	color: #fff;
@@ -639,7 +643,8 @@ footer a:hover {
 		width: 100%;
 	}
 	.recipes-heading {
-		font-size: 3.5rem
+		font-size: 3.5rem;
+        padding-top: 25px;
 	}
 	.profile-heading {
 		font-size: 2.5rem;
