@@ -36,8 +36,8 @@
                     </div>
                     <div class="col-12">
                         <label for="description">Description</label>
-                        <textarea type="text" name="description" id="description" class="form-field" maxlength="100"
-                            required>{{ recipe.description }}</textarea>
+                        <input type="text" name="description" placeholder="Description" id="description"
+                            class="form-field" maxlength="100" value="{{ recipe.description }}" required>
                         <small class="form-description">Short description about your the dish. Max 100
                             characters.</small>
                     </div>
