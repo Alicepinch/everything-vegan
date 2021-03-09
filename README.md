@@ -31,17 +31,18 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 <p>
 
 - As a user I would like to be able to login to my account.
-- As a user I would like to be able to log out of my account.
+- As a user I would like to be able to log out of my account..
 - As a user I would like to be able to view my profile.
-- As a user I would like to be able to edit or remove recipes that I have created.
-- As a user I would like to be able to view all recipes in one place.
 - As a user I would like to be able to create new recipes.
-- As a user I would like to be able to sign up for the newsletter.
-- As a user I would like to be able to update my account details.
-- As a user I would like to be able to delete my account.
+- As a user I would like to be able to view all recipes in one place.
 - As a user I would like to flick through the different meal types.
 - As a user I would like to be able to search through all recipes.
-- As a user I dont want to have all naviagtion links when not applicable.
+- As a user I would like to be able to edit recipes that I have created.
+- As a user I would like to be able to remove recipes that I have created.
+- As a user I would like to be able to sign up for the newsletter.
+- As a user I would like to be able to update my password.
+- As a user I would like to be able to delete my account.
+- As a user I would like to be able to update my profile photo.
 
 </p>
 
@@ -53,7 +54,6 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 - As a new user I would like to be able to register an account.
 - As a new user I would like to be able to sign up for the newsletter.
 - As a new user I would like to be able to understand what the website is.
-- As a new user 
 
 </details>
 
@@ -205,6 +205,8 @@ Please note that admin features are only available if the admin is logged in.
 - [ ] Option to view other users and what they have uploaded.
 - [ ] More specific filters for recipes.
 - [ ] User can update their username
+- [ ] Active Links for navigation bar
+- [ ] Different page titles
  
 ## Technologies Used
 
@@ -278,6 +280,7 @@ os.environ.setdefault("PORT", "5000")
 os.environ.setdefault("SECRET_KEY", `<your_secret_key>`)
 os.environ.setdefault("MONGO_URI", "mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority")
 os.environ.setdefault("MONGO_DBNAME", `<your_database_name>`)
+
 ```
 
 **As some of this information is sensitive, be sure to create a ".gitignore" file and add "env.py"**
@@ -328,6 +331,7 @@ IP | 0.0.0.0
 MONGO_URI | `mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority`
 PORT | 5000
 SECRET_KEY | `<your_secret_key>`
+PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 
 ## Credits
 
