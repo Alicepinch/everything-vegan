@@ -85,7 +85,7 @@
                 {% endif %}
                 {% for recipe in recipes %}
                 <div class="profile-recipe-card row">
-                    <div class="col-12 col-md-7 profile-recipe-info">
+                    <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
                         <h4 class="recipe-name">{{ recipe.recipe_name }}</h4>
                         <p class="recipe-description">
                             <strong>Recipe created:</strong> {{ recipe.date_created }} <br>
@@ -99,7 +99,7 @@
                             Recipe </a>
                         <button class="btn btn-white recipe-btn">Delete Recipe</button>
                     </div>
-                    <div class="col-12 col-md-5 text-center">
+                    <div class="col-12 col-lg-6 col-md-12 text-center">
                         <img class="profile-recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name }}">
                     </div>
 
