@@ -20,13 +20,13 @@
                 <form method="POST" class="text-center" action="{{  url_for('add_recipe')}}">
                     <div>
                         <label for="recipe_name">Recipe Name</label>
-                        <input type="text" name="recipe_name" class="form-field" placeholder="Recipe Name"
+                        <input type="text" name="recipe_name" class="form-field" placeholder="Recipe Name*"
                             id="recipe_name" required>
                     </div>
                     <div class="col-12">
                         <label for="meal_name">Meal Type</label>
                         <select name="meal_name" value="" class="form-field" id="meal_name" required>
-                            <option selected disabled value="">Select Meal Type</option>
+                            <option selected disabled value="">Select Meal Type*</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
                             <option value="Dinner">Dinner</option>
@@ -35,39 +35,39 @@
                     </div>
                     <div class="col-12">
                         <label for="description">Description</label>
-                        <input type="text" name="description" placeholder="Description" id="description"
+                        <input type="text" name="description" placeholder="Description*" id="description"
                             class="form-field" maxlength="100" required>
                         <small class="form-description">Short description about your the dish. Max 100
                             characters.</small>
                     </div>
                     <div class="col-12">
                         <label for="ingredients">Ingredients</label>
-                        <textarea name="ingredients" placeholder="Recipe Ingredients" class="form-field"
+                        <textarea name="ingredients" placeholder="Recipe Ingredients*" class="form-field"
                             id="ingredients" rows="6" required></textarea>
                         <small class="form-description">Each ingredient on a seperate line.</small>
                     </div>
 
                     <div class="col-12">
                         <label for="method">Method</label>
-                        <textarea name="method" placeholder="Method" class="form-field" id="method" required
+                        <textarea name="method" placeholder="Method*" class="form-field" id="method" required
                             rows="6"></textarea>
                         <small class="form-description">Each step on a seperate line.</small>
                     </div>
                     <div class="col-12">
                         <label for="yield">Yield</label>
-                        <input type="number" name="yield" placeholder="Example: 5" class="form-field" id="yield" min="1" max="12"
+                        <input type="number" name="yield" placeholder="Example: 5*" class="form-field" id="yield" min="1" max="12"
                             required>
                         <small class="form-description">How many people will this serve (rougly).</small>
                     </div>
                     <div class="col-12">
                         <label for="active_time">Active Time</label>
-                        <input type="text" name="active_time" placeholder="Example: 20 Minutes" class="form-field"
+                        <input type="text" name="active_time" placeholder="Example: 20 Minutes*" class="form-field"
                             id="active_time" required>
                         <small class="form-description">How long does it take to cook this meal.</small>
                     </div>
                     <div class="col-12">
                         <label for="total_time">Total Time</label>
-                        <input type="text" name="total_time" placeholder="Example: 1 Hour" class="form-field"
+                        <input type="text" name="total_time" placeholder="Example: 1 Hour*" class="form-field"
                             id="total_time" required>
                         <small class="form-description">How long does it take to prepare and cook this meal.</small>
                     </div>
