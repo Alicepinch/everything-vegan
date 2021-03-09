@@ -94,6 +94,7 @@
                             <i class="far fa-clock"></i> - {{ recipe.active_time }} <br>
                             <i class="fas fa-utensils"></i> - {{ recipe.total_time }} <br>
                         </p>
+                        <a class="btn btn-white m-1" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"> View Recipe </a>
                         <a class="btn btn-white m-1" href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}"> Edit
                             Recipe </a>
                         <button class="btn btn-white recipe-btn">Delete Recipe</button>
