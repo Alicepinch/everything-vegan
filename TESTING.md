@@ -1,35 +1,60 @@
 # Testing
 
-#### User Session Lifetime:
+## Error testing:
 
-During the build of the website I noticed that the session was not ending when a user closed the browser and the user was staying logged in forever. This isn't the best UX as the expected behaviour should be that the user is logged out of the session when closing a browser or after a certain amount of time. In order to fix this I added in the app configuration from flask "PERMANENT_SESSION_LIFETIME" and set the time for this as 120 minutes. This fixed the issue and users will be automatically be logged out of their session after 2 hours. 
+### 404: 
 
-### Login Required:
+If a user tries to access a page that is non existent then they will be directed to the custom 404 page. On this page there is a CTA that redirects the user back to the homepage. I have forced this error by typing a wrong url into the bar. 
 
-Whilst testing/building the website I noticed that if a user was logged out but pressed the back button they would be taken back to the profile page/ have access to pages that are only availble to users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix this I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
+![404 Error page](/docs/testing/errors/404-error-page.gif)
 
-Code added: 
-```
-def login_required(f):
-    @wraps(f)
-    def login_check(*args, **kwargs):
-        if 'user' not in session:
-            return redirect(url_for('login'))
-        else:
-            return f(*args, **kwargs)
-    return login_check
-```
+### Login & Register Errors: 
 
-### Deleting Recipe's:
+If a user tries to login with an incorrect password or username then they will be displayed with a flash error.
 
-When testing the delete function for the recipes on the profile I noticed that when trying to delete a recipe from the bottom of the page it was deleting the first recipe instead of the selected one. To fix this I....
+![Login error gif](/docs/testing/errors/login-error.gif) 
 
-### Lighthouse:
----
+If a user tried to register with an existing username/email address another flask error will be shown.
+
+![Register error](/docs/testing/errors/register-error.gif) 
+
+## Lighthouse Reports:
+
+<details><summary>Homepage</summary>
+
+![Homepage lighthouse report](/docs/testing/lighthouse-reports/homepage-lighthouse-report.png)
+
+</details>
+
+<details><summary>Recipes Page</summary>
+
+![Recipes page lighthouse report](/docs/testing/lighthouse-reports/recipes-lighthouse-report.png)
+
+</details>
+
+<details><summary>Login & Register Pages</summary>
+
+![Login lighthouse report](/docs/testing/lighthouse-reports/login-lighthouse-report.png)
+![Register lighthouse report](/docs/testing/lighthouse-reports/register-lighthouse-report.png)
+
+</details>
 
 
-### WSC Validator:
----
+<details><summary>New Recipe & Edit Recipe</summary>
+
+![New Recipe lighthouse report](/docs/testing/lighthouse-reports/add-recipe-lighthouse-report.png)
+![Edit Recipe lighthouse report](/docs/testing/lighthouse-reports/edit-recipe-lighthouse-report.png)
+
+</details>
+
+<details><summary>Profile Page</summary>
+
+![Profile lighthouse report](/docs/testing/lighthouse-reports/profile-lighthouse-report.png)
+
+</details>
+
+
+## WSC Validator:
 
 CSS Validator returned no errors.
 ![WSC CSS Validator](/docs/testing/eating-vegan-wsc-css-validator.jpg)
@@ -41,13 +66,39 @@ HTML Validator returned errors for Jinja templating which is expected behaviour.
 - ```type='text'``` Was removed from the textarea field. 
 - ```"value=""``` Was added to the select box's to remove the error.
 
-### JSHint
----
+## JSHint
 
-JavaScript code passed through JShint with no major issues. Once run through it prompted to add some semicolons that were missing. These were all added accordinly.
+JavaScript code passed through JShint with no major issues. Once run through, it prompted to add some semicolons that were missing. These were all added accordinly.
 
-### Usability Testing:
----
+
+## Solutions for issues found whilst building/testing:
+
+### User Session Lifetime
+
+During the build of the website I noticed that the session was not ending when a user closed the browser and the user was staying logged in forever. This isn't the best UX as the expected behaviour should be that the user is logged out of the session when closing a browser or after a certain amount of time. In order to fix this I added in the app configuration from flask "PERMANENT_SESSION_LIFETIME" and set the time for this as 120 minutes. This fixed the issue and users will be automatically be logged out of their session after 2 hours. 
+
+### Login Required
+
+Whilst testing/building the website I noticed that if a user was logged out but pressed the back button they would be taken back to the profile page/have access to pages that are only availble to users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix this I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
+
+Code added:
+```
+def login_required(f):
+    @wraps(f)
+    def login_check(*args, **kwargs):
+        if 'user' not in session:
+            return redirect(url_for('login'))
+        else:
+            return f(*args, **kwargs)
+    return login_check
+```
+
+### Deleting Recipe's
+
+When testing the delete function for the recipes on the profile I noticed that when trying to delete a recipe from the bottom of the page it was deleting the first recipe instead of the selected one. To fix this I....
+
+
+## Usability Testing:
 
 This website has been cross checked on the below devices and browsers to test responsiveness:
 
@@ -67,38 +118,28 @@ iMac
  - Firefox
  - Microsoft Edge
 
-When testing on safari there is a known design issue. 
-On the forms when a user is logged in, the select box is not styled the same as in Chrome, Firefox and Edge. 
-
+When testing on safari I found an issue with the select drop down on the forms. This is not styled in the same way as on the other browsers. This is still a bug. 
 
 ## User Stories Tested:
 
-
 ### Registered User:
----
-
 
 <details><summary>As a user I would like to be able to login to my account.</summary>
 
-![Login gif](/docs/testing/login-testing.gif)
+![Login gif](/docs/testing/user-story-gifs/login-testing.gif)
 
 </details>
 
-<details><summary>As a user I would like to be prompted if my password is incorrect.</summary>
-
-![Login error gif](/docs/testing/login-password-incorrect-testing.gif) 
-
-</details>
 
 <details><summary>As a user I would like to be able to log out of my account..</summary>
 
-![Logout](/docs/testing/logout.gif) 
+![Logout](/docs/testing/user-story-gifs/logout.gif) 
 
 </details>
 
 <details><summary>As a user I would like to be able to view my profile.</summary>
 
-![View Profile](/docs/testing/profile.gif) 
+![View Profile](/docs/testing/user-story-gifs/profile.gif) 
 
 </details>
 
@@ -106,11 +147,11 @@ On the forms when a user is logged in, the select box is not styled the same as 
 
 <details><summary>As a user I would like to be able to edit recipes that I have created.</summary>
 
-![Edit Recipe](/docs/testing/edit-recipe.gif)
+![Edit Recipe](/docs/testing/user-story-gifs/edit-recipe.gif)
 
 #### Changes reflected on recipes page and single recipe page.
 
-![Edit recipe recipe page](/docs/testing/edit-recipe-more.gif)
+![Edit recipe recipe page](/docs/testing/user-story-gifs/edit-recipe-more.gif)
 
 </details>
 
@@ -122,7 +163,7 @@ ADD GIF WHEN ISSUE FIXED
 
 <details><summary>As a user I would like to be able to view all recipes in one place.</summary>
 
-![View recipes](/docs/testing/view-all-recipes.gif)
+![View recipes](/docs/testing/user-story-gifs/view-all-recipes.gif)
 
 </details>
 
@@ -140,17 +181,17 @@ ADD GIF
 
 <details><summary>As a user I would like to be able to update my password.</summary>
 
-![Change password tested](/docs/testing/password-updated.gif)
+![Change password tested](/docs/testing/user-story-gifs/password-updated.gif)
 
 #### Logging in with new password: 
 
-![New password tested](/docs/testing/updated-password-login.gif)
+![New password tested](/docs/testing/user-story-gifs/updated-password-login.gif)
 
 </details>
 
 <details><summary>As a user I would like to be able to delete my account.</summary>
 
-![Delete user](/docs/testing/delete-user.gif)
+![Delete user](/docs/testing/user-story-gifs/delete-user.gif)
 
 </details>
 
@@ -163,16 +204,15 @@ ADD GIF
 
 <details><summary>As a user I would like to be able to search through all recipes.</summary>
 
-![Search Recipe](/docs/testing/search.gif)
+![Search Recipe](/docs/testing/user-story-gifs/search.gif)
 
 </details>
 
 ### New user:
----
 
 <details><summary>As a new user I would like to be able to register an account.</summary>
 
-![Register Account](/docs/testing/register-account.gif)
+![Register Account](/docs/testing/user-story-gifs/register-account.gif)
 
 </details>
 
@@ -190,7 +230,6 @@ Add GIF
 
 
 ### Admin
----
 
 - As an admin I should be able to edit any recipe.
 - As an admin I should have the option to delete any recipes incase they don't meet the guidelines.
