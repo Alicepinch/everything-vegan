@@ -72,9 +72,21 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 Wireframes for Eating Vegan were created using balsamiq and can be found below.
 As the interface will look different for customers who have registered an account and users who are just visiting there are two wireframes of how this will look.
 
-[User Logged In Wireframes](docs/readme/eating-vegan-wireframe-logged-in.png)
+<details><summary>User Logged In</summary>
+<p>
 
-[User Logged Out Wireframes](docs/readme/eating-vegan-wireframe-logged-out.png)
+![User Logged In Wireframes](/docs/readme/eating-vegan-wireframe-user-logged-in.png)
+
+</p>
+</details>
+
+<details><summary>User Logged Out</summary>
+<p>
+
+![User Logged Out Wireframes](/docs/readme/eating-vegan-wireframe-user-logged-out.png)
+
+</p>
+</details>
 
 ## Design 
 
@@ -85,8 +97,6 @@ Veganism can sometimes be associated with being boring. Therefore, for the overa
 
 Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'. The reason I have chosen these fonts is because I wanted the design of 'Eating Vegan' to be eye catching and I found the Bungee font's stood out from any others. Bungee Shade will be used for all page headings. Bungee for all subheadings and Roboto will be used for all links, p elements and buttons.
 
-![Colour Palette](/docs/eating-vegan-colour-palette.jpg)
-
 </p>
 </details>
 
@@ -95,7 +105,7 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to insure there wouldn't be any major contrasts in colours therefore opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
 
-![Colour Palette](/docs/eating-vegan-colour-palette.jpg)
+![Colour Palette](/docs/readme/eating-vegan-colour-palettte.jpg)
 
 </p>
 </details>
