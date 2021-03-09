@@ -55,9 +55,9 @@
                     <h4>{{ recipe.recipe_name }}</h4>
                     <div class="recipe-description">
                         <p>
-                            <span class="meal-name">{{ recipe.meal_name }} - uploaded by {{ recipe.created_by }}</span>
+                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-                            <span class="recipe-link"><a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
+                            <span ><a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
                     </div>
