@@ -74,13 +74,9 @@ On the forms when a user is logged in, the select box is not styled the same as 
 
 <details><summary>New User</summary>
 <p>
+TESTING 
 
 As a user I would like to be able to login to my account.
-
-<video width="300" height="200" controls>
-  <source src="/docs/testing/login-screen-recording.mov" type="video/mp">
-Your browser does not support the video tag.
-</video>
 
 - As a user I would like to be able to log out of my account.
 - As a user I would like to be able to view my profile.
