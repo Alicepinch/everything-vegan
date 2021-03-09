@@ -39,9 +39,7 @@ If a user tried to register with an existing username/email address another flas
 ![Login lighthouse report](/docs/testing/lighthouse-reports/login-lighthouse-report.png)
 ![Register lighthouse report](/docs/testing/lighthouse-reports/register-lighthouse-report.png)
 
-
 </details>
-
 
 <details><summary>New Recipe & Edit Recipe</summary>
 
@@ -73,14 +71,16 @@ HTML Validator returned errors for Jinja templating which is expected behaviour.
 
 JavaScript code passed through JShint with no major issues. Once run through, it prompted to add some semicolons that were missing. These were all added accordinly.
 
-## PEP8 
+## Python Testing
+
+Throughout the build process I have debugger=True on in my app.py file, this meant that throughout the build process any errors in my python code would return a server error. I used the jinja prompts to find errors in my code. 
 
 Python code was run through the pep8 validator and code was all right. 
 Throughout the building process I checked the problems in the terminal to uncover any PEP8 issues and resolved these as I went. 
 
 ![Pep8](/docs/testing/pep8-python-code-check.png)
 
-## Solutions for issues found whilst building/testing:
+## Solutions For Issues Found Whilst Building/Testing:
 
 ### User Session Lifetime
 
@@ -106,7 +106,6 @@ def login_required(f):
 
 When testing the delete function for the recipes on the profile I noticed that when trying to delete a recipe from the bottom of the page it was deleting the first recipe instead of the selected one. To fix this I....
 
-
 ## Usability Testing:
 
 This website has been cross checked on the below devices and browsers to test responsiveness:
@@ -127,7 +126,13 @@ iMac
  - Firefox
  - Microsoft Edge
 
-When testing on safari I found an issue with the select drop down on the forms. This is not styled in the same way as on the other browsers. This is still a bug. 
+
+## Known Errors: 
+
+When testing on safari I found an issue with the select drop down css didn't apply on the forms. I have not corrected this as prioritised other issues for now. 
+
+If a user enters an invalid email address for a recipe then the image be a broken link.
+  - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly to the webiste.
 
 ## User Stories Tested:
 
