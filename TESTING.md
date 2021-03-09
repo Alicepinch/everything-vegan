@@ -26,9 +26,11 @@ If a user tried to register with an existing username/email address another flas
 
 </details>
 
-<details><summary>Recipes Page</summary>
+<details><summary>Recipes Page & Single Recipe Page</summary>
 
 ![Recipes page lighthouse report](/docs/testing/lighthouse-reports/recipes-lighthouse-report.png)
+![Recipe page lighthouse report](/docs/testing/lighthouse-reports/recipe-page-lighthouse-report.png)
+
 
 </details>
 
@@ -36,6 +38,7 @@ If a user tried to register with an existing username/email address another flas
 
 ![Login lighthouse report](/docs/testing/lighthouse-reports/login-lighthouse-report.png)
 ![Register lighthouse report](/docs/testing/lighthouse-reports/register-lighthouse-report.png)
+
 
 </details>
 
