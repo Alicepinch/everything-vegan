@@ -243,7 +243,7 @@ button {
 /* Recipes */
 
 .filter-container {
-	margin-left: 1.25rem;
+	padding-left: 2rem;
 	margin-bottom: 2rem;
 }
 
@@ -278,7 +278,7 @@ button {
 	background-color: #fff;
 	margin: 0 auto;
 	margin-bottom: 2rem;
-	min-height: 500px;
+	min-height: 400px;
 	max-height: 600px;
 	width: 90%;
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
@@ -660,9 +660,6 @@ footer a:hover {
     .recipe-ingredients {
         width: 100%;
     }
-	.recipe-card {
-		height: 400px;
-	}
 	.recipe-page-image {
 		width: 90%;
 		height: 400px;
