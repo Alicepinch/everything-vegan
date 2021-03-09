@@ -52,13 +52,15 @@ JavaScript code passed through JShint with no major issues. Once run through it 
 This website has been cross checked on the below devices and browsers to test responsiveness:
 
 iPhone 11 Plus
-  - Safari
-  - Chrome
-MacBook Pro 13" 
+- Safari
+- Chrome
+
+MacBook Pro 13"
  - Safari
  - Chrome
  - Firefox
  - Microsoft Edge
+
 iMac
  - Safari
  - Chrome
@@ -72,34 +74,39 @@ On the forms when a user is logged in, the select box is not styled the same as 
 ### User Stories Tested:
 ---
 
-<details><summary>New User</summary>
+<details><summary>User</summary>
 <p>
 
-As a user I would like to be able to login to my account.
+- As a user I would like to be able to login to my account.
 ![Login gif](/docs/testing/login-testing.gif)
-As a user I would like to be prompted if my password is incorrect.
+- As a user I would like to be prompted if my password is incorrect.
 ![Login error gif](/docs/testing/login-testing.gif) 
-As a user I would like to be able to log out of my account.
+- As a user I would like to be able to log out of my account.
 ![Logout](/docs/testing/logout.gif) 
-As a user I would like to be able to view my profile.
+- As a user I would like to be able to view my profile.
 ![View Profile](/docs/testing/profile.gif) 
-As a user I would like to be able to edit or remove recipes that I have created.
+- As a user I would like to be able to edit or remove recipes that I have created.
 ![Edit Recipe](/docs/testing/edit-recipe.gif)
-![Edit recipe recipe page]()
+![Edit recipe recipe page](/docs/testing/edit-recipe-more.gif)
 - As a user I would like to be able to view all recipes in one place.
+![View recipes](/docs/testing/view-all-recipes.gif)
 - As a user I would like to be able to create new recipes.
+
 - As a user I would like to be able to sign up for the newsletter.
-- As a user I would like to be able to update my account details.
+- As a user I would like to be able to update my password.
+![Change password tested](/docs/testing/password-updated.gif)
+![New password tested](/docs/testing/updated-password-login.gif)
 - As a user I would like to be able to delete my account.
+![Delete user](/docs/testing/delete-user.gif)
 - As a user I would like to flick through the different meal types.
 - As a user I would like to be able to search through all recipes.
-- As a user I dont want to have all naviagtion links when not applicable.
+![Delete user](/docs/testing/search.gif)
 
 </p>
 
 </details>
 
-<details><summary>Returning User</summary>
+<details><summary>New User</summary>
 <p>
 
 - As a new user I would like to be able to register an account.
