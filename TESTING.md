@@ -73,6 +73,12 @@ HTML Validator returned errors for Jinja templating which is expected behaviour.
 
 JavaScript code passed through JShint with no major issues. Once run through, it prompted to add some semicolons that were missing. These were all added accordinly.
 
+## PEP8 
+
+Python code was run through the pep8 validator and code was all right. 
+Throughout the building process I checked the problems in the terminal to uncover any PEP8 issues and resolved these as I went. 
+
+![Pep8](/docs/testing/pep8-python-code-check.png)
 
 ## Solutions for issues found whilst building/testing:
 
