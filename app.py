@@ -40,7 +40,6 @@ def login_required(f):
     def login_check(*args, **kwargs):
         if 'user' not in session:
             return redirect(url_for('login'))
-            flash("You need to login first")
         else:
             return f(*args, **kwargs)
     return login_check
@@ -284,10 +283,9 @@ def delete_recipe(recipe_id):
     """
     Removes recipe from database and recipes page.
     """
-    recipes_data.remove({"_id": ObjectId(recipe_id)})
+    recipes_data.delete_one({"_id": ObjectId(recipe_id)})
     flash("Recipe Succesfully Removed!")
     return redirect(url_for("recipes"))
-
 
 # Update/ delete users #
 
@@ -302,7 +300,7 @@ def delete_user(username):
     """
     users_data.remove({"username": session['user']})
     session.pop("user")
-    recipes_data.remove({"created_by": session['user']})
+    recipes_data.remove({"created_by": username})
 
     flash("Sorry to see you go! Your user has been deleted.")
     return redirect(url_for("login"))
