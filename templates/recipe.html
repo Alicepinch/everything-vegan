@@ -3,11 +3,10 @@
 
 <!---Recipe Header--->
 
-<section class="recipes-background">
+<section class="subpage-background">
     <div class="container-fluid">
         <div class="row">
-            <h1 class="recipes-heading ">{{ recipe.recipe_name }}</h1>
-            <h2 class="page-sub-heading">{{ recipe.description }}</h2>
+            <h1 class="recipes-heading">{{ recipe.recipe_name }}</h1>
         </div>
     </div>
 </section>
@@ -16,17 +15,22 @@
 <!---Recipe Image--->
 
 <section>
-    <div class="container text-center recipe">
+    <div class="container recipe">
         <!---Recipe Image--->
 
-        <div class="col-12">
+        <div class="col-12 text-center">
             <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="">
-            <p class="text-muted recipe-created-by">Recipe created by {{ recipe.created_by }} on {{ recipe.date_created }} </p>
+            <p class="text-muted recipe-created-by">Recipe created by {{ recipe.created_by }} on
+                {{ recipe.date_created }} </p>
         </div>
 
         <!---Basic recipe info--->
 
         <div class="recipe-page-info">
+            <div class="col-12 pb-1">
+                <p><strong>Description:</strong><br>
+                    {{ recipe.description}}</p>
+            </div>
             <div class="row">
                 <div class="col-3">
                     <p><i class="far fa-clock"></i> <strong>Active Time:</strong>
@@ -52,27 +56,34 @@
         </div>
 
         <!---Recipe Ingredients and Method--->
-            <div class="col-12">
-                <h3>Ingredients</h3>
-                <ul class="recipe-list">
-                    {% for ingredient in recipe.ingredients.split("\n") %}
-                    <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-12 pt-3">
-                <h3>Method</h3>
-                <ul class="recipe-list">
-                    {% for method in recipe.method.split("\n") %}
-                    <li><i class="fas fa-leaf"></i> {{ method }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-12 pt-3">
-                <h4>recommendation</h4>
-                <p>{{ recipe.recommendation }}</p>
+        <div class="container recipe-ingredients">
+            <div class="row m-5">
+                <div class="col-12 col-md-6">
+                    <h3>Ingredients</h3>
+                    <ul class="recipe-list">
+                        {% for ingredient in recipe.ingredients.split("\n") %}
+                        <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h3>Method</h3>
+                    <ul class="recipe-list">
+                        {% for method in recipe.method.split("\n") %}
+                        <li><i class="fas fa-leaf"></i> {{ method }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-12 pt-3">
+                    <h4>recommendation</h4>
+                    <p>{{ recipe.recommendation }}</p>
+                </div>
             </div>
         </div>
+
+
+
+    </div>
 
 </section>
 

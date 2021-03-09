@@ -338,6 +338,10 @@ button {
 	padding: 2rem;
 }
 
+.recipe-ingredients {
+    width: 80%;
+}
+
 .recipe-page-info p {
 	color: #fff;
 }
