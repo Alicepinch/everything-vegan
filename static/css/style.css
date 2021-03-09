@@ -503,8 +503,7 @@ button {
 /* Form styling */
 
 .add-edit-form-container {
-	margin-bottom: 3rem;
-	margin-top: 2rem;
+	margin: 2rem auto;
 }
 
 .form-container {
@@ -657,7 +656,10 @@ footer a:hover {
 	}
 	.recipe-image {
 		height: 200px;
-	}
+    }
+    .recipe-ingredients {
+        width: 100%;
+    }
 	.recipe-card {
 		height: 400px;
 	}
