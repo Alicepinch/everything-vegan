@@ -265,8 +265,8 @@ def edit_recipe(recipe_id):
                 "yield": request.form.get("yield"),
                 "active_time": request.form.get("active_time"),
                 "total_time": request.form.get("total_time"),
-                "img_url": request.form.get("img_url"),
-                "method": request.form.get("method") or default_img,
+                "img_url": request.form.get("img_url") or default_img,
+                "method": request.form.get("method"),
                 "created_by": session["user"]
             }})
 
