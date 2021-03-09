@@ -58,7 +58,7 @@
         <!---Recipe Ingredients and Method--->
         <div class="container recipe-ingredients">
             <div class="row m-5">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-lg-6 col-md-12">
                     <h3>Ingredients</h3>
                     <ul class="recipe-list">
                         {% for ingredient in recipe.ingredients.split("\n") %}
@@ -66,7 +66,7 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-lg-6 col-md-12">
                     <h3>Method</h3>
                     <ul class="recipe-list">
                         {% for method in recipe.method.split("\n") %}
