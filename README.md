@@ -2,6 +2,8 @@
 
 [Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
 
+![Eating Vegan Ami Responsive](docs/readme/eating-vegan-ami-respinsive.jpg)
+
 Eating Vegan is an online community where users can create and explore new exclusively vegan recipes with each other. Users of "Eating Vegan" will have the option to create an account where they will be able to login to create, read, update and delete Vegan recipes. 
 
 ## Table of Index: 
@@ -83,10 +85,6 @@ Veganism can sometimes be associated with being boring. Therefore, for the overa
 
 Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'. The reason I have chosen these fonts is because I wanted the design of 'Eating Vegan' to be eye catching and I found the Bungee font's stood out from any others. Bungee Shade will be used for all page headings. Bungee for all subheadings and Roboto will be used for all links, p elements and buttons.
 
-#### Colour Scheme
-
-The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to insure there wouldn't be any major contrasts in colours therefore opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
-
 ![Colour Palette](/docs/eating-vegan-colour-palette.jpg)
 
 </p>
@@ -126,7 +124,7 @@ ID | _id | None | ObjectId
 Name | username | text, `maxlength="15"` | string
 Email Address | email | email, `maxlength="30"` | string
 Password | password | text, `maxlength="15"` | string
-Profile Picture | profile_img | url | string
+Profile Picture | profile_img | url `pattern="https://.*"`| string
 Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
@@ -136,7 +134,7 @@ Date joined | date_joined | Populated from when user is created | string
 ID | _id | None | ObjectId 
 Recipe Name | recipe_name | text | string
 Meal Type | meal_type | text | string
-Recipe Image | img_url | url | string
+Recipe Image | img_url | url `pattern="https://.*"` | string
 Yield | yield | number | string
 Active Time | active_time | text | string
 Total Time | total_time | textarea | string
@@ -322,7 +320,8 @@ SECRET_KEY | `<your_secret_key>`
 
 ### Content
 
-- Some recipes created by user "alicepinch" and Images have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
+- Some recipes and images created by user "alicepinch" have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/) or https://karalydon.com/recipes/chipotle-inspired-vegan-burrito-bowl/
+- Other recipes written by "alicepinch" are written by myself.
 - Some recipes will have been added by other users. 
 
 ### Media
