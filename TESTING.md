@@ -71,58 +71,104 @@ When testing on safari there is a known design issue.
 On the forms when a user is logged in, the select box is not styled the same as in Chrome, Firefox and Edge. 
 
 
-### User Stories Tested:
+## User Stories Tested:
+
+
+### Registered User:
 ---
 
-<details><summary>User</summary>
-<p>
 
-- As a user I would like to be able to login to my account.
+<details><summary>As a user I would like to be able to login to my account.</summary>
+
 ![Login gif](/docs/testing/login-testing.gif)
-- As a user I would like to be prompted if my password is incorrect.
-![Login error gif](/docs/testing/login-testing.gif) 
-- As a user I would like to be able to log out of my account.
-![Logout](/docs/testing/logout.gif) 
-- As a user I would like to be able to view my profile.
-![View Profile](/docs/testing/profile.gif) 
-- As a user I would like to be able to edit or remove recipes that I have created.
-![Edit Recipe](/docs/testing/edit-recipe.gif)
-![Edit recipe recipe page](/docs/testing/edit-recipe-more.gif)
-- As a user I would like to be able to view all recipes in one place.
-![View recipes](/docs/testing/view-all-recipes.gif)
-- As a user I would like to be able to create new recipes.
-
-- As a user I would like to be able to sign up for the newsletter.
-- As a user I would like to be able to update my password.
-![Change password tested](/docs/testing/password-updated.gif)
-![New password tested](/docs/testing/updated-password-login.gif)
-- As a user I would like to be able to delete my account.
-![Delete user](/docs/testing/delete-user.gif)
-- As a user I would like to flick through the different meal types.
-- As a user I would like to be able to search through all recipes.
-![Delete user](/docs/testing/search.gif)
-
-</p>
 
 </details>
 
-<details><summary>New User</summary>
-<p>
+<details><summary>As a user I would like to be prompted if my password is incorrect.</summary>
+
+![Login error gif](/docs/testing/login-password-incorrect.gif) 
+
+</details>
+
+<details><summary>As a user I would like to be able to log out of my account..</summary>
+
+![Logout](/docs/testing/logout.gif) 
+
+</details>
+
+<details><summary>As a user I would like to be able to view my profile.</summary>
+
+![View Profile](/docs/testing/profile.gif) 
+
+</details>
+
+</details>
+
+<details><summary>As a user I would like to be able to edit or remove recipes that I have created.</summary>
+
+![Edit Recipe](/docs/testing/edit-recipe.gif)
+
+![Edit recipe recipe page](/docs/testing/edit-recipe-more.gif)
+
+</details>
+
+<details><summary>As a user I would like to be able to view all recipes in one place.</summary>
+
+![View recipes](/docs/testing/view-all-recipes.gif)
+
+</details>
+
+<details><summary>As a user I would like to be able to create new recipes.</summary>
+
+ADD GIF
+
+</details>
+
+<details><summary>As a user I would like to be able to sign up for the newsletter.</summary>
+
+ADD GIF
+
+</details>
+
+<details><summary>As a user I would like to be able to update my password.</summary>
+
+![Change password tested](/docs/testing/password-updated.gif)
+![New password tested](/docs/testing/updated-password-login.gif)
+
+</details>
+
+<details><summary>As a user I would like to be able to delete my account.</summary>
+
+![Delete user](/docs/testing/delete-user.gif)
+
+</details>
+
+
+<details><summary>As a user I would like to flick through the different meal types.</summary>
+
+ADD GIF
+
+</details>
+
+<details><summary>As a user I would like to be able to search through all recipes.</summary>
+
+![Search Recipe](/docs/testing/search.gif)
+
+</details>
+
+### New user:
+---
 
 - As a new user I would like to be able to register an account.
 - As a new user I would like to be able to sign up for the newsletter.
 - As a new user I would like to be able to understand what the website is.
 - As a new user 
 
-</details>
 
-<details><summary>Admin</summary>
-<p>
+### Admin
+---
 
 - As an admin I would like to be able to edit any recipe.
 - As an admin I would like the option to delete any recipes incase they don't meet the guidelines.
 - As an admin I would like to be able to delete users if needed. 
-</p>
-
-</details>
 
