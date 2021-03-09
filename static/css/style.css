@@ -18,7 +18,7 @@ a {
 }
 
 p {
-    color: #000000;
+    color: #000;
     font-family: "Roboto", sans-serif;
 }
 
@@ -449,7 +449,7 @@ button {
 }
 
 .profile-information {
-    padding: 100px 0;
+    padding: 50px 0;
 
 }
 

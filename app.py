@@ -62,14 +62,15 @@ def meals(meal_name):
     Filters different meal types from data.
     """
     meal_name = recipes_data.find({"meal_name": meal_name})
+
     if meal_name == "Breakfast":
-        recipes_data.find({"meal_name": meal_name}['Breakfast'])
+        list(recipes_data.find(meal_name['Breakfast']))
     elif meal_name == "Lunch":
-        recipes_data.find({"meal_name": meal_name}['Lunch'])
+        list(recipes_data.find(meal_name['Lunch']))
     elif meal_name == "Dinner":
-        recipes_data.find({"meal_name": meal_name}['Dinner'])
+        list(recipes_data.find(meal_name['Dinner']))
     elif meal_name == "Dessert":
-        recipes_data.find({"meal_name": meal_name}['Dessert'])
+        list(recipes_data.find(meal_name['Dessert']))
 
     return render_template('recipes.html', meal_name=meal_name)
 
@@ -251,6 +252,8 @@ def edit_recipe(recipe_id):
     user to edit their own recipes from
     their profile page.
     """
+    username = users_data.find({'username': session['user']})
+
     if request.method == "POST":
         recipes_data.update_one(
             {"_id": ObjectId(recipe_id)},
@@ -269,7 +272,7 @@ def edit_recipe(recipe_id):
             }})
 
         flash("Recipe Updated 😊")
-        return redirect(url_for("recipes"))
+        return redirect(url_for("profile", username=username))
 
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     return render_template('edit-recipe.html', recipe=recipe)
