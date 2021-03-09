@@ -57,15 +57,6 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 
 </details>
 
-<details><summary>Admin</summary>
-<p>
-
-- As an admin I would like to be able to edit any recipe.
-- As an admin I would like the option to delete any recipes incase they don't meet the guidelines.
-- As an admin I would like to be able to delete users if needed. 
-</p>
-
-</details>
 
 ## Wireframes
 

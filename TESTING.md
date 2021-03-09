@@ -241,15 +241,3 @@ ADD GIF
 
 </details>
 
-
-
-
-
-
-
-
-### Admin
-
-- As an admin I should be able to edit any recipe.
-- As an admin I should have the option to delete any recipes incase they don't meet the guidelines.
-
