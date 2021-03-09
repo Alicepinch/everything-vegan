@@ -88,6 +88,9 @@ As the interface will look different for customers who have registered an accoun
 </p>
 </details>
 
+#### Differences from original wireframes:
+As you can see from the original wireframes, there are some features that were not implemented/ some design decisions were changed during the build. For example, due to time constraints and priotisising more important features, the reviews section was not included on the homepage. On the profile page when a user is logged in, the "{Username} profile" header was removed as this didn't look the best and was not necessary.
+
 ## Design 
 
 Veganism can sometimes be associated with being boring. Therefore, for the overall design of this project I wanted it to be modern but with a fun feel throughout for the user.
