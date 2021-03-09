@@ -125,6 +125,27 @@ When testing on safari I found an issue with the select drop down on the forms. 
 
 ## User Stories Tested:
 
+### New user:
+
+<details><summary>As a new user I would like to be able to register an account.</summary>
+
+![Register Account](/docs/testing/user-story-gifs/register-account.gif)
+
+</details>
+
+<details><summary>As a new user I would like to be able to sign up for the newsletter.</summary>
+
+Add GIF
+
+</details>
+
+<details><summary>As a new user I would like to be able to understand what the website is.</summary>
+
+Add GIF
+
+</details>
+
+
 ### Registered User:
 
 <details><summary>As a user I would like to be able to login to my account.</summary>
@@ -146,6 +167,28 @@ When testing on safari I found an issue with the select drop down on the forms. 
 
 </details>
 
+<details><summary>As a user I would like to be able to create new recipes.</summary>
+
+ADD GIF
+
+</details>
+
+<details><summary>As a user I would like to be able to view all recipes in one place.</summary>
+
+![View recipes](/docs/testing/user-story-gifs/view-all-recipes.gif)
+
+</details>
+
+<details><summary>As a user I would like to flick through the different meal types.</summary>
+
+ADD GIF
+
+</details>
+
+<details><summary>As a user I would like to be able to search through all recipes.</summary>
+
+![Search Recipe](/docs/testing/user-story-gifs/search.gif)
+
 </details>
 
 <details><summary>As a user I would like to be able to edit recipes that I have created.</summary>
@@ -161,18 +204,6 @@ When testing on safari I found an issue with the select drop down on the forms. 
 <details><summary>As a user I would like to be able to remove recipes that I have created.</summary>
 
 ADD GIF WHEN ISSUE FIXED 
-
-</details>
-
-<details><summary>As a user I would like to be able to view all recipes in one place.</summary>
-
-![View recipes](/docs/testing/user-story-gifs/view-all-recipes.gif)
-
-</details>
-
-<details><summary>As a user I would like to be able to create new recipes.</summary>
-
-ADD GIF
 
 </details>
 
@@ -198,38 +229,17 @@ ADD GIF
 
 </details>
 
-
-<details><summary>As a user I would like to flick through the different meal types.</summary>
+<details><summary>As a user I would like to be able to update my profile photo.</summary>
 
 ADD GIF
 
 </details>
 
-<details><summary>As a user I would like to be able to search through all recipes.</summary>
 
-![Search Recipe](/docs/testing/user-story-gifs/search.gif)
 
-</details>
 
-### New user:
 
-<details><summary>As a new user I would like to be able to register an account.</summary>
 
-![Register Account](/docs/testing/user-story-gifs/register-account.gif)
-
-</details>
-
-<details><summary>As a new user I would like to be able to sign up for the newsletter.</summary>
-
-Add GIF
-
-</details>
-
-<details><summary>As a new user I would like to be able to understand what the website is.</summary>
-
-Add GIF
-
-</details>
 
 
 ### Admin
