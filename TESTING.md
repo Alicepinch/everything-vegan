@@ -38,8 +38,8 @@ HTML Validator returned errors for Jinja templating which is expected behaviour.
 
 ![WSC Form errors](/docs/testing/eating-vegan-wsc-html-validator-issues.jpg)
 
-```type='text'``` Was removed from the textarea field. 
-```"value=""``` Was added to the select box's to remove the error.
+- ```type='text'``` Was removed from the textarea field. 
+- ```"value=""``` Was added to the select box's to remove the error.
 
 ### JSHint
 ---
@@ -74,13 +74,18 @@ On the forms when a user is logged in, the select box is not styled the same as 
 
 <details><summary>New User</summary>
 <p>
-TESTING 
 
 As a user I would like to be able to login to my account.
-
-- As a user I would like to be able to log out of my account.
-- As a user I would like to be able to view my profile.
-- As a user I would like to be able to edit or remove recipes that I have created.
+![Login gif](/docs/testing/login-testing.gif)
+As a user I would like to be prompted if my password is incorrect.
+![Login error gif](/docs/testing/login-testing.gif) 
+As a user I would like to be able to log out of my account.
+![Logout](/docs/testing/logout.gif) 
+As a user I would like to be able to view my profile.
+![View Profile](/docs/testing/profile.gif) 
+As a user I would like to be able to edit or remove recipes that I have created.
+![Edit Recipe](/docs/testing/edit-recipe.gif)
+![Edit recipe recipe page]()
 - As a user I would like to be able to view all recipes in one place.
 - As a user I would like to be able to create new recipes.
 - As a user I would like to be able to sign up for the newsletter.
