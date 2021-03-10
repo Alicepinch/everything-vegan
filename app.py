@@ -61,37 +61,25 @@ def meals(meal):
     Filters different meal types from data.
     """
     if meal == "breakfast":
-        recipes = list(
-            recipes_data.find({
+        recipes = recipes_data.find({
                 "$query": {
                     "meal_name": "Breakfast"
-                    }
-            })
-        )
+                    }})
     elif meal == "lunch":
-        recipes = list(
-            recipes_data.find({
+        recipes = recipes_data.find({
                 "$query": {
                     "meal_name": "Lunch"
-                    }
-            })
-        )
+                    }})
     elif meal == "dinner":
-        recipes = list(
-            recipes_data.find({
+        recipes = recipes_data.find({
                 "$query": {
                     "meal_name": "Dinner"
-                    }
-            })
-        )
+                    }})
     elif meal == "desserts":
-        recipes = list(
-            recipes_data.find({
+        recipes = recipes_data.find({
                 "$query": {
                     "meal_name": "Desserts"
-                    }
-            })
-        )
+                    }})
 
     return render_template(
             'recipes.html', meal=meal, recipes=recipes)
