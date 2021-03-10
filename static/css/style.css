@@ -252,7 +252,6 @@ button {
 /* Recipes */
 
 .filter-container {
-	padding-left: 2rem;
 	margin-bottom: 2rem;
 }
 
@@ -278,7 +277,7 @@ button {
 }
 
 .dropdown-link:hover {
-	color: #a1d5b3;
+	color: #3c965b;
 }
 
 .recipes-container {
@@ -287,12 +286,14 @@ button {
 
 .recipe-card {
 	background-color: #fff;
-	margin-bottom: 2rem;
+    margin-bottom: 2rem;
+    min-height: 500px;
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
 
 .recipe-card h3 {
-	text-align: left;
+    text-align: left;
+    font-size: 1.5rem;
 	padding: 1rem 1rem 0rem 1.5rem;
 	color: #000;
 }
@@ -311,7 +312,7 @@ button {
 }
 
 .recipe-image {
-	height: 300px;
+	height: 250px;
 	width: 100%;
 	object-fit: cover;
 }
@@ -661,7 +662,10 @@ footer p {
     .recipe-card {
         width: 90%;
         margin: 0 auto;
-    }   
+    } 
+    .filter-container {
+	    padding-left: 2rem;
+    }  
     .recipe-ingredients {
         width: 100%;
     }
