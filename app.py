@@ -95,7 +95,7 @@ def recipes():
     return render_template('recipes.html', recipes=recipes)
 
 
-@app.route('/search', methods=["GET", "POST"])
+@app.route('/recipes', methods=["GET", "POST"])
 def search():
     """
     Searches the recipe index.
