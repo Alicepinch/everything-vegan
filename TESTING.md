@@ -80,6 +80,8 @@ Throughout the building process I checked the problems in the terminal to uncove
 
 ![Pep8](/docs/testing/pep8-python-code-check.png)
 
+Pytest is something that I would like to look into in the future for automatic testing. 
+
 ## Solutions For Issues Found Whilst Building/Testing:
 
 ### User Session Lifetime
@@ -133,6 +135,8 @@ When testing on safari I found an issue with the select drop down css didn't app
 
 If a user enters an invalid email address for a recipe then the image be a broken link.
   - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly to the webiste.
+
+If a user has searched for a recipe in the search bar and then presses the back button and then the forward button again then they will be presented by "Confirm Form Resubmission". 
 
 ## User Stories Tested:
 
@@ -190,9 +194,9 @@ ADD GIF
 
 </details>
 
-<details><summary>As a user I would like to flick through the different meal types.</summary>
+<details><summary>As a user I would like to filter through the different meal types.</summary>
 
-ADD GIF
+![Filter recipes](/docs/testing/user-story-gifs/filter-recipes.gif)
 
 </details>
 

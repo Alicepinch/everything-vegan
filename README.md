@@ -23,7 +23,7 @@ Eating Vegan is an online community where users can create and explore new exclu
  
 ## UX
 
-The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users should be able to view the recipes that have been shared on the website, however if a user creates an account then they will be have added features where they can share and edit their own recipes to the website. Therefore, another goal for this website was to insure the interface was easy to use for users who create an account to create, update,read and delete recipes and their account. 
+The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users will be able to view the recipes that have been shared on the website. However, if a user creates an account then they will have added features where they can share and edit and delete their own recipes to the website. Therefore, another goal for this website was to insure the interface was easy to use for users who create an account to create, update,read and delete recipes and their account. 
 
 ## User Stories
 
@@ -164,8 +164,6 @@ ID | _id | None | ObjectId
 Subscribers | subscriber_email | email `maxlength="30"`| string
 
 ## Features
-
-Please note that admin features are only available if the admin is logged in. 
  
 - [x] Login
 - [x] Register
@@ -183,9 +181,9 @@ Please note that admin features are only available if the admin is logged in.
 - [x] Update user information.
 - [x] Delete account.
 - [x] Update password accound.
-- [ ] Filter drop down to flick through meal types.
+- [x] Filter drop down to flick through meal types.
 - [x] Admin can manage all recipes 
-- [x] Delete modals to prompt users to confirm deletion of account and recipes.
+- [ ] Delete modals to prompt users to confirm deletion of account and recipes.
 
 ## Future Features
 
@@ -231,6 +229,7 @@ Please note that admin features are only available if the admin is logged in.
   - [Flask error pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages)
   - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
   - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
+- [Video to gif converter](https://ezgif.com/video-to-gif)
 
 ## Testing
 
