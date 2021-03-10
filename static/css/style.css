@@ -287,11 +287,7 @@ button {
 
 .recipe-card {
 	background-color: #fff;
-	margin: 0 auto;
 	margin-bottom: 2rem;
-	min-height: 400px;
-	max-height: 600px;
-	width: 90%;
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
 }
 
@@ -662,6 +658,10 @@ footer p {
 	.recipe-image {
 		height: 200px;
     }
+    .recipe-card {
+        width: 90%;
+        margin: 0 auto;
+    }   
     .recipe-ingredients {
         width: 100%;
     }
@@ -680,7 +680,6 @@ footer p {
 		padding: 1.5rem;
 	}
 	.profile-recipe-image {
-		width: 350px;
 		margin-top: 0;
 	}
 	.delete-modal-content {
