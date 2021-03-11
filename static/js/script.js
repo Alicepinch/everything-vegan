@@ -6,7 +6,9 @@ let accountBtn = document.getElementsByClassName("account-btn");
 let recipeBtn = document.getElementsByClassName("recipe-btn");
 let profilePicBtn = document.getElementsByClassName("profile-pic-btn");
 let close = document.getElementsByClassName("close");
+let deleteClose = document.getElementsByClassName("delete-close")
 let cancel = document.getElementsByClassName("cancel");
+let deleteCancel = document.getElementsByClassName("delete-cancel")
 
 
 //Onclick functions to display and hide modals.
@@ -23,16 +25,23 @@ $(accountBtn).click(function(){
 });
 
 $(close).click(function(){
-    recipeModal.style.display = "none";
     accountModal.style.display = "none";
     profilePicModal.style.display = "none";
 });
 
 $(cancel).click(function(){
-    recipeModal.style.display = "none";
     accountModal.style.display = "none";
     profilePicModal.style.display = "none";
 });
+
+$(deleteClose).click(function(){
+    recipeModal.style.display = "none";
+});
+
+$(deleteCancel).click(function(){
+    recipeModal.style.display = "none";
+});
+
 
 // Drop down menu
 
