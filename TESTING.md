@@ -104,9 +104,8 @@ def login_required(f):
     return login_check
 ```
 
-### Deleting Recipe's
+## Form testing:
 
-When testing the delete function for the recipes on the profile I noticed that when trying to delete a recipe from the bottom of the page it was deleting the first recipe instead of the selected one. To fix this I....
 
 ## Usability Testing:
 
@@ -184,7 +183,7 @@ Add GIF
 
 <details><summary>As a user I would like to be able to create new recipes.</summary>
 
-ADD GIF
+![Add recipe](/docs/testing/user-story-gifs/add-recipe.gif)
 
 </details>
 
@@ -246,7 +245,7 @@ ADD GIF
 
 <details><summary>As a user I would like to be able to update my profile photo.</summary>
 
-ADD GIF
+![Change Profile Pic](/docs/testing/user-story-gifs/change-profile-pic.gif)
 
 </details>
 
