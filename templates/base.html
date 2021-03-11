@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>Eating Vegan</title>
+    <title>{% block title %}{% endblock %} Eating Vegan</title>
 </head>
 
 <body>
@@ -67,7 +67,6 @@
 
     {% block content %}
     {% endblock%}
-
 
 
     <!---- Footer ---->

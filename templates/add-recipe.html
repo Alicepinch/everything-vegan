@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Add Recipe |{% endblock %}
 {% block content %}
 
 <!----Add Recipe Form Header---->
@@ -20,8 +21,10 @@
                 <form method="POST" class="text-center" action="{{  url_for('add_recipe')}}">
                     <div>
                         <label for="recipe_name">Recipe Name</label>
-                        <input type="text" name="recipe_name" class="form-field" placeholder="Recipe Name*"
+                        <input type="text" name="recipe_name" max="25" class="form-field" placeholder="Recipe Name*"
                             id="recipe_name" required>
+                            <small class="form-description">Max 25
+                            characters</small>
                     </div>
                     <div class="col-12">
                         <label for="meal_name">Meal Type</label>
@@ -75,7 +78,6 @@
                         <label for="recos">Recommendations</label>
                         <input type="text" name="recos" placeholder="Recommendation" maxlength="100" class="form-field"
                             id="recos">
-                        <small class="form-description">Each recommendation on a seperate line.</small>
                     </div>
                     <div class="col-12">
                         <label for="img_url">Image URL</label>

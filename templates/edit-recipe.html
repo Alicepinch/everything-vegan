@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Edit Recipe |{% endblock %}
 {% block content %}
 
 <!----Edit Recipe Form Header---->
@@ -23,6 +24,8 @@
                     <label for="recipe_name">Recipe Name</label>
                     <input type="text" name="recipe_name" class="form-field" value="{{ recipe.recipe_name}}"
                         id="recipe_name" required>
+                        <small class="form-description">Max 25
+                            characters</small>
                 </div>
                 <div class="col-12">
                     <label for="meal_name">Meal Name</label>
@@ -74,7 +77,6 @@
                     <label for="recos">Recommendations</label>
                     <input type="text" name="recos" placeholder="Recommendation" maxlength="100" class="form-field"
                         id="recos" value="{{ recipe.recommendation }}">
-                    <small class="form-description">Each recommendation on a seperate line.</small>
                 </div>
                 <div class="col-12">
                     <label for="img_url">Image URL</label>
