@@ -93,11 +93,11 @@ button {
 }
 
 .recipes-heading {
-	font-family: 'Bungee Shade', cursive, sans-serif;
-	color: #000;
-	font-size: 4rem;
-	text-align: center;
-	padding-top: 50px;
+    font-family: 'Bungee shade', cursive, sans-serif;
+    color: #000;
+    font-size: 3.5rem;
+    text-align: center;
+    padding-top: 50px;
 }
 
 .small-heading {
@@ -196,7 +196,6 @@ button {
 	background-color: #fff;
 	color: #000;
 	padding: .5rem 1rem;
-	margin: .5rem;
 	border-radius: 30px;
 	border: 0;
 	box-shadow: 5px 5px 5px rgb(255 255 255 / 28%)
@@ -339,7 +338,7 @@ button {
 }
 
 .recipe-page-info {
-	width: 80%;
+	width: 70%;
 	margin: 2rem auto;
 	background: rgb(0, 0, 0);
 	text-align: center;
@@ -347,7 +346,7 @@ button {
 }
 
 .recipe-ingredients {
-    width: 80%;
+    width: 70%;
 }
 
 .recipe-page-info p {
@@ -361,8 +360,8 @@ button {
 }
 
 .recipe-page-image {
-	width: 60%;
-	height: 400px;
+	width: 70%;
+	height: 450px;
 	object-fit: cover;
 	margin: 0 auto;
 }
@@ -440,9 +439,9 @@ button {
 .delete-modal-content {
 	background-color: #fff;
 	margin: 15% auto;
-	/* 15% from the top and centered */
 	padding: 20px;
-	width: 40%;
+    width: 40%;
+    text-align: left;
 }
 
 .modal-buttons {
@@ -493,11 +492,10 @@ button {
 }
 
 .profile-recipe-image {
-	width: 250px;
-	height: 250px;
-	object-fit: cover;
-	margin-top: 2.5rem;
-	margin-bottom: 2.5rem;
+    width: 90%;
+    height: 300px;
+    object-fit: cover;
+    margin: 2rem 0;
 }
 
 .profile-photo {
@@ -616,7 +614,7 @@ footer p {
 }
 
 .social-link i:hover {
-	color: #a1d5b3;
+	color: #3c965b;
 }
 
 @media screen and (max-width: 767px) {
@@ -640,7 +638,7 @@ footer p {
 		width: 100%;
 	}
 	.recipes-heading {
-		font-size: 3.5rem;
+		font-size: 2.5rem;
         padding-top: 25px;
 	}
 	.profile-heading {
