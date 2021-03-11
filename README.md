@@ -174,16 +174,17 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Newsletter Subscription
 - [x] Flash messages
 - [x] Search recipes
-- [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page.
+- [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page
 - [x] Single recipe page.
-- [x] 404 page.
-- [x] 505 page.
-- [x] Update user information.
-- [x] Delete account.
-- [x] Update password accound.
-- [x] Filter drop down to flick through meal types.
+- [x] 404 page
+- [x] 505 page
+- [x] Update password accound
+- [x] Update profile photo
+- [x] Filter drop down to flick through meal types
 - [x] Admin can manage all recipes 
-- [ ] Delete modals to prompt users to confirm deletion of account and recipes.
+- [x] Delete account
+- [x] Delete recipe
+- [x] Different page titles
 
 ## Future Features
 
@@ -191,12 +192,11 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [ ] User profiles with option to upload images.
 - [ ] Automated email when user signs up.
 - [ ] User could upload an image directly to the website.
-- [ ] Option to view other users and what they have uploaded.
+- [ ] Option to view other users profiles and what they have uploaded.
 - [ ] More specific filters for recipes.
-- [ ] User can update their username
-- [ ] Active Links for navigation bar
-- [ ] Different page titles
- 
+- [ ] User can update their username.
+- [ ] Active Links for navigation bar.
+
 ## Technologies Used
 
 - JQuery
