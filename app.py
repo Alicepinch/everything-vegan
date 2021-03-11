@@ -269,7 +269,7 @@ def edit_recipe(recipe_id):
     user to edit their own recipes from
     their profile page.
     """
-    username = users_data.find({'username': session['user']})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     if request.method == "POST":
         recipes_data.update_one(
@@ -289,9 +289,8 @@ def edit_recipe(recipe_id):
             }})
 
         flash("Recipe Updated 😊")
-        return redirect(url_for("profile", username=username))
+        return redirect(url_for("recipe_page", recipe_id=recipe_id))
 
-    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     return render_template('edit-recipe.html', recipe=recipe)
 
 
