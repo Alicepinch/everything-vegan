@@ -484,11 +484,12 @@ button {
 
 .profile-recipe-card {
 	background: #000;
-	margin-bottom: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .profile-recipe-info {
-	padding: 2.5rem 0rem 2.5rem 2.5rem;
+	padding: 2.5rem;
 }
 
 .profile-recipe-image {
@@ -502,7 +503,8 @@ button {
 	height: 200px;
 	width: 200px;
 	object-fit: cover;
-	border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 
@@ -677,9 +679,6 @@ footer p {
 	.profile-information {
 		padding: 50px 0;
 		margin: 1rem;
-	}
-	.profile-recipe-info {
-		padding: 1.5rem;
 	}
 	.profile-recipe-image {
 		margin-top: 0;
