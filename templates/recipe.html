@@ -73,10 +73,13 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% if recipe.recommendation %}
                 <div class="col-12 pt-3">
                     <h2>recommendation</h2>
                     <p>{{ recipe.recommendation }}</p>
                 </div>
+                {% else %}
+                {% endif %}
             </div>
         </div>
 

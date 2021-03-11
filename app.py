@@ -26,7 +26,6 @@ mongo = PyMongo(app)
 # Global variables used throughout functions #
 
 default_img = ("/static/images/default-recipe-image.jpg")
-default_reco = "No Recommendations for this recipe"
 default_pic = ("/static/images/default-profile-picture.jpg")
 date = date.today()
 recipes_data = mongo.db.recipes
@@ -245,7 +244,7 @@ def add_recipe():
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.get("ingredients"),
             "description": request.form.get("description"),
-            "recommendation": request.form.get("recos") or default_reco,
+            "recommendation": request.form.get("recos"),
             "yield": request.form.get("yield"),
             "active_time": request.form.get("active_time"),
             "total_time": request.form.get("total_time"),
@@ -280,7 +279,7 @@ def edit_recipe(recipe_id):
                 "recipe_name": request.form.get("recipe_name"),
                 "ingredients": request.form.get("ingredients"),
                 "description": request.form.get("description"),
-                "recommendation": request.form.get("recos") or default_reco,
+                "recommendation": request.form.get("recos"),
                 "yield": request.form.get("yield"),
                 "active_time": request.form.get("active_time"),
                 "total_time": request.form.get("total_time"),
