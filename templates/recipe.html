@@ -7,7 +7,7 @@
 <section class="subpage-background">
     <div class="container-fluid">
         <div class="row">
-            <h1 class="recipes-heading">{{ recipe.recipe_name }}</h1>
+            <h1 class="recipes-heading">{{ recipe.recipe_name.replace('and', '&') }}</h1>
         </div>
     </div>
 </section>
@@ -31,20 +31,18 @@
 
         <div class="col-12 text-center">
             <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="">
-            <p class="text-muted recipe-created-by">Recipe created by {{ recipe.created_by }} on
+            <p class="text-muted recipe-created-by">Recipe Created By: {{ recipe.created_by }} on
                 {{ recipe.date_created }} </p>
         </div>
 
         <!---Basic recipe info--->
 
         <div class="recipe-page-info">
-            <div class="col-12 pb-1">
-            </div>
             <div class="row">
                 <div class="col-3">
                     <p><i class="far fa-clock"></i> <strong>Active Time:</strong>
                         <br>
-                        {{ recipe.active_time }}</p>
+                        {{ recipe.active_time  }}</p>
                 </div>
                 <div class="col-3">
                     <p><i class="fas fa-user-friends"></i><strong> Yields:</strong>
@@ -54,7 +52,7 @@
                 <div class="col-3">
                     <p> <i class="fas fa-utensils"></i><strong> Total Time:</strong>
                         <br>
-                        {{ recipe.total_time }}</p>
+                        {{ recipe.total_time}}</p>
                 </div>
                 <div class="col-3">
                     <p> <strong>Meal:</strong>
@@ -71,7 +69,7 @@
                     <h2>Ingredients</h2>
                     <ul class="recipe-list">
                         {% for ingredient in recipe.ingredients.split("\n") %}
-                        <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
+                        <li><i class="fas fa-leaf"></i> {{ ingredient.title() }}</li>
                         {% endfor %}
                     </ul>
                 </div>

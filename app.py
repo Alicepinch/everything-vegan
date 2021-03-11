@@ -246,7 +246,8 @@ def add_recipe():
             "description": request.form.get("description"),
             "recommendation": request.form.get("recos"),
             "yield": request.form.get("yield"),
-            "active_time": request.form.get("active_time"),
+            "active_time": request.form.get(
+                "active_time").replace('mins', 'minutes').title(),
             "total_time": request.form.get("total_time"),
             "img_url": request.form.get("img_url") or default_img,
             "method": request.form.get("method"),
@@ -278,13 +279,15 @@ def edit_recipe(recipe_id):
                 "meal_name": request.form.get("meal_name"),
                 "recipe_name": request.form.get("recipe_name"),
                 "ingredients": request.form.get("ingredients"),
-                "description": request.form.get("description"),
-                "recommendation": request.form.get("recos"),
+                "description": request.form.get("description").capitalize(),
+                "recommendation": request.form.get("recos").capitalize(),
                 "yield": request.form.get("yield"),
-                "active_time": request.form.get("active_time"),
-                "total_time": request.form.get("total_time"),
+                "active_time": request.form.get(
+                    "active_time").replace('mins', 'minutes').title(),
+                "total_time": request.form.get(
+                    "total_time").title().replace('mins', 'minutes'),
                 "img_url": request.form.get("img_url") or default_img,
-                "method": request.form.get("method"),
+                "method": request.form.get("method").capitalize(),
                 "created_by": session["user"]
             }})
 
