@@ -243,8 +243,8 @@ def add_recipe():
             "meal_name": request.form.get("meal_name"),
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.get("ingredients"),
-            "description": request.form.get("description"),
-            "recommendation": request.form.get("recos"),
+            "description": request.form.get("description").capitalize(),
+            "recommendation": request.form.get("recos").capitalize(),
             "yield": request.form.get("yield"),
             "active_time": request.form.get(
                 "active_time").replace('mins', 'minutes').title(),
@@ -287,7 +287,7 @@ def edit_recipe(recipe_id):
                 "total_time": request.form.get(
                     "total_time").title().replace('mins', 'minutes'),
                 "img_url": request.form.get("img_url") or default_img,
-                "method": request.form.get("method").capitalize(),
+                "method": request.form.get("method"),
                 "created_by": session["user"]
             }})
 
