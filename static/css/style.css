@@ -662,6 +662,7 @@ footer p {
     .recipe-card {
         width: 90%;
         margin: 0 auto;
+        margin-bottom: 2rem;
     } 
     .filter-container {
 	    padding-left: 2rem;
