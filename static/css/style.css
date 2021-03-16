@@ -110,7 +110,8 @@ button {
 }
 
 .page-sub-heading {
-	text-align: center;
+    text-align: center;
+    padding: 0 2rem;
 }
 
 
@@ -153,7 +154,7 @@ button {
 }
 
 .promotional-text {
-	padding: 5rem 4rem 5rem 4rem;
+	padding: 5rem;
 	background-color: #000;
 }
 
@@ -166,8 +167,7 @@ button {
 }
 
 .promotional-section {
-	padding-top: 100px;
-	padding-bottom: 2rem;
+	padding: 4rem 2rem;
 	background-color: #000000;
 }
 
@@ -633,7 +633,7 @@ footer p {
 		padding: 0px;
 	}
 	.promotional-text {
-		padding: 2rem;
+		padding: 3rem 2rem;
 	}
 	.promotional-image {
 		height: 300px;
@@ -689,7 +689,10 @@ footer p {
 	}
 	.subscription-form {
 		width: 100%;
-	}
+    }
+    .subscription-container {
+    padding: 50px 0;
+    }
 }
 
 
