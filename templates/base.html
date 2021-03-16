@@ -9,6 +9,7 @@
       name="keywords"
       content="Vegan, Recipes, Share, Food, Breakfast, Lunch, Dinner, Desserts"
     />
+    {% block styles %}
     <!---- Font awsome ---->
     <script src="https://kit.fontawesome.com/5342af2812.js" crossorigin="anonymous"></script>
     <!---- Bootstrap Stylesheet ---->
@@ -17,7 +18,6 @@
     <!---- Own Stylesheet ---->
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}" type="text/css">
     <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}"/>
-    {% block styles %}
     {% endblock %}
     <title>{% block title %}{% endblock %} Eating Vegan</title>
 </head>

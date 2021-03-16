@@ -77,7 +77,7 @@
                     <h2>Method</h2>
                     <ul class="recipe-list">
                         {% for method in recipe.method.split("\n") %}
-                        <li><i class="fas fa-leaf"></i> {{ method }}</li>
+                        <li><i class="fas fa-leaf"></i> {{ method.capitalize() }}</li>
                         {% endfor %}
                     </ul>
                 </div>
