@@ -338,7 +338,7 @@ button {
 }
 
 .recipe-page-info {
-	width: 70%;
+	width: 60%;
 	margin: 2rem auto;
 	background: rgb(0, 0, 0);
 	text-align: center;
@@ -346,7 +346,7 @@ button {
 }
 
 .recipe-ingredients {
-    width: 70%;
+    width: 60%;
 }
 
 .recipe-page-info p {
@@ -360,7 +360,7 @@ button {
 }
 
 .recipe-page-image {
-	width: 70%;
+	width: 60%;
 	height: 450px;
 	object-fit: cover;
 	margin: 0 auto;
@@ -641,7 +641,7 @@ footer p {
 	}
 	.recipes-heading {
 		font-size: 2.5rem;
-        padding-top: 25px;
+        padding: 1rem;
 	}
 	.profile-heading {
 		font-size: 2.5rem;
