@@ -178,7 +178,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Single recipe page.
 - [x] 404 page
 - [x] 505 page
-- [x] Update password accound
+- [x] Update password
 - [x] Update profile photo
 - [x] Filter drop down to flick through meal types
 - [x] Admin can manage all recipes 
@@ -233,7 +233,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 
 ## Testing
 
-All the testing carried out for Eating Vegan can be found [here](TESTING.md)
+All the testing carried out for Eating Vegan can be found [here.](TESTING.md)
 
 ## Deployment
 

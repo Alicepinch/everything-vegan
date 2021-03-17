@@ -104,9 +104,6 @@ def login_required(f):
     return login_check
 ```
 
-## Form testing:
-
-
 ## Usability Testing:
 
 This website has been cross checked on the below devices and browsers to test responsiveness:
@@ -143,7 +140,7 @@ If a user has searched for a recipe in the search bar and then presses the back 
 
 <details><summary>As a new user I would like to be able to register an account.</summary>
 
-When a user enters the site, they can navigate to the 'Register' link in the navbar or the CTA in the promotional section below the header to register an account with eating vegan. 
+- When a user enters the site, they can navigate to the 'Register' link in the navbar or the CTA in the promotional section below the header to register an account with eating vegan. 
 
 ![Register Account](/docs/testing/user-story-gifs/register-account.gif)
 
@@ -151,15 +148,14 @@ When a user enters the site, they can navigate to the 'Register' link in the nav
 
 <details><summary>As a new user I would like to be able to sign up for the newsletter.</summary>
 
-On any page of the website and user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
+- On any page of the website and user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
 
-Add GIF
 
 </details>
 
 <details><summary>As a new user I would like to be able to understand what the website is.</summary>
 
-When a user lands on the homepage of the website they will be provided with content about the website and what it is. They can also explore the 'Recipes' page in the navbar to get an idea of what we are.
+- When a user lands on the homepage of the website they will be provided with content about the website and what it is. They can also explore the 'Recipes' page in the navbar to get an idea of what we are.
 
 </details>
 
@@ -168,7 +164,7 @@ When a user lands on the homepage of the website they will be provided with cont
 
 <details><summary>As a user I would like to be able to login to my account.</summary>
 
-When a user enters the site, they can navigate to the 'Login' link in the navbar to login to their account where they will fill in their login details. Once they have entered their details they will be directed to their profile page.
+- When a user enters the site, they can navigate to the 'Login' link in the navbar to login to their account where they will fill in their login details. Once they have entered their details they will be directed to their profile page.
 
 ![Login gif](/docs/testing/user-story-gifs/login-testing.gif)
 
@@ -176,7 +172,7 @@ When a user enters the site, they can navigate to the 'Login' link in the navbar
 
 <details><summary>As a user I would like to be able to log out of my account..</summary>
 
-When a user is logged into their account then a 'Logout' button will appear that users can click to end their session. 
+- When a user is logged into their account then a 'Logout' button will appear that users can click to end their session. 
 
 ![Logout](/docs/testing/user-story-gifs/logout.gif) 
 
@@ -184,7 +180,7 @@ When a user is logged into their account then a 'Logout' button will appear that
 
 <details><summary>As a user I would like to be able to view my profile.</summary>
 
-When a user is logged into their account they will have a 'Profile' link in the navigation bar that they can click to view their profile. 
+- When a user is logged into their account they will have a 'Profile' link in the navigation bar that they can click to view their profile. 
 
 ![View Profile](/docs/testing/user-story-gifs/profile.gif) 
 
@@ -192,7 +188,7 @@ When a user is logged into their account they will have a 'Profile' link in the 
 
 <details><summary>As a user I would like to be able to create new recipes.</summary>
 
-When a user is logged into their account they will have a 'New Recipe' link in the navigation bar that they can click. This will lead them to a form where they can enter in all the details of their new recipe and submit it. 
+- When a user is logged into their account they will have a 'New Recipe' link in the navigation bar that they can click. This will lead them to a form where they can enter in all the details of their new recipe and submit it. 
 
 ![Add recipe](/docs/testing/user-story-gifs/add-recipe.gif)
 
@@ -200,7 +196,7 @@ When a user is logged into their account they will have a 'New Recipe' link in t
 
 <details><summary>As a user I would like to be able to view all recipes in one place.</summary>
 
-A user can view all recipes by clicking the 'Recipes' link in the navigation bar. 
+- A user can view all recipes by clicking the 'Recipes' link in the navigation bar. 
 
 ![View recipes](/docs/testing/user-story-gifs/view-all-recipes.gif)
 
@@ -208,7 +204,7 @@ A user can view all recipes by clicking the 'Recipes' link in the navigation bar
 
 <details><summary>As a user I would like to filter through the different meal types.</summary>
 
-When a user is on the 'Recipes' page a user can click on the filter button. This will open a drop down menu of the different meal types where a user can click through to display 'Lunch' 'Dinner' 'Breakfasts' and 'Desserts' they also have the option to view all recipes again.
+- When a user is on the 'Recipes' page a user can click on the filter button. This will open a drop down menu of the different meal types where a user can click through to display 'Lunch' 'Dinner' 'Breakfasts' and 'Desserts' they also have the option to view all recipes again.
 
 ![Filter recipes](/docs/testing/user-story-gifs/filter-recipes.gif)
 
@@ -216,7 +212,7 @@ When a user is on the 'Recipes' page a user can click on the filter button. This
 
 <details><summary>As a user I would like to be able to search through all recipes.</summary>
 
-When a user is on the 'Recipes' page there is a search bar at the top. Users are able to search for key words which will be in the recicpes Name, description or ingredients. They can also reset the search bar to display all recipes again.
+- When a user is on the 'Recipes' page there is a search bar at the top. Users are able to search for key words which will be in the recicpes Name, description or ingredients. They can also reset the search bar to display all recipes again.
 
 ![Search Recipe](/docs/testing/user-story-gifs/search.gif)
 
@@ -224,7 +220,7 @@ When a user is on the 'Recipes' page there is a search bar at the top. Users are
 
 <details><summary>As a user I would like to be able to edit recipes that I have created.</summary>
 
-Once a user has created a recipe, this will be displayed on their profile page. The user can click the 'Edit Recipe' CTA on any of the recipes they have created. They will be lead to a prefilled form with all the content their had previously entered in where they can edit accordingly.
+- Once a user has created a recipe, this will be displayed on their profile page. The user can click the 'Edit Recipe' CTA on any of the recipes they have created. They will be lead to a prefilled form with all the content their had previously entered in where they can edit accordingly.
 
 ![Edit Recipe](/docs/testing/user-story-gifs/edit-recipe.gif)
 
@@ -236,19 +232,19 @@ Once a user has created a recipe, this will be displayed on their profile page. 
 
 <details><summary>As a user I would like to be able to remove recipes that I have created.</summary>
 
-To delete a recipe a user must go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page. This will only be displayed is the user has created the recipe. 
+- To delete a recipe a user must go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page. This will only be displayed is the user has created the recipe. 
 
 </details>
 
 <details><summary>As a user I would like to be able to sign up for the newsletter.</summary>
 
-On any page of the website and user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
+- On any page of the website and user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
 
 </details>
 
 <details><summary>As a user I would like to be able to update my password.</summary>
 
-A user is able to update their password on their profile page. They can click on the "Update password" CTA under their profile picture. This leads them to a form where they need to confirm their current password in order to update it.
+- A user is able to update their password on their profile page. They can click on the "Update password" CTA under their profile picture. This leads them to a form where they need to confirm their current password in order to update it.
 
 ![Change password tested](/docs/testing/user-story-gifs/password-updated.gif)
 
@@ -260,7 +256,7 @@ A user is able to update their password on their profile page. They can click on
 
 <details><summary>As a user I would like to be able to delete my account.</summary>
 
-A user is able to delete their profile from their profile page. Underneath their profile photo is a "Delete profile" CTA. Users will be promted to confirm deletion before this action is completed. 
+- A user is able to delete their profile from their profile page. Underneath their profile photo is a "Delete profile" CTA. Users will be promted to confirm deletion before this action is completed. 
 
 ![Delete user](/docs/testing/user-story-gifs/delete-user.gif)
 
@@ -268,7 +264,7 @@ A user is able to delete their profile from their profile page. Underneath their
 
 <details><summary>As a user I would like to be able to update my profile photo.</summary>
 
-A user is able to update their profile photo on their profile page. Underneath the photo is an 'Update Profile' CTA where they can add a new photo address to be used as thier profile photo. 
+- A user is able to update their profile photo on their profile page. Underneath the photo is an 'Update Profile' CTA where they can add a new photo address to be used as thier profile photo. 
 
 ![Change Profile Pic](/docs/testing/user-story-gifs/change-profile-pic.gif)
 
