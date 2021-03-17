@@ -1,6 +1,6 @@
 # Eating Vegan
 
-[Eating Vegan Live Site](https://eating-vegan.herokuapp.com/)
+[Eating Vegan Live Site](https://eatingvegan.herokuapp.com/)
 
 ![Eating Vegan Ami Responsive](docs/readme/eating-vegan-ami-responsive.jpg)
 
