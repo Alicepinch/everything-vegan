@@ -61,8 +61,8 @@
                     <form method="POST" action="{{ url_for('update_profile_pic', username=username)}}">
                         <div class="col-12">
                             <i class="login-register-logo fas fa-images"></i>
-                            <input id="profile_img" name="profile_img" type="url" pattern="https://.*" class="login-form-field"
-                                placeholder="Profile Picture URL">
+                            <input id="profile_img" name="profile_img" type="url" pattern="https://.*"
+                                class="login-form-field" placeholder="Profile Picture URL">
                         </div>
                         <div class="col-12 modal-buttons">
                             <button class="btn-black">Update</button>
@@ -81,8 +81,17 @@
                 {% if session.user == 'admin' %}
                 <h2 class="pb-3">All Recipes:</h2>
                 {% else %}
-                <h2 class="pb-3">Your Recipes:</h2>
-                {% endif %}
+                <div class="row">
+                    <div class="col-6">
+                        <a class="all-recipes">Your Recipes</a>
+                    </div>
+                    {% if user.saved_recipes %}
+                    <div class="col-6">
+                        <a class="saved-recipes">Saved Recipes</a>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
                 {% for recipe in recipes %}
                 <div class="profile-recipe-card row">
                     <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
@@ -94,25 +103,53 @@
                             <i class="far fa-clock"></i> - {{ recipe.active_time }} <br>
                             <i class="fas fa-utensils"></i> - {{ recipe.total_time }} <br>
                         </p>
-                        <a class="btn btn-white" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"> View Recipe </a>
+                        <a class="btn btn-white" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"> View
+                            Recipe </a>
                         <a class="btn btn-white m-2" href="{{  (url_for('edit_recipe', recipe_id=recipe._id))  }}"> Edit
                             Recipe </a>
                     </div>
                     <div class="col-12 col-lg-6 col-md-12 text-center">
-                        <img class="profile-recipe-image d-none d-lg-block" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name }}">
+                        <img class="profile-recipe-image d-none d-lg-block" src="{{ recipe.img_url }}"
+                            alt="{{ recipe.recipe_name }}">
                     </div>
 
                 </div>
                 {% endfor %}
             </div>
 
+            <!----Saved recipes---->
+            {% for recipe in saves_recipes %}
+            <div class="saved-recipe-card">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
+                        <h3>Hello</h3>
+                      
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            
             <!---- Content if user has no recipes ---->
 
             {% else %}
             <div class="col-12 col-md-8">
-                <h2>Your Recipes:</h2>
-                <h4 class="pt-3">Oops! Nothing Here Yet.</h4>
-                <a class="btn btn-black text-center mb-3" href="{{  url_for('add_recipe')  }}">Upload Recipe</a>
+                <div class="row">
+
+                    <div class="col-6">
+                        <a class="all-recipes">Your Recipes</a>
+                    </div>
+                    {% if user.saved_recipes %}
+                    <div class="col-6">
+                        <a class="saved-recipes">Saved Recipes</a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div id="no-recipes">
+                    <h4 class="pt-3">Oops! Nothing Here Yet.</h4>
+                    <a class="btn btn-black text-center mb-3" href="{{  url_for('add_recipe')  }}">Upload Recipe</a>
+                </div>
             </div>
             {% endif %}
 

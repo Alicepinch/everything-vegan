@@ -172,7 +172,8 @@ def register():
         "password": generate_password_hash(request.form.get("password")),
         "date_joined": date.strftime("%d/%m/%Y"),
         "profile_image": request.form.get(
-                                "profile_img") or default_pic
+                                "profile_img") or default_pic,
+        "saved_recipes": []
     }
     users_data.insert_one(register)
 
@@ -205,13 +206,17 @@ def profile(username):
     """
 
     user = users_data.find_one({"username": session['user']})
+    saved = users_data.find_one(user)["saved_recipes"]
+
+    print(saved)
 
     if session['user'] == "admin":
         recipes = list(recipes_data.find())
 
     recipes = list(recipes_data.find({"created_by": session['user']}))
     return render_template(
-        "profile.html", user=user, recipes=recipes, username=username)
+        "profile.html", user=user,
+        saved=saved, recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -244,6 +249,30 @@ def add_recipe():
 
     recipes_data.insert_one(recipe)
     flash("Recipe Succesfully Added")
+    return redirect(url_for("recipes"))
+
+
+@app.route('/save-recipe/<recipe_id>', methods=["POST"])
+@login_required
+def save_recipe(recipe_id):
+    """
+    Saves Recipe to profile.
+    """
+    user = users_data.find_one({"username": session["user"]})
+    saved = users_data.find_one(user)["saved_recipes"]
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+
+    if request.method == "POST":
+
+        if recipe in saved:
+            flash("Recipe already saved!")
+            return redirect(url_for("recipes"))
+
+        else:
+            users_data.update_one(
+                user, {"$push": {"saved_recipes": recipe}})
+            flash("Recipe Saved, view all recipes on profile 😊")
+
     return redirect(url_for("recipes"))
 
 

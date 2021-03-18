@@ -43,7 +43,7 @@ $(deleteCancel).click(function(){
 });
 
 
-// Drop down menu
+// Filter Drop down menu
 
 $(function (){
     $('#recipes_meal_dropdown').hide();
@@ -52,3 +52,22 @@ $(function (){
 $('#recipeDropDown').click(function () {
     $('#recipes_meal_dropdown').slideToggle();
 });
+
+// Profile page tabs to display different things
+
+$( document ).ready(function() {
+    $('.saved-recipe-card').hide();
+});
+
+$('.saved-recipes').click(function () {
+    $('.profile-recipe-card').hide();
+    $('#no-recipes').hide();
+    $('.saved-recipe-card').show();
+});
+
+$('.all-recipes').click(function () {
+    $('#no-recipes').show();
+    $('.profile-recipe-card').show();
+    $('.saved-recipe-card').hide();
+})
+

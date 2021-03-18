@@ -63,6 +63,9 @@
                             <span ><a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
+                        <form method="POST" action="{{  (url_for('save_recipe', recipe_id=recipe._id))  }}"> 
+                                <button class="save-recipe"><i class="fas fa-heart"></i> Save Recipe</button>
+                            </form>
                     </div>
                 </div>
             </div>
