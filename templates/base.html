@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eating Vegan Website" />
-    <meta
-      name="keywords"
-      content="Vegan, Recipes, Share, Food, Breakfast, Lunch, Dinner, Desserts"
-    />
+    <meta name="keywords" content="Vegan, Recipes, Share, Food, Breakfast, Lunch, Dinner, Desserts" />
     {% block styles %}
     <!---- Font awsome ---->
     <script src="https://kit.fontawesome.com/5342af2812.js" crossorigin="anonymous"></script>
@@ -17,7 +14,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!---- Own Stylesheet ---->
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}" type="text/css">
-    <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}"/>
+    <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}" />
     {% endblock %}
     <title>{% block title %}{% endblock %} Eating Vegan</title>
 </head>
@@ -84,7 +81,17 @@
                         <div class="input-group-append">
                             <button class="btn btn-subscription" type="submit">Subscribe</button>
                         </div>
+                        <div class="col-12">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages %}
+                            <p class="text-center" id="message">{{ message }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>

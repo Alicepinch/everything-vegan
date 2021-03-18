@@ -378,17 +378,15 @@ def subscribe_user():
 
     existing_sub = subscribers_data.find_one(
             {"subscriber_email": request.form.get("sub_email")})
-
     if existing_sub:
         flash("Already Subscribed!")
-        return redirect(request.referrer + "#subscribe")
-
+        return redirect(request.referrer + "#message")
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
         }
     subscribers_data.insert_one(subscribe)
-    flash("Thank you for subscribing!")
-    return redirect(request.referrer)
+    flash("Thank you for subscribing! 😊")
+    return redirect(request.referrer + "#message")
 
 
 # Error Pages #
