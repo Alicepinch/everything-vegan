@@ -43,6 +43,7 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 - As a user I would like to be able to update my password.
 - As a user I would like to be able to delete my account.
 - As a user I would like to be able to update my profile photo.
+- As a user I would like to be able to save recipes to my profile.
 
 </p>
 
@@ -129,6 +130,7 @@ Name | username | text, `maxlength="15"` | string
 Email Address | email | email, `maxlength="30"` | string
 Password | password | text, `maxlength="15"` | string
 Profile Picture | profile_img | url `pattern="https://.*"`| string
+Saved recipes | saved_recipes | n/a | array
 Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
@@ -185,6 +187,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Delete account
 - [x] Delete recipe
 - [x] Different page titles
+- [ ] Save Recipe
 
 ## Future Features
 

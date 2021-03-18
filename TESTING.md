@@ -270,3 +270,8 @@ If a user has searched for a recipe in the search bar and then presses the back 
 
 </details>
 
+<details><summary>As a user I would like to be able to save recipes to my profile.</summary>
+
+
+</details>
+
