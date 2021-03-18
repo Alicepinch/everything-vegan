@@ -173,7 +173,7 @@ def register():
         "date_joined": date.strftime("%d/%m/%Y"),
         "profile_image": request.form.get(
                                 "profile_img") or default_pic,
-        "saved_recipes": []
+        "saved_recipes": [],
     }
     users_data.insert_one(register)
 
@@ -207,8 +207,6 @@ def profile(username):
 
     user = users_data.find_one({"username": session['user']})
     saved = users_data.find_one(user)["saved_recipes"]
-
-    print(saved)
 
     if session['user'] == "admin":
         recipes = list(recipes_data.find())
@@ -256,7 +254,7 @@ def add_recipe():
 @login_required
 def save_recipe(recipe_id):
     """
-    Saves Recipe to profile.
+    Adds recipe to a recipe array in users data.
     """
     user = users_data.find_one({"username": session["user"]})
     saved = users_data.find_one(user)["saved_recipes"]
@@ -274,6 +272,23 @@ def save_recipe(recipe_id):
             flash("Recipe Saved, view all recipes on profile 😊")
 
     return redirect(url_for("recipes"))
+
+
+@app.route('/remove-saved-recipe/<recipe_id>', methods=["POST"])
+@login_required
+def remove_saved_recipe(recipe_id):
+    """
+    Adds recipe to a recipe array in users data.
+    """
+    username = session["user"]
+    user = users_data.find_one({"username": session["user"]})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+
+    flash("Recipe removed from saved")
+    users_data.update_one(
+                user, {"$pull": {"saved_recipes": recipe}})
+
+    return redirect(url_for("profile", username=username))
 
 
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])

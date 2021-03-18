@@ -117,13 +117,17 @@
                 {% endfor %}
             </div>
 
-            <!----Saved recipes---->
-            {% for recipe in saves_recipes %}
+            <!-- --Saved recipes-- -->
+            {% for recipe in saved %}
             <div class="saved-recipe-card">
                 <div class="row">
                     <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
-                        <h3>Hello</h3>
+                        <h3>{{recipe.recipe_name }}</h3>
                       
+
+                        <form method="POST" action="{{  (url_for('remove_saved_recipe', recipe_id=recipe._id))  }}"> 
+                                <button class="save-recipe"><i class="fas fa-heart"></i> Remove Recipe</button>
+                            </form>
                     </div>
                 </div>
             </div>
