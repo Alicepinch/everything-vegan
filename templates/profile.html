@@ -26,7 +26,7 @@
                     {% if session.user != 'admin' %}
                     <button class="btn btn-black account-btn">Delete Account</button>
                     <br>
-                    <a class="btn btn-black" href="{{  url_for('update_user', username=username) }}">Update Your
+                    <a class="btn btn-black" href="{{  url_for('update_password', username=username) }}">Update Your
                         Password</a>
                     <br>
                     <a class="btn btn-black profile-pic-btn mb-4">Update Profile

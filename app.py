@@ -313,13 +313,13 @@ def delete_user(username):
     return redirect(url_for("login"))
 
 
-@app.route('/update-user/<username>', methods=["GET", "POST"])
+@app.route('/update-password/<username>', methods=["GET", "POST"])
 @login_required
-def update_user(username):
+def update_password(username):
     """
     Checks current password is the users password.
     Updates password if the two new passwords match.
-    If passwords dont match - flash message appears.
+    If passwords don't match - flash message appears.
     """
 
     current_password = request.form.get("password")
@@ -329,7 +329,7 @@ def update_user(username):
     user = users_data.find_one({'username': session['user']})
 
     if request.method == "GET":
-        return render_template('update-user.html', username=username)
+        return render_template('update-password.html', username=username)
 
     if check_password_hash(user["password"], current_password):
         if new_password == confirm_password:
@@ -343,10 +343,10 @@ def update_user(username):
             return redirect(url_for('profile', username=username))
 
         flash("Passwords do not match! Please try again😔")
-        return redirect(url_for("update_user", username=username))
+        return redirect(url_for("update_password", username=username))
 
     flash('Incorrect password. Please try again😔')
-    return redirect(url_for('update_user', username=username))
+    return redirect(url_for('update_password', username=username))
 
 
 @app.route('/update-profile-pic/<username>', methods=["GET", "POST"])

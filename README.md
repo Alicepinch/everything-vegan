@@ -27,7 +27,7 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 
 ## User Stories
 
-<details><summary>New User</summary>
+<details><summary>Registered User</summary>
 <p>
 
 - As a user I would like to be able to login to my account.
@@ -48,7 +48,7 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 
 </details>
 
-<details><summary>Returning User</summary>
+<details><summary>New User</summary>
 <p>
 
 - As a new user I would like to be able to register an account.
