@@ -74,7 +74,7 @@ def meals(meal):
         recipes = recipes_data.find({"meal_name": "Desserts"})
 
     return render_template(
-            'recipes.html', meal=meal, recipes=recipes)
+        'recipes.html', meal=meal, recipes=recipes)
 
 
 @app.route('/recipes')
@@ -135,11 +135,11 @@ def login():
         {"username": request.form.get("username").lower()})
 
     if existing_user and check_password_hash(
-                existing_user["password"], password):
+            existing_user["password"], password):
         session["user"] = request.form.get("username").lower()
 
         return redirect(url_for(
-                "profile", username=session["user"]))
+            "profile", username=session["user"]))
 
     flash("Incorrect Username and/or Password")
     return redirect(url_for("login"))
@@ -173,7 +173,7 @@ def register():
         "password": generate_password_hash(request.form.get("password")),
         "date_joined": date.strftime("%d/%m/%Y"),
         "profile_image": request.form.get(
-                                "profile_img") or default_pic,
+            "profile_img") or default_pic,
         "saved_recipes": [],
     }
     users_data.insert_one(register)
@@ -212,7 +212,7 @@ def profile(username):
         recipes = list(recipes_data.find())
     else:
         recipes = list(recipes_data.find(
-                {"created_by": session['user']}))
+            {"created_by": session['user']}))
 
     return render_template(
         "profile.html", user=user, recipes=recipes, username=username)
@@ -264,7 +264,7 @@ def saved_recipes():
     recipe = recipes_data.find_one()
 
     return render_template('saved-recipes.html',
-    saved=saved, user=user, recipe=recipe)
+                           saved=saved, user=user, recipe=recipe)
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
@@ -280,14 +280,14 @@ def save_recipe(recipe_id):
     if request.method == "POST":
 
         if recipe in saved:
-            flash("Recipe already saved!")
+            flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
         else:
             users_data.update_one(
                 user, {"$push": {"saved_recipes": recipe}})
-            flash("Recipe Saved 😊")
+            flash("Recipe Saved to profile!💚")
 
-    return redirect(url_for("saved_recipes"))
+    return redirect(url_for("recipes"))
 
 
 @app.route('/remove-saved-recipe/<recipe_id>', methods=["POST"])
@@ -302,9 +302,9 @@ def remove_saved_recipe(recipe_id):
 
     flash("Recipe removed from saved")
     users_data.update_one(
-                user, {"$pull": {"saved_recipes": recipe}})
+        user, {"$pull": {"saved_recipes": recipe}})
 
-    return redirect(url_for("profile", username=username, recipe_id=recipe_id))
+    return redirect(url_for("saved_recipes"))
 
 
 # Edit and delete recipes #
@@ -352,7 +352,7 @@ def delete_recipe(recipe_id):
     """
     created_by = recipes_data.find_one({'created_by': session['user']})
 
-    if created_by:
+    if created_by or session['user'] == 'admin':
         recipes_data.delete_one({"_id": ObjectId(recipe_id)})
         flash("Recipe Succesfully Removed!")
     else:
@@ -374,7 +374,6 @@ def delete_user(username):
     if session['user'] == username:
         users_data.remove({"username": session['user']})
         session.pop("user")
-        recipes_data.remove({"created_by": username})
         flash("Sorry to see you go! Your user has been deleted.")
     else:
         flash("This is not your account to delete!")
@@ -431,8 +430,8 @@ def update_profile_pic(username):
             {"username": session['user']},
             {'$set': {
                 "profile_image": request.form.get(
-                                    "profile_img")
-                }})
+                    "profile_img")
+            }})
 
     return redirect(url_for("profile", username=username))
 
@@ -447,12 +446,12 @@ def subscribe_user():
     """
 
     existing_sub = subscribers_data.find_one(
-            {"subscriber_email": request.form.get("sub_email")})
+        {"subscriber_email": request.form.get("sub_email")})
     if existing_sub:
         return redirect(request.referrer + "#message")
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
-        }
+    }
     subscribers_data.insert_one(subscribe)
     return redirect(request.referrer + "#message")
 
