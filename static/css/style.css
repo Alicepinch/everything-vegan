@@ -335,19 +335,23 @@ button {
 
 .save-recipe {
 	display: block;
-	color: #3c965b;
+	color: #F23939;
     padding: 0rem 1rem 0rem 1.5rem;
-    background-color: white;
+    background-color: transparent;
+    transition: transform .2s;
     border: none;
 	font-weight: 500;
 	font-family: 'Bungee', sans-serif;
 	font-size: 1.1rem;
 }
 
-.recipe-link:hover,
-.save-recipe:hover {
+.recipe-link:hover {
 	text-decoration: underline;
 	color: #3c965b;
+}
+
+.save-recipe:hover {
+transform: scale(1.1); 
 }
 
 

@@ -278,7 +278,6 @@ def save_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     if request.method == "POST":
-
         if recipe in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
@@ -296,7 +295,6 @@ def remove_saved_recipe(recipe_id):
     """
     Removes saved recipe from the array in users data.
     """
-    username = session["user"]
     user = users_data.find_one({"username": session["user"]})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
@@ -313,8 +311,7 @@ def remove_saved_recipe(recipe_id):
 @login_required
 def edit_recipe(recipe_id):
     """
-    Edit recipe function allows the
-    user to edit their own recipes from
+    Edit recipe function allows the user to edit their own recipes from
     their profile page.
     """
 
@@ -348,8 +345,11 @@ def edit_recipe(recipe_id):
 @login_required
 def delete_recipe(recipe_id):
     """
-    Removes recipe from database and recipes page.
+    If the recipe has been created by the user logged in or the
+    admin then they can remove a recipe. All other users will
+    not have access to this unless they have created the recipe.
     """
+
     created_by = recipes_data.find_one({'created_by': session['user']})
 
     if created_by or session['user'] == 'admin':
@@ -448,12 +448,12 @@ def subscribe_user():
     existing_sub = subscribers_data.find_one(
         {"subscriber_email": request.form.get("sub_email")})
     if existing_sub:
-        return redirect(request.referrer + "#message")
+        return redirect(request.referrer)
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
     }
     subscribers_data.insert_one(subscribe)
-    return redirect(request.referrer + "#message")
+    return redirect(request.referrer)
 
 
 # Error Pages #
