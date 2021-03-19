@@ -32,6 +32,7 @@ recipes_data = mongo.db.recipes
 users_data = mongo.db.users
 subscribers_data = mongo.db.subscribers
 meals_data = mongo.db.meals
+error = None
 
 
 def login_required(f):
@@ -206,15 +207,13 @@ def profile(username):
     """
 
     user = users_data.find_one({"username": session['user']})
-    saved = users_data.find_one(user)["saved_recipes"]
 
     if session['user'] == "admin":
         recipes = list(recipes_data.find())
 
     recipes = list(recipes_data.find({"created_by": session['user']}))
     return render_template(
-        "profile.html", user=user,
-        saved=saved, recipes=recipes, username=username)
+        "profile.html", user=user, recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -265,11 +264,10 @@ def save_recipe(recipe_id):
         if recipe in saved:
             flash("Recipe already saved!")
             return redirect(url_for("recipes"))
-
         else:
             users_data.update_one(
                 user, {"$push": {"saved_recipes": recipe}})
-            flash("Recipe Saved, view all recipes on profile 😊")
+            flash("Recipe Saved to Profile 😊")
 
     return redirect(url_for("recipes"))
 
@@ -278,7 +276,7 @@ def save_recipe(recipe_id):
 @login_required
 def remove_saved_recipe(recipe_id):
     """
-    Adds recipe to a recipe array in users data.
+    Removes saved recipe from the array in users data.
     """
     username = session["user"]
     user = users_data.find_one({"username": session["user"]})
@@ -332,9 +330,15 @@ def delete_recipe(recipe_id):
     """
     Removes recipe from database and recipes page.
     """
+    user = users_data.find_one({'username': session['user']})
+    created_by = recipes_data.find_one({'created_by': user})
 
-    recipes_data.delete_one({"_id": ObjectId(recipe_id)})
-    flash("Recipe Succesfully Removed!")
+    if created_by:
+        recipes_data.delete_one({"_id": ObjectId(recipe_id)})
+        flash("Recipe Succesfully Removed!")
+    else:
+        flash("This is not your recipe to delete!")
+
     return redirect(url_for("recipes"))
 
 
@@ -347,13 +351,16 @@ def delete_user(username):
     If the session user is the username that is logged in or
     the admin then they can delete their account with this URL.
     """
-
-    if session['user'] == username or "admin":
+    
+    if session['user'] == username:
         users_data.remove({"username": session['user']})
         session.pop("user")
         recipes_data.remove({"created_by": username})
+        flash("Sorry to see you go! Your user has been deleted.")
+    else:
+        flash("This is not your account to delete!")
+        return redirect(url_for("profile", username=username))
 
-    flash("Sorry to see you go! Your user has been deleted.")
     return redirect(url_for("login"))
 
 
@@ -423,13 +430,11 @@ def subscribe_user():
     existing_sub = subscribers_data.find_one(
             {"subscriber_email": request.form.get("sub_email")})
     if existing_sub:
-        flash("Already Subscribed!")
         return redirect(request.referrer + "#message")
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
         }
     subscribers_data.insert_one(subscribe)
-    flash("Thank you for subscribing! 😊")
     return redirect(request.referrer + "#message")
 
 
