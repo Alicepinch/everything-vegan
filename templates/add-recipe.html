@@ -21,9 +21,9 @@
                 <form method="POST" class="text-center" action="{{  url_for('add_recipe')}}">
                     <div>
                         <label for="recipe_name">Recipe Name</label>
-                        <input type="text" name="recipe_name" max="25" class="form-field" placeholder="Recipe Name*"
+                        <input type="text" name="recipe_name" maxlength="35" class="form-field" placeholder="Recipe Name*"
                             id="recipe_name" required>
-                            <small class="form-description">Max 25
+                            <small class="form-description">Max 35
                             characters</small>
                     </div>
                     <div class="col-12">
