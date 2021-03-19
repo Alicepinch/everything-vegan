@@ -336,9 +336,8 @@ button {
 	font-size: 1.1rem;
 }
 
-
 .recipe-link:hover,
-.save-link:hover {
+.save-recipe:hover {
 	text-decoration: underline;
 	color: #3c965b;
 }
@@ -432,7 +431,7 @@ button {
 
 /* Profile styling */
 
-.all-recipes, .saved-recipes {
+/* .all-recipes, .saved-recipes {
     font-size: 32px;
     font-family: 'Bungee', sans-serif;
     color: #000;
@@ -443,7 +442,7 @@ button {
     font-family: 'Bungee', sans-serif;
     color: #3c965b;
     cursor: pointer;
-}
+} */
 
 .modal {
 	display: none;

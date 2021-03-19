@@ -18,7 +18,6 @@
 
             <!--- Flash messages --->
 
-
             <div class="col-12 col-md-4 text-center">
                 <img src="{{ user.profile_image }}" class="profile-photo" alt="">
                 <p class="pt-3"><strong>Username:</strong> {{ session['user'] }} <br>
@@ -29,8 +28,10 @@
                     <a class="btn btn-black" href="{{  url_for('update_password', username=username) }}">Update Your
                         Password</a>
                     <br>
-                    <a class="btn btn-black profile-pic-btn mb-4">Update Profile
+                    <a class="btn btn-black profile-pic-btn">Update Profile
                         Photo</a>
+                    <br>
+                    <a class="btn btn-black mb-4" href="{{  url_for('saved_recipes') }}"> <i class="fas fa-heart"></i> Saved Recipes</a>
                     {% else %}
                     {% endif %}
                 </p>
@@ -83,13 +84,8 @@
                 {% else %}
                 <div class="row">
                     <div class="col-6">
-                        <a class="all-recipes">Your Recipes</a>
+                        <h2>Your Recipes</h2>
                     </div>
-                    {% if user.saved_recipes %}
-                    <div class="col-6">
-                        <a class="saved-recipes">Saved Recipes</a>
-                    </div>
-                    {% endif %}
                 </div>
             {% endif %}
                 {% for recipe in recipes %}
@@ -117,21 +113,6 @@
                 {% endfor %}
             </div>
 
-            <!-- --Saved recipes-- -->
-            {% for recipe in saved %}
-            <div class="saved-recipe-card">
-                <div class="row">
-                    <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
-                        <h3>{{recipe.recipe_name }}</h3>
-                      
-
-                        <form method="POST" action="{{  (url_for('remove_saved_recipe', recipe_id=recipe._id))  }}"> 
-                                <button class="save-recipe"><i class="fas fa-heart"></i> Remove Recipe</button>
-                            </form>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
 
             
             <!---- Content if user has no recipes ---->
@@ -139,15 +120,9 @@
             {% else %}
             <div class="col-12 col-md-8">
                 <div class="row">
-
                     <div class="col-6">
-                        <a class="all-recipes">Your Recipes</a>
+                        <h2>Your Recipes</h2>
                     </div>
-                    {% if user.saved_recipes %}
-                    <div class="col-6">
-                        <a class="saved-recipes">Saved Recipes</a>
-                    </div>
-                    {% endif %}
                 </div>
 
                 <div id="no-recipes">

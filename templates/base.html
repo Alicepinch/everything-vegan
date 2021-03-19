@@ -82,13 +82,6 @@
                             <button class="btn btn-subscription" type="submit">Subscribe</button>
                         </div>
                         <div class="col-12">
-                            {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                            {% for message in messages %}
-                            <p class="text-center" id="message">{{ message }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
                         </div>
                     </form>
 

@@ -237,7 +237,7 @@ def add_recipe():
         "active_time": request.form.get(
             "active_time").replace('mins', 'minutes').title(),
         "total_time": request.form.get(
-            "total_time").replace('mins', 'minutes').capitalize(),
+            "total_time").replace('mins', 'minutes').title(),
         "img_url": request.form.get("img_url") or default_img,
         "method": request.form.get("method"),
         "created_by": session["user"],
@@ -247,6 +247,20 @@ def add_recipe():
     recipes_data.insert_one(recipe)
     flash("Recipe Succesfully Added")
     return redirect(url_for("recipes"))
+
+
+@app.route('/saved-recipes')
+@login_required
+def saved_recipes():
+    """
+    Lists all recipes
+    in mongodb data.
+    """
+    user = users_data.find_one({"username": session["user"]})
+    saved = users_data.find_one(user)["saved_recipes"]
+    recipe = recipes_data.find_one()
+
+    return render_template('saved-recipes.html', saved=saved, recipe=recipe)
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
@@ -267,9 +281,9 @@ def save_recipe(recipe_id):
         else:
             users_data.update_one(
                 user, {"$push": {"saved_recipes": recipe}})
-            flash("Recipe Saved to Profile 😊")
+            flash("Recipe Saved 😊")
 
-    return redirect(url_for("recipes"))
+    return redirect(url_for("saved_recipes"))
 
 
 @app.route('/remove-saved-recipe/<recipe_id>', methods=["POST"])
@@ -286,7 +300,7 @@ def remove_saved_recipe(recipe_id):
     users_data.update_one(
                 user, {"$pull": {"saved_recipes": recipe}})
 
-    return redirect(url_for("profile", username=username))
+    return redirect(url_for("profile", username=username, recipe_id=recipe_id))
 
 
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
@@ -315,7 +329,7 @@ def edit_recipe(recipe_id):
             "active_time": request.form.get(
                 "active_time").replace('mins', 'minutes').title(),
             "total_time": request.form.get(
-                "total_time").replace('mins', 'minutes').capitalize(),
+                "total_time").replace('mins', 'minutes').title(),
             "img_url": request.form.get("img_url") or default_img,
             "method": request.form.get("method")
         }})
@@ -351,7 +365,7 @@ def delete_user(username):
     If the session user is the username that is logged in or
     the admin then they can delete their account with this URL.
     """
-    
+
     if session['user'] == username:
         users_data.remove({"username": session['user']})
         session.pop("user")

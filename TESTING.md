@@ -92,6 +92,11 @@ During the build of the website I noticed that the session was not ending when a
 
 Whilst testing/building the website I noticed that if a user was logged out but pressed the back button they would be taken back to the profile page/have access to pages that are only availble to users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix this I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
 
+### Deleting account & Recipes:
+
+When doing my final tests, I noticed that if anyone was logged into an account they were able to delete anyones account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. However, if someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. So therefore I added in some if statement to the appropriate routes in my app.py file. I also added flash messaged to let a user know they cant delete even if they tried. 
+
+
 Code added:
 ```
 def login_required(f):

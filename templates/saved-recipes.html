@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Recipes |{% endblock %}
+{% block content %}
+
+<!---Recipes header container with search--->
+
+<section class="subpage-background">
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="recipes-heading">Saved Recipes</h1>
+        </div>
+    </div>
+</section>
+
+
+<!---Flash Messages--->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h3 class="text-center pt-3">{{ message }}</h3>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+<!---All recipes--->
+
+<section class="recipes-container">
+    <div class="container">
+        <div class="row">
+
+            {% for sav in saved %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="recipe-card">
+                    <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe_name}}">
+                    <h3>{{ recipe.recipe_name }}</h3>
+                    <div class="recipe-description">
+                       <p>
+                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
+                            {{ recipe.description }}
+                            <span>
+                            <a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
+                                    View Recipe <i class="fas fa-arrow-right"></i></a>
+                            </span>
+                            <form method="POST" action="{{  (url_for('remove_saved_recipe', recipe_id=recipe._id))  }}"> 
+                                <button class="save-recipe"><i class="fas fa-heart-broken"></i> Remove From Saved</button>
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

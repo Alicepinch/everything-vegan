@@ -1,14 +1,14 @@
 //Setting global variables
-let recipeModal = document.getElementById("delete-recipe-modal");
-let accountModal = document.getElementById("delete-account-modal");
-let profilePicModal = document.getElementById("update-picture-modal");
-let accountBtn = document.getElementsByClassName("account-btn");
-let recipeBtn = document.getElementsByClassName("recipe-btn");
-let profilePicBtn = document.getElementsByClassName("profile-pic-btn");
-let close = document.getElementsByClassName("close");
-let deleteClose = document.getElementsByClassName("delete-close")
-let cancel = document.getElementsByClassName("cancel");
-let deleteCancel = document.getElementsByClassName("delete-cancel")
+const recipeModal = document.getElementById("delete-recipe-modal");
+const accountModal = document.getElementById("delete-account-modal");
+const profilePicModal = document.getElementById("update-picture-modal");
+const accountBtn = document.getElementsByClassName("account-btn");
+const recipeBtn = document.getElementsByClassName("recipe-btn");
+const profilePicBtn = document.getElementsByClassName("profile-pic-btn");
+const close = document.getElementsByClassName("close");
+const deleteClose = document.getElementsByClassName("delete-close")
+const cancel = document.getElementsByClassName("cancel");
+const deleteCancel = document.getElementsByClassName("delete-cancel")
 
 
 //Onclick functions to display and hide modals.
@@ -54,20 +54,4 @@ $('#recipeDropDown').click(function () {
 });
 
 // Profile page tabs to display different things
-
-$( document ).ready(function() {
-    $('.saved-recipe-card').hide();
-});
-
-$('.saved-recipes').click(function () {
-    $('.profile-recipe-card').hide();
-    $('#no-recipes').hide();
-    $('.saved-recipe-card').show();
-});
-
-$('.all-recipes').click(function () {
-    $('#no-recipes').show();
-    $('.profile-recipe-card').show();
-    $('.saved-recipe-card').hide();
-})
 
