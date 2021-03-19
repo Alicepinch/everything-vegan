@@ -210,8 +210,10 @@ def profile(username):
 
     if session['user'] == "admin":
         recipes = list(recipes_data.find())
+    else:
+        recipes = list(recipes_data.find(
+                {"created_by": session['user']}))
 
-    recipes = list(recipes_data.find({"created_by": session['user']}))
     return render_template(
         "profile.html", user=user, recipes=recipes, username=username)
 
@@ -249,12 +251,13 @@ def add_recipe():
     return redirect(url_for("recipes"))
 
 
+# Saved Recipes and delete saved recipe #
+
 @app.route('/saved-recipes')
 @login_required
 def saved_recipes():
     """
-    Lists all recipes
-    in mongodb data.
+    Function sets all the users saved recipe from the database.
     """
     user = users_data.find_one({"username": session["user"]})
     saved = users_data.find_one(user)["saved_recipes"]
@@ -303,6 +306,8 @@ def remove_saved_recipe(recipe_id):
     return redirect(url_for("profile", username=username, recipe_id=recipe_id))
 
 
+# Edit and delete recipes #
+
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
@@ -347,7 +352,7 @@ def delete_recipe(recipe_id):
     user = users_data.find_one({'username': session['user']})
     created_by = recipes_data.find_one({'created_by': user})
 
-    if created_by:
+    if created_by or session['user'] == 'admin':
         recipes_data.delete_one({"_id": ObjectId(recipe_id)})
         flash("Recipe Succesfully Removed!")
     else:
@@ -356,7 +361,7 @@ def delete_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-# Update/ delete users #
+# Update / delete user #
 
 @app.route('/delete-account/<username>')
 @login_required
