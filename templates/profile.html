@@ -31,7 +31,8 @@
                     <a class="btn btn-black profile-pic-btn">Update Profile
                         Photo</a>
                     <br>
-                    <a class="btn btn-black mb-4" href="{{  url_for('saved_recipes') }}"> <i class="fas fa-heart"></i> Saved Recipes</a>
+                    <a class="btn btn-black mb-4" href="{{  url_for('saved_recipes') }}"> <i class="fas fa-heart"></i>
+                        Saved Recipes</a>
                     {% else %}
                     {% endif %}
                 </p>
@@ -79,6 +80,7 @@
 
             {% if recipes|length > 0 %}
             <div class="col-12 col-md-8">
+
                 {% if session.user == 'admin' %}
                 <h2 class="pb-3">All Recipes:</h2>
                 {% else %}
@@ -87,7 +89,7 @@
                         <h2>Your Recipes</h2>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
                 {% for recipe in recipes %}
                 <div class="profile-recipe-card row">
                     <div class="col-12 col-lg-6 col-md-12 profile-recipe-info">
@@ -114,16 +116,22 @@
             </div>
 
 
-            
+
             <!---- Content if user has no recipes ---->
 
             {% else %}
             <div class="col-12 col-md-8">
                 <div class="row">
+                    {% if session.user == 'admin' %}
+                    <div class="col-6">
+                        <h2>All Recipes:</h2>
+                    </div>
+                    {% else %}
                     <div class="col-6">
                         <h2>Your Recipes</h2>
                     </div>
                 </div>
+                {% endif %}
 
                 <div id="no-recipes">
                     <h4 class="pt-3">Oops! Nothing Here Yet.</h4>

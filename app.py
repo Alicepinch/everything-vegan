@@ -102,7 +102,7 @@ def search():
     if all_recipes > 0:
         return render_template("recipes.html", recipes=recipes)
 
-    flash("Sorry! No results found 😔")
+    flash("Sorry! No recipes yet! 😔")
     return render_template("recipes.html", recipes=recipes)
 
 
