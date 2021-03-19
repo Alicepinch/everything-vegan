@@ -247,7 +247,7 @@ def add_recipe():
     }
 
     recipes_data.insert_one(recipe)
-    flash("Recipe Succesfully Added")
+    flash("Recipe Succesfully Added 🍽")
     return redirect(url_for("recipes"))
 
 
@@ -263,7 +263,8 @@ def saved_recipes():
     saved = users_data.find_one(user)["saved_recipes"]
     recipe = recipes_data.find_one()
 
-    return render_template('saved-recipes.html', saved=saved, recipe=recipe)
+    return render_template('saved-recipes.html',
+    saved=saved, user=user, recipe=recipe)
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
@@ -349,14 +350,13 @@ def delete_recipe(recipe_id):
     """
     Removes recipe from database and recipes page.
     """
-    user = users_data.find_one({'username': session['user']})
-    created_by = recipes_data.find_one({'created_by': user})
+    created_by = recipes_data.find_one({'created_by': session['user']})
 
-    if created_by or session['user'] == 'admin':
+    if created_by:
         recipes_data.delete_one({"_id": ObjectId(recipe_id)})
         flash("Recipe Succesfully Removed!")
     else:
-        flash("This is not your recipe to delete!")
+        flash("Recipe cant be removed!")
 
     return redirect(url_for("recipes"))
 
