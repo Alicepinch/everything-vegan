@@ -100,6 +100,14 @@ button {
     padding-top: 50px;
 }
 
+.recipes-name-heading {
+    font-family: 'Bungee', cursive, sans-serif;
+    color: #000;
+    font-size: 3.5rem;
+    text-align: center;
+    padding-top: 50px;
+}
+
 .small-heading {
 	font-family: 'Bungee Shade', cursive, sans-serif;
 	color: #000;
@@ -664,10 +672,10 @@ footer p {
 		height: 300px;
 		width: 100%;
 	}
-	.recipes-heading {
+	.recipes-heading, .recipes-name-heading {
 		font-size: 2.5rem;
         padding: 1rem;
-	}
+    }
 	.profile-heading {
 		font-size: 2.5rem;
 	}

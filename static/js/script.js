@@ -52,6 +52,3 @@ $(function (){
 $('#recipeDropDown').click(function () {
     $('#recipes_meal_dropdown').slideToggle();
 });
-
-// Profile page tabs to display different things
-
