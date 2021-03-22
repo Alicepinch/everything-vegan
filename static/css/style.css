@@ -302,7 +302,8 @@ button {
     text-align: left;
     font-size: 1.5rem;
 	padding: 1rem 1rem 0rem 1.5rem;
-	color: #000;
+    color: #000;
+    height: 70px;
 }
 
 .meal-name {
@@ -312,10 +313,16 @@ button {
 	font-size: small;
 }
 
+.recipe-description-card {
+    color: #000;
+	padding: 0rem 1rem 0rem 1.5rem;
+    text-align: left;
+}
+
 .recipe-card p {
 	color: #000;
-	padding: 0rem 1rem 0rem 1.5rem;
-	text-align: left;
+    text-align: left;
+    height: 70px;
 }
 
 .recipe-image {
@@ -336,7 +343,6 @@ button {
 .save-recipe {
 	display: block;
 	color: #F23939;
-    padding: 0rem 1rem 0rem 1.5rem;
     background-color: transparent;
     transition: transform .2s;
     border: none;
@@ -442,19 +448,6 @@ transform: scale(1.1);
 
 
 /* Profile styling */
-
-/* .all-recipes, .saved-recipes {
-    font-size: 32px;
-    font-family: 'Bungee', sans-serif;
-    color: #000;
-}
-
-.all-recipes:hover, .saved-recipes:hover {
-    font-size: 32px;
-    font-family: 'Bungee', sans-serif;
-    color: #3c965b;
-    cursor: pointer;
-} */
 
 .modal {
 	display: none;

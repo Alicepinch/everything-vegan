@@ -257,14 +257,26 @@ def add_recipe():
 @login_required
 def saved_recipes():
     """
-    Function sets all the users saved recipe from the database.
+    Function fetches all the users saved recipe from the database.
     """
-    user = users_data.find_one({"username": session["user"]})
-    saved = users_data.find_one(user)["saved_recipes"]
-    recipe = recipes_data.find_one()
 
-    return render_template('saved-recipes.html',
-                           saved=saved, user=user, recipe=recipe)
+    user = users_data.find_one({"username": session["user"]})
+    saved_recipes = users_data.find_one(user)["saved_recipes"]
+    recipe = recipes_data.find()
+
+    for saved in saved_recipes:
+        if saved in recipe:
+            return render_template(
+                'saved-recipes.html', saved_recipes=saved_recipes,
+                user=user, recipe=recipe
+                )
+        else:
+            users_data.remove(saved)
+
+    return render_template(
+        'saved-recipes.html', saved_recipes=saved_recipes,
+        user=user, recipe=recipe
+        )
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
@@ -278,6 +290,7 @@ def save_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     if request.method == "POST":
+
         if recipe in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
@@ -374,6 +387,7 @@ def delete_user(username):
     if session['user'] == username:
         users_data.remove({"username": session['user']})
         session.pop("user")
+        recipes_data.remove({"created_by": username})
         flash("Sorry to see you go! Your user has been deleted.")
     else:
         flash("This is not your account to delete!")
@@ -387,7 +401,7 @@ def delete_user(username):
 def update_password(username):
     """
     Checks current password is the users password.
-    Updates password if the two new passwords match.
+    Update password if the two new passwords match.
     If passwords don't match - flash message appears.
     """
 

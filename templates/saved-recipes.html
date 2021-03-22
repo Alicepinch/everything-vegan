@@ -28,8 +28,8 @@
 <section class="recipes-container">
     <div class="container">
         <div class="row">
-            {% if saved|length > 0 %}
-            {% for recipe in saved %}
+            {% if saved_recipes|length > 0 %}
+            {% for recipe in saved_recipes %}
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="recipe-card">
                     <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe_name}}">

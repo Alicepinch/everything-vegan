@@ -56,16 +56,18 @@
                 <div class="recipe-card">
                     <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}">
                     <h3>{{ recipe.recipe_name }}</h3>
-                    <div class="recipe-description">
+                    <div class="recipe-description-card">
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
-                            <span ><a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
-                                    View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         </p>
+                        <span ><a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
+                                    View Recipe <i class="fas fa-arrow-right"></i></a></span>
+                        {% if session.user %}
                         <form  method="POST" action="{{  (url_for('save_recipe', recipe_id=recipe._id))  }}"> 
                                 <button class="save-recipe"><i class="fas fa-heart"></i> Save Recipe</button>
                             </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
