@@ -80,8 +80,7 @@ def meals(meal):
 @app.route('/recipes')
 def recipes():
     """
-    Lists all recipes
-    in mongodb data.
+    Lists all recipes in mongoDB data.
     """
     recipes = list(recipes_data.find())
     return render_template('recipes.html', recipes=recipes)
@@ -149,7 +148,7 @@ def login():
 def register():
     """
     Registers new user if username/email is not
-    used and add's data to mongo db.
+    used and add's data to mongodb.
     """
 
     if request.method == "GET":
@@ -223,7 +222,7 @@ def profile(username):
 def add_recipe():
     """
     Add recipe function allows the
-    user to add their own recipes if logged in
+    user to add their own recipes if logged in.
     """
 
     if request.method == "GET":
@@ -257,7 +256,8 @@ def add_recipe():
 @login_required
 def saved_recipes():
     """
-    Function fetches all the users saved recipe from the database.
+    Function fetches all the users saved recipe from the
+    database and displays on the page.
     """
 
     user = users_data.find_one({"username": session["user"]})
@@ -325,42 +325,48 @@ def remove_saved_recipe(recipe_id):
 def edit_recipe(recipe_id):
     """
     Edit recipe function allows the user to edit their own recipes from
-    their profile page.
+    their profile page. User can only edit recipe if they created it or
+    are admin.
     """
 
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    created_by = recipes_data.find_one({'created_by': session['user']})
 
-    if request.method == "GET":
-        return render_template('edit-recipe.html', recipe=recipe)
+    if request.method == "POST":
 
-    recipes_data.update_one(
-        {"_id": ObjectId(recipe_id)},
-        {'$set': {
-            "meal_name": request.form.get("meal_name"),
-            "recipe_name": request.form.get("recipe_name"),
-            "ingredients": request.form.get("ingredients"),
-            "description": request.form.get("description").capitalize(),
-            "recommendation": request.form.get("recos").capitalize(),
-            "yield": request.form.get("yield"),
-            "active_time": request.form.get(
-                "active_time").replace('mins', 'minutes').title(),
-            "total_time": request.form.get(
-                "total_time").replace('mins', 'minutes').title(),
-            "img_url": request.form.get("img_url") or default_img,
-            "method": request.form.get("method")
-        }})
+        if created_by or session['user'] == "admin":
+            recipes_data.update_one(
+                {"_id": ObjectId(recipe_id)},
+                {'$set': {
+                    "meal_name": request.form.get("meal_name"),
+                    "recipe_name": request.form.get("recipe_name"),
+                    "ingredients": request.form.get("ingredients"),
+                    "description": request.form.get("description").capitalize(),
+                    "recommendation": request.form.get("recos").capitalize(),
+                    "yield": request.form.get("yield"),
+                    "active_time": request.form.get(
+                        "active_time").replace('mins', 'minutes').title(),
+                    "total_time": request.form.get(
+                        "total_time").replace('mins', 'minutes').title(),
+                    "img_url": request.form.get("img_url") or default_img,
+                    "method": request.form.get("method")
+                }})
+            flash("Recipe Updated 😊")
+            return redirect(url_for("recipe_page", recipe_id=recipe_id))
+        else:
+            flash("Not your recipe to edit!")
+            return redirect(url_for("recipe_page", recipe_id=recipe_id))
 
-    flash("Recipe Updated 😊")
-    return redirect(url_for("recipe_page", recipe_id=recipe_id))
+    return render_template('edit-recipe.html', recipe=recipe)
 
 
 @app.route('/delete-recipe/<recipe_id>')
 @login_required
 def delete_recipe(recipe_id):
     """
-    If the recipe has been created by the user logged in or the
-    admin then they can remove a recipe. All other users will
-    not have access to this unless they have created the recipe.
+    Checks if the recipe has been created by the user logged in, or user is
+    admin. If true then they can remove a recipe. Other users will not be able
+    to delete other users recipes.
     """
 
     created_by = recipes_data.find_one({'created_by': session['user']})
@@ -380,11 +386,11 @@ def delete_recipe(recipe_id):
 @login_required
 def delete_user(username):
     """
-    If the session user is the username that is logged in or
-    the admin then they can delete their account with this URL.
+    Checks the session user is the username that is logged in or
+    the admin. If true then user can delete their account.
     """
 
-    if session['user'] == username:
+    if session['user'] == username or 'admin':
         users_data.remove({"username": session['user']})
         session.pop("user")
         recipes_data.remove({"created_by": username})
@@ -401,7 +407,7 @@ def delete_user(username):
 def update_password(username):
     """
     Checks current password is the users password.
-    Update password if the two new passwords match.
+    Updates password if the two new passwords match.
     If passwords don't match - flash message appears.
     """
 
