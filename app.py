@@ -340,7 +340,8 @@ def edit_recipe(recipe_id):
                     "meal_name": request.form.get("meal_name"),
                     "recipe_name": request.form.get("recipe_name"),
                     "ingredients": request.form.get("ingredients"),
-                    "description": request.form.get("description").capitalize(),
+                    "description": request.form.get(
+                        "description").capitalize(),
                     "recommendation": request.form.get("recos").capitalize(),
                     "yield": request.form.get("yield"),
                     "active_time": request.form.get(
@@ -351,12 +352,13 @@ def edit_recipe(recipe_id):
                     "method": request.form.get("method")
                 }})
             flash("Recipe Updated 😊")
-            return redirect(url_for("recipe_page", recipe_id=recipe_id))
+            return redirect(url_for("recipe_page", recipe_id=recipe_id)) 
         else:
             flash("Not your recipe to edit!")
             return redirect(url_for("recipe_page", recipe_id=recipe_id))
 
     return render_template('edit-recipe.html', recipe=recipe)
+
 
 
 @app.route('/delete-recipe/<recipe_id>')
