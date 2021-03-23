@@ -32,7 +32,6 @@ recipes_data = mongo.db.recipes
 users_data = mongo.db.users
 subscribers_data = mongo.db.subscribers
 meals_data = mongo.db.meals
-error = None
 
 
 def login_required(f):
