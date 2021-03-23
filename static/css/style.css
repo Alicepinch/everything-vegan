@@ -103,7 +103,7 @@ button {
 .recipes-name-heading {
     font-family: 'Bungee', cursive, sans-serif;
     color: #000;
-    font-size: 3.5rem;
+    font-size: 3rem;
     text-align: center;
     padding-top: 50px;
 }
@@ -564,7 +564,8 @@ transform: scale(1.1);
 .search-form-field {
 	margin: .5rem;
 	padding: .5rem 1rem;
-	border: 1px solid #000;
+    border: 1px solid #000;
+    
 }
 
 #search-label {

@@ -265,18 +265,18 @@ def saved_recipes():
     recipe = recipes_data.find()
 
     for saved in saved_recipes:
-        if saved in recipe:
+        if saved not in recipe:
+            users_data.update_one(
+                user, {"$pull": {"saved_recipes": recipe}})
+        else:
             return render_template(
                 'saved-recipes.html', saved_recipes=saved_recipes,
-                user=user, recipe=recipe
-                )
-        else:
-            users_data.remove(saved)
+                user=user, recipe=recipe)
 
     return render_template(
         'saved-recipes.html', saved_recipes=saved_recipes,
         user=user, recipe=recipe
-        )
+    )
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
