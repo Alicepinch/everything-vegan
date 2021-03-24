@@ -241,7 +241,8 @@ def add_recipe():
         "img_url": request.form.get("img_url") or default_img,
         "method": request.form.get("method"),
         "created_by": session["user"],
-        "date_created": date.strftime("%d/%m/%Y")
+        "date_created": date.strftime("%d/%m/%Y"),
+        "users_saved": []
     }
 
     recipes_data.insert_one(recipe)
@@ -249,7 +250,7 @@ def add_recipe():
     return redirect(url_for("recipes"))
 
 
-# Saved Recipes and delete saved recipe #
+# Saved Recipe functions #
 
 @app.route('/saved-recipes')
 @login_required
@@ -262,15 +263,6 @@ def saved_recipes():
     user = users_data.find_one({"username": session["user"]})
     saved_recipes = users_data.find_one(user)["saved_recipes"]
     recipe = recipes_data.find()
-
-    for saved in saved_recipes:
-        if saved not in recipe:
-            users_data.update_one(
-                user, {"$pull": {"saved_recipes": recipe}})
-        else:
-            return render_template(
-                'saved-recipes.html', saved_recipes=saved_recipes,
-                user=user, recipe=recipe)
 
     return render_template(
         'saved-recipes.html', saved_recipes=saved_recipes,
@@ -289,7 +281,6 @@ def save_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     if request.method == "POST":
-
         if recipe in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
@@ -310,9 +301,9 @@ def remove_saved_recipe(recipe_id):
     user = users_data.find_one({"username": session["user"]})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
-    flash("Recipe removed from saved")
     users_data.update_one(
         user, {"$pull": {"saved_recipes": recipe}})
+    flash("Recipe removed from saved")
 
     return redirect(url_for("saved_recipes"))
 
@@ -332,7 +323,6 @@ def edit_recipe(recipe_id):
     created_by = recipes_data.find_one({'created_by': session['user']})
 
     if request.method == "POST":
-
         if created_by or session['user'] == "admin":
             recipes_data.update_one(
                 {"_id": ObjectId(recipe_id)},
@@ -352,13 +342,11 @@ def edit_recipe(recipe_id):
                     "method": request.form.get("method")
                 }})
             flash("Recipe Updated 😊")
-            return redirect(url_for("recipe_page", recipe_id=recipe_id)) 
+            return redirect(url_for("recipe_page", recipe_id=recipe_id))
         else:
             flash("Not your recipe to edit!")
             return redirect(url_for("recipe_page", recipe_id=recipe_id))
-
     return render_template('edit-recipe.html', recipe=recipe)
-
 
 
 @app.route('/delete-recipe/<recipe_id>')
