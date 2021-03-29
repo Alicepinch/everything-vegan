@@ -264,7 +264,8 @@ def saved_recipes():
 
     for recipe in saved:
         recipe = recipes_data.find_one({'_id': ObjectId(recipe)})
-        saved_rec.append(recipe)
+        if recipe is not None:
+            saved_rec.append(recipe)
 
     return render_template(
         'saved-recipes.html', saved=saved, saved_rec=saved_rec)
@@ -277,12 +278,11 @@ def save_recipe(recipe_id):
     Adds recipe to a recipe array in users data.
     """
     user = users_data.find_one({"username": session["user"]})
-    saved = users_data.find_one(user)["saved_recipes"]
-    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    saved = user["saved_recipes"]
 
     if request.method == "POST":
 
-        if recipe in saved:
+        if ObjectId(recipe_id) in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
         else:
@@ -361,15 +361,10 @@ def delete_recipe(recipe_id):
 
     created_by = recipes_data.find({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
-    users_saved = users_data.find()
 
     if created_by or session['user'] == 'admin':
-        users_saved.update_many(
-            {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
-
         recipes_data.remove(recipe)
         flash("Recipe Succesfully Removed!")
-
     else:
         flash("Recipe cant be removed!")
 
