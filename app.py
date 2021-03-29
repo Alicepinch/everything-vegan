@@ -172,7 +172,7 @@ def register():
         "date_joined": date.strftime("%d/%m/%Y"),
         "profile_image": request.form.get(
             "profile_img") or default_pic,
-        "saved_recipes": [],
+        "saved_recipes": []
     }
     users_data.insert_one(register)
 
@@ -242,7 +242,6 @@ def add_recipe():
         "method": request.form.get("method"),
         "created_by": session["user"],
         "date_created": date.strftime("%d/%m/%Y"),
-        "users_saved": []
     }
 
     recipes_data.insert_one(recipe)
@@ -256,18 +255,19 @@ def add_recipe():
 @login_required
 def saved_recipes():
     """
-    Function fetches all the users saved recipe from the
-    database and displays on the page.
+    Lists all recipes
+    in mongodb data.
     """
-
     user = users_data.find_one({"username": session["user"]})
-    saved_recipes = users_data.find_one(user)["saved_recipes"]
-    recipe = recipes_data.find()
+    saved = user["saved_recipes"]
+    saved_rec = []
+
+    for recipe in saved:
+        recipe = recipes_data.find_one({'_id': ObjectId(recipe)})
+        saved_rec.append(recipe)
 
     return render_template(
-        'saved-recipes.html', saved_recipes=saved_recipes,
-        user=user, recipe=recipe
-    )
+        'saved-recipes.html', saved=saved, saved_rec=saved_rec)
 
 
 @app.route('/save-recipe/<recipe_id>', methods=["POST"])
@@ -281,12 +281,15 @@ def save_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     if request.method == "POST":
+
         if recipe in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
         else:
             users_data.update_one(
-                user, {"$push": {"saved_recipes": recipe}})
+                user, {"$push": {
+                    "saved_recipes": ObjectId(recipe_id)}})
+
             flash("Recipe Saved to profile!💚")
 
     return redirect(url_for("recipes"))
@@ -299,14 +302,12 @@ def remove_saved_recipe(recipe_id):
     Removes saved recipe from the array in users data.
     """
     user = users_data.find_one({"username": session["user"]})
-    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
 
     users_data.update_one(
-        user, {"$pull": {"saved_recipes": recipe}})
+        user, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
     flash("Recipe removed from saved")
 
     return redirect(url_for("saved_recipes"))
-
 
 # Edit and delete recipes #
 
@@ -358,11 +359,17 @@ def delete_recipe(recipe_id):
     to delete other users recipes.
     """
 
-    created_by = recipes_data.find_one({'created_by': session['user']})
+    created_by = recipes_data.find({'created_by': session['user']})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    users_saved = users_data.find()
 
     if created_by or session['user'] == 'admin':
-        recipes_data.delete_one({"_id": ObjectId(recipe_id)})
+        users_saved.update_many(
+            {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
+
+        recipes_data.remove(recipe)
         flash("Recipe Succesfully Removed!")
+
     else:
         flash("Recipe cant be removed!")
 
