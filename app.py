@@ -98,8 +98,9 @@ def search():
 
     if all_recipes > 0:
         return render_template("recipes.html", recipes=recipes)
+    else:
+        flash("Sorry! No recipes yet! 😔")
 
-    flash("Sorry! No recipes yet! 😔")
     return render_template("recipes.html", recipes=recipes)
 
 
@@ -359,12 +360,12 @@ def delete_recipe(recipe_id):
     Checks if recipe ID is in any users "saved_recipes" array,
     if it is then recipe will be deleted from array as well.
     """
-    created_by = recipes_data.find({'created_by': session['user']})
+    created_by = recipes_data.find_one({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     users_saved = list(users_data.find(
         {"saved_recipes": ObjectId(recipe_id)}))
 
-    if created_by or session['user'] == 'admin':
+    if created_by or session['user'] == "admin":
         recipes_data.delete_one(recipe)
         for users in users_saved:
             users_data.update_many(
