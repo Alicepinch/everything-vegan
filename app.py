@@ -89,8 +89,7 @@ def recipes():
 def search():
     """
     Searches the recipe index. Will return results for, Recipe name,
-    description and ingredients. If not results match - flash message
-    will show.
+    description and ingredients.
     """
 
     query = request.form.get("search-query")
@@ -107,8 +106,7 @@ def search():
 @app.route('/recipe/<recipe_id>')
 def recipe_page(recipe_id):
     """
-    Returns page for
-    specific recipe ID.
+    Returns page for specific recipe ID.
     """
 
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
@@ -120,7 +118,7 @@ def recipe_page(recipe_id):
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """
-    Log's customer in if username exists and password is correct.
+    If username exists and password is correct user is logged in.
     """
 
     if request.method == "GET":
@@ -146,8 +144,8 @@ def login():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     """
-    Registers new user if username/email is not
-    used and add's data to mongodb.
+    Checks if username/email is already in use. If not the
+    registers Registers new user.
     """
 
     if request.method == "GET":
@@ -200,7 +198,7 @@ def logout():
 @login_required
 def profile(username):
     """
-    Profile will display all recipes created by user.
+    Profile displays all recipes created by user.
     If admin is logged in they can view all recipes on profile.
     """
 
@@ -255,8 +253,9 @@ def add_recipe():
 @login_required
 def saved_recipes():
     """
-    Lists all recipes
-    in mongodb data.
+    Finds users saved recipes array. Loops through saved
+    recipes and assigns recipe to it's ID in recipes data. Adds all
+    saved recipe info to list to be returned on page in the template.
     """
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
@@ -275,7 +274,9 @@ def saved_recipes():
 @login_required
 def save_recipe(recipe_id):
     """
-    Adds recipe to a recipe array in users data.
+    Adds recipe to "saved_recipes" array in users data.
+    Checks if recipe ID is already in array, If not then push's
+    recipe ID to array.
     """
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
@@ -298,7 +299,7 @@ def save_recipe(recipe_id):
 @login_required
 def remove_saved_recipe(recipe_id):
     """
-    Removes saved recipe from the array in users data.
+    Removes recipe ID from the users "saved_recipes" array.
     """
     user = users_data.find_one({"username": session["user"]})
 
@@ -310,13 +311,14 @@ def remove_saved_recipe(recipe_id):
 
 # Edit and delete recipes #
 
+
 @app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
 @login_required
 def edit_recipe(recipe_id):
     """
-    Edit recipe function allows the user to edit their own recipes from
-    their profile page. User can only edit recipe if they created it or
-    are admin.
+    Allows the user that has created this recipe or
+    the admin to edit any recipe details. Edit's will update
+    recipe in recipes data.
     """
 
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
@@ -353,9 +355,9 @@ def edit_recipe(recipe_id):
 @login_required
 def delete_recipe(recipe_id):
     """
-    Checks if the recipe has been created by the user logged in, or user is
-    admin. If true then they can remove a recipe. Other users will not be able
-    to delete other users recipes.
+    Deletes recipe if the user logged in created it or user is admin.
+    Checks if recipe ID is in any users "saved_recipes" array,
+    if it is then recipe will be deleted from array as well.
     """
     created_by = recipes_data.find({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
@@ -365,25 +367,24 @@ def delete_recipe(recipe_id):
     if created_by or session['user'] == 'admin':
         recipes_data.delete_one(recipe)
         for users in users_saved:
-            users_data.update_many(users,
-                {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
+            users_data.update_many(
+                users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         flash("Recipe Succesfully Removed!")
     else:
         flash("Recipe cant be removed!")
 
     return redirect(url_for("recipes"))
 
-    return redirect(url_for("recipes"))
-
 
 # Update / delete user #
+
 
 @app.route('/delete-account/<username>')
 @login_required
 def delete_user(username):
     """
-    Checks the session user is the username that is logged in or
-    the admin. If true then user can delete their account.
+    Deletes accound if session user is the username that is logged in or
+    the admin.
     """
 
     if session['user'] == username or 'admin':
@@ -403,8 +404,7 @@ def delete_user(username):
 def update_password(username):
     """
     Checks current password is the users password.
-    Updates password if the two new passwords match.
-    If passwords don't match - flash message appears.
+    Updates password only if the two new passwords match.
     """
 
     current_password = request.form.get("password")
@@ -438,7 +438,7 @@ def update_password(username):
 @login_required
 def update_profile_pic(username):
     """
-    Updates users profile photo.
+    Updates users profile photo if user is logged in.
     """
 
     if session['user'] == username:
@@ -457,7 +457,7 @@ def update_profile_pic(username):
 @app.route('/subscribe', methods=["GET", "POST"])
 def subscribe_user():
     """
-    First checks if email is subscribed already.
+    Checks if email is subscribed already.
     If email is not subscribed, email is added to database.
     """
 

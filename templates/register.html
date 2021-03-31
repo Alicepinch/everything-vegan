@@ -20,12 +20,12 @@
                                     <div class="col-12">
                                         <i class="fas fa-envelope-open-text login-register-logo"></i>
                                         <input id="email" name="email" type="email" class="login-form-field"
-                                            placeholder="Email address" minlength="5" maxlength="30" required>
+                                            placeholder="Email address*" minlength="5" maxlength="30" required>
                                     </div>
                                     <div class="col-12">
                                         <i class="fas fa-user-plus login-register-logo"></i>
                                         <input id="username" name="username" type="text" class="login-form-field"
-                                            placeholder="Username" minlength="5" maxlength="15"
+                                            placeholder="Username*" minlength="5" maxlength="15"
                                             pattern="^[a-zA-Z0-9]{5,15}$" required>
                                     </div>
                                     <div class="col-12">
@@ -37,7 +37,10 @@
                                         <i class="fas fa-user-cog login-register-logo"></i>
                                         <input id="password" name="password" type="password" class="login-form-field"
                                             minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
-                                            placeholder="Password" required>
+                                            placeholder="Password*" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <small class="text-muted">All fields marked with * are mandatory</small>
                                     </div>
 
                                     <!---Flash Messages--->

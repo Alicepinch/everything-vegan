@@ -20,6 +20,10 @@
         <div class="add-edit-form-container">
 
             <form method="POST" class="text-center" action="{{  url_for('edit_recipe', recipe_id=recipe._id)  }}">
+                 <div class="col-12">
+                        <small>All fields marked with * are mandatory</small>
+                    </div>
+                <div>
                 <div>
                     <label for="recipe_name">Recipe Name</label>
                     <input type="text" name="recipe_name" maxlength="35" class="form-field" value="{{ recipe.recipe_name}}"
@@ -59,7 +63,7 @@
                 <div class="col-12">
                     <label for="yield">Yield</label>
                     <input type="number" name="yield" value="{{ recipe.yield}}" class="form-field" id="yield" required>
-                    <small class="form-description">How many people will this serve(rougly).</small>
+                    <small class="form-description">How many people will this serve(rougly) - max 12.</small>
                 </div>
                 <div class="col-12">
                     <label for="active_time">Active Time</label>

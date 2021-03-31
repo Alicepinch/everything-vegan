@@ -69,7 +69,7 @@ HTML Validator returned errors for Jinja templating which is expected behaviour.
 
 ## JSHint
 
-JavaScript code passed through JShint with no major issues. Once run through, it prompted to add some semicolons that were missing. These were all added accordinly.
+JavaScript code passed through JShint with no major issues. Once run through, it prompted to add some semicolons that were missing. These were all added.
 
 ## Python Testing
 
@@ -86,15 +86,15 @@ Pytest is something that I would like to look into in the future for automatic t
 
 ### User Session Lifetime
 
-During the build of the website I noticed that the session was not ending when a user closed the browser and the user was staying logged in forever. This isn't the best UX as the expected behaviour should be that the user is logged out of the session when closing a browser or after a certain amount of time. In order to fix this I added in the app configuration from flask "PERMANENT_SESSION_LIFETIME" and set the time for this as 120 minutes. This fixed the issue and users will be automatically be logged out of their session after 2 hours. 
+During the build I noticed that the session was not ending when a user closed the browser and the user was staying logged in forever. This isn't the best UX as the expected behaviour should be that the user is logged out of the session when closing a browser or after a certain amount of time. In order to fix, I added in the app configuration from flask "PERMANENT_SESSION_LIFETIME" and set the time for this as 120 minutes. This fixed the issue and users will be automatically be logged out of their session after 2 hours. 
 
 ### Login Required
 
-Whilst testing/building the website I noticed that if a user was logged out but pressed the back button they would be taken back to the profile page/have access to pages that are only availble to users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix this I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
+Whilst testing/building the website I noticed that if a user was logged out but pressed back they would be taken back to the profile page/have access to pages that are for users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix, I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
 
 ### Deleting account & Recipes:
 
-When doing my final tests, I noticed that if anyone was logged into an account they were able to delete anyones account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. However, if someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. So therefore I added in some if statement to the appropriate routes in my app.py file. I also added flash messaged to let a user know they cant delete even if they tried. 
+When doing my final tests, I noticed that if anyone was logged in, they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. However, if someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my app.py file. I also added flash messaged to let a user know they can't delete even if they tried. 
 
 
 Code added:
@@ -135,7 +135,7 @@ iMac
 When testing on safari I found an issue with the select drop down css didn't apply on the forms. I have not corrected this as prioritised other issues for now. 
 
 If a user enters an invalid email address for a recipe then the image be a broken link.
-  - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly to the webiste.
+  - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly.
 
 If a user has searched for a recipe in the search bar and then presses the back button and then the forward button again then they will be presented by "Confirm Form Resubmission". 
 
@@ -175,7 +175,7 @@ If a user has searched for a recipe in the search bar and then presses the back 
 
 </details>
 
-<details><summary>As a user I would like to be able to log out of my account..</summary>
+<details><summary>As a user I would like to be able to log out of my account.</summary>
 
 - When a user is logged into their account then a 'Logout' button will appear that users can click to end their session. 
 

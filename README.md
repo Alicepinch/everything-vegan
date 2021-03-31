@@ -23,7 +23,7 @@ Eating Vegan is an online community where users can create and explore new exclu
  
 ## UX
 
-The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users will be able to view the recipes that have been shared on the website. However, if a user creates an account then they will have added features where they can share and edit and delete their own recipes to the website. Therefore, another goal for this website was to insure the interface was easy to use for users who create an account to create, update,read and delete recipes and their account. 
+The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users will be able to view the recipes that have been shared on the website. Another UX goal of the website was to create a space where users can share, edit, and delete their own recipes. To facilitate this, I ensured that the interface was clear and easy to use for those who wanted to create an account and actively engage with the content.
 
 ## User Stories
 
@@ -81,11 +81,11 @@ As the interface will look different for customers who have registered an accoun
 </details>
 
 #### Differences from original wireframes:
-As you can see from the original wireframes, there are some features that were not implemented/ some design decisions were changed during the build. For example, due to time constraints and priotisising more important features, the reviews section was not included on the homepage. On the profile page when a user is logged in, the "{Username} profile" header was removed as this didn't look the best and was not necessary.
+As you can see from the original wireframes, there are some features that were not implemented/ some design decisions were changed during the build. For example, due to time constraints and more important features, the reviews section was not included on the homepage. On the profile page when a user is logged in, the "{Username} profile" header was removed as this didn't look the best and was not necessary.
 
 ## Design 
 
-Veganism can sometimes be associated with being boring. Therefore, for the overall design of this project I wanted it to be modern but with a fun feel throughout for the user.
+Veganism can sometimes be associated with being boring. However, for the overall design of this project I wanted it to be modern but with a fun feel throughout for the user.
 
 <details><summary>Typography</summary>
 <p>
@@ -187,7 +187,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Delete account
 - [x] Delete recipe
 - [x] Different page titles
-- [ ] Save Recipe
+- [x] Save Recipe
 
 ## Future Features
 
