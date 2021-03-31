@@ -32,14 +32,21 @@
             {% for recipe in saved_rec %}
              <div class="col-12 col-md-6 col-lg-4">
                 <div class="recipe-card">
-                    <img class="recipe-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}">
+                   {% if recipe.img_url %}
+                    <a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"><img class="recipe-image"
+                            src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}"></a>
+                    {% else %}
+                    <img class="recipe-image"
+                        src="{{url_for('static', filename = 'images/default-recipe-image.jpg')}}"
+                        alt="{{ recipe.recipe_name }}">
+                    {% endif %}
                     <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description-card">
                         <p>
                             <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
                             {{ recipe.description }}
                         </p>
-                        <span ><a  class="recipe-link" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
+                        <span ><a  class="recipe-link pb-2" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}">
                                     View Recipe <i class="fas fa-arrow-right"></i></a></span>
                         {% if session.user %}
                         <form method="POST" action="{{  (url_for('remove_saved_recipe', recipe_id=recipe._id))  }}">

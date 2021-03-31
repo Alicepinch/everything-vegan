@@ -28,7 +28,11 @@
         <!---Recipe Image--->
 
         <div class="col-12 text-center">
+            {% if recipe.img_url %}
             <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name }}">
+            {% else %}
+            <img class="recipe-page-image" src="{{url_for('static', filename = 'images/default-recipe-image.jpg')}}" alt="{{ recipe.recipe_name }}">
+            {% endif %}
             <p class="text-muted recipe-created-by">Recipe Created By: {{ recipe.created_by }} on
                 {{ recipe.date_created }} </p>
         </div>

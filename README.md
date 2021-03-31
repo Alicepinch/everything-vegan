@@ -151,13 +151,6 @@ Recommendations | recomendations | text | string
 Created By | created_by | Populated from session['user'] | string
 Date Created | date_created | Populated from when form is submitted | string
 
-#### Meals 
-
-| Title | Key in db | form validation type | Data type |
---- | --- | --- | --- 
-ID | _id | None | ObjectId 
-Meal | meal_type | text | string
-
 #### Subscribers
 
 | Title | Key in db | form validation type | Data type |
@@ -330,7 +323,7 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 
 ### Content
 
-- Some recipes and images created by user "alicepinch" have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/) or https://karalydon.com/recipes/chipotle-inspired-vegan-burrito-bowl/
+- All recipes and images created by user "alicepinch" have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
 - Other recipes written by "alicepinch" are written by myself.
 - Some recipes will have been added by other users. 
 

@@ -25,13 +25,11 @@ mongo = PyMongo(app)
 
 # Global variables used throughout functions #
 
-default_img = ("/static/images/default-recipe-image.jpg")
 default_pic = ("/static/images/default-profile-picture.jpg")
 date = date.today()
 recipes_data = mongo.db.recipes
 users_data = mongo.db.users
 subscribers_data = mongo.db.subscribers
-meals_data = mongo.db.meals
 
 
 def login_required(f):
@@ -232,7 +230,7 @@ def add_recipe():
             "active_time").replace('mins', 'minutes').title(),
         "total_time": request.form.get(
             "total_time").replace('mins', 'minutes').title(),
-        "img_url": request.form.get("img_url") or default_img,
+        "img_url": request.form.get("img_url"),
         "method": request.form.get("method"),
         "created_by": session["user"],
         "date_created": date.strftime("%d/%m/%Y"),
@@ -337,7 +335,7 @@ def edit_recipe(recipe_id):
                     "active_time").replace('mins', 'minutes').title(),
                 "total_time": request.form.get(
                     "total_time").replace('mins', 'minutes').title(),
-                "img_url": request.form.get("img_url") or default_img,
+                "img_url": request.form.get("img_url"),
                 "method": request.form.get("method"),
                 "last_edited_by": session['user']
             }})

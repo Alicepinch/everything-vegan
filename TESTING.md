@@ -62,7 +62,7 @@ CSS Validator returned no errors.
 
 HTML Validator returned errors for Jinja templating which is expected behaviour. Some issues were raised for both the 'edit-recipe.html" and "add-recipe.html" forms as below. No other issues were found when running HTML through the validator.
 
-![WSC Form errors](/docs/testing/eating-vegan-wsc-html-validator-issues.jpg)
+![WSC errors](/docs/testing/eating-vegan-wsc-html-validator-issues.jpg)
 
 - ```type='text'``` Was removed from the textarea field. 
 - ```"value=""``` Was added to the select box's to remove the error.
@@ -92,11 +92,6 @@ During the build I noticed that the session was not ending when a user closed th
 
 Whilst testing/building the website I noticed that if a user was logged out but pressed back they would be taken back to the profile page/have access to pages that are for users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix, I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
 
-### Deleting account & Recipes:
-
-When doing my final tests, I noticed that if anyone was logged in, they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. However, if someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my app.py file. I also added flash messaged to let a user know they can't delete even if they tried. 
-
-
 Code added:
 ```
 def login_required(f):
@@ -108,6 +103,85 @@ def login_required(f):
             return f(*args, **kwargs)
     return login_check
 ```
+
+### Saved recipes:
+
+When testing the save recipe function I noticed that if a user had saved a recipe that had been deleted by another user, it was still in their "saved_recipe" array in mongodb. This wasnt ideal as the recipe didn't exist anymore. However, was still displaying on their saved recipes page. In order to fix this I needed to loop through all the users in mongoDB and then loop through all of the users "saved_recipes" arrays in order to check whether the recipe being deleted was in there. If it was then this needed to be deleted. The below code was the solution for this.
+
+Code Before:
+
+```
+@app.route('/delete-recipe/<recipe_id>')
+@login_required
+def delete_recipe(recipe_id):
+    created_by = recipes_data.find_one({'created_by': session['user']})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+
+    if created_by or session['user'] == "admin":
+        recipes_data.delete_one(recipe)
+        flash("Recipe Succesfully Removed!")
+    else:
+        flash("Not your recipe to delete!")
+
+    return redirect(url_for("recipes"))
+
+```
+
+Code after:
+
+```
+@app.route('/delete-recipe/<recipe_id>')
+@login_required
+def delete_recipe(recipe_id):
+    created_by = recipes_data.find_one({'created_by': session['user']})
+    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    users_saved = list(users_data.find(
+        {"saved_recipes": ObjectId(recipe_id)}))
+
+    if created_by or session['user'] == "admin":
+        recipes_data.delete_one(recipe)
+        for users in users_saved:
+            users_data.update_many(
+                users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
+        flash("Recipe Succesfully Removed!")
+    else:
+        flash("Not your recipe to delete!")
+
+    return redirect(url_for("recipes"))
+
+```
+
+### Deleting account & Recipes:
+
+When doing my final tests, I noticed that if anyone was logged in, they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. However, if someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file. I also added flash messaged to let a user know they can't delete even if they tried.
+
+## Form Testing:
+
+All required form field have been marked with an '*' and this has been stated either above the form or below excluding the login form. 
+
+#### Register Form:
+
+Register form has been tested by filling out each required form field and submitting. Once form is submitted user details are pushed to the users collection in mongoDB databse. 
+  - Form fields that are required: Email address, username and password. Profile photo is not required and if used doesn't fill this in a default profile picture will be used.
+
+#### Login form:
+
+Login form has been tested by using the same details that were used to register. Once form is submitted user is succesfully logged in and directed to profile page. 
+  - Password and Username are both required fields and a user cannot log in without either or. 
+
+#### Subscribe Newsletter:
+
+User can enter their email address to subscribe to newsletter by clicking 'Subscribe' button, once submitted email address is saved in subscribers collection in mongoDB.
+
+#### Add Recipe:
+
+The Add Recipe form has been tested by adding numerous recipes to the website. Each form field was filled out one by one and submitted after each one to test that the the correct form fields were required. All form fields are required for the Add Recipe form except from "Recommendation" and "Image". If "Recommendation" is left empty then on the recipe page this section is hidden. If the "Image" field is left blank then Jinja templating will display a default recipe image. 
+  - Once submitted all the recipes data is succesfully pushed and saved in the mongoDB recipes collection.
+
+#### Edit Recipe:
+
+The edit recipe form has been tested in the same way as the "Add recipe" form. However, when testing this form I noticed that if a user hadn't entered a image url and the default image was being used "/static/images/default-recipe-image.jpg" then a user could not submit the edit form as the form field pattern for this was ```pattern="https://.*"``` and input field was "url". In order to fix this, I added in jinja templating to add the default recipe image rather than have this in the form field itself. 
+  - Once the edit form is submitted the recipes data is succesfully updated in the mongoDB recipes collection.
 
 ## Usability Testing:
 
@@ -277,6 +351,13 @@ If a user has searched for a recipe in the search bar and then presses the back 
 
 <details><summary>As a user I would like to be able to save recipes to my profile.</summary>
 
+- A user is able to save their recipe to their "saved_recipes" array in mongoDB and access all saved recipes from their profile.
+
+![Save Recipe](/docs/testing/user-story-gifs/save-recipe.gif)
+
+- A user is also able to remove any recipes from their saved recipes. 
+
+![Remove Saved Recipe](/docs/testing/user-story-gifs/remove-saved-recipe.gif)
 
 </details>
 
