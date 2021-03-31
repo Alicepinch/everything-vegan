@@ -56,7 +56,6 @@ def index():
 
 # Recipe functions #
 
-
 @app.route('/recipes')
 def recipes():
     """
@@ -216,8 +215,7 @@ def profile(username):
 @login_required
 def add_recipe():
     """
-    Add recipe function allows the
-    user to add their own recipes if logged in.
+    Add allows user to add their own recipes if logged in.
     """
 
     if request.method == "GET":
@@ -382,12 +380,22 @@ def delete_recipe(recipe_id):
 def delete_user(username):
     """
     Deletes account if session user is the username that is logged in.
+    Recipe will be updated to be managed by admin if user deletes account.
     """
+
+    users_recipes = list(recipes_data.find({"created_by": session["user"]}))
 
     if username:
         users_data.remove({"username": username})
         session.pop("user")
-        recipes_data.remove({"created_by": username})
+
+        for recipe in users_recipes:
+            recipes_data.update(
+                    recipe,
+                    {'$set': {
+                        "created_by": "admin"
+                    }})
+
         flash("Sorry to see you go! Your user has been deleted.")
     else:
         flash("This is not your account to delete!")
