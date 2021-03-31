@@ -211,8 +211,6 @@ When testing on safari I found an issue with the select drop down css didn't app
 If a user enters an invalid email address for a recipe then the image be a broken link.
   - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly.
 
-If a user has searched for a recipe in the search bar and then presses the back button and then the forward button again then they will be presented by "Confirm Form Resubmission". 
-
 ## User Stories Tested:
 
 ### New user:

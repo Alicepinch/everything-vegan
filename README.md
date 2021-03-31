@@ -139,7 +139,7 @@ Date joined | date_joined | Populated from when user is created | string
 --- | --- | --- | --- 
 ID | _id | None | ObjectId 
 Recipe Name | recipe_name | text | string
-Meal Type | meal_type | text | string
+Meal Name | meal_name | text | string
 Recipe Image | img_url | url `pattern="https://.*"` | string
 Yield | yield | number | string
 Active Time | active_time | text | string
@@ -320,6 +320,8 @@ SECRET_KEY | `<your_secret_key>`
 PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 
 ## Credits
+
+- [Block Confirm Form Resubmission Javascript Code](https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr)
 
 ### Content
 
