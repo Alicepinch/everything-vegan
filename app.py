@@ -205,7 +205,7 @@ def profile(username):
             {"created_by": session['user']}))
 
     return render_template(
-        "profile.html", user=user, recipes=recipes, username=session['user'])
+        "profile.html", user=user, recipes=recipes, username=username)
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -288,7 +288,7 @@ def save_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-@app.route('/saved-recipes/remove/<recipe_id>', methods=["POST"])
+@app.route('/saved-recipes/<recipe_id>', methods=["POST"])
 @login_required
 def remove_saved_recipe(recipe_id):
     """
@@ -386,7 +386,7 @@ def delete_user(username):
         flash("Sorry to see you go! Your user has been deleted.")
     else:
         flash("This is not your account to delete!")
-        return redirect(url_for("profile", username=session['user']))
+        return redirect(url_for("profile", username=username))
 
     return redirect(url_for("login"))
 
@@ -406,7 +406,7 @@ def update_password(username):
     user = users_data.find_one({'username': session['user']})
 
     if request.method == "GET":
-        return render_template('update-password.html', username=session['user'])
+        return render_template('update-password.html', username=username)
 
     if check_password_hash(user["password"], current_password):
         if new_password == confirm_password:
@@ -417,13 +417,13 @@ def update_password(username):
                     (new_password)
                 }})
             flash("Password updated! 😊")
-            return redirect(url_for('profile', username=session['user']))
+            return redirect(url_for('profile', username=username))
 
         flash("Passwords do not match! Please try again😔")
-        return redirect(url_for("update_password", session['user']))
+        return redirect(url_for("update_password", username=username))
 
     flash('Incorrect password. Please try again😔')
-    return redirect(url_for('update_password', session['user']))
+    return redirect(url_for('update_password', username=username))
 
 
 @app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
@@ -433,7 +433,7 @@ def update_profile_pic(username):
     Updates users profile photo if user is logged in.
     """
 
-    if session['user']:
+    if session['user'] == username:
         users_data.update_one(
             {"username": session['user']},
             {'$set': {
@@ -441,7 +441,7 @@ def update_profile_pic(username):
                     "profile_img")
             }})
 
-    return redirect(url_for("profile", username=session['user']))
+    return redirect(url_for("profile", username=username))
 
 
 # Newsletter Subscribe #
