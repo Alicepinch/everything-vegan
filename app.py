@@ -94,7 +94,10 @@ def search():
     query = request.form.get("search-query")
     recipes = recipes_data.find({"$text": {"$search": query}})
 
-    return render_template("recipes.html", recipes=recipes)
+    searched_recipes = recipes.count()
+
+    return render_template("recipes.html", query=query,
+                           recipes=recipes, searched_recipes=searched_recipes)
 
 
 @app.route('/recipe/<recipe_id>')
@@ -375,7 +378,7 @@ def delete_recipe(recipe_id):
 @login_required
 def delete_user(username):
     """
-    Deletes accound if session user is the username that is logged in or
+    Deletes account if session user is the username that is logged in or
     the admin.
     """
 

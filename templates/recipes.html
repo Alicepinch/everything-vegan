@@ -51,6 +51,12 @@
                 </div>
             </div>
 
+           {% if searched_recipes == 0 %}
+
+            <h3 class="text-center pt-3">Sorry, No results found for '{{ query }}' <a class="btn btn-black" href="{{  url_for('recipes')  }}">View all Recipes</a></h3>
+
+           {% endif %}
+
             {% for recipe in recipes %}
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="recipe-card">
