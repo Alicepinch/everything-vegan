@@ -56,6 +56,16 @@ def index():
 
 # Recipe functions #
 
+
+@app.route('/recipes')
+def recipes():
+    """
+    Lists all recipes in mongoDB data.
+    """
+    recipes = list(recipes_data.find())
+    return render_template('recipes.html', recipes=recipes)
+
+
 @app.route('/recipes/<meal>')
 def meals(meal):
     """
@@ -74,15 +84,6 @@ def meals(meal):
 
     return render_template(
         'recipes.html', meal=meal, recipes=recipes)
-
-
-@app.route('/recipes')
-def recipes():
-    """
-    Lists all recipes in mongoDB data.
-    """
-    recipes = list(recipes_data.find())
-    return render_template('recipes.html', recipes=recipes)
 
 
 @app.route('/recipes', methods=["GET", "POST"])
@@ -199,16 +200,16 @@ def profile(username):
     If admin is logged in they can view all recipes on profile.
     """
 
-    user = users_data.find_one({"username": session['user']})
+    user = users_data.find_one({"username": username})
 
-    if session['user'] == "admin":
+    if username == "admin":
         recipes = list(recipes_data.find())
     else:
         recipes = list(recipes_data.find(
             {"created_by": session['user']}))
 
     return render_template(
-        "profile.html", user=user, recipes=recipes, username=username)
+        "profile.html", user=user, recipes=recipes, username=session['user'])
 
 
 @app.route('/add-recipe', methods=["GET", "POST"])
@@ -320,31 +321,33 @@ def edit_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     created_by = recipes_data.find_one({'created_by': session['user']})
 
-    if request.method == "POST":
-        if created_by or session['user'] == "admin":
-            recipes_data.update_one(
-                {"_id": ObjectId(recipe_id)},
-                {'$set': {
-                    "meal_name": request.form.get("meal_name"),
-                    "recipe_name": request.form.get("recipe_name"),
-                    "ingredients": request.form.get("ingredients"),
-                    "description": request.form.get(
-                        "description").capitalize(),
-                    "recommendation": request.form.get("recos").capitalize(),
-                    "yield": request.form.get("yield"),
-                    "active_time": request.form.get(
-                        "active_time").replace('mins', 'minutes').title(),
-                    "total_time": request.form.get(
-                        "total_time").replace('mins', 'minutes').title(),
-                    "img_url": request.form.get("img_url") or default_img,
-                    "method": request.form.get("method")
-                }})
-            flash("Recipe Updated 😊")
-            return redirect(url_for("recipe_page", recipe_id=recipe_id))
-        else:
-            flash("Not your recipe to edit!")
-            return redirect(url_for("recipe_page", recipe_id=recipe_id))
-    return render_template('edit-recipe.html', recipe=recipe)
+    if request.method == "GET":
+        return render_template('edit-recipe.html', recipe=recipe)
+
+    if created_by or session['user'] == "admin":
+        recipes_data.update_one(
+            {"_id": ObjectId(recipe_id)},
+            {'$set': {
+                "meal_name": request.form.get("meal_name"),
+                "recipe_name": request.form.get("recipe_name"),
+                "ingredients": request.form.get("ingredients"),
+                "description": request.form.get(
+                    "description").capitalize(),
+                "recommendation": request.form.get("recos").capitalize(),
+                "yield": request.form.get("yield"),
+                "active_time": request.form.get(
+                    "active_time").replace('mins', 'minutes').title(),
+                "total_time": request.form.get(
+                    "total_time").replace('mins', 'minutes').title(),
+                "img_url": request.form.get("img_url") or default_img,
+                "method": request.form.get("method"),
+                "last_edited_by": session['user']
+            }})
+        flash("Recipe Updated 😊")
+        return redirect(url_for("recipe_page", recipe_id=recipe_id))
+    else:
+        flash("Not your recipe to edit!")
+        return redirect(url_for("recipe_page", recipe_id=recipe_id))
 
 
 @app.route('/delete-recipe/<recipe_id>')
@@ -378,18 +381,17 @@ def delete_recipe(recipe_id):
 @login_required
 def delete_user(username):
     """
-    Deletes account if session user is the username that is logged in or
-    the admin.
+    Deletes account if session user is the username that is logged in.
     """
 
-    if session['user'] == username or 'admin':
-        users_data.remove({"username": session['user']})
+    if username:
+        users_data.remove({"username": username})
         session.pop("user")
         recipes_data.remove({"created_by": username})
         flash("Sorry to see you go! Your user has been deleted.")
     else:
         flash("This is not your account to delete!")
-        return redirect(url_for("profile", username=username))
+        return redirect(url_for("profile", username=session['user']))
 
     return redirect(url_for("login"))
 
@@ -406,27 +408,28 @@ def update_password(username):
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
     users = users_data
-    user = users_data.find_one({'username': session['user']})
+    user = users_data.find_one({'username': username})
 
     if request.method == "GET":
-        return render_template('update-password.html', username=username)
+        return render_template(
+            'update-password.html', username=session['user'])
 
     if check_password_hash(user["password"], current_password):
         if new_password == confirm_password:
             users.update_one(
-                {'username': session['user']},
+                {'username': username},
                 {'$set': {
                     'password': generate_password_hash
                     (new_password)
                 }})
             flash("Password updated! 😊")
-            return redirect(url_for('profile', username=username))
+            return redirect(url_for('profile', username=session['user']))
 
         flash("Passwords do not match! Please try again😔")
-        return redirect(url_for("update_password", username=username))
+        return redirect(url_for("update_password", username=session['user']))
 
     flash('Incorrect password. Please try again😔')
-    return redirect(url_for('update_password', username=username))
+    return redirect(url_for('update_password', username=session['user']))
 
 
 @app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
@@ -436,15 +439,15 @@ def update_profile_pic(username):
     Updates users profile photo if user is logged in.
     """
 
-    if session['user'] == username:
+    if username:
         users_data.update_one(
-            {"username": session['user']},
+            {"username": username},
             {'$set': {
                 "profile_image": request.form.get(
                     "profile_img")
             }})
 
-    return redirect(url_for("profile", username=username))
+    return redirect(url_for("profile", username=session['user']))
 
 
 # Newsletter Subscribe #
