@@ -28,7 +28,7 @@
         <!---Recipe Image--->
 
         <div class="col-12 text-center">
-            <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="">
+            <img class="recipe-page-image" src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name }}">
             <p class="text-muted recipe-created-by">Recipe Created By: {{ recipe.created_by }} on
                 {{ recipe.date_created }} </p>
         </div>
