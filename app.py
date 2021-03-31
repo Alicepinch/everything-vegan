@@ -281,7 +281,6 @@ def save_recipe(recipe_id):
     saved = user["saved_recipes"]
 
     if request.method == "POST":
-
         if ObjectId(recipe_id) in saved:
             flash("Recipe already saved!😊")
             return redirect(url_for("recipes"))
@@ -358,15 +357,21 @@ def delete_recipe(recipe_id):
     admin. If true then they can remove a recipe. Other users will not be able
     to delete other users recipes.
     """
-
     created_by = recipes_data.find({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    users_saved = list(users_data.find(
+        {"saved_recipes": ObjectId(recipe_id)}))
 
     if created_by or session['user'] == 'admin':
-        recipes_data.remove(recipe)
+        recipes_data.delete_one(recipe)
+        for users in users_saved:
+            users_data.update_many(users,
+                {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         flash("Recipe Succesfully Removed!")
     else:
         flash("Recipe cant be removed!")
+
+    return redirect(url_for("recipes"))
 
     return redirect(url_for("recipes"))
 
