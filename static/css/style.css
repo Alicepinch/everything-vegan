@@ -100,12 +100,13 @@ button {
     padding-top: 50px;
 }
 
-.recipes-name-heading {
+.recipe-name-heading {
     font-family: 'Bungee', cursive, sans-serif;
     color: #000;
     font-size: 3rem;
     text-align: center;
     padding-top: 60px;
+    word-wrap: break-word;
 }
 
 .small-heading {
@@ -140,7 +141,7 @@ button {
 
 .subpage-background {
 	width: 100%;
-	height: 200px;
+	height: 170px;
 	background: linear-gradient(rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255)), url(/static/images/eating-vegan-background-image.jpg)no-repeat center;
 }
 
@@ -304,6 +305,7 @@ button {
 	padding: 1rem 1rem 0rem 1.5rem;
     color: #000;
     height: 70px;
+    word-wrap: break-word;
 }
 
 .meal-name {
@@ -507,9 +509,10 @@ transform: scale(1.1);
 	padding: 50px 0;
 }
 
-.recipe-name,
-.recipe-description {
-	color: #fff;
+.profile-recipe-name,
+.profile-recipe-description {
+    color: #fff;
+    word-wrap: break-word;
 }
 
 .profile-recipe-card {
@@ -672,10 +675,10 @@ footer p {
 	}
 	.recipes-heading {
 		font-size: 2.5rem;
-        padding: 1rem;
+        padding: 2rem 1rem 1rem 1rem;
     }
-    .recipes-name-heading {
-        padding-top: 2rem;
+    .recipe-name-heading {
+        padding: 2rem 1rem 1rem 1rem;
 		font-size: 2rem;
     }
 	.profile-heading {
@@ -699,6 +702,12 @@ footer p {
         margin: 0 auto;
         margin-bottom: 2rem;
     } 
+    .recipe-card h3 {
+        height: fit-content;
+    }
+    .recipe-card p {
+        height: fit-content;
+    }
     .filter-container {
 	    padding-left: 2rem;
     }  
@@ -706,8 +715,8 @@ footer p {
         width: 100%;
     }
 	.recipe-page-image {
-		width: 90%;
-		height: 400px;
+		width: 100%;
+		height: 300px;
 	}
 	.recipe-page-info {
 		width: 100%;
