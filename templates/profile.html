@@ -43,7 +43,8 @@
                 <div class="delete-modal-content">
                     <span class="close">&times;</span>
                     <h3 class="delete-modal-title">Delete Account</h3>
-                    <p> Are you sure you want to delete your account {{username }}? Your recipes will still be available unless you delete these individually before you go.
+                    <p> Are you sure you want to delete your account {{username }}? Your recipes will still be available
+                        unless you delete these individually before you go.
                     </p>
                     <div class="modal-buttons">
                         <a class="btn btn-black m-1" href="{{  url_for('delete_user', username=username) }}">
@@ -107,8 +108,14 @@
                             Recipe </a>
                     </div>
                     <div class="col-12 col-lg-6 col-md-12 text-center">
-                        <img class="profile-recipe-image d-none d-lg-block" src="{{ recipe.img_url }}"
+                        {% if recipe.img_url %}
+                        <a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"><img  class="profile-recipe-image d-none d-lg-block"
+                                src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}"></a>
+                        {% else %}
+                        <img class="profile-recipe-image d-none d-lg-block"
+                            src="{{url_for('static', filename = 'images/default-recipe-image.jpg')}}"
                             alt="{{ recipe.recipe_name }}">
+                        {% endif %}
                     </div>
 
                 </div>
