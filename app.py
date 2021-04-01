@@ -40,6 +40,7 @@ def login_required(f):
     @wraps(f)
     def login_check(*args, **kwargs):
         if 'user' not in session:
+            flash("You need to login first!")
             return redirect(url_for('login'))
         return f(*args, **kwargs)
     return login_check

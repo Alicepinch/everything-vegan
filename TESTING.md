@@ -8,7 +8,7 @@ In case of an internal server error occuring then a 500 error page has also been
 
 ![404 Error page](/docs/testing/errors/404-error-page.gif)
 
-[500 Error page](/docs/testing/errors/500-server-error-page.png)
+![500 Error page](/docs/testing/errors/500-server-error-page.png)
 
 ## Lighthouse Reports:
 
@@ -194,7 +194,7 @@ if ( window.history.replaceState ) {
 
 ````
 
-[Search no results found](/docs/testing/search-no-results-found.png)
+![Search no results found](/docs/testing/search-no-results-found.png)
 
 ## Usability Testing:
 

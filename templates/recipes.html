@@ -81,12 +81,10 @@
                         <span><a class="recipe-link pb-1" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"
                                 aria-label="View Recipe">
                                 View Recipe <i class="fas fa-arrow-right"></i></a></span>
-                        {% if session.user %}
                         <form method="POST" action="{{  (url_for('save_recipe', recipe_id=recipe._id))  }}">
                             <button class="save-recipe" aria-label="Save Recipe"><i class="fas fa-heart"></i> Save
                                 Recipe</button>
                         </form>
-                        {% endif %}
                     </div>
                 </div>
             </div>

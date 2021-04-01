@@ -350,7 +350,8 @@ button {
 	border: none;
 	font-weight: 500;
 	font-family: 'Bungee', sans-serif;
-	font-size: 1.1rem;
+    font-size: 1.1rem;
+    padding: 0;
 }
 
 .recipe-link:hover {
@@ -359,7 +360,8 @@ button {
 }
 
 .save-recipe:hover {
-	transform: scale(1.1);
+    transform: scale(1.1);
+    padding: 0;
 }
 
 
