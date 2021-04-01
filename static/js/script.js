@@ -1,4 +1,4 @@
-//Setting global variables
+// Setting global variables
 const recipeModal = document.getElementById("delete-recipe-modal");
 const accountModal = document.getElementById("delete-account-modal");
 const profilePicModal = document.getElementById("update-picture-modal");
@@ -11,7 +11,7 @@ const cancel = document.getElementsByClassName("cancel");
 const deleteCancel = document.getElementsByClassName("delete-cancel")
 
 
-//Onclick functions to display and hide modals.
+// Onclick functions to display and hide modals.
 $(recipeBtn).click(function(){
     recipeModal.style.display = "block";
 });
@@ -41,7 +41,6 @@ $(deleteClose).click(function(){
 $(deleteCancel).click(function(){
     recipeModal.style.display = "none";
 });
-
 
 // Filter Drop down menu
 
