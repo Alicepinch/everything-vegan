@@ -180,7 +180,7 @@ The edit recipe form has been tested in the same way as the "Add recipe" form. H
   - Once the edit form is submitted the recipes data is succesfully updated in the mongoDB recipes collection.
 
 
-### Search:
+#### Search:
 
 The search function form has been tested, users are able to search by recipe name, description as well as ingreditents. If the query that they search does not exist then a "No results for "query"" message displays to the users. When testing the search function I came across the error "Confirm Form Submission" if a user had clicked on a searched recipe and then back to the recipe page. In order to fix this I used the below code in my JS file:
 
@@ -192,7 +192,7 @@ if ( window.history.replaceState ) {
 
 ````
 
-![Search no results found](/docs/testing/search-no-results-found.png)
+[Search no results found](/docs/testing/search-no-results-found.png)
 
 ## Usability Testing:
 
@@ -238,8 +238,7 @@ When a user enters the site, they can navigate to the 'Register' link in the nav
 <details><summary>As a new user I would like to be able to sign up for the newsletter.</summary>
 
 <br>
-On any page of the website and user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
-
+On any page of the website a user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
 
 </details>
 
@@ -321,18 +320,18 @@ When a user is on the 'Recipes' page there is a search bar at the top. Users are
 <br>
 Once a user has created a recipe, this will be displayed on their profile page. The user can click the 'Edit Recipe' CTA on any of the recipes they have created. They will be lead to a prefilled form with all the content they had previously entered where they can edit accordingly.
 
-![Edit Recipe](/docs/testing/user-story-gifs/edit-recipe.gif)
-
-#### Changes reflected on recipes page and single recipe page.
-
-![Edit recipe recipe page](/docs/testing/user-story-gifs/edit-recipe-more.gif)
+![Edit recipe](/docs/testing/user-story-gifs/edit-recipe.gif)
 
 </details>
 
 <details><summary>As a user I would like to be able to remove recipes that I have created.</summary>
 
 <br>
-To delete a recipe a user must go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page. This will only be displayed if the user has created the recipe or the user logged in is the admin. 
+To delete a recipe a user must either go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page, or on the edit page. This will only be displayed if the user has created the recipe or the user logged in is the admin. 
+
+![Delete recipe edit page](/docs/testing/user-story-gifs/delete-recipe-edit-page.gif)
+
+![Delete recipe recipe page](/docs/testing/user-story-gifs/delete-recipe-recipe-page.gif)
 
 </details>
 
