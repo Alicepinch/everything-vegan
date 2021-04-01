@@ -205,7 +205,7 @@ def profile(username):
         recipes = list(recipes_data.find())
     else:
         recipes = list(recipes_data.find(
-            {"created_by": session['user']}))
+            {"created_by": username}))
 
     return render_template(
         "profile.html", user=user, recipes=recipes, username=session['user'])
