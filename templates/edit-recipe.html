@@ -20,92 +20,94 @@
         <div class="add-edit-form-container">
 
             <form method="POST" class="text-center" action="{{  url_for('edit_recipe', recipe_id=recipe._id)  }}">
-                 <div class="col-12">
-                        <small>All fields marked with * are mandatory</small>
+                <div class="col-12">
+                    <small>All fields marked with * are mandatory</small>
+                </div>
+                <div>
+                    <div>
+                        <label for="recipe_name">Recipe Name</label>
+                        <input type="text" name="recipe_name" maxlength="35" class="form-field"
+                            value="{{ recipe.recipe_name}}" id="recipe_name" required>
+                        <small class="form-description">Max 35
+                            characters</small>
                     </div>
-                <div>
-                <div>
-                    <label for="recipe_name">Recipe Name</label>
-                    <input type="text" name="recipe_name" maxlength="35" class="form-field" value="{{ recipe.recipe_name}}"
-                        id="recipe_name" required>
-                    <small class="form-description">Max 35
-                        characters</small>
-                </div>
-                <div class="col-12">
-                    <label for="meal_name">Meal Name</label>
-                    <select name="meal_name" class="form-field" id="meal_name" required>
-                        <option selected value="{{ recipe.meal_name }}">Meal: {{ recipe.meal_name }}</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Desserts">Dessert</option>
-                    </select>
-                </div>
-                <div class="col-12">
-                    <label for="description">Description</label>
-                    <input type="text" name="description" placeholder="Description" id="description" class="form-field"
-                        maxlength="100" value="{{ recipe.description }}" required>
-                    <small class="form-description">Short description about your the dish. Max 100
-                        characters.</small>
-                </div>
-                <div class="col-12">
-                    <label for="ingredients">Ingredients</label>
-                    <textarea name="ingredients" class="form-field" id="ingredients" rows="6"
-                        required>{{ recipe.ingredients }}</textarea>
-                    <small class="form-description">Each ingredient on a seperate line.</small>
-                </div>
-                <div class="col-12">
-                    <label for="method">Method</label>
-                    <textarea name="method" class="form-field" id="method" rows="6"
-                        required>{{ recipe.method }}</textarea>
-                    <small class="form-description">Each step on a seperate line.</small>
-                </div>
-                <div class="col-12">
-                    <label for="yield">Yield</label>
-                    <input type="number" name="yield" value="{{ recipe.yield}}" class="form-field" id="yield" required>
-                    <small class="form-description">How many people will this serve(rougly) - max 12.</small>
-                </div>
-                <div class="col-12">
-                    <label for="active_time">Active Time</label>
-                    <input type="text" name="active_time" value="{{ recipe.active_time }}" class="form-field"
-                        id="active_time" required>
-                    <small class="form-description">How long does it take to cook this meal.</small>
-                </div>
-                <div class="col-12">
-                    <label for="total_time">Total Time</label>
-                    <input type="text" name="total_time" value="{{ recipe.total_time }}" class="form-field"
-                        id="total_time" required>
-                    <small class="form-description">How long does it take to prepare and cook this meal.</small>
-                </div>
-                <div class="col-12">
-                    <label for="recos">Recommendations</label>
-                    <input type="text" name="recos" placeholder="Recommendation" maxlength="100" class="form-field"
-                        id="recos" value="{{ recipe.recommendation }}">
-                </div>
-                <div class="col-12">
-                    <label for="img_url">Image URL</label>
-                    <input type="url" name="img_url" pattern="https://.*" value="{{ recipe.img_url}}" class="form-field"
-                        id="img_url">
-                    <small class="form-description">Image URL address.</small>
-                </div>
-                <div class="col-12 pt-3">
-                    <a href="{{  url_for('recipes')  }}" class="btn btn-black"> Cancel</a>
-                    <button type="submit" class="btn btn-black">Update Recipe</button>
-                    <a class="btn btn-black recipe-btn">Delete Recipe</a>
+                    <div class="col-12">
+                        <label for="meal_name">Meal Name</label>
+                        <select name="meal_name" class="form-field" id="meal_name" required>
+                            <option selected value="{{ recipe.meal_name }}">Meal: {{ recipe.meal_name }}</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Desserts">Dessert</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" placeholder="Description" id="description"
+                            class="form-field" maxlength="100" value="{{ recipe.description }}" required>
+                        <small class="form-description">Short description about your the dish. Max 100
+                            characters.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="ingredients">Ingredients</label>
+                        <textarea name="ingredients" class="form-field" id="ingredients" rows="6"
+                            required>{{ recipe.ingredients }}</textarea>
+                        <small class="form-description">Each ingredient on a seperate line.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="method">Method</label>
+                        <textarea name="method" class="form-field" id="method" rows="6"
+                            required>{{ recipe.method }}</textarea>
+                        <small class="form-description">Each step on a seperate line.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="yield">Yield</label>
+                        <input type="number" name="yield" value="{{ recipe.yield}}" class="form-field" id="yield"
+                            required>
+                        <small class="form-description">How many people will this serve(rougly) - max 12.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="active_time">Active Time</label>
+                        <input type="text" name="active_time" value="{{ recipe.active_time }}" class="form-field"
+                            id="active_time" required>
+                        <small class="form-description">How long does it take to cook this meal.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="total_time">Total Time</label>
+                        <input type="text" name="total_time" value="{{ recipe.total_time }}" class="form-field"
+                            id="total_time" required>
+                        <small class="form-description">How long does it take to prepare and cook this meal.</small>
+                    </div>
+                    <div class="col-12">
+                        <label for="recos">Recommendations</label>
+                        <input type="text" name="recos" placeholder="Recommendation" maxlength="100" class="form-field"
+                            id="recos" value="{{ recipe.recommendation }}">
+                    </div>
+                    <div class="col-12">
+                        <label for="img_url">Image URL</label>
+                        <input type="url" name="img_url" pattern="https://.*" value="{{ recipe.img_url}}"
+                            class="form-field" id="img_url">
+                        <small class="form-description">Image URL address.</small>
+                    </div>
+                    <div class="col-12 pt-3">
+                        <a href="{{  url_for('recipes')  }}" class="btn btn-black"> Cancel</a>
+                        <button type="submit" class="btn btn-black">Update Recipe</button>
+                        <a class="btn btn-black recipe-btn">Delete Recipe</a>
 
-                    <!-- Modal to confirm deletion of recipe -->
-                    <div class="modal" id="delete-recipe-modal">
-                        <div class="delete-modal-content">
-                            <span class="delete-close">&times;</span>
-                            <h3 class="delete-modal-title">Delete Recipe</h3>
-                            <p> Are you sure you want to delete this recipe?</p>
-                            <div class="modal-buttons">
-                                <a class="btn btn-black m-1"
-                                    href="{{  (url_for('delete_recipe', recipe_id=recipe._id))  }}">
-                                    Delete
-                                    Recipe </a>
-                                <a class="btn btn-black delete-cancel">
-                                    Cancel </a>
+                        <!-- Modal to confirm deletion of recipe -->
+                        <div class="modal" id="delete-recipe-modal">
+                            <div class="delete-modal-content">
+                                <span class="delete-close">&times;</span>
+                                <h3 class="delete-modal-title">Delete Recipe</h3>
+                                <p> Are you sure you want to delete this recipe?</p>
+                                <div class="modal-buttons">
+                                    <a class="btn btn-black m-1"
+                                        href="{{  (url_for('delete_recipe', recipe_id=recipe._id))  }}">
+                                        Delete
+                                        Recipe </a>
+                                    <a class="btn btn-black delete-cancel">
+                                        Cancel </a>
+                                </div>
                             </div>
                         </div>
                     </div>
