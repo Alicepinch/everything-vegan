@@ -361,10 +361,11 @@ The photos used on this site were from:
 
 - https://www.pexels.com/
 - https://unsplash.com/ 
+- https://pixabay.com/images/search/chilli%20con%20carne/
+- Google images "Creative commons licenses" images
     - [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
     - [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)
     - [Default profile Picture](https://www.pexels.com/photo/scrabble-tiles-in-blue-ceramic-plate-2377164/)
-- Some images have also been taken directly from the recipes on [BBC goodfood.](https://www.bbcgoodfood.com/)
 
 ----
 
