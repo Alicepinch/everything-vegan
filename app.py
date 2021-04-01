@@ -191,7 +191,7 @@ def logout():
 
 # User logged in functions #
 
-@app.route('/profile/<username>', methods=["GET", "POST"])
+@app.route('/profile/<username>')
 @login_required
 def profile(username):
     """
