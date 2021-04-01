@@ -27,7 +27,7 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 
 ### Target Audience
 
-One target audience for Eating Vegan are people who want to explore veganism and see what different foods they can make. Eating vegan's main target audience is people who are already Vegan and want to get inspiration for what to cook for breakfast, lunch, dinner or dessert and share their own recipes with others to furthur promote that veganism is not boring! 
+Eating vegan's main target audience is people who are already Vegan and want to get inspiration for what to cook for breakfast, lunch, dinner or dessert and share their own recipes with others to furthur promote that veganism is not boring! Another target audience for Eating Vegan are people who want to explore veganism and see what different foods are out there that they can make.
 
 ### User Goals: 
 
@@ -207,7 +207,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 
 - [ ] Show more button for recipes(pagination)
 - [ ] User profiles with option to upload images.
-- [ ] Automated email when user signs up.
+- [ ] Automated email when user signs up & subscribe to newsletter.
 - [ ] User could upload an image directly to the website.
 - [ ] Option to view other users profiles and what they have uploaded.
 - [ ] More specific filters for recipes.
@@ -243,10 +243,8 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [W3cValidator](https://validator.w3.org/)
 - Google chrome developer tools.
 - [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
-  - [Flask error pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages)
-  - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
-  - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
 - [Video to gif converter](https://ezgif.com/video-to-gif)
+- [Tiny PNG](https://tinypng.com/)
 
 ## Testing
 
@@ -344,20 +342,29 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 
 - [Block Confirm Form Resubmission Javascript Code](https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr)
 - [Modal code inspiration](https://www.w3schools.com/howto/howto_css_modals.asp)
+- [Flask error pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages)
+- [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
+- [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
 
 ### Content
 
+All content on this website has been created for educational purposes only and all rights are reserved to those credited below:
+
 - All recipes and images created by user "alicepinch" have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
-- Other recipes written by "alicepinch" are written by myself.
-- Some recipes will have been added by other users. 
+- Some recipes will have been added by other users and may have been taken from other websites. 
+
+Any issues then please email me at [alicepinch@hotmail.co.uk.](mailto:alicepinch@hotmail.co.uk)
 
 ### Media
 
 The photos used in this site were from:
 
-- [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
-- [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)
-- [Default profile Picture](https://www.pexels.com/photo/scrabble-tiles-in-blue-ceramic-plate-2377164/)
-- Some recipe images were taken from:
-https://www.pexels.com/
-https://unsplash.com/ 
+- https://www.pexels.com/
+- https://unsplash.com/ 
+    - [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
+    - [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)
+    - [Default profile Picture](https://www.pexels.com/photo/scrabble-tiles-in-blue-ceramic-plate-2377164/)
+
+----
+
+This website is for educational purposed only.
