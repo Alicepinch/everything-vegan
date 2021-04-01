@@ -89,6 +89,7 @@ def search():
     Searches the recipe index. Will return results for, Recipe name,
     description and ingredients.
     """
+
     query = request.form.get("search-query")
     recipes = recipes_data.find({"$text": {"$search": query}})
 

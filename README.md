@@ -23,7 +23,26 @@ Eating Vegan is an online community where users can create and explore new exclu
  
 ## UX
 
-The UX goal of this website is to build a fun, easy to use website for users to view Vegan recipes all in one place. The target audience for this website is anyone who is vegan/vegetarian/exploring veganism who wants to discover or share new recipes with others. All users will be able to view the recipes that have been shared on the website. Another UX goal of the website was to create a space where users can share, edit, and delete their own recipes. To facilitate this, I ensured that the interface was clear and easy to use for those who wanted to create an account and actively engage with the content.
+The UX goal of this website is to build a fun, easy to use website for users to share and view Vegan recipes all in one place.
+
+### Target Audience
+
+One target audience for Eating Vegan are people who want to explore veganism and see what different foods they can make. Eating vegan's main target audience is people who are already Vegan and want to get inspiration for what to cook for breakfast, lunch, dinner or dessert and share their own recipes with others to furthur promote that veganism is not boring! 
+
+### User Goals: 
+
+- To be able to easily create a new recipe.
+- To be able to edit the recipe if something has changed/ was added incorrrectly.
+- To easily be able to delete a recipe if they no longer want to share with others.
+- To easily delete their account if they no longer want to be part of the community.
+
+### Site Owner Goals
+
+- Ensure that the interface is clear and easy to use for those users who want to create an account and actively engage with the content.
+- To provide users with a space they can easily create, edit and delete recipes for the website in one place.
+- For the admin to easily make any adjustments/delete any recipes on the website if needed.
+- To increase awareness of how good vegan food can be!
+- Provide breakfast, lunch, dinner and dessert options for users to decide what they want to eat/cook.
 
 ## User Stories
 
@@ -44,6 +63,7 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 - As a user I would like to be able to delete my account.
 - As a user I would like to be able to update my profile photo.
 - As a user I would like to be able to save recipes to my profile.
+- As a user I would like to be able to remove saved recipes from my profile.
 
 </p>
 
@@ -100,7 +120,7 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to insure there wouldn't be any major contrasts in colours therefore opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
 
-![Colour Palette](/docs/readme/eating-vegan-colour-palettte.jpg)
+![Colour Palette](/docs/readme/eating-vegan-colour-palette.jpg)
 
 </p>
 </details>
@@ -144,11 +164,12 @@ Recipe Image | img_url | url `pattern="https://.*"` | string
 Yield | yield | number | string
 Active Time | active_time | text | string
 Total Time | total_time | textarea | string
-Description | description | textare | string
+Description | description | textarea | string
 Ingredients | ingredients | textarea | string
 Method | method | textarea | string
 Recommendations | recomendations | text | string
 Created By | created_by | Populated from session['user'] | string
+Updated By | last_updated_by | Populated from session['user'] | string
 Date Created | date_created | Populated from when form is submitted | string
 
 #### Subscribers
@@ -159,7 +180,7 @@ ID | _id | None | ObjectId
 Subscribers | subscriber_email | email `maxlength="30"`| string
 
 ## Features
- 
+
 - [x] Login
 - [x] Register
 - [x] Profile Page
@@ -176,7 +197,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Update password
 - [x] Update profile photo
 - [x] Filter drop down to flick through meal types
-- [x] Admin can manage all recipes 
+- [x] Admin can manage/delete all recipes
 - [x] Delete account
 - [x] Delete recipe
 - [x] Different page titles
@@ -322,6 +343,7 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 ## Credits
 
 - [Block Confirm Form Resubmission Javascript Code](https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr)
+- [Modal code inspiration](https://www.w3schools.com/howto/howto_css_modals.asp)
 
 ### Content
 

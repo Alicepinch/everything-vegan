@@ -53,6 +53,8 @@ $('#recipeDropDown').click(function () {
     $('#recipes_meal_dropdown').slideToggle();
 });
 
+// Blocks confirm form resubmission error
+
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
