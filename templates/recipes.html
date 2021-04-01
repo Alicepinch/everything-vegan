@@ -75,7 +75,7 @@
                     <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description-card">
                         <p>
-                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by {{ recipe.created_by }}</span>
+                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by <i class="fas fa-user"></i> {{ recipe.created_by }}</span>
                             {{ recipe.description }}
                         </p>
                         <span><a class="recipe-link pb-1" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"
