@@ -6,7 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
-from validation import password_check, valid_registration, login_required
+from validation import password_check, valid_registration, login_required, valid_recipe
 if os.path.exists("env.py"):
     import env
 
@@ -316,26 +316,29 @@ def edit_recipe(recipe_id):
         return render_template('edit-recipe.html', recipe=recipe)
 
     if created_by or session['user'] == "admin":
-        recipes_data.update_one(
-            {"_id": ObjectId(recipe_id)},
-            {'$set': {
-                "meal_name": request.form.get("meal_name"),
-                "recipe_name": request.form.get("recipe_name"),
-                "ingredients": request.form.get("ingredients"),
-                "description": request.form.get(
-                    "description").capitalize(),
-                "recommendation": request.form.get("recos").capitalize(),
-                "yield": request.form.get("yield"),
-                "active_time": request.form.get(
-                    "active_time").replace('mins', 'minutes').title(),
-                "total_time": request.form.get(
-                    "total_time").replace('mins', 'minutes').title(),
-                "img_url": request.form.get("img_url"),
-                "method": request.form.get("method"),
-                "last_edited_by": session['user']
-            }})
-        flash("Recipe Updated 😊")
-        return redirect(url_for("recipe_page", recipe_id=recipe_id))
+        if valid_recipe():
+            recipes_data.update_one(
+                {"_id": ObjectId(recipe_id)},
+                {'$set': {
+                    "meal_name": request.form.get("meal_name"),
+                    "recipe_name": request.form.get("recipe_name"),
+                    "ingredients": request.form.get("ingredients"),
+                    "description": request.form.get(
+                        "description").capitalize(),
+                    "recommendation": request.form.get("recos").capitalize(),
+                    "yield": request.form.get("yield"),
+                    "active_time": request.form.get(
+                        "active_time").replace('mins', 'minutes').title(),
+                    "total_time": request.form.get(
+                        "total_time").replace('mins', 'minutes').title(),
+                    "img_url": request.form.get("img_url"),
+                    "method": request.form.get("method"),
+                    "last_edited_by": session['user']
+                }})
+            flash("Recipe Updated 😊")
+            return redirect(url_for("recipe_page", recipe_id=recipe_id))
+        else:
+            return redirect(request.referrer)
     else:
         flash("Not your recipe to edit!")
         return redirect(url_for("recipe_page", recipe_id=recipe_id))

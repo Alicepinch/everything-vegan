@@ -23,9 +23,9 @@
 </section>
 
 <!---Flash Messages--->
-{% with messages = get_flashed_messages() %}
+{% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
-{% for message in messages %}
+{% for category, message in messages %}
 <h3 class="text-center pt-3">{{ message }}</h3>
 {% endfor %}
 {% endif %}
@@ -68,14 +68,14 @@
                     <a href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"><img class="recipe-image"
                             src="{{ recipe.img_url }}" alt="{{ recipe.recipe_name}}"></a>
                     {% else %}
-                    <img class="recipe-image"
-                        src="{{url_for('static', filename = 'images/default-recipe-image.jpg')}}"
+                    <img class="recipe-image" src="{{url_for('static', filename = 'images/default-recipe-image.jpg')}}"
                         alt="{{ recipe.recipe_name }}">
                     {% endif %}
                     <h3>{{ recipe.recipe_name }}</h3>
                     <div class="recipe-description-card">
                         <p>
-                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by <i class="fas fa-user"></i> {{ recipe.created_by }}</span>
+                            <span class="meal-name">{{ recipe.meal_name }} - Uploaded by <i class="fas fa-user"></i>
+                                {{ recipe.created_by }}</span>
                             {{ recipe.description }}
                         </p>
                         <span><a class="recipe-link pb-1" href="{{  (url_for('recipe_page', recipe_id=recipe._id))  }}"

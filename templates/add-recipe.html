@@ -17,15 +17,24 @@
 <div class="container">
     <div class="row">
         <div class="add-edit-form-container text-center">
-
             <form method="POST" action="{{  url_for('add_recipe')}}">
                 <div class="col-12">
-                        <small>All fields marked with * are mandatory</small>
-                    </div>
+                    <small>All fields marked with * are mandatory</small>
+                </div>
+                <div class="col-12">
+                    <!---Flash Messages--->
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <small class="login-flash-message">{{ message }}</small>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
                 <div>
                     <label for="recipe_name">Recipe Name</label>
-                    <input type="text" name="recipe_name" maxlength="35" class="form-field" placeholder="Recipe Name*"
-                        id="recipe_name" required>
+                    <input type="text" name="recipe_name" class="form-field" placeholder="Recipe Name*" id="recipe_name"
+                        required>
                     <small class="form-description">Max 35
                         characters</small>
                 </div>
@@ -42,7 +51,7 @@
                 <div class="col-12">
                     <label for="description">Description</label>
                     <input type="text" name="description" placeholder="Description*" id="description" class="form-field"
-                        maxlength="100" required>
+                     required>
                     <small class="form-description">Short description about your the dish. Max 100
                         characters.</small>
                 </div>
@@ -79,7 +88,7 @@
                 </div>
                 <div class="col-12">
                     <label for="recos">Recommendations</label>
-                    <input type="text" name="recos" placeholder="Recommendation" maxlength="100" class="form-field"
+                    <input type="text" name="recos" placeholder="Recommendation" class="form-field"
                         id="recos">
                 </div>
                 <div class="col-12">
@@ -91,6 +100,7 @@
                 <div class="col-12 pt-3">
                     <button type="submit" class="btn btn-black">Add Recipe</button>
                 </div>
+
             </form>
         </div>
     </div>

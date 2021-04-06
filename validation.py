@@ -78,6 +78,14 @@ def valid_registration():
 
 
 def valid_recipe():
+    """
+    This function checks the following:
+
+    That description is not more than 100 characters,
+    That recipe name is no longer than 35 characters,
+    That recommendations is no longer than 100 characters,
+    """
+
     description = request.form.get("description")
     recipe_name = request.form.get("recipe_name")
     recommendations = request.form.get("recos")
@@ -88,7 +96,7 @@ def valid_recipe():
     elif len(recipe_name) > 35:
         flash("Recipe name can't be longer than 35 characters")
         return False
-    if len(recommendations) > 100:
+    elif len(recommendations) > 100:
         flash("Recommendation can't be longer than 100 characters")
         return False
     return True
