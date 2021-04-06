@@ -190,9 +190,8 @@ def profile(username):
     Profile displays all recipes created by user.
     If admin is logged in they can view all recipes on profile.
     """
-
     user = users_data.find_one({"username": username})
-    
+
     if username == "admin":
         recipes = list(recipes_data.find())
     else:
@@ -357,13 +356,13 @@ def delete_recipe(recipe_id):
 
     if created_by or session['user'] == "admin":
         recipes_data.delete_one(recipe)
+
         for users in users_saved:
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         flash("Recipe Succesfully Removed!")
     else:
         flash("Not your recipe to delete!")
-
     return redirect(url_for("recipes"))
 
 
@@ -379,7 +378,7 @@ def delete_user(username):
 
     users_recipes = list(recipes_data.find({"created_by": session["user"]}))
 
-    if username:
+    if username == session["user"]:
         users_data.remove({"username": username})
         session.pop("user")
 
@@ -448,7 +447,7 @@ def update_password(username):
         return redirect(url_for('update_password', username=session['user']))
 
 
-@ app.route('/profile/update-profile-pic/<username>', methods=["GET", "POST"])
+@ app.route('/profile/update-profile-pic/<username>', methods=["POST"])
 @ login_required
 def update_profile_pic(username):
     """
@@ -464,10 +463,10 @@ def update_profile_pic(username):
             }})
     return redirect(url_for("profile", username=session['user']))
 
-
 # Newsletter Subscribe #
 
-@ app.route('/subscribe', methods=["GET", "POST"])
+
+@ app.route('/subscribe', methods=["POST"])
 def subscribe_user():
     """
     Checks if email is subscribed already.
@@ -479,14 +478,14 @@ def subscribe_user():
 
     if existing_sub:
         flash("Email already subscribed!")
-        return redirect(request.referrer)
-    else:
-        subscribe = {
-            "subscriber_email": request.form.get("sub_email"),
-        }
-        subscribers_data.insert_one(subscribe)
-        flash("Email subscribed to newsletter!")
-    return redirect(request.referrer)
+        return redirect(request.referrer + "#subscribe")
+
+    subscribe = {
+        "subscriber_email": request.form.get("sub_email"),
+    }
+    subscribers_data.insert_one(subscribe)
+    flash("Email subscribed to newsletter!")
+    return redirect(request.referrer + "#subscribe")
 
 
 # Error Pages #

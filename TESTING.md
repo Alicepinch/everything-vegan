@@ -120,8 +120,8 @@ def delete_recipe(recipe_id):
 Code after:
 
 ```
-@app.route('/delete-recipe/<recipe_id>')
-@login_required
+@ app.route('/recipe/delete-recipe/<recipe_id>')
+@ login_required
 def delete_recipe(recipe_id):
     created_by = recipes_data.find_one({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
@@ -130,13 +130,13 @@ def delete_recipe(recipe_id):
 
     if created_by or session['user'] == "admin":
         recipes_data.delete_one(recipe)
+
         for users in users_saved:
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         flash("Recipe Succesfully Removed!")
-    else:
-        flash("Not your recipe to delete!")
 
+    flash("Not your recipe to delete!")
     return redirect(url_for("recipes"))
 
 ```
@@ -154,10 +154,11 @@ All required form fields have been marked with an '*' and this has been stated e
 Register form has been tested by filling out each required form field and submitting. Once form is submitted user details are pushed to the users collection in mongoDB databse. 
   - Form fields that are required: Email address, username and password. Profile photo is not required and if used doesn't fill this in a default profile picture will be used.
 
-If a user tried to register with an existing username/email address a flash error message will be shown and users not registered.
+If a user tries to register with an existing username/email address a flash error message will be shown and users not registered.
 If the user tries to register an account with an invalid username or password then the user will not be able to register and a error message will show with the issue.
 
 ![Register error](/docs/testing/errors/register-error.gif) 
+
 
 #### Login form:
 

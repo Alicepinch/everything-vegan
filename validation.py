@@ -59,7 +59,7 @@ def username_check(username):
     if len(username) < 5:
         flash('Username must be at least 5 characters.')
         return False
-    if len(username) > 15:
+    elif len(username) > 15:
         flash('Username cant be longer than 15 characters.')
         return False
     return True

@@ -26,7 +26,7 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 {% for category, message in messages %}
-<h3 class="text-center pt-3">{{ message }}</h3>
+<h3 class="text-center pt-3 flash-message">{{ message }}</h3>
 {% endfor %}
 {% endif %}
 {% endwith %}

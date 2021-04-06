@@ -57,3 +57,12 @@ $('#recipeDropDown').click(function () {
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
+
+// Hides flash message after a couple of seconds
+
+$(function(){
+    setTimeout(function(){
+    $('.flash-message').slideUp();
+    }, 4000);
+  })
+
