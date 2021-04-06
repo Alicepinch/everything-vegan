@@ -182,7 +182,6 @@ The Add Recipe form has been tested by adding numerous recipes to the website. E
 The edit recipe form has been tested in the same way as the "Add recipe" form. However, when testing this form I noticed that if a user hadn't entered a image url and the default image was being used "/static/images/default-recipe-image.jpg" then a user could not submit the edit form as the form field pattern for this was ```pattern="https://.*"``` and input field was "url". In order to fix this, I added in jinja templating to add the default recipe image rather than have this in the form field itself. 
   - Once the edit form is submitted the recipes data is succesfully updated in the mongoDB recipes collection.
 
-
 #### Search:
 
 The search function form has been tested, users are able to search by recipe name, description as well as ingreditents. If the query that they search does not exist then a "No results for "query"" message displays to the users. When testing the search function I came across the error "Confirm Form Submission" if a user had clicked on a searched recipe and then back to the recipe page. In order to fix this I used the below code in my JS file:

@@ -72,7 +72,7 @@ def meals(meal):
         'recipes.html', meal=meal, recipes=recipes)
 
 
-@app.route('/recipes', methods=["GET", "POST"])
+@app.route('/recipes', methods=["POST"])
 def search():
     """
     Searches the recipe index. Will return results for, Recipe name,
@@ -168,8 +168,6 @@ def register():
         return redirect(url_for(
             "profile", username=session["user"]))
 
-    return redirect(url_for("register"))
-
 
 @ app.route('/logout')
 @ login_required
@@ -194,6 +192,7 @@ def profile(username):
     """
 
     user = users_data.find_one({"username": username})
+    
     if username == "admin":
         recipes = list(recipes_data.find())
     else:
@@ -235,7 +234,6 @@ def add_recipe():
         recipes_data.insert_one(recipe)
         flash("Recipe Succesfully Added 🍽")
         return redirect(url_for("recipes"))
-    return render_template('add-recipe.html')
 
 
 # Saved Recipe functions #
@@ -271,16 +269,14 @@ def save_recipe(recipe_id):
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
 
-    if request.method == "POST":
-        if ObjectId(recipe_id) in saved:
-            flash("Recipe already saved!😊")
-            return redirect(url_for("recipes"))
-        else:
-            users_data.update_one(
-                user, {"$push": {
-                    "saved_recipes": ObjectId(recipe_id)}})
+    if ObjectId(recipe_id) in saved:
+        flash("Recipe already saved!😊")
+        return redirect(url_for("recipes"))
 
-            flash("Recipe Saved to profile!💚")
+    users_data.update_one(
+        user, {"$push": {
+            "saved_recipes": ObjectId(recipe_id)}})
+    flash("Recipe Saved to profile!💚")
 
     return redirect(url_for("recipes"))
 
@@ -466,7 +462,6 @@ def update_profile_pic(username):
                 "profile_image": request.form.get(
                     "profile_img")
             }})
-
     return redirect(url_for("profile", username=session['user']))
 
 
