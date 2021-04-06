@@ -4,9 +4,9 @@ from flask import (
     session, request, url_for, redirect)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from functools import wraps
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
+from validation import password_check, valid_registration, login_required
 if os.path.exists("env.py"):
     import env
 
@@ -30,20 +30,6 @@ date = date.today()
 recipes_data = mongo.db.recipes
 users_data = mongo.db.users
 subscribers_data = mongo.db.subscribers
-
-
-def login_required(f):
-    """
-    Decorator for to be called on views that require users to be logged in.
-    """
-
-    @wraps(f)
-    def login_check(*args, **kwargs):
-        if 'user' not in session:
-            flash("You need to login first!")
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return login_check
 
 
 # Homepage #
@@ -88,7 +74,8 @@ def meals(meal):
 def search():
     """
     Searches the recipe index. Will return results for, Recipe name,
-    description and ingredients.
+    description and ingredients. If no recipes for query searched,
+    jinja templating returns "No results found".
     """
 
     query = request.form.get("search-query")
@@ -144,7 +131,7 @@ def register():
     Checks if username/email is already in use. If not the
     registers Registers new user.
     """
-
+    # Returns the register template
     if request.method == "GET":
         return render_template("register.html")
 
@@ -153,6 +140,7 @@ def register():
     existing_email = users_data.find_one(
         {"email": request.form.get("email").lower()})
 
+    # Checks username or email isn't already in use
     if existing_username or existing_email:
         if existing_username:
             flash("Sorry, this username is already in use. Please try another")
@@ -160,25 +148,29 @@ def register():
             flash("Sorry, this email is already in use. Please try another")
         return redirect(url_for("register"))
 
-    register = {
-        "username": request.form.get("username").lower(),
-        "email": request.form.get("email").lower(),
-        "password": generate_password_hash(request.form.get("password")),
-        "date_joined": date.strftime("%d/%m/%Y"),
-        "profile_image": request.form.get(
-            "profile_img") or default_pic,
-        "saved_recipes": []
-    }
-    users_data.insert_one(register)
+    # Checks password and username are correct pattern from validate.py
+    if valid_registration():
+        register = {
+            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "date_joined": date.strftime("%d/%m/%Y"),
+            "profile_image": request.form.get(
+                "profile_img") or default_pic,
+            "saved_recipes": []
+        }
+        users_data.insert_one(register)
 
-    session["user"] = request.form.get("username").lower()
-    flash("Welcome! Thank you for sigining up!😊")
-    return redirect(url_for(
-        "profile", username=session["user"]))
+        session["user"] = request.form.get("username").lower()
+        flash("Welcome! Thank you for sigining up!😊")
+        return redirect(url_for(
+            "profile", username=session["user"]))
+
+    return redirect(url_for("register"))
 
 
-@app.route('/logout')
-@login_required
+@ app.route('/logout')
+@ login_required
 def logout():
     """
     Logs user out from session.
@@ -191,8 +183,8 @@ def logout():
 
 # User logged in functions #
 
-@app.route('/profile/<username>')
-@login_required
+@ app.route('/profile/<username>')
+@ login_required
 def profile(username):
     """
     Profile displays all recipes created by user.
@@ -200,7 +192,6 @@ def profile(username):
     """
 
     user = users_data.find_one({"username": username})
-
     if username == "admin":
         recipes = list(recipes_data.find())
     else:
@@ -211,42 +202,44 @@ def profile(username):
         "profile.html", user=user, recipes=recipes, username=session['user'])
 
 
-@app.route('/add-recipe', methods=["GET", "POST"])
-@login_required
+@ app.route('/add-recipe', methods=["GET", "POST"])
+@ login_required
 def add_recipe():
     """
-    Add allows user to add their own recipes if logged in.
+    Add recipe allows user to add their own recipes if logged in.
     """
 
     if request.method == "GET":
         return render_template('add-recipe.html')
 
-    recipe = {
-        "meal_name": request.form.get("meal_name"),
-        "recipe_name": request.form.get("recipe_name"),
-        "ingredients": request.form.get("ingredients"),
-        "description": request.form.get("description").capitalize(),
-        "recommendation": request.form.get("recos").capitalize(),
-        "yield": request.form.get("yield"),
-        "active_time": request.form.get(
-            "active_time").replace('mins', 'minutes').title(),
-        "total_time": request.form.get(
-            "total_time").replace('mins', 'minutes').title(),
-        "img_url": request.form.get("img_url"),
-        "method": request.form.get("method"),
-        "created_by": session["user"],
-        "date_created": date.strftime("%d/%m/%Y"),
-    }
+    if valid_recipe():
+        recipe = {
+            "meal_name": request.form.get("meal_name"),
+            "recipe_name": request.form.get("recipe_name"),
+            "ingredients": request.form.get("ingredients"),
+            "description": request.form.get("description").capitalize(),
+            "recommendation": request.form.get("recos").capitalize(),
+            "yield": request.form.get("yield"),
+            "active_time": request.form.get(
+                "active_time").replace('mins', 'minutes').title(),
+            "total_time": request.form.get(
+                "total_time").replace('mins', 'minutes').title(),
+            "img_url": request.form.get("img_url"),
+            "method": request.form.get("method"),
+            "created_by": session["user"],
+            "date_created": date.strftime("%d/%m/%Y"),
+        }
 
-    recipes_data.insert_one(recipe)
-    flash("Recipe Succesfully Added 🍽")
-    return redirect(url_for("recipes"))
+        recipes_data.insert_one(recipe)
+        flash("Recipe Succesfully Added 🍽")
+        return redirect(url_for("recipes"))
+    return render_template('add-recipe.html')
 
 
 # Saved Recipe functions #
 
-@app.route('/saved-recipes')
-@login_required
+@ app.route('/saved-recipes')
+@ login_required
 def saved_recipes():
     """
     Finds users saved recipes array. Loops through saved
@@ -265,8 +258,8 @@ def saved_recipes():
         'saved-recipes.html', saved=saved, saved_rec=saved_rec)
 
 
-@app.route('/saved-recipes/save/<recipe_id>', methods=["POST"])
-@login_required
+@ app.route('/saved-recipes/save/<recipe_id>', methods=["POST"])
+@ login_required
 def save_recipe(recipe_id):
     """
     Adds recipe to "saved_recipes" array in users data.
@@ -290,8 +283,8 @@ def save_recipe(recipe_id):
     return redirect(url_for("recipes"))
 
 
-@app.route('/saved-recipes/<recipe_id>', methods=["POST"])
-@login_required
+@ app.route('/saved-recipes/remove/<recipe_id>', methods=["POST"])
+@ login_required
 def remove_saved_recipe(recipe_id):
     """
     Removes recipe ID from the users "saved_recipes" array.
@@ -307,8 +300,8 @@ def remove_saved_recipe(recipe_id):
 
 # Edit and delete recipes #
 
-@app.route('/edit-recipe/<recipe_id>', methods=["GET", "POST"])
-@login_required
+@ app.route('/recipe/edit-recipe/<recipe_id>', methods=["GET", "POST"])
+@ login_required
 def edit_recipe(recipe_id):
     """
     Allows the user that has created this recipe or
@@ -348,8 +341,8 @@ def edit_recipe(recipe_id):
         return redirect(url_for("recipe_page", recipe_id=recipe_id))
 
 
-@app.route('/delete-recipe/<recipe_id>')
-@login_required
+@ app.route('/recipe/delete-recipe/<recipe_id>')
+@ login_required
 def delete_recipe(recipe_id):
     """
     Deletes recipe if the user logged in created it or user is admin.
@@ -375,8 +368,8 @@ def delete_recipe(recipe_id):
 
 # Update / delete user #
 
-@app.route('/delete-account/<username>')
-@login_required
+@ app.route('/profile/delete-account/<username>')
+@ login_required
 def delete_user(username):
     """
     Deletes account if session user is the username that is logged in.
@@ -404,8 +397,8 @@ def delete_user(username):
     return redirect(url_for("login"))
 
 
-@app.route('/update-password/<username>', methods=["GET", "POST"])
-@login_required
+@ app.route('/profile/update-password/<username>', methods=["GET", "POST"])
+@ login_required
 def update_password(username):
     """
     Checks current password is the users password.
@@ -418,30 +411,44 @@ def update_password(username):
     users = users_data
     user = users_data.find_one({'username': username})
 
+    # Returns the update password template
     if request.method == "GET":
         return render_template(
             'update-password.html', username=session['user'])
 
+    # Checks if the current password is the users password
     if check_password_hash(user["password"], current_password):
-        if new_password == confirm_password:
-            users.update_one(
-                {'username': username},
-                {'$set': {
-                    'password': generate_password_hash
-                    (new_password)
-                }})
-            flash("Password updated! 😊")
-            return redirect(url_for('profile', username=session['user']))
 
-        flash("Passwords do not match! Please try again😔")
-        return redirect(url_for("update_password", username=session['user']))
+        # Checks the two new passwords are valid
+        if password_check(new_password) and password_check(confirm_password):
 
-    flash('Incorrect password. Please try again😔')
-    return redirect(url_for('update_password', username=session['user']))
+            # Checks if the two passwords match
+            if new_password == confirm_password:
+                users.update_one(
+                    {'username': username},
+                    {'$set': {
+                        'password': generate_password_hash
+                        (new_password)
+                    }})
+                flash("Password updated! 😊")
+                return redirect(url_for('profile', username=session['user']))
+            # If passwords don't match user will be notified
+            else:
+                flash("Passwords do not match! Please try again😔")
+                return redirect(url_for("update_password",
+                                        username=session['user']))
+
+        # If password's are not valid, appropriate message will display
+        return redirect(url_for('update_password', username=session['user']))
+
+    # If current password is incorrect, error message appears
+    else:
+        flash('Incorrect password. Please try again😔')
+        return redirect(url_for('update_password', username=session['user']))
 
 
-@app.route('/update-profile-pic/<username>', methods=["GET", "POST"])
-@login_required
+@ app.route('/profile/update-profile-pic/<username>', methods=["GET", "POST"])
+@ login_required
 def update_profile_pic(username):
     """
     Updates users profile photo if user is logged in.
@@ -460,7 +467,7 @@ def update_profile_pic(username):
 
 # Newsletter Subscribe #
 
-@app.route('/subscribe', methods=["GET", "POST"])
+@ app.route('/subscribe', methods=["GET", "POST"])
 def subscribe_user():
     """
     Checks if email is subscribed already.
@@ -469,23 +476,27 @@ def subscribe_user():
 
     existing_sub = subscribers_data.find_one(
         {"subscriber_email": request.form.get("sub_email")})
+
     if existing_sub:
+        flash("Email already subscribed!")
         return redirect(request.referrer)
-    subscribe = {
-        "subscriber_email": request.form.get("sub_email"),
-    }
-    subscribers_data.insert_one(subscribe)
+    else:
+        subscribe = {
+            "subscriber_email": request.form.get("sub_email"),
+        }
+        subscribers_data.insert_one(subscribe)
+        flash("Email subscribed to newsletter!")
     return redirect(request.referrer)
 
 
 # Error Pages #
 
-@app.errorhandler(404)
+@ app.errorhandler(404)
 def page_not_found(error):
     return render_template('/errors/404.html'), 404
 
 
-@app.errorhandler(500)
+@ app.errorhandler(500)
 def internal_server_error(error):
     return render_template('/errors/500.html'), 500
 
@@ -493,4 +504,4 @@ def internal_server_error(error):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

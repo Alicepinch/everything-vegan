@@ -25,24 +25,18 @@
                                     <div class="col-12">
                                         <i class="fas fa-user-plus login-register-logo"></i>
                                         <input id="username" name="username" type="text" class="login-form-field"
-                                            placeholder="Username*" minlength="5" maxlength="15"
-                                            pattern="^[a-zA-Z0-9]{5,15}$" required>
+                                            placeholder="Username*" required>
                                     </div>
                                     <div class="col-12">
                                         <i class="login-register-logo fas fa-images"></i>
-                                        <input id="profile_img" name="profile_img" type="url" pattern="https://.*" class="login-form-field"
-                                            placeholder="Profile Picture URL">
+                                        <input id="profile_img" name="profile_img" type="url" pattern="https://.*"
+                                            class="login-form-field" placeholder="Profile Picture URL">
                                     </div>
                                     <div class="col-12">
                                         <i class="fas fa-user-cog login-register-logo"></i>
                                         <input id="password" name="password" type="password" class="login-form-field"
-                                            minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$"
                                             placeholder="Password*" required>
                                     </div>
-                                    <div class="col-12">
-                                        <small class="text-muted">All fields marked with * are mandatory</small>
-                                    </div>
-
                                     <!---Flash Messages--->
                                     {% with messages = get_flashed_messages() %}
                                     {% if messages %}
@@ -51,6 +45,9 @@
                                     {% endfor %}
                                     {% endif %}
                                     {% endwith %}
+                                    <div class="col-12">
+                                        <small class="text-muted">All fields marked with * are mandatory</small>
+                                    </div>
 
                                     <div class="col-12">
                                         <button class="btn btn-black">Register</button>
