@@ -345,6 +345,7 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 - [Flask error pages](https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages)
 - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
 - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
+- [For validating password stated in ](https://stackoverflow.com/questions/41117733/validation-of-a-password-python.)[validate.py.](validate.py)
 
 ### Content
 

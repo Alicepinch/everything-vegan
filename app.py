@@ -6,7 +6,9 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
-from validation import password_check, valid_registration, login_required, valid_recipe
+from validation import (
+    password_check, valid_registration,
+    login_required, valid_recipe)
 if os.path.exists("env.py"):
     import env
 
@@ -411,7 +413,6 @@ def update_password(username):
     current_password = request.form.get("password")
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
-    users = users_data
     user = users_data.find_one({'username': username})
 
     # Returns the update password template
@@ -427,14 +428,15 @@ def update_password(username):
 
             # Checks if the two passwords match
             if new_password == confirm_password:
-                users.update_one(
-                    {'username': username},
+                users_data.update_one(
+                    user,
                     {'$set': {
                         'password': generate_password_hash
                         (new_password)
                     }})
                 flash("Password updated! 😊")
                 return redirect(url_for('profile', username=session['user']))
+
             # If passwords don't match user will be notified
             else:
                 flash("Passwords do not match! Please try again😔")

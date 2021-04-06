@@ -155,6 +155,7 @@ Register form has been tested by filling out each required form field and submit
   - Form fields that are required: Email address, username and password. Profile photo is not required and if used doesn't fill this in a default profile picture will be used.
 
 If a user tried to register with an existing username/email address a flash error message will be shown and users not registered.
+If the user tries to register an account with an invalid username or password then the user will not be able to register and a error message will show with the issue.
 
 ![Register error](/docs/testing/errors/register-error.gif) 
 
