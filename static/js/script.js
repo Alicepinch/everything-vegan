@@ -42,7 +42,7 @@ $(deleteCancel).click(function(){
     recipeModal.style.display = "none";
 });
 
-// Filter Drop down menu
+// Filter drop down menu
 
 $(function (){
     $('#recipes_meal_dropdown').hide();
@@ -54,7 +54,7 @@ $('#recipeDropDown').click(function () {
 
 // Blocks confirm form resubmission error
 
-if ( window.history.replaceState ) {
+if (window.history.replaceState) {
   window.history.replaceState( null, null, window.location.href );
 }
 
