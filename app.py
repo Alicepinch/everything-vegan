@@ -6,9 +6,8 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
-from validation import (
-    password_check, valid_registration,
-    login_required, valid_recipe)
+from validation import ( valid_registration,
+    login_required, valid_recipe, valid_password_update)
 if os.path.exists("env.py"):
     import env
 
@@ -168,6 +167,8 @@ def register():
         return redirect(url_for(
             "profile", username=session["user"]))
 
+    return redirect(url_for("register"))
+
 
 @ app.route('/logout')
 @ login_required
@@ -234,6 +235,8 @@ def add_recipe():
         flash("Recipe Succesfully Added 🍽")
         return redirect(url_for("recipes"))
 
+    return redirect(request.referrer)
+
 
 # Saved Recipe functions #
 
@@ -270,14 +273,14 @@ def save_recipe(recipe_id):
 
     if ObjectId(recipe_id) in saved:
         flash("Recipe already saved!😊")
-        return redirect(url_for("recipes"))
+        return redirect(request.referrer)
 
     users_data.update_one(
         user, {"$push": {
             "saved_recipes": ObjectId(recipe_id)}})
     flash("Recipe Saved to profile!💚")
 
-    return redirect(url_for("recipes"))
+    return redirect(request.referrer)
 
 
 @ app.route('/saved-recipes/remove/<recipe_id>', methods=["POST"])
@@ -292,7 +295,7 @@ def remove_saved_recipe(recipe_id):
         user, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
     flash("Recipe removed from saved")
 
-    return redirect(url_for("saved_recipes"))
+    return redirect(request.referrer)
 
 
 # Edit and delete recipes #
@@ -406,20 +409,20 @@ def update_password(username):
     """
 
     current_password = request.form.get("password")
+    user = users_data.find_one({'username': username})
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
-    user = users_data.find_one({'username': username})
 
     # Returns the update password template
     if request.method == "GET":
         return render_template(
             'update-password.html', username=session['user'])
 
-    # Checks if the current password is the users password
+    # Checks if the current password matches the users password
     if check_password_hash(user["password"], current_password):
 
         # Checks the two new passwords are valid
-        if password_check(new_password) and password_check(confirm_password):
+        if valid_password_update():
 
             # Checks if the two passwords match
             if new_password == confirm_password:

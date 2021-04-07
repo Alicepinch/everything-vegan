@@ -100,3 +100,16 @@ def valid_recipe():
         flash("Whoops! 😔 Recommendation can't be longer than 100 characters")
         return False
     return True
+
+
+def valid_password_update():
+    """
+    This function checks that the two new passwords meet the password criteria
+    """
+
+    new_password = request.form.get('new-password')
+    confirm_password = request.form.get("confirm-password")
+
+    if password_check(new_password) and password_check(confirm_password):
+        return True
+
