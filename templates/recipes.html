@@ -2,7 +2,7 @@
 {% block title %}Recipes |{% endblock %}
 {% block content %}
 
-<!---Recipes header container with search--->
+<!---Recipes Header Container With Search --->
 
 <section class="recipes-background">
     <div class="container-fluid">
@@ -24,19 +24,19 @@
 
 <!---Flash Messages--->
 {% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-{% for category, message in messages %}
-<h3 class="text-center pt-3 flash-message">{{ message }}</h3>
-{% endfor %}
-{% endif %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <h3 class="text-center pt-3 flash-message">{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
 {% endwith %}
 
-
-<!---All recipes--->
 
 <section class="recipes-container">
     <div class="container">
         <div class="row">
+
+            <!---- Filter Options ---->
 
             <div class="filter-container">
                 <a class="filter" id="recipeDropDown" aria-label="Filter Recipes">
@@ -54,12 +54,28 @@
                 </div>
             </div>
 
-            {% if searched_recipes == 0 %}
+            <!---- Search Query Results ---->
 
-            <h3 class="text-center pt-3">Sorry, No results found for '{{ query }}' <a class="btn btn-black"
-                    href="{{  url_for('recipes')  }}">View all Recipes</a></h3>
+            {% if query %}
+                <!---- No Results ---->
+                {% if searched_recipes == 0 %}
+                <h3 class="text-center">Sorry, No results found for '{{ query }}' <br> <a class="btn btn-black mt-2"
+                        href="{{  url_for('recipes')  }}">View all Recipes</a></h3>
 
+                <!---- 1 Result ---->
+                {% elif searched_recipes == 1 %}
+                <p class="pb-3 text-muted">Your search for '{{ query }}' returned 1 result
+                </p>
+
+                <!---- More than 1 Seach Result ---->
+                {% else %}
+                <p class="pb-3 text-muted">Your search for '{{ query }}' returned {{ searched_recipes }} results
+                </p>
+                {% endif %}
             {% endif %}
+
+            <!---- All Recipes ---->
+
             {% for recipe in recipes %}
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="recipe-card">
@@ -91,7 +107,7 @@
             </div>
             {% endfor %}
         </div>
-        
+
     </div>
 </section>
 
