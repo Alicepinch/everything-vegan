@@ -41,7 +41,7 @@
             <!-- Modal to confirm deletion of account -->
             <div class="modal" id="delete-account-modal">
                 <div class="delete-modal-content">
-                    <span class="close">&times;</span>
+                    <span class="close cancel">&times;</span>
                     <h3 class="delete-modal-title">Delete Account</h3>
                     <p> Are you sure you want to delete your account {{username }}? Your recipes will still be available
                         unless you delete these individually before you go.
@@ -59,7 +59,7 @@
             <!-- Modal to update profile image -->
             <div class="modal" id="update-picture-modal">
                 <div class="delete-modal-content">
-                    <span class="close">&times;</span>
+                    <span class="close cancel">&times;</span>
                     <h3 class="delete-modal-title">Update Profile Photo</h3>
                     <form method="POST" action="{{ url_for('update_profile_pic', username=username)}}">
                         <div class="col-12">
