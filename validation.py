@@ -1,3 +1,13 @@
+"""This program includes the functions to check a user is logged in and
+form field validations.
+
+In this programm I have included the decorator to check a user is logged
+in to be called on different routes in the app.py file. This programme also
+includes validation functions for users that are registering and account,
+adding a recipe or updating their password.
+"""
+
+
 from flask import (
     Flask, flash, request, session, redirect, url_for)
 from functools import wraps
@@ -34,19 +44,19 @@ def password_check(password):
     if len(password) < 5:
         flash('Password must be at least 5 characters.')
         return False
-    elif len(password) > 15:
+    if len(password) > 15:
         flash('Password should not exceed 15 characters.')
         return False
-    elif not any(char.islower() for char in password):
+    if not any(char.islower() for char in password):
         flash('Password should have at least one lowercase letter.')
         return False
-    elif not any(char.isupper() for char in password):
+    if not any(char.isupper() for char in password):
         flash('Password should have at least one uppercase letter.')
         return False
-    elif not any(char.isdigit() for char in password):
+    if not any(char.isdigit() for char in password):
         flash('Password should have at least one number.')
         return False
-    elif not any(char in symbols for char in password):
+    if not any(char in symbols for char in password):
         flash('Password should include at least one symbol: !@#$%^&* ')
         return False
     return True
@@ -59,7 +69,7 @@ def username_check(username):
     if len(username) < 5:
         flash('Username must be at least 5 characters.')
         return False
-    elif len(username) > 15:
+    if len(username) > 15:
         flash('Username cant be longer than 15 characters.')
         return False
     return True
@@ -73,8 +83,7 @@ def valid_registration():
     password = request.form.get("password")
     username = request.form.get("username")
 
-    if password_check(password) and username_check(username):
-        return True
+    return password_check(password) and username_check(username)
 
 
 def valid_recipe():
@@ -110,6 +119,4 @@ def valid_password_update():
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
 
-    if password_check(new_password) and password_check(confirm_password):
-        return True
-
+    return password_check(new_password) and password_check(confirm_password)
