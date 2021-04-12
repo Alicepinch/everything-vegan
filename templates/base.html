@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Eating Vegan Website" />
     <meta name="keywords" content="Vegan, Recipes, Share, Food, Breakfast, Lunch, Dinner, Desserts" />
-    {% block styles %}
+    <title>{% block title %}{% endblock %} Eating Vegan</title>
+    <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}" />
     <!---- Font awsome ---->
     <script src="https://kit.fontawesome.com/5342af2812.js" crossorigin="anonymous"></script>
     <!---- Bootstrap Stylesheet ---->
@@ -14,9 +16,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!---- Own Stylesheet ---->
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}" type="text/css">
-    <link rel="icon" href="{{url_for('static', filename = 'images/favicon.ico')}}" />
-    {% endblock %}
-    <title>{% block title %}{% endblock %} Eating Vegan</title>
+
 </head>
 
 <body>

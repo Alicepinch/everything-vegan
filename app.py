@@ -322,9 +322,8 @@ def edit_recipe(recipe_id):
     """
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     created_by = recipe["created_by"]
-    user = users_data.find_one({'username': session['user']})
 
-    if created_by == user or user == "admin":
+    if created_by == session['user'] or session['user'] == "admin":
         if request.method == "GET":
             return render_template('edit-recipe.html', recipe=recipe)
         if valid_recipe():
@@ -366,9 +365,8 @@ def delete_recipe(recipe_id):
     created_by = recipe["created_by"]
     users_saved = list(users_data.find(
         {"saved_recipes": ObjectId(recipe_id)}))
-    user = users_data.find_one({'username': session['user']})
 
-    if created_by == user or user == "admin":
+    if created_by == session['user'] or session['user'] == "admin":
         for users in users_saved:
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
