@@ -11,8 +11,7 @@ If a method is not allowed on some of the functions but for example a user tries
 ![404 Error page](/docs/testing/errors/404-error-page.gif)
 
 ![500 Error page](/docs/testing/errors/500-server-error-page.png)
-
-![403 Error page](/docs/testing/errors/405-method-error-page.png)
+![405 Error page](/docs/testing/errors/405-method-error-page.png)
 
 ## Lighthouse Reports:
 
@@ -92,9 +91,9 @@ def login_required(f):
     @wraps(f)
     def login_check(*args, **kwargs):
         if 'user' not in session:
+            flash("You need to login first!")
             return redirect(url_for('login'))
-        else:
-            return f(*args, **kwargs)
+        return f(*args, **kwargs)
     return login_check
 ```
 

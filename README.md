@@ -136,6 +136,7 @@ The main colour's chosen for the website are black and white. As users are able 
 The datatypes that have been used in this project are:
 - ObjectId
 - String
+- Array
     
 ### Collections in database:
 
@@ -146,9 +147,9 @@ For this project I created a database in MongoDB called vegan_cookbook. Inside o
 | Title | Key in db | form validation type | Data type |
 --- | --- | --- | --- 
 ID | _id | None | ObjectId 
-Name | username | text, `maxlength="15"` | string
-Email Address | email | email, `maxlength="30"` | string
-Password | password | text, `maxlength="15"` | string
+Name | username | text, `maxlength="15" from python` | string
+Email Address | email | email | string
+Password | password | text, `maxlength="15" from python` | string
 Profile Picture | profile_img | url `pattern="https://.*"`| string
 Saved recipes | saved_recipes | n/a | array
 Date joined | date_joined | Populated from when user is created | string
@@ -158,16 +159,16 @@ Date joined | date_joined | Populated from when user is created | string
 | Title | Key in db | form validation type | Data type |
 --- | --- | --- | --- 
 ID | _id | None | ObjectId 
-Recipe Name | recipe_name | text | string
+Recipe Name | recipe_name | text, `maxlength="35" from python` | string
 Meal Name | meal_name | text | string
 Recipe Image | img_url | url `pattern="https://.*"` | string
 Yield | yield | number | string
 Active Time | active_time | text | string
 Total Time | total_time | textarea | string
-Description | description | textarea | string
+Description | description | textarea, `maxlength="100" from python` | string
 Ingredients | ingredients | textarea | string
 Method | method | textarea | string
-Recommendations | recomendations | text | string
+Recommendations | recomendations | text, `maxlength="100" from python` | string
 Created By | created_by | Populated from session['user'] | string
 Updated By | last_updated_by | Populated from session['user'] | string
 Date Created | date_created | Populated from when form is submitted | string
@@ -177,7 +178,7 @@ Date Created | date_created | Populated from when form is submitted | string
 | Title | Key in db | form validation type | Data type |
 --- | --- | --- | --- 
 ID | _id | None | ObjectId 
-Subscribers | subscriber_email | email `maxlength="30"`| string
+Subscribers | subscriber_email | email | string
 
 ## Features
 

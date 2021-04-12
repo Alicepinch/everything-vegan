@@ -477,12 +477,11 @@ def subscribe_user():
 
     existing_sub = subscribers_data.find_one(
         {"subscriber_email": request.form.get("sub_email")})
-    if existing_sub:
-        return redirect(request.referrer)
-    subscribe = {
-        "subscriber_email": request.form.get("sub_email"),
-    }
-    subscribers_data.insert_one(subscribe)
+    if not existing_sub:
+        subscribe = {
+            "subscriber_email": request.form.get("sub_email"),
+        }
+        subscribers_data.insert_one(subscribe)
     return redirect(request.referrer)
 
 
