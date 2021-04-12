@@ -191,7 +191,7 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Flash messages
 - [x] Search recipes
 - [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page
-- [x] Single recipe page.
+- [x] Single recipe page
 - [x] 404 page
 - [x] 505 page
 - [x] Update password
@@ -202,17 +202,18 @@ Subscribers | subscriber_email | email `maxlength="30"`| string
 - [x] Delete recipe
 - [x] Different page titles
 - [x] Save Recipe
+- [x] Password validation with python
 
 ## Future Features
 
-- [ ] Show more button for recipes(pagination)
-- [ ] User profiles with option to upload images.
-- [ ] Automated email when user signs up & subscribe to newsletter.
-- [ ] User could upload an image directly to the website.
-- [ ] Option to view other users profiles and what they have uploaded.
-- [ ] More specific filters for recipes.
-- [ ] User can update their username.
-- [ ] Active Links for navigation bar.
+- [ ] Show more button for recipes (pagination) on profile page and recipes
+- [ ] User profiles with option to upload images
+- [ ] Automated email when user signs up & subscribe to newsletter
+- [ ] User could upload an image directly to the website
+- [ ] Option to view other users profiles and what they have uploaded
+- [ ] More specific filters for recipes
+- [ ] User can update their username
+- [ ] Active Links for navigation bar
 
 ## Technologies Used
 
@@ -362,7 +363,7 @@ The photos used on this site were from:
 
 - https://www.pexels.com/
 - https://unsplash.com/ 
-- https://pixabay.com/images/search/chilli%20con%20carne/
+- https://pixabay.com/
 - Google images "Creative commons licenses" images
     - [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
     - [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)

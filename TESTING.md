@@ -1,14 +1,18 @@
 # Testing
 
-### 404 & 500: 
+### 404 & 500 & 403: 
 
 If a user tries to access a page that is non existent then they will be directed to the custom 404 page. On this page there is a CTA that redirects the user back to the homepage. I have forced this error by typing a wrong url into the bar. 
 
 In case of an internal server error occuring then a 500 error page has also been implemented. This looks similar to the 400 error page and has a CTA for users to click back to the homepage. 
 
+If a method is not allowed on some of the functions but for example a user tries to access a URL that only has a POST function then they will be displayed with a 403 Method not allowed error.
+
 ![404 Error page](/docs/testing/errors/404-error-page.gif)
 
 ![500 Error page](/docs/testing/errors/500-server-error-page.png)
+
+![403 Error page](/docs/testing/errors/405-method-error-page.png)
 
 ## Lighthouse Reports:
 
@@ -123,27 +127,29 @@ Code after:
 @ app.route('/recipe/delete-recipe/<recipe_id>')
 @ login_required
 def delete_recipe(recipe_id):
-    created_by = recipes_data.find_one({'created_by': session['user']})
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
+    created_by = recipe["created_by"]
     users_saved = list(users_data.find(
         {"saved_recipes": ObjectId(recipe_id)}))
+    user = users_data.find_one({'username': session['user']})
 
-    if created_by or session['user'] == "admin":
-        recipes_data.delete_one(recipe)
-
+    if created_by == user or user == "admin":
         for users in users_saved:
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
+        recipes_data.delete_one(recipe)
         flash("Recipe Succesfully Removed!")
+    else:
+        return render_template('/errors/500.html'), 500
 
-    flash("Not your recipe to delete!")
     return redirect(url_for("recipes"))
+
 
 ```
 
 ### Deleting account & Recipes:
 
-When doing my final tests, I noticed that if anyone was logged in they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. If someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file to ensure that the person deleting recipe was either the user that created it or the admin. If the users is neither of these then they will be told that they cannot perform these actions.
+When doing my final tests, I noticed that if anyone was logged in they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. If someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file to ensure that the person deleting recipe was either the user that created it or the admin. If the users is neither of these then they will be presented with a 505 error to ensure the user doesnt know that the URL they have used is correct.
 
 ## Form Testing:
 
@@ -159,7 +165,6 @@ If the user tries to register an account with an invalid username or password th
 
 ![Register error](/docs/testing/errors/register-error.gif) 
 
-
 #### Login form:
 
 Login form has been tested by using the same details that were used to register. Once form is submitted user is succesfully logged in and directed to profile page. 
@@ -171,17 +176,22 @@ If a user tries to login with an incorrect password or username then they will b
 
 #### Subscribe Newsletter:
 
-User can enter their email address to subscribe to newsletter by clicking 'Subscribe' button, once submitted email address is saved in subscribers collection in mongoDB.
+User can enter their email address to subscribe to newsletter by clicking 'Subscribe' button, once submitted email address is saved in subscribers collection in mongoDB and a alert message is shown to the user to let them know their email has been submitted.
+In the future I would like to be able to pass different messages to the user if they have already subscribed.
 
 #### Add Recipe:
 
 The Add Recipe form has been tested by adding numerous recipes to the website. Each form field was filled out one by one and submitted after each one to test that the the correct form fields were required. All form fields are required for the Add Recipe form except from "Recommendation" and "Image". If "Recommendation" is left empty then on the recipe page this section is hidden. If the "Image" field is left blank then Jinja templating will display a default recipe image. 
   - Once submitted all the recipes data is succesfully pushed and saved in the mongoDB recipes collection.
 
+If the users recipe name, description or recommendation exceeds the max length outlined in the [validation.py](validation.py) file then a flash message will appear letting the user know.
+
 #### Edit Recipe:
 
 The edit recipe form has been tested in the same way as the "Add recipe" form. However, when testing this form I noticed that if a user hadn't entered a image url and the default image was being used "/static/images/default-recipe-image.jpg" then a user could not submit the edit form as the form field pattern for this was ```pattern="https://.*"``` and input field was "url". In order to fix this, I added in jinja templating to add the default recipe image rather than have this in the form field itself. 
   - Once the edit form is submitted the recipes data is succesfully updated in the mongoDB recipes collection.
+
+If the users recipe name, description or recommendation exceeds the max length outlined in the [validation.py](validation.py) file then a flash message will appear letting the user know.
 
 #### Search:
 

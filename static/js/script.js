@@ -17,6 +17,7 @@ $(profilePicBtn).click(function(){
     profilePicModal.style.display = "block";
 });
 
+
 $(accountBtn).click(function(){
     accountModal.style.display = "block";
 });

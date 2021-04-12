@@ -3,7 +3,7 @@ form field validations.
 
 In this programm I have included the decorator to check a user is logged
 in to be called on different routes in the app.py file. This programme also
-includes validation functions for users that are registering and account,
+includes validation functions for users that are registering an account,
 adding a recipe or updating their password.
 """
 
