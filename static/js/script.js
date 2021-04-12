@@ -54,3 +54,8 @@ $(function(){
     }, 4000);
   })
 
+// Alerts user their email address has been submitted
+
+$("#subscribe").submit(function(){
+  alert("Thank for submitting your email.")
+});

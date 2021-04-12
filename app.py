@@ -261,9 +261,9 @@ def saved_recipes():
     saved = user["saved_recipes"]
     saved_rec = []
 
-    for recipe in saved:
-        recipe = recipes_data.find_one({'_id': ObjectId(recipe)})
-        saved_rec.append(recipe)
+    for recipe_id in saved:
+        recipe_id = recipes_data.find_one({'_id': ObjectId(recipe_id)})
+        saved_rec.append(recipe_id)
 
     return render_template(
         'saved-recipes.html', saved=saved, saved_rec=saved_rec)
@@ -477,15 +477,13 @@ def subscribe_user():
 
     existing_sub = subscribers_data.find_one(
         {"subscriber_email": request.form.get("sub_email")})
-
     if existing_sub:
-        return redirect(request.referrer + "#subscribe")
-
+        return redirect(request.referrer)
     subscribe = {
         "subscriber_email": request.form.get("sub_email"),
     }
     subscribers_data.insert_one(subscribe)
-    return redirect(request.referrer + "#subscribe")
+    return redirect(request.referrer)
 
 
 # Error Pages #

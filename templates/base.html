@@ -71,7 +71,7 @@
     <!---- Footer ---->
 
     <footer>
-        <div class="container-fluid" id="subscribe">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12 subscription-container">
                     <h4 class="subscription-header">Subscribe To <br> Our Newsletter</h4>
@@ -83,15 +83,6 @@
                             <button class="btn btn-subscription" type="submit">Subscribe</button>
                         </div>
                     </form>
-                    <div class="col-12">
-                         {% with messages = get_flashed_messages() %}
-                                    {% if messages %}
-                                        {% for message in messages %}
-                                        <small class="flash-subscribe flash-message">{{ message }}</small>
-                                        {% endfor %}
-                                    {% endif %}
-                        {% endwith %}
-                    </div>
                 </div>
             </div>
         </div>
