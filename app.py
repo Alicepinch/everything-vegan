@@ -6,8 +6,8 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
-from validation import (valid_registration,
-    login_required, valid_recipe, valid_password_update)
+from validation import (
+    valid_registration, login_required, valid_recipe, valid_password_update)
 if os.path.exists("env.py"):
     import env
 
@@ -47,6 +47,7 @@ def recipes():
     """
     Lists all recipes in mongoDB data.
     """
+
     recipes = list(recipes_data.find())
     return render_template('recipes.html', recipes=recipes)
 
@@ -54,8 +55,7 @@ def recipes():
 @app.route('/recipes/<meal>')
 def meals(meal):
     """
-    When user clicks on different filter options different
-    meal types will display.
+    Displays different meals when different filter options are clicked on page.
     """
 
     if meal == "breakfast":
@@ -74,15 +74,15 @@ def meals(meal):
 @app.route('/recipes', methods=["POST"])
 def search():
     """
-    This function searches the recipe index. Will return results for,
+    Searches the recipe index. Will return results for,
     Recipe name, description and ingredients.
-    If no recipes for query searched, jinja templating
-    returns "No results found".
     """
 
+    # Fetches users search input
     query = request.form.get("search-query")
+    # Search results
     recipes = recipes_data.find({"$text": {"$search": query}})
-
+    # Counts all search results
     searched_recipes = recipes.count()
 
     return render_template("recipes.html", query=query,
@@ -94,7 +94,6 @@ def recipe_page(recipe_id):
     """
     Returns page for specific recipe ID.
     """
-
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipe.html', recipe=recipe)
 
@@ -104,25 +103,26 @@ def recipe_page(recipe_id):
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """
-    If username exists and password is correct user is logged in.
+    Logs user in if username exists in database and password is correct.
     """
 
+    # Returns login template
     if request.method == "GET":
         return render_template("login.html")
 
     session.permanent = True
     password = request.form.get("password")
-
     existing_user = users_data.find_one(
         {"username": request.form.get("username").lower()})
 
+    # Checks if usersname exists and password matches database
     if existing_user and check_password_hash(
             existing_user["password"], password):
+        # Adds user to session
         session["user"] = request.form.get("username").lower()
-
         return redirect(url_for(
             "profile", username=session["user"]))
-
+    # If the username or password does not exist/match the database
     flash("Incorrect Username and/or Password")
     return redirect(url_for("login"))
 
@@ -130,13 +130,10 @@ def login():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     """
-    This function does the following:
-
-    Checks if the username or email is already in the users database,
-    If they are user cannot register.
-    If not and registration fields are valid then user is registered and
-    added to database.
+    Registers user and adds to database if the username and email address
+    are both new and valid.
     """
+
     # Returns the register template
     if request.method == "GET":
         return render_template("register.html")
@@ -145,7 +142,6 @@ def register():
         {"username": request.form.get("username").lower()})
     existing_email = users_data.find_one(
         {"email": request.form.get("email").lower()})
-
     # Checks username or email isn't already in use
     if existing_username or existing_email:
         if existing_username:
@@ -154,7 +150,7 @@ def register():
             flash("Sorry, this email is already in use. Please try another")
         return redirect(url_for("register"))
 
-    # Checks password and username are correct pattern from validate.py
+    # Checks password and username are correct pattern's from validate.py
     if valid_registration():
         register = {
             "username": request.form.get("username").lower(),
@@ -165,8 +161,8 @@ def register():
                 "profile_img") or default_pic,
             "saved_recipes": []
         }
+        # Adds user to users database
         users_data.insert_one(register)
-
         session["user"] = request.form.get("username").lower()
         flash("Welcome! Thank you for sigining up!😊")
         return redirect(url_for(
@@ -193,16 +189,20 @@ def logout():
 @login_required
 def profile(username):
     """
-    This function displays all recipes created by user.
-    If admin is logged in all recipes are displayed.
+    Displays all recipes created by user.
+    If admin is logged in all recipes will show.
     """
-    user = users_data.find_one({"username": username})
 
-    if username == "admin":
+    # Fetches all user's information from database
+    user = users_data.find_one({"username": session['user']})
+
+    # Checks if user is admin and returns all recipes
+    if session['user'] == "admin":
         recipes = list(recipes_data.find())
+    # If user is not admin, users recipes will show
     else:
         recipes = list(recipes_data.find(
-            {"created_by": username}))
+            {"created_by": session['user']}))
 
     return render_template(
         "profile.html", user=user, recipes=recipes, username=session['user'])
@@ -212,13 +212,14 @@ def profile(username):
 @login_required
 def add_recipe():
     """
-    This function checks if the recipe fields are valid then pushes
-    all the data to the recipes data.
+    Adds new recipe to database if recipe fields are all valid.
     """
 
+    # Returns new recipe template
     if request.method == "GET":
         return render_template('add-recipe.html')
 
+    # Checks all form inputs are correct lengths from validate.py
     if valid_recipe():
         recipe = {
             "meal_name": request.form.get("meal_name"),
@@ -236,11 +237,11 @@ def add_recipe():
             "created_by": session["user"],
             "date_created": date.strftime("%d/%m/%Y"),
         }
-
+        # Inserts new recipe to recipes database
         recipes_data.insert_one(recipe)
         flash("Recipe Succesfully Added 🍽")
         return redirect(url_for("recipes"))
-
+    # Redirects back to form if invalid recipe
     return redirect(request.referrer)
 
 
@@ -250,19 +251,19 @@ def add_recipe():
 @login_required
 def saved_recipes():
     """
-    This function does the following:
-
-    Finds the users saved recipes arry.
-    Loops through all the saved recipes.
-    Finds the saved recipe ID in the recipes data.
-    Adds the recipe a seperate array to be returns on the page in template.
+    Displays all the users saved recipes array.
     """
+    # Fetches users data and their saved recipes
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
+    # Creates empty array for users saved recipes to be added
     saved_rec = []
 
+    # Loops through users saved recipes
     for recipe_id in saved:
+        # Assigns recipe id to its recipe in data
         recipe_id = recipes_data.find_one({'_id': ObjectId(recipe_id)})
+        # Adds recipe details to the empty array
         saved_rec.append(recipe_id)
 
     return render_template(
@@ -273,19 +274,17 @@ def saved_recipes():
 @login_required
 def save_recipe(recipe_id):
     """
-    This function does the follow:
-
-    Checks if recipe_id is in users saved_recipes array
-    If recipe_id in saved array then recipe is not saved
-    If recipe_id is not in saved, recipe_id is pushed to array.
+    Saves recipe to users saved array if recipe not already saved.
     """
+    # Fetches users data and their saved recipes
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
 
+    # Checks if the recipe is aleady in users saved array
     if ObjectId(recipe_id) in saved:
         flash("Recipe already saved!😊")
         return redirect(request.referrer)
-
+    # If not saved add recipe id to users saved recipe array
     users_data.update_one(
         user, {"$push": {
             "saved_recipes": ObjectId(recipe_id)}})
@@ -300,8 +299,9 @@ def remove_saved_recipe(recipe_id):
     """
     Removes recipe ID from the users "saved_recipes" array.
     """
+    # Fetches users data
     user = users_data.find_one({"username": session["user"]})
-
+    # Removes recipe id from users saved recipe array
     users_data.update_one(
         user, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
     flash("Recipe removed from saved")
@@ -315,17 +315,20 @@ def remove_saved_recipe(recipe_id):
 @login_required
 def edit_recipe(recipe_id):
     """
-    This function allows allows users to edit a recipe.
-
-    If the user has created the recipe or is the admin,
-    If the edits are all valid.
+    Allows users to edit a recipe if the user is admin or has created
+    the recipe and the edits are all valid.
+    Returns 404 if user didn't create recipe or user is not admin to
+    avoid other users knowing the URL is correct.
     """
+
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     created_by = recipe["created_by"]
-
+    # Checks user logged in is user who created recipe or admin
     if created_by == session['user'] or session['user'] == "admin":
+        # Returns edit recipe template
         if request.method == "GET":
             return render_template('edit-recipe.html', recipe=recipe)
+        # Checks all form inputs are correct lengths from validate.py
         if valid_recipe():
             recipes_data.update_one(
                 {"_id": ObjectId(recipe_id)},
@@ -349,31 +352,38 @@ def edit_recipe(recipe_id):
             return redirect(url_for("recipe_page", recipe_id=recipe_id))
         else:
             return redirect(request.referrer)
+    # If user didn't create recipe or is not admin, 404 error returns
     else:
-        return render_template('/errors/500.html'), 500
+        return render_template('/errors/404.html'), 404
 
 
 @app.route('/recipe/delete-recipe/<recipe_id>')
 @login_required
 def delete_recipe(recipe_id):
     """
-    Deletes recipe if the user logged in created it or user is admin.
-    Checks if recipe ID is in any users "saved_recipes" array,
+    Deletes recipe. Checks if recipe ID is in any users "saved_recipes" array,
     if it is then recipe will be deleted from array as well.
+    Returns 404 if user didn't create recipe or user is not admin to
+    avoid other users knowing the URL is correct.
     """
+
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     created_by = recipe["created_by"]
     users_saved = list(users_data.find(
         {"saved_recipes": ObjectId(recipe_id)}))
 
+    # Checks user logged in is user who created recipe or admin
     if created_by == session['user'] or session['user'] == "admin":
+        # Loops through all users saved recipes
         for users in users_saved:
+            # Removes deleted recipe id from all users saved array
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         recipes_data.delete_one(recipe)
         flash("Recipe Succesfully Removed!")
+    # If user didn't create recipe or is not admin, 404 error returns
     else:
-        return render_template('/errors/500.html'), 500
+        return render_template('/errors/404.html'), 404
 
     return redirect(url_for("recipes"))
 
@@ -384,24 +394,29 @@ def delete_recipe(recipe_id):
 @login_required
 def delete_user(username):
     """
-    Deletes account if session user is the username that is logged in.
-    Recipe will be updated to be managed by admin if user deletes account.
+    Deletes users account, recipes created by user will be updated to be
+    managed by admin. Returns 404 if the session user is not the username
+    passed in the URL to avoid other users knowing the URL is correct.
     """
 
     users_recipes = list(recipes_data.find({"created_by": session["user"]}))
 
+    # If session user matches username in URL
     if session['user'] == username:
+        # Loops through users recipes and updates them to be managed by admin
         for recipe in users_recipes:
             recipes_data.update(
                     recipe,
                     {'$set': {
                         "created_by": "admin"
                     }})
-        users_data.remove({"username": username})
+        # Removes user from database
+        users_data.remove({"username": session['user']})
         session.pop("user")
         flash("Sorry to see you go! Your user has been deleted.")
+    # If session user does not match username, 404 error returns
     else:
-        return render_template('/errors/500.html'), 500
+        return render_template('/errors/404.html'), 404
     return redirect(url_for("login"))
 
 
@@ -409,26 +424,28 @@ def delete_user(username):
 @login_required
 def update_password(username):
     """
-    This function checks the following:
-
-    If current password matches the users password,
-    If the two new passwords are valid passwords
-    If the two new passwords match
-    If all the above are true, password is updated
+    User can update their current password If the current password is correct,
+    and that the new passwords match the correct format and match before
+    updating password in database.
     """
 
     current_password = request.form.get("password")
-    user = users_data.find_one({'username': username})
+    user = users_data.find_one({'username': session['user']})
     new_password = request.form.get('new-password')
     confirm_password = request.form.get("confirm-password")
 
+    # Returns update password template
     if request.method == "GET":
         return render_template(
             'update-password.html', username=session['user'])
 
+    # Checks current password matches password in database
     if check_password_hash(user["password"], current_password):
+        # Checks the new passwords match the password format from validate.py
         if valid_password_update():
+            # Checks both new passwords match
             if new_password == confirm_password:
+                # Updates the password and redirects to profile page
                 users_data.update_one(
                     user,
                     {'$set': {
@@ -447,38 +464,35 @@ def update_password(username):
         return redirect(url_for('update_password', username=session['user']))
 
 
-@app.route('/profile/update-profile-pic/<username>', methods=["POST"])
+@app.route('/profile/update-profile-pic', methods=["POST"])
 @login_required
-def update_profile_pic(username):
+def update_profile_pic():
     """
     Updates users profile photo if user is logged in.
     """
 
-    if session['user'] == username:
-        users_data.update_one(
-            {"username": username},
-            {'$set': {
-                "profile_image": request.form.get(
-                    "profile_img")
-            }})
-    return redirect(url_for("profile", username=session['user']))
+    users_data.update_one(
+        {"username": session['user']},
+        {'$set': {
+            "profile_image": request.form.get(
+                "profile_img")
+        }})
+    return redirect(request.referrer)
+
 
 # Newsletter Subscribe #
-
 
 @app.route('/subscribe', methods=["POST"])
 def subscribe_user():
     """
-    Checks if email is subscribed already.
-    If email is not subscribed, email is added to database.
+    Subscribes email to newsletter if email is not subscribed already.
     """
 
     existing_sub = subscribers_data.find_one(
         {"subscriber_email": request.form.get("sub_email")})
     if not existing_sub:
         subscribe = {
-            "subscriber_email": request.form.get("sub_email"),
-        }
+            "subscriber_email": request.form.get("sub_email")}
         subscribers_data.insert_one(subscribe)
     return redirect(request.referrer)
 
@@ -487,20 +501,29 @@ def subscribe_user():
 
 @app.errorhandler(404)
 def page_not_found(error):
+    '''
+    Handles 404 error (page not found)
+    '''
     return render_template('/errors/404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_server_error(error):
+    '''
+    Handles 500 error (internal server error)
+    '''
     return render_template('/errors/500.html'), 500
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
+    '''
+    Handles 405 error (method not allowed)
+    '''
     return render_template('/errors/405.html'), 405
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

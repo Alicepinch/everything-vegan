@@ -61,7 +61,7 @@
                 <div class="delete-modal-content">
                     <span class="close cancel">&times;</span>
                     <h3 class="delete-modal-title">Update Profile Photo</h3>
-                    <form method="POST" action="{{ url_for('update_profile_pic', username=username)}}">
+                    <form method="POST" action="{{ url_for('update_profile_pic')  }}">
                         <div class="col-12">
                             <i class="login-register-logo fas fa-images"></i>
                             <input id="profile_img" name="profile_img" type="url" pattern="https://.*"
