@@ -1,15 +1,14 @@
 # Testing
 
-### 404 & 500 & 403: 
+### 404, 500 & 403 Errors: 
 
-If a user tries to access a page that is non existent then they will be directed to the custom 404 page. On this page there is a CTA that redirects the user back to the homepage. I have forced this error by typing a wrong url into the bar. 
+If a user tries to access a page that is non existent then they will be directed to the custom 404 page. On this page there is a CTA that redirects the user back to the homepage. I have forced this error by typing a wrong URL into the bar. 
 
-In case of an internal server error occuring then a 500 error page has also been implemented. This looks similar to the 400 error page and has a CTA for users to click back to the homepage. 
+In case of an internal server error occurring then a 500 error page has also been implemented. This looks similar to the 400 error page and has a CTA for users to click back to the homepage. 
 
-If a method is not allowed on some of the functions but for example a user tries to access a URL that only has a POST function then they will be displayed with a 403 Method not allowed error.
+If a method is not allowed on some of the functions but for example a user tries to access a URL that only has a POST function, then they will be displayed with a 403 Method not allowed error.
 
 ![404 Error page](/docs/testing/errors/404-error-page.gif)
-
 ![500 Error page](/docs/testing/errors/500-server-error-page.png)
 ![405 Error page](/docs/testing/errors/405-method-error-page.png)
 
@@ -83,7 +82,7 @@ During the build I noticed that the session was not ending when a user closed th
 
 ### Login Required
 
-Whilst testing/building the website I noticed that if a user was logged out but pressed back they would be taken back to the profile page/have access to pages that are for users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix, I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in then they will be redirected to the login page. 
+Whilst testing/building the website I noticed that if a user was logged out but pressed back, they would be taken back to the profile page/have access to pages that are for users that are logged in. This isn't the best UX as once a user is logged out, then their session should have ended. In order to fix, I installed the flask-login library and added the 'login_required' function. This function was added to all pages that should only be accessed when a user is logged in. If a user is not logged in, then they will be redirected to the login page. 
 
 Code added:
 ```
@@ -99,56 +98,40 @@ def login_required(f):
 
 ### Saved recipes:
 
-When testing the save recipe function I noticed that if a user had saved a recipe that had been deleted by another user, it was still in their "saved_recipe" array in mongodb. This wasnt ideal as the recipe didn't exist anymore. However, was still displaying on their saved recipes page. In order to fix this I needed to loop through all the users in mongoDB and then loop through all of the users "saved_recipes" arrays in order to check whether the recipe being deleted was in there. If it was then this needed to be deleted. The below code was the solution for this.
+When testing the save recipe function I noticed that if a user had saved a recipe that had been deleted by another user, it was still in their "saved_recipe" array in mongoDB. This wasn't ideal as the recipe didn't exist anymore. However, was still displaying on their saved recipes page. In order to fix this I needed to loop through all the users in mongoDB and then loop through all of the users "saved_recipes" arrays in order to check whether the recipe being deleted was in there. If it was then this needed to be deleted. The below code was the solution for this.
 
-Code Before:
-
-```
-@app.route('/delete-recipe/<recipe_id>')
-@login_required
-def delete_recipe(recipe_id):
-    created_by = recipes_data.find_one({'created_by': session['user']})
-    recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
-
-    if created_by or session['user'] == "admin":
-        recipes_data.delete_one(recipe)
-        flash("Recipe Succesfully Removed!")
-    else:
-        flash("Not your recipe to delete!")
-
-    return redirect(url_for("recipes"))
+Code solution:
 
 ```
-
-Code after:
-
-```
-@ app.route('/recipe/delete-recipe/<recipe_id>')
-@ login_required
 def delete_recipe(recipe_id):
     recipe = recipes_data.find_one({"_id": ObjectId(recipe_id)})
     created_by = recipe["created_by"]
     users_saved = list(users_data.find(
         {"saved_recipes": ObjectId(recipe_id)}))
-    user = users_data.find_one({'username': session['user']})
 
-    if created_by == user or user == "admin":
+    if created_by == session['user'] or session['user'] == "admin":
+    # Loops through the users saved recipes
         for users in users_saved:
             users_data.update_many(
                 users, {"$pull": {"saved_recipes": ObjectId(recipe_id)}})
         recipes_data.delete_one(recipe)
-        flash("Recipe Succesfully Removed!")
+        flash("Recipe Successfully Removed!")
     else:
         return render_template('/errors/500.html'), 500
 
     return redirect(url_for("recipes"))
 
-
 ```
 
-### Deleting account & Recipes:
+### Deleting Account & Recipes:
 
-When doing my final tests, I noticed that if anyone was logged in they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile. If someone was to just use the url ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file to ensure that the person deleting recipe was either the user that created it or the admin. If the users is neither of these then they will be presented with a 505 error to ensure the user doesnt know that the URL they have used is correct.
+When doing my final tests, I noticed that if anyone was logged in they were able to delete any account/recipes. Even though the button for 'delete recipe' and 'delete account' only showed to users that created that specific recipe/ on their profile.
+If someone was to just use the URL ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because 
+they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file to ensure that the person deleting recipe was either the user that created it or the admin. If the users is neither of these then they will 
+be presented with a 404 error to ensure the user doesn't know that the URL they have used is correct.
+Another issue I came across when testing deleting a users account was that if a user deleted their account and their recipes along with it then these recipes would still be in others users saved recipes array.
+To fix this issue I made it so that all recipes created by the user will be updated to be created by "admin". When a user goes to delete their account, they are told that their recipes will remain unless they delete these individually themselves. 
+Ideally, I would like to be able to delete all the users data if they are to delete their account however, this was the solution I chose for now. 
 
 ## Form Testing:
 
@@ -156,17 +139,18 @@ All required form fields have been marked with an '*' and this has been stated e
 
 #### Register Form:
 
-Register form has been tested by filling out each required form field and submitting. Once form is submitted user details are pushed to the users collection in mongoDB databse. 
+Register form has been tested by filling out each required form field and submitting. Once form is submitted user details are pushed to the users collection in mongoDB database. 
   - Form fields that are required: Email address, username and password. Profile photo is not required and if used doesn't fill this in a default profile picture will be used.
 
 If a user tries to register with an existing username/email address a flash error message will be shown and users not registered.
-If the user tries to register an account with an invalid username or password then the user will not be able to register and a error message will show with the issue.
+If the user tries to register an account with an invalid username or password, then the user will not be able to register and a error message will show with the issue.
+Username must not exceed more than 15 characters or be less than 5. Password must include at least one lowercase, uppercase, number and special symbol and be at least 5 characters and no more than 15.
 
 ![Register error](/docs/testing/errors/register-error.gif) 
 
 #### Login form:
 
-Login form has been tested by using the same details that were used to register. Once form is submitted user is succesfully logged in and directed to profile page. 
+Login form has been tested by using the same details that were used to register. Once form is submitted user is successfully logged in and directed to profile page. 
   - Password and Username are both required fields and a user cannot log in without either or. 
 
 If a user tries to login with an incorrect password or username then they will be displayed with a flash error message and user is not logged in.
@@ -176,25 +160,26 @@ If a user tries to login with an incorrect password or username then they will b
 #### Subscribe Newsletter:
 
 User can enter their email address to subscribe to newsletter by clicking 'Subscribe' button, once submitted email address is saved in subscribers collection in mongoDB and a alert message is shown to the user to let them know their email has been submitted.
-In the future I would like to be able to pass different messages to the user if they have already subscribed.
+In the future I would like to be able to pass different messages to the user if they have already subscribed as well as send a confirmation email to the users email to let them know. 
 
 #### Add Recipe:
 
-The Add Recipe form has been tested by adding numerous recipes to the website. Each form field was filled out one by one and submitted after each one to test that the the correct form fields were required. All form fields are required for the Add Recipe form except from "Recommendation" and "Image". If "Recommendation" is left empty then on the recipe page this section is hidden. If the "Image" field is left blank then Jinja templating will display a default recipe image. 
-  - Once submitted all the recipes data is succesfully pushed and saved in the mongoDB recipes collection.
+The Add Recipe form has been tested by adding numerous recipes to the website. Each form field was filled out one by one and submitted after each one to test that the the correct form fields were required. All form fields are required for the Add Recipe form except from "Recommendation" and "Image". If "Recommendation" is left empty, then on the recipe page this section is hidden. If the "Image" field is left blank, then Jinja templating will display a default recipe image. 
+  - Once submitted all the recipes data is successfully pushed and saved in the mongoDB recipes collection.
 
 If the users recipe name, description or recommendation exceeds the max length outlined in the [validation.py](validation.py) file then a flash message will appear letting the user know.
 
 #### Edit Recipe:
 
-The edit recipe form has been tested in the same way as the "Add recipe" form. However, when testing this form I noticed that if a user hadn't entered a image url and the default image was being used "/static/images/default-recipe-image.jpg" then a user could not submit the edit form as the form field pattern for this was ```pattern="https://.*"``` and input field was "url". In order to fix this, I added in jinja templating to add the default recipe image rather than have this in the form field itself. 
-  - Once the edit form is submitted the recipes data is succesfully updated in the mongoDB recipes collection.
+The edit recipe form has been tested in the same way as the "Add recipe" form. However, when testing this form I noticed that if a user hadn't entered a image URL and the default image was being used "/static/images/default-recipe-image.jpg" then a user could not submit the edit form as the form field pattern for this was ```pattern="https://.*"``` and input field was "url". In order to fix this, I added in jinja templating to add the default recipe image rather than have this in the form field itself. 
+  - Once the edit form is submitted the recipes data is successfully updated in the mongoDB recipes collection.
 
 If the users recipe name, description or recommendation exceeds the max length outlined in the [validation.py](validation.py) file then a flash message will appear letting the user know.
 
 #### Search:
 
-The search function form has been tested, users are able to search by recipe name, description as well as ingreditents. If the query that they search does not exist then a "No results for "query"" message displays to the users. When testing the search function I came across the error "Confirm Form Submission" if a user had clicked on a searched recipe and then back to the recipe page. In order to fix this I used the below code in my JS file:
+The search function form has been tested, users are able to search by recipe name, description as well as ingreditents. If the query that they search does not exist then a "No results for "query"" message displays to the users. 
+When testing the search function I came across the error "Confirm Form Submission" if a user had clicked on a searched recipe and then back to the recipe page. In order to fix this I used the below code in my JS file:
 
 ```
 
@@ -229,9 +214,9 @@ iMac
 
 ## Known Errors: 
 
-When testing on safari I found an issue with the select drop down css didn't apply on the forms. I have not corrected this as prioritised other issues for now. 
+When testing on safari I found an issue with the select drop down CSS didn't apply on the forms. I have not corrected this as prioritised other issues for now. 
 
-If a user enters an invalid image url for a recipe then the image be a broken link.
+If a user enters an invalid image URL for a recipe then the image be a broken link.
   - There is a placeholder image for if a user doesn't provide an image however this does not replace a broken link at the moment. Ideally in the future I would like to implement a way a user can upload their own image directly to a cloud.
 
 ## User Stories Tested:
@@ -321,7 +306,7 @@ When a user is on the 'Recipes' page a user can click on the filter button. This
 <details><summary>As a user I would like to be able to search through all recipes.</summary>
 
 <br>
-When a user is on the 'Recipes' page there is a search bar at the top. Users are able to search for key words which will be in the recicpes Name, description or ingredients. They can also reset the search bar to display all recipes again.
+When a user is on the 'Recipes' page there is a search bar at the top. Users are able to search for key words which will be in the recipes Name, description or ingredients. They can also reset the search bar to display all recipes again.
 
 ![Search Recipe](/docs/testing/user-story-gifs/search.gif)
 
@@ -339,11 +324,11 @@ Once a user has created a recipe, this will be displayed on their profile page. 
 <details><summary>As a user I would like to be able to remove recipes that I have created.</summary>
 
 <br>
-To delete a recipe a user must either go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page, or on the edit page. This will only be displayed if the user has created the recipe or the user logged in is the admin. 
+To delete a recipe a user must either go to the recipe page and click on the 'Delete Recipe' CTA at the bottom of the page, or on the edit page. This will only be displayed if the user has created the recipe, or the user logged in is the admin. 
 
 ![Delete recipe edit page](/docs/testing/user-story-gifs/delete-recipe-edit-page.gif)
 
-![Delete recipe recipe page](/docs/testing/user-story-gifs/delete-recipe-recipe-page.gif)
+![Delete recipe page](/docs/testing/user-story-gifs/delete-recipe-recipe-page.gif)
 
 </details>
 
@@ -370,7 +355,7 @@ A user is able to update their password on their profile page. They can click on
 <details><summary>As a user I would like to be able to delete my account.</summary>
 
 <br>
-A user is able to delete their profile from their profile page. Underneath their profile photo is a "Delete profile" CTA. Users will be promted to confirm deletion before this action is completed. 
+A user is able to delete their profile from their profile page. Underneath their profile photo is a "Delete profile" CTA. Users will be prompted to confirm deletion before this action is completed. 
 
 ![Delete user](/docs/testing/user-story-gifs/delete-user.gif)
 

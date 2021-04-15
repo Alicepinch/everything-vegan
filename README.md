@@ -27,7 +27,8 @@ The UX goal of this website is to build a fun, easy to use website for users to 
 
 ### Target Audience
 
-Eating vegan's main target audience is people who are already Vegan and want to get inspiration for what to cook for breakfast, lunch, dinner or dessert and share their own recipes with others to furthur promote that veganism is not boring! Another target audience for Eating Vegan are people who want to explore veganism and see what different foods are out there that they can make.
+Eating vegan's main target audience is Vegan's who want to get inspiration for what to cook for breakfast, lunch, dinner or dessert and those who want to share their own recipes.
+Another target audience for Eating Vegan is those people who want to explore veganism, see what different food options are out there and what they can make themselves.
 
 ### User Goals: 
 
@@ -50,7 +51,7 @@ Eating vegan's main target audience is people who are already Vegan and want to 
 <p>
 
 - As a user I would like to be able to login to my account.
-- As a user I would like to be able to log out of my account..
+- As a user I would like to be able to log out of my account.
 - As a user I would like to be able to view my profile.
 - As a user I would like to be able to create new recipes.
 - As a user I would like to be able to view all recipes in one place.
@@ -118,7 +119,7 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 <details><summary>Colour Scheme</summary>
 <p>
 
-The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to insure there wouldn't be any major contrasts in colours therefore opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
+The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to ensure there wouldn't be any major contrasts in colours so opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
 
 ![Colour Palette](/docs/readme/eating-vegan-colour-palette.jpg)
 
@@ -182,39 +183,61 @@ Subscribers | subscriber_email | email | string
 
 ## Features
 
-- [x] Login
-- [x] Register
-- [x] Profile Page
-- [x] Recipe Page
-- [x] Edit Recipe
+- [x] Register account
+- [x] Login to account
+- [x] Hashed passwords for security
+- [x] Profile page 
 - [x] Add new recipe
-- [x] Newsletter Subscription
+- [x] All recipes page
+- [x] View single recipe page
+- [x] Edit recipe
+- [x] Newsletter subscription
 - [x] Flash messages
-- [x] Search recipes
-- [x] If a user is logged out and tries to access any 'login_required' pages they will be redirected to login page
-- [x] Single recipe page
+- [x] Search all recipes
+- [x] Login required function for login only pages
 - [x] 404 page
 - [x] 505 page
+- [x] 405 page
 - [x] Update password
 - [x] Update profile photo
 - [x] Filter drop down to flick through meal types
 - [x] Admin can manage/delete all recipes
 - [x] Delete account
 - [x] Delete recipe
+- [x] Only users who created a recipe or admin can delete/edit.
 - [x] Different page titles
-- [x] Save Recipe
+- [x] Save recipe functionality
+- [x] Remove saved recipe 
 - [x] Password validation with python
+- [x] Responsive design
+- [x] Secure Website
+
+## Security Features:
+
+- Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure.
+- App logic checks session cookie matches the user that created recipes or is the admin to allow to remove or edit them. 
+- Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct.
+- Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account.
+- Flask_sslify redirects all incoming requests to https for secure network.
+- Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter.
+- Error pages for '404 page not found' '500 Internal server error" and "403 Method not allowed" 
+- Session times out after 120 minutes to ensure user is not logged in forever.
 
 ## Future Features
 
+Below are the future features that I would like to include to improve the website which are currently out of scope.
+
 - [ ] Show more button for recipes (pagination) on profile page and recipes
 - [ ] User profiles with option to upload images
-- [ ] Automated email when user signs up & subscribe to newsletter
+- [ ] Automated email when user signs up & subscribe to newsletter(Flask Mail)
 - [ ] User could upload an image directly to the website
 - [ ] Option to view other users profiles and what they have uploaded
 - [ ] More specific filters for recipes
 - [ ] User can update their username
 - [ ] Active Links for navigation bar
+- [ ] Reviews section for recipes
+- [ ] Rating system for recipes
+
 
 ## Technologies Used
 
@@ -300,7 +323,7 @@ os.environ.setdefault("MONGO_DBNAME", `<your_database_name>`)
 - Create a cluster 
 - Once created, click on 'collections' and create a new database.
  - This is the database name that you will need to include in your 'MONGO_DBNAME' in the env.py file.
-- Create four collections within your database: meal, recipes, subscribers, users.
+- Create four collections within your database: recipes, subscribers, users.
 
 ### Heroku deployment:
 
@@ -348,6 +371,7 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
 - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
 - [For validating password stated in ](https://stackoverflow.com/questions/41117733/validation-of-a-password-python.)[validation.py.](validation.py)
+- [For how to implemende flask SSLify](https://github.com/not-kennethreitz/flask-sslify)
 
 ### Content
 
@@ -373,3 +397,4 @@ The photos used on this site were from:
 ----
 
 This website is for educational purposed only.
+
