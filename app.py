@@ -4,6 +4,7 @@ from flask import (
     session, request, url_for, redirect)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_sslify import SSLify
 from datetime import date, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from validation import (
@@ -15,6 +16,7 @@ if os.path.exists("env.py"):
 # Config #
 
 app = Flask(__name__)
+sslify = SSLify(app)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -239,7 +241,7 @@ def add_recipe():
         }
         # Inserts new recipe to recipes database
         recipes_data.insert_one(recipe)
-        flash("Recipe Succesfully Added 🍽")
+        flash("Recipe Successfully Added 🍽")
         return redirect(url_for("recipes"))
     # Redirects back to form if invalid recipe
     return redirect(request.referrer)
@@ -256,14 +258,12 @@ def saved_recipes():
     # Fetches users data and their saved recipes
     user = users_data.find_one({"username": session["user"]})
     saved = user["saved_recipes"]
-    # Creates empty array for users saved recipes to be added
-    saved_rec = []
+    saved_rec = []  # Creates empty array
 
     # Loops through users saved recipes
     for recipe_id in saved:
-        # Assigns recipe id to its recipe in data
+        # Assigns recipe id to it's recipe in data and adds to empty array
         recipe_id = recipes_data.find_one({'_id': ObjectId(recipe_id)})
-        # Adds recipe details to the empty array
         saved_rec.append(recipe_id)
 
     return render_template(
