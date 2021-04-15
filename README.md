@@ -185,60 +185,56 @@ Subscribers | subscriber_email | email | string
 ## Features
 
 - [x] Register account
-  - New users can register an account, once registered user is logged in an session cookie created
+- New users can register an account, once registered user is logged in and session cookie is created
 - [x] Login to account
-  - Existing users can log into their account, creating session cookie
+- Existing users can log into their account, creating session cookie
 - [x] Personal profile page
-  - Displays users created recipes
-- [x] Add new recipe
-  - Form to add new recipe to users profile and recipes page
-- [x] Recipes page 
-  - Displays all recipes created by all users
-- [x] Single recipe page
-  - Fetches all recipe's information to display to page
-- [x] Flash messages
-  - Provide information, warnings and error messages from backend to user
-- [x] Search
-  - All users can search recipes by name, description, ingredients
-- [x] Filter drop down
-  - All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
-- [x] Update password
-  -  Users can change their password if they know their current password and two new passwords match
+- Displays recipes created by user logged in
 - [x] Update profile photo 
-  - Users can update their profile photo on their profile page
+- Logged in users can update their profile photo on their profile page
 - [x] Delete account
-  - Users can delete their own accounts
+- Logged in users can delete their own accounts from profile page (User is prompted to confirm before deletion)
+- [x] Add new recipe
+- Logged in users can complete the form to add new recipe to website
+- [x] Recipe's page 
+- Displays all recipes from all users
+- [x] Single recipe page
+- Displays specific recipe's information to page
+- [x] Flash messages
+- Displays information, warnings and error messages from backend to user
+- [x] Search
+- All users can search recipes by name, description, ingredients
+- [x] Filter drop down
+- All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
+- [x] Update password
+-  Logged in users can change their password if they know their current password and two new passwords match
 - [x] Delete recipe
-  - Users can delete a recipe if they created it
+- Logged in users can delete recipe only if they created it (User is prompted to confirm before deletion)
 - [x] Edit recipe
-  -  Form to edit and update current recipe information if user created it
-- [x] Save recipe's
-  - Users can save recipe's and access this information from profile page
-- [x] Remove saved recipe's
-  - Users can remove saved recipe's
+-  Logged in users can complete edit form to update recipe information only if the user created it
+- [x] Save Recipes
+- Logged in users can save and remove recipes from their saved page which they can access from profile page
 - [x] Navigation bar
-  - Displays different navigation link to users that are logged in. Can see this in the [Wireframes section](#wireframes)
+- All users have a navigation bar, however this looks different to users that are logged in. You can see this in the [Wireframes section](#wireframes)
 - [x] Footer   
-  - Same footer across all pages
+- All users have the same footer across all pages
 - [x] Newsletter subscription
-  -  User can submit their email to receive newsletters in the future
+-  All users can submit their emails to receive newsletters in the future
 - [x] Contact email
-  -  All users can email if needed, currently a set up to go through to personal email address (In the future an email would be created for Eating Vegan)
-- [x] Login required
-  - Only users that are logged into session can access certain pages and functions
+-  All users can email if needed, currently a set up to go through to personal email address (In the future an email would be created for Eating Vegan)
 - [x] Admin 
-  - Admin account can view all the recipes from the website on their profile page and edit/delete any if needed. 
+- Admin account can view all the recipes on their profile page and edit/delete any if needed. 
 - [x] Error Pages
-  - 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage
+- 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage
 - [x] Responsive design 
-  - Website is optimized for multiple screen sizes
+- Website is optimized for multiple screen sizes
 - [x] Homepage 
-  - Provides users with information about the website and how it works
+- Provides all users with information about the website and how it works
 
 ## Security Features:
 
 - Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure
-- Password validation implemented to ensure users create strong passwords, password must include on lowercase, uppercase, number and symbol: !@#$%^&*
+- Users are forced to create strong passwords from [validation.py](validation.py), password must include on lowercase, uppercase, number and symbol: !@#$%^&*
 - App logic checks session cookie matches the user that created recipes or is the admin to allow only them to remove or edit recipes
 - Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct
 - Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account
@@ -267,18 +263,35 @@ Below are the future features that I would like to include to improve the websit
 
 ## Technologies Used
 
+The site uses a python server backend and MongoDB database. 
+ - The [app.py](app.py) file includes the main code for this app including: Flask initialisation, database interface, and app routes.
+ - The [validation.py](validation.py) file includes the functions to validate if a user is logged in using the login required decorator as well functions used to check form fields are valid both to be called in [app.py.](app.py)
+
+#### All technologies used:
+
 - JQuery
-    - The project uses **JQuery** to simplify DOM manipulation.
+    - The project uses **JQuery** to simplify DOM manipulation
 - Python 3.8.2
+  - Used for backend server and linking to MongoDB
 - Flask
-    * Jinja 
     * Werkzeug security
+    * Flask Login
+    * SSLify
+- Jinja templating
+  - Used to generate HTML from python code and display data to user
 - MongoDB
+  - Used for the backend database
 - HTML
+  - The main structure of this website was built using HTML5
 - CSS
+  - This project was styled using CSS
 - Heroku
+  - Used to deploy app
 - Bootstrap
-- Git & GitHub.com
+  - To help create a responsive website
+- Git & GitHub
+  - Used for version control and to push changed to remote repository
+
 
 ### Other Tools Used
 
@@ -296,6 +309,8 @@ Below are the future features that I would like to include to improve the websit
 - [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
 - [Video to gif converter](https://ezgif.com/video-to-gif)
 - [Tiny PNG](https://tinypng.com/)
+- [CSS Formatter](https://www.freeformatter.com/css-beautifier.html)
+- [Pep8 Checker](http://pep8online.com/)
 
 ## Testing
 
