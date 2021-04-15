@@ -6,7 +6,7 @@ const accountBtn = document.getElementsByClassName("account-btn");
 const recipeBtn = document.getElementsByClassName("recipe-btn");
 const profilePicBtn = document.getElementsByClassName("profile-pic-btn");
 const cancel = document.getElementsByClassName("cancel");
-const deleteCancel = document.getElementsByClassName("delete-cancel")
+const deleteCancel = document.getElementsByClassName("delete-cancel");
 
 // Onclick functions to display and hide modals.
 $(recipeBtn).click(function(){
@@ -52,10 +52,10 @@ $(function(){
     setTimeout(function(){
     $('.flash-message').slideUp();
     }, 4000);
-  })
+  });
 
 // Alerts user their email address has been submitted
 
 $("#subscribe").submit(function(){
-  alert("Thank for submitting your email.")
+  alert("Thank for submitting your email.");
 });
