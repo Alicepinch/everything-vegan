@@ -13,6 +13,7 @@ Eating Vegan is an online community where users can create and explore new exclu
    - [Design](#design)
 - [Features](#features)
 - [Future Features](#future-features)
+- [Security Features](#security-features)
 - [Technologies Used](#technologies-used)
 - [Data Schema](#data-schema)
 - [Testing](TESTING.md)
@@ -184,43 +185,65 @@ Subscribers | subscriber_email | email | string
 ## Features
 
 - [x] Register account
+  - New users can register an account, once registered user is logged in an session cookie created
 - [x] Login to account
-- [x] Hashed passwords for security
-- [x] Profile page 
+  - Existing users can log into their account, creating session cookie
+- [x] Personal profile page
+  - Displays users created recipes
 - [x] Add new recipe
-- [x] All recipes page
-- [x] View single recipe page
-- [x] Edit recipe
-- [x] Newsletter subscription
+  - Form to add new recipe to users profile and recipes page
+- [x] Recipes page 
+  - Displays all recipes created by all users
+- [x] Single recipe page
+  - Fetches all recipe's information to display to page
 - [x] Flash messages
-- [x] Search all recipes
-- [x] Login required function for login only pages
-- [x] 404 page
-- [x] 505 page
-- [x] 405 page
+  - Provide information, warnings and error messages from backend to user
+- [x] Search
+  - All users can search recipes by name, description, ingredients
+- [x] Filter drop down
+  - All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
 - [x] Update password
-- [x] Update profile photo
-- [x] Filter drop down to flick through meal types
-- [x] Admin can manage/delete all recipes
+  -  Users can change their password if they know their current password and two new passwords match
+- [x] Update profile photo 
+  - Users can update their profile photo on their profile page
 - [x] Delete account
+  - Users can delete their own accounts
 - [x] Delete recipe
-- [x] Only users who created a recipe or admin can delete/edit.
-- [x] Different page titles
-- [x] Save recipe functionality
-- [x] Remove saved recipe 
-- [x] Password validation with python
-- [x] Responsive design
-- [x] Secure Website
+  - Users can delete a recipe if they created it
+- [x] Edit recipe
+  -  Form to edit and update current recipe information if user created it
+- [x] Save recipe's
+  - Users can save recipe's and access this information from profile page
+- [x] Remove saved recipe's
+  - Users can remove saved recipe's
+- [x] Navigation bar
+  - Displays different navigation link to users that are logged in. Can see this in the [Wireframes section](#wireframes)
+- [x] Footer   
+  - Same footer across all pages
+- [x] Newsletter subscription
+  -  User can submit their email to receive newsletters in the future
+- [x] Contact email
+  -  All users can email if needed, currently a set up to go through to personal email address (In the future an email would be created for Eating Vegan)
+- [x] Login required
+  - Only users that are logged into session can access certain pages and functions
+- [x] Admin 
+  - Admin account can view all the recipes from the website on their profile page and edit/delete any if needed. 
+- [x] Error Pages
+  - 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage
+- [x] Responsive design 
+  - Website is optimized for multiple screen sizes
+- [x] Homepage 
+  - Provides users with information about the website and how it works
 
 ## Security Features:
 
 - Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure
-- App logic checks session cookie matches the user that created recipes or is the admin to allow to remove or edit them
+- Password validation implemented to ensure users create strong passwords, password must include on lowercase, uppercase, number and symbol: !@#$%^&*
+- App logic checks session cookie matches the user that created recipes or is the admin to allow only them to remove or edit recipes
 - Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct
 - Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account
 - Flask_sslify redirects all incoming requests to https for secure network.
 - Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter
-- Error pages for '404 page not found' '500 Internal server error" and "403 Method not allowed" 
 - Session times out after 120 minutes to ensure user is not logged in forever
 - User must enter their current password before updating password to ensure that this matches the password in database
 
@@ -239,6 +262,7 @@ Below are the future features that I would like to include to improve the websit
 - [ ] Reviews section for recipes
 - [ ] Rating system for recipes
 - [ ] Admin can view and manage all users as well as recipes
+- [ ] Contact form 
 
 
 ## Technologies Used
@@ -373,7 +397,7 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 - [For view decorators](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/)
 - [For permanent session cookie](https://flask.palletsprojects.com/en/1.1.x/config/)
 - [For validating password stated in ](https://stackoverflow.com/questions/41117733/validation-of-a-password-python.)[validation.py.](validation.py)
-- [For how to implemende flask SSLify](https://github.com/not-kennethreitz/flask-sslify)
+- [For how to implement flask SSLify](https://github.com/not-kennethreitz/flask-sslify)
 
 ### Content
 

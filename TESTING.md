@@ -6,7 +6,7 @@ If a user tries to access a page that is non existent then they will be directed
 
 In case of an internal server error occurring then a 500 error page has also been implemented. This looks similar to the 400 error page and has a CTA for users to click back to the homepage. 
 
-If a method is not allowed on some of the functions but for example a user tries to access a URL that only has a POST function, then they will be displayed with a 403 Method not allowed error.
+If a method is not allowed on some of the functions but for example a user tries to access a URL that only has a POST function, then they will be displayed with a 405 Method not allowed error.
 
 ![404 Error page](/docs/testing/errors/404-error-page.gif)
 ![500 Error page](/docs/testing/errors/500-server-error-page.png)
@@ -129,6 +129,7 @@ When doing my final tests, I noticed that if anyone was logged in they were able
 If someone was to just use the URL ```delete-recipe/<recipe-id>``` or ```delete-user/<username>```  then they would be able to override the Jinja templating. This wasn't ideal as I wouldn't want any user to be able to delete any recipe/account just because 
 they are logged in. To remedy this, I added in some if statements to the appropriate routes in my [app.py](app.py) file to ensure that the person deleting recipe was either the user that created it or the admin. If the users is neither of these then they will 
 be presented with a 404 error to ensure the user doesn't know that the URL they have used is correct.
+
 Another issue I came across when testing deleting a users account was that if a user deleted their account and their recipes along with it then these recipes would still be in others users saved recipes array.
 To fix this issue I made it so that all recipes created by the user will be updated to be created by "admin". When a user goes to delete their account, they are told that their recipes will remain unless they delete these individually themselves. 
 Ideally, I would like to be able to delete all the users data if they are to delete their account however, this was the solution I chose for now. 
@@ -140,7 +141,7 @@ All required form fields have been marked with an '*' and this has been stated e
 #### Register Form:
 
 Register form has been tested by filling out each required form field and submitting. Once form is submitted user details are pushed to the users collection in mongoDB database. 
-  - Form fields that are required: Email address, username and password. Profile photo is not required and if used doesn't fill this in a default profile picture will be used.
+  - Form fields that are required: Email address, username and password. A profile photo is not required and if a user doesn't fill this in a default profile picture will be used.
 
 If a user tries to register with an existing username/email address a flash error message will be shown and users not registered.
 If the user tries to register an account with an invalid username or password, then the user will not be able to register and a error message will show with the issue.
