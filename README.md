@@ -214,14 +214,15 @@ Subscribers | subscriber_email | email | string
 
 ## Security Features:
 
-- Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure.
-- App logic checks session cookie matches the user that created recipes or is the admin to allow to remove or edit them. 
-- Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct.
-- Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account.
+- Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure
+- App logic checks session cookie matches the user that created recipes or is the admin to allow to remove or edit them
+- Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct
+- Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account
 - Flask_sslify redirects all incoming requests to https for secure network.
-- Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter.
+- Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter
 - Error pages for '404 page not found' '500 Internal server error" and "403 Method not allowed" 
-- Session times out after 120 minutes to ensure user is not logged in forever.
+- Session times out after 120 minutes to ensure user is not logged in forever
+- User must enter their current password before updating password to ensure that this matches the password in database
 
 ## Future Features
 
@@ -237,6 +238,7 @@ Below are the future features that I would like to include to improve the websit
 - [ ] Active Links for navigation bar
 - [ ] Reviews section for recipes
 - [ ] Rating system for recipes
+- [ ] Admin can view and manage all users as well as recipes
 
 
 ## Technologies Used
