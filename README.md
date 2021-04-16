@@ -153,7 +153,7 @@ Name | username | text, `maxlength="15" from python` | string
 Email Address | email | email | string
 Password | password | text, `maxlength="15" from python` | string
 Profile Picture | profile_img | url `pattern="https://.*"`| string
-Saved recipes | saved_recipes | n/a | array
+Saved recipes | saved_recipes | n/a | array of recipe ObjectId's
 Date joined | date_joined | Populated from when user is created | string
 
 #### Recipes
@@ -184,52 +184,58 @@ Subscribers | subscriber_email | email | string
 
 ## Features
 
-- [x] Register account
-- New users can register an account, once registered user is logged in and session cookie is created
-- [x] Login to account
-- Existing users can log into their account, creating session cookie
-- [x] Personal profile page
+#### Register account
+- New users can register an account.
+#### Login to account
+- Existing users can log into their account.
+#### Session cookie
+- Once user is logged in/ creates an account their information is stored in a session cookie until they log out.
+#### Personal profile page
 - Displays recipes created by user logged in
-- [x] Update profile photo 
+#### Update profile photo 
 - Logged in users can update their profile photo on their profile page
-- [x] Delete account
-- Logged in users can delete their own accounts from profile page (User is prompted to confirm before deletion)
-- [x] Add new recipe
+#### Delete account
+- Logged in users can delete their own accounts from profile page
+- User is prompted to confirm before deletion
+#### Add new recipe
 - Logged in users can complete the form to add new recipe to website
-- [x] Recipe's page 
+#### Recipe's page 
 - Displays all recipes from all users
-- [x] Single recipe page
+#### Single recipe page
 - Displays specific recipe's information to page
-- [x] Flash messages
+#### Flash messages
 - Displays information, warnings and error messages from backend to user
-- [x] Search
+#### Search
 - All users can search recipes by name, description, ingredients
-- [x] Filter drop down
+#### Filter drop down
 - All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
-- [x] Update password
+#### Update password
 -  Logged in users can change their password if they know their current password and two new passwords match
-- [x] Delete recipe
-- Logged in users can delete recipe only if they created it (User is prompted to confirm before deletion)
-- [x] Edit recipe
+#### Delete recipe
+- Logged in users can delete recipe only if they created it 
+- User is prompted to confirm before deletion
+#### Edit recipe
 -  Logged in users can complete edit form to update recipe information only if the user created it
-- [x] Save Recipes
+#### Save Recipes
 - Logged in users can save and remove recipes from their saved page which they can access from profile page
-- [x] Navigation bar
-- All users have a navigation bar, however this looks different to users that are logged in. You can see this in the [Wireframes section](#wireframes)
-- [x] Footer   
-- All users have the same footer across all pages
-- [x] Newsletter subscription
+#### Navigation bar
+- All users have a navigation bar however, this looks different to users that are logged in. You can see these differences on the [Wireframes](#wireframes)
+#### Footer   
+- Across all pages, contains the subscribe function, contact email and social links. 
+- Email is set up to go through to personal email address for now (In the future an email would be created for Eating Vegan) 
+- Social links go through to homepages as Eating Vegan doesnt have pages at the moment
+#### Newsletter subscription
 -  All users can submit their emails to receive newsletters in the future
-- [x] Contact email
--  All users can email if needed, currently a set up to go through to personal email address (In the future an email would be created for Eating Vegan)
-- [x] Admin 
+#### Admin 
 - Admin account can view all the recipes on their profile page and edit/delete any if needed. 
-- [x] Error Pages
+#### Error Pages
 - 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage
-- [x] Responsive design 
+#### Responsive design 
 - Website is optimized for multiple screen sizes
-- [x] Homepage 
+#### Homepage 
 - Provides all users with information about the website and how it works
+#### Accessibility
+- Website is accesible for screenreaders
 
 ## Security Features:
 
@@ -247,18 +253,18 @@ Subscribers | subscriber_email | email | string
 
 Below are the future features that I would like to include to improve the website which are currently out of scope.
 
-- [ ] Show more button for recipes (pagination) on profile page and recipes
-- [ ] User profiles with option to upload images
-- [ ] Automated email when user signs up & subscribe to newsletter(Flask Mail)
-- [ ] User could upload an image directly to the website
-- [ ] Option to view other users profiles and what they have uploaded
-- [ ] More specific filters for recipes
-- [ ] User can update their username
-- [ ] Active Links for navigation bar
-- [ ] Reviews section for recipes
-- [ ] Rating system for recipes
-- [ ] Admin can view and manage all users as well as recipes
-- [ ] Contact form 
+- Show more button for recipes (pagination) on profile page and recipes
+- User profiles with option to upload images
+- Automated email when user signs up & subscribe to newsletter(Flask Mail)
+- User could upload an image directly to the website
+- Option to view other users profiles and what they have uploaded
+- More specific filters for recipes
+- User can update their username
+- Active Links for navigation bar
+- Reviews section for recipes
+- Rating system for recipes
+- Admin can view and manage all users as well as recipes
+- Contact form 
 
 
 ## Technologies Used
@@ -290,7 +296,7 @@ The site uses a python server backend and MongoDB database.
 - Bootstrap
   - To help create a responsive website
 - Git & GitHub
-  - Used for version control and to push changed to remote repository
+  - Used for version control and to push changes to remote repository
 
 
 ### Other Tools Used
