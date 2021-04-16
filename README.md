@@ -145,7 +145,7 @@ The datatypes that have been used in this project are:
     
 ### Collections in database:
 
-For this project I created a database in MongoDB called vegan_cookbook. Inside of this database I created 4 different collections to be used.
+For this project I created a database in MongoDB called vegan_cookbook. Inside of this database I created three different collections to be used.
 
 #### Users
 
