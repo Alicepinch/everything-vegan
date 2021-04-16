@@ -222,32 +222,6 @@ If a user enters an invalid image URL for a recipe then the image be a broken li
 
 ## User Stories Tested:
 
-### New user:
-
-<details><summary>As a new user I would like to be able to register an account.</summary>
-
-<br>
-When a user enters the site, they can navigate to the 'Register' link in the navbar or the CTA in the promotional section below the header to register an account with eating vegan. 
-
-![Register Account](/docs/testing/user-story-gifs/register-account.gif)
-
-</details>
-
-<details><summary>As a new user I would like to be able to sign up for the newsletter.</summary>
-
-<br>
-On any page of the website a user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
-
-</details>
-
-<details><summary>As a new user I would like to be able to understand what the website is.</summary>
-
-<br>
-When a user lands on the homepage of the website they will be provided with content about the website and what it is. They can also explore the 'Recipes' page in the navbar to get an idea of what is shared on the website.
-
-</details>
-
-
 ### Registered User:
 
 <details><summary>As a user I would like to be able to login to my account.</summary>
@@ -388,3 +362,31 @@ A user can remove any recipes from their saved by clicking on the "remove saved 
 ![Remove Saved Recipe](/docs/testing/user-story-gifs/remove-saved-recipe.gif)
 
 </details>
+
+### New user:
+
+#### As a new user I would like to be able to register an account.
+
+<details>
+
+<br>
+When a user enters the site, they can navigate to the 'Register' link in the navbar or the CTA in the promotional section below the header to register an account with eating vegan. 
+
+![Register Account](/docs/testing/user-story-gifs/register-account.gif)
+
+</details>
+
+#### As a new user I would like to be able to sign up for the newsletter.
+- On any page of the website a user can scroll to the bottom of any page and fill in their email address to subscribe to the newsletter.
+
+#### As a new user I would like to be able to understand what the website is.
+- When a user lands on the homepage of the website they will be provided with content about the website and what it is.
+
+#### As a new user I would like to be able to view all recipes.
+- A new user to the website can view all recipes by clicking the 'Recipes' link in the navigation bar just like a registered user. 
+
+#### As a user I would like to filter through the different meal types.
+- A new user can filter recipes the same way a registered user can.
+
+#### As a user I would like to be able to search through all recipes.
+- A new user can also search all recipes the same as a registered user.

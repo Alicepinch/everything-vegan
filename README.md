@@ -77,6 +77,9 @@ Another target audience for Eating Vegan is those people who want to explore veg
 - As a new user I would like to be able to register an account.
 - As a new user I would like to be able to sign up for the newsletter.
 - As a new user I would like to be able to understand what the website is.
+- As a new user I would like to be able to view all recipes.
+- As a new user I would like to flick through the different meal types.
+- As a new user I would like to be able to search through all recipes.
 
 </details>
 
@@ -122,7 +125,7 @@ Font's I have chosen for this project are 'Bungee Shade', 'Bungee' and 'Roboto'.
 
 The main colour's chosen for the website are black and white. As users are able to upload their own photos for the recipes I wanted to ensure there wouldn't be any major contrasts in colours so opted for black and white. For links and the hover colour for the Navigation bar I chose a green colour. This was due to wanting to include the colour that is mostly associted with veganism but not overusing it on the website. For links and buttons throughout a grey colour has been used as this complimented the black and white well. Lastly, for flash messages on the login, register and update user pages a red colour has been used so that the messages stand out to the customer. Below is the colour palette used:
 
-![Colour Palette](/docs/readme/eating-vegan-colour-palette.jpg)
+![Colour Palette](docs/readme/eating-vegan-colour-palette.png)
 
 </p>
 </details>
@@ -191,67 +194,67 @@ Subscribers | subscriber_email | email | string
 #### Session cookie
 - Once user is logged in/ creates an account their information is stored in a session cookie until they log out.
 #### Personal profile page
-- Displays recipes created by user logged in
+- Displays recipes created by user logged in.
 #### Update profile photo 
-- Logged in users can update their profile photo on their profile page
+- Logged in users can update their profile photo on their profile page.
 #### Delete account
-- Logged in users can delete their own accounts from profile page
-- User is prompted to confirm before deletion
+- Logged in users can delete their own accounts from profile page.
+- User is prompted to confirm before deletion.
 #### Add new recipe
-- Logged in users can complete the form to add new recipe to website
+- Logged in users can complete the form to add new recipe to website.
 #### Recipe's page 
-- Displays all recipes from all users
+- Displays all recipes from all users.
 #### Single recipe page
-- Displays specific recipe's information to page
+- Displays specific recipe's information to page.
 #### Flash messages
-- Displays information, warnings and error messages from backend to user
+- Displays information, warnings and error messages from backend to user.
 #### Search
-- All users can search recipes by name, description, ingredients
+- All users can search recipes by name, description, ingredients.
 #### Filter drop down
-- All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
+- All users can filter recipes by Breakfast, Lunch, Dinner and Desserts.
 #### Update password
--  Logged in users can change their password if their current password is correct and the two new passwords they enter match
+-  Logged in users can change their password if their current password is correct and the two new passwords they enter match.
 #### Delete recipe
-- If user has created the recipe they can delete it
-- User is prompted to confirm before deletion
+- If user has created the recipe they can delete it.
+- User is prompted to confirm before deletion.
 #### Edit recipe
-- Prefilled form with all recipe details
-- If user has created the recipe they can edit it via the form 
-- Changes display to the user straight away
+- Prefilled form with all recipe details.
+- If user has created the recipe they can edit it via the form.
+- Changes display to the user straight away.
 #### Save Recipes
-- Logged in users can save and remove saved recipes from account
-- Saved recipe page which displays all users saved in one place accessed via profile page
+- Logged in users can save and remove saved recipes from account.
+- Saved recipe page which displays all users saved in one place accessed via profile page.
 #### Navigation bar
-- All users have a navigation bar however, this looks different to users that are logged in. You can see these differences on the [Wireframes](#wireframes)
+- All users have a navigation bar however, this looks different to users that are logged in. You can see these differences on the [Wireframes](#wireframes).
 #### Footer   
 - Across all pages, contains the subscribe function, contact email and social links. 
-- Email is set up to go through to personal email address for now (In the future an email would be created for Eating Vegan) 
-- Social links go through to homepages as Eating Vegan doesnt have pages at the moment
+- Email is set up to go through to personal email address for now (In the future an email would be created for Eating Vegan).
+- Social links go through to homepages as Eating Vegan doesnt have pages at the moment.
 #### Newsletter subscription
--  All users can submit their emails to receive newsletters in the future
+-  All users can submit their emails to receive newsletters in the future.
 #### Admin 
 - Admin account can view all the recipes on their profile page and edit/delete any if needed. 
 #### Error Pages
-- 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage
+- 404 page not found, 500 internal server error and 405 method not allowed custom pages which redirect back to homepage.
 #### Responsive design 
-- Website is optimized for multiple screen sizes
+- Website is optimized for multiple screen sizes.
 #### Homepage 
-- Provides all users with information about the website and how it works
+- Provides all users with information about the website and how it works.
 #### Accessibility
-- Website is accesible for screenreaders
+- Website is accesible for screenreaders.
 
 ## Security Features:
 
-- Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure
-- Users are forced to create strong passwords from [validation.py](validation.py), password must include on lowercase, uppercase, number and symbol: !@#$%^&*
-- App logic checks session cookie matches the user that created recipes or is the admin to allow only them to remove or edit recipes
-- Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct
-- Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account
+- Hashed passwords using password hash from the Werkzeug Library to ensure passwords are not compromised and are secure.
+- Users are forced to create strong passwords from [validation.py](validation.py), password must include on lowercase, uppercase, number and symbol: !@#$%^&*.
+- App logic checks session cookie matches the user that created recipes or is the admin to allow only them to remove or edit recipes.
+- Access to delete recipe and edit recipe URL's is prevented for users who have not created the recipe or are not an admin by directing to a 404 page. This is to prevent hackers knowing that the URL is correct.
+- Access to delete account URL is also restricted to only the user that is logged in at the time to prevent hackers deleting any other users account.
 - Flask_sslify redirects all incoming requests to https for secure network.
-- Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter
-- Session times out after 120 minutes to ensure user is not logged in forever
-- User must enter their current password before updating password to ensure that this matches the password in database
-- Forgotten password function
+- Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter.
+- Session times out after 120 minutes to ensure user is not logged in forever.
+- User must enter their current password before updating password to confirm that this matches the password in database.
+
 
 ## Future Features
 
@@ -269,6 +272,7 @@ Below are the future features that I would like to include to improve the websit
 - Rating system for recipes
 - Admin can view and manage all users as well as recipes
 - Contact form 
+- Forgotten password function
 
 
 ## Technologies Used
@@ -440,10 +444,10 @@ The photos used on this site were from:
 - https://www.pexels.com/
 - https://unsplash.com/ 
 - https://pixabay.com/
-- Google images "Creative commons licenses" images
     - [Background photo used across site](https://www.pexels.com/photo/photo-of-vegetable-salad-in-bowls-1640770/)
     - [Default recipe image](https://www.pexels.com/photo/white-and-black-wooden-blocks-3669638/)
     - [Default profile Picture](https://www.pexels.com/photo/scrabble-tiles-in-blue-ceramic-plate-2377164/)
+- Google images "Creative commons licenses" images
 
 ----
 
