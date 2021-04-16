@@ -131,7 +131,7 @@ The main colour's chosen for the website are black and white. As users are able 
 
 ### MongoDB
 
-- The database used for this project is an NoSQL database. The database was created using the MongoDB cross-platform document-oriented program.
+The database used for this project is an NoSQL database. The database was created using the MongoDB cross-platform document-oriented program and is used to store data retrieve it. 
 
 ### Data types
 
@@ -210,14 +210,17 @@ Subscribers | subscriber_email | email | string
 #### Filter drop down
 - All users can filter recipes by Breakfast, Lunch, Dinner and Desserts
 #### Update password
--  Logged in users can change their password if they know their current password and two new passwords match
+-  Logged in users can change their password if their current password is correct and the two new passwords they enter match
 #### Delete recipe
-- Logged in users can delete recipe only if they created it 
+- If user has created the recipe they can delete it
 - User is prompted to confirm before deletion
 #### Edit recipe
--  Logged in users can complete edit form to update recipe information only if the user created it
+- Prefilled form with all recipe details
+- If user has created the recipe they can edit it via the form 
+- Changes display to the user straight away
 #### Save Recipes
-- Logged in users can save and remove recipes from their saved page which they can access from profile page
+- Logged in users can save and remove saved recipes from account
+- Saved recipe page which displays all users saved in one place accessed via profile page
 #### Navigation bar
 - All users have a navigation bar however, this looks different to users that are logged in. You can see these differences on the [Wireframes](#wireframes)
 #### Footer   
@@ -248,6 +251,7 @@ Subscribers | subscriber_email | email | string
 - Login required decorator from Flask Login for some route's so only users logged in with session cookie can enter
 - Session times out after 120 minutes to ensure user is not logged in forever
 - User must enter their current password before updating password to ensure that this matches the password in database
+- Forgotten password function
 
 ## Future Features
 
@@ -269,7 +273,7 @@ Below are the future features that I would like to include to improve the websit
 
 ## Technologies Used
 
-The site uses a python server backend and MongoDB database. 
+The site uses a python server backend to talk to a MongoDB database to display data to users.
  - The [app.py](app.py) file includes the main code for this app including: Flask initialisation, database interface, and app routes.
  - The [validation.py](validation.py) file includes the functions to validate if a user is logged in using the login required decorator as well functions used to check form fields are valid both to be called in [app.py.](app.py)
 
@@ -370,7 +374,7 @@ os.environ.setdefault("MONGO_DBNAME", `<your_database_name>`)
 - Create a cluster 
 - Once created, click on 'collections' and create a new database.
  - This is the database name that you will need to include in your 'MONGO_DBNAME' in the env.py file.
-- Create four collections within your database: recipes, subscribers, users.
+- Create three collections within your database: recipes, subscribers, users.
 
 ### Heroku deployment:
 
@@ -379,7 +383,7 @@ This repository can now be deployed to Heroku:
 To deploy this project to Heroku you will need a Heroku acccount.
 Once you have an account please follow the below steps. 
 
-1. In Heroku create a new app and set the region to EU. 
+1. In Heroku create a new app and set the region to closest to you. 
 
 2. In your github project create a requirements.txt file using the terminal command ```pip3 freeze —-local > requirements.txt ``` (This is so Heroku can read all of the web apps that have been used in the project)
 
@@ -399,7 +403,7 @@ Once you have an account please follow the below steps.
 
 10. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
 
-11. In the fields fill out the following:
+11. In the fields fill out the following and save:
 
 | Key | Value |
  --- | ---
@@ -409,6 +413,8 @@ MONGO_URI | `mongodb+srv://<username>:<password>@<cluster_name>-qtxun.mongodb.ne
 PORT | 5000
 SECRET_KEY | `<your_secret_key>`
 PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
+
+12. After following these steps you should have successfully deployed your app to heroku, test this by clicking on "Open App" 
 
 ## Credits
 
@@ -424,10 +430,8 @@ PERMANENT_SESSION_LIFETIME | timedelta(minutes=120)
 
 All content on this website has been created for educational purposes only and all rights are reserved to those credited below:
 
-- All recipes and images created by user "alicepinch" have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
+- All recipes and images have been taken from [BBC goodfood.](https://www.bbcgoodfood.com/)
 - Some recipes will have been added by other users and may have been taken from other websites. 
-
-Any issues then please email me at [alicepinch@hotmail.co.uk.](mailto:alicepinch@hotmail.co.uk)
 
 ### Media
 
@@ -444,4 +448,6 @@ The photos used on this site were from:
 ----
 
 This website is for educational purposed only.
+
+Any issues then please email me at [alicepinch@hotmail.co.uk.](mailto:alicepinch@hotmail.co.uk)
 
