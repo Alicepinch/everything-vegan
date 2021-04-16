@@ -376,7 +376,7 @@ A user can remove any recipes from their saved by clicking on the "remove saved 
 - As a new user I would like to be able to understand what the website is.
   - When a user lands on the homepage of the website they will be provided with content about the website and what it is.
 
--As a new user I would like to be able to view all recipes.
+- As a new user I would like to be able to view all recipes.
   - A new user to the website can view all recipes by clicking the 'Recipes' link in the navigation bar just like a registered user. 
 
 - As a user I would like to filter through the different meal types.
